@@ -15,6 +15,9 @@
 		8CCFD0E92BF32CD70059EF94 /* SumSumZipTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCFD0E82BF32CD70059EF94 /* SumSumZipTests.swift */; };
 		8CCFD0F32BF32CD70059EF94 /* SumSumZipUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCFD0F22BF32CD70059EF94 /* SumSumZipUITests.swift */; };
 		8CCFD0F52BF32CD70059EF94 /* SumSumZipUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCFD0F42BF32CD70059EF94 /* SumSumZipUITestsLaunchTests.swift */; };
+		8CCFD1192BF336EB0059EF94 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCFD1182BF336EB0059EF94 /* Color.swift */; };
+		8CCFD11D2BF337EA0059EF94 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCFD11C2BF337EA0059EF94 /* Color+Extension.swift */; };
+		8CCFD11F2BF338540059EF94 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCFD11E2BF338540059EF94 /* Strings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,9 @@
 		8CCFD0EE2BF32CD70059EF94 /* SumSumZipUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SumSumZipUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CCFD0F22BF32CD70059EF94 /* SumSumZipUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SumSumZipUITests.swift; sourceTree = "<group>"; };
 		8CCFD0F42BF32CD70059EF94 /* SumSumZipUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SumSumZipUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		8CCFD1182BF336EB0059EF94 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		8CCFD11C2BF337EA0059EF94 /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
+		8CCFD11E2BF338540059EF94 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,10 +103,15 @@
 		8CCFD0D32BF32CD40059EF94 /* SumSumZip */ = {
 			isa = PBXGroup;
 			children = (
+				8CCFD1062BF3319F0059EF94 /* MainComponents */,
+				8CCFD10D2BF332310059EF94 /* LiveActivityComponents */,
+				8CCFD1072BF331B00059EF94 /* WidgetComponents */,
+				8CCFD1092BF331F20059EF94 /* Managers */,
+				8CCFD11A2BF337C20059EF94 /* Helpers */,
+				8CCFD1082BF331C10059EF94 /* Resources */,
 				8CCFD0D42BF32CD40059EF94 /* SumSumZipApp.swift */,
 				8CCFD0D62BF32CD40059EF94 /* ContentView.swift */,
 				8CCFD0D82BF32CD40059EF94 /* Item.swift */,
-				8CCFD0DA2BF32CD60059EF94 /* Assets.xcassets */,
 				8CCFD0DF2BF32CD60059EF94 /* SumSumZip.entitlements */,
 				8CCFD0DC2BF32CD60059EF94 /* Preview Content */,
 			);
@@ -130,6 +141,164 @@
 				8CCFD0F42BF32CD70059EF94 /* SumSumZipUITestsLaunchTests.swift */,
 			);
 			path = SumSumZipUITests;
+			sourceTree = "<group>";
+		};
+		8CCFD1012BF3305A0059EF94 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8CCFD1022BF330660059EF94 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8CCFD1032BF3306D0059EF94 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		8CCFD1062BF3319F0059EF94 /* MainComponents */ = {
+			isa = PBXGroup;
+			children = (
+				8CCFD1012BF3305A0059EF94 /* Models */,
+				8CCFD1022BF330660059EF94 /* Views */,
+				8CCFD1032BF3306D0059EF94 /* ViewModels */,
+			);
+			path = MainComponents;
+			sourceTree = "<group>";
+		};
+		8CCFD1072BF331B00059EF94 /* WidgetComponents */ = {
+			isa = PBXGroup;
+			children = (
+				8CCFD10C2BF332190059EF94 /* Models */,
+				8CCFD10B2BF332130059EF94 /* Views */,
+				8CCFD10A2BF331FC0059EF94 /* ViewModels */,
+			);
+			path = WidgetComponents;
+			sourceTree = "<group>";
+		};
+		8CCFD1082BF331C10059EF94 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8CCFD1172BF336CE0059EF94 /* Strings */,
+				8CCFD1162BF335340059EF94 /* Components */,
+				8CCFD1152BF335260059EF94 /* Color */,
+				8CCFD1142BF3350D0059EF94 /* Image */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		8CCFD1092BF331F20059EF94 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		8CCFD10A2BF331FC0059EF94 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		8CCFD10B2BF332130059EF94 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8CCFD10C2BF332190059EF94 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8CCFD10D2BF332310059EF94 /* LiveActivityComponents */ = {
+			isa = PBXGroup;
+			children = (
+				8CCFD1122BF332620059EF94 /* Models */,
+				8CCFD1112BF332590059EF94 /* Views */,
+				8CCFD1102BF3324E0059EF94 /* ViewModels */,
+			);
+			path = LiveActivityComponents;
+			sourceTree = "<group>";
+		};
+		8CCFD1102BF3324E0059EF94 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		8CCFD1112BF332590059EF94 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		8CCFD1122BF332620059EF94 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		8CCFD1142BF3350D0059EF94 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				8CCFD0DA2BF32CD60059EF94 /* Assets.xcassets */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
+		8CCFD1152BF335260059EF94 /* Color */ = {
+			isa = PBXGroup;
+			children = (
+				8CCFD1182BF336EB0059EF94 /* Color.swift */,
+			);
+			path = Color;
+			sourceTree = "<group>";
+		};
+		8CCFD1162BF335340059EF94 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		8CCFD1172BF336CE0059EF94 /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				8CCFD11E2BF338540059EF94 /* Strings.swift */,
+			);
+			path = Strings;
+			sourceTree = "<group>";
+		};
+		8CCFD11A2BF337C20059EF94 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8CCFD11B2BF337DB0059EF94 /* Extensions */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		8CCFD11B2BF337DB0059EF94 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8CCFD11C2BF337EA0059EF94 /* Color+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,7 +432,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CCFD0D72BF32CD40059EF94 /* ContentView.swift in Sources */,
+				8CCFD11D2BF337EA0059EF94 /* Color+Extension.swift in Sources */,
+				8CCFD1192BF336EB0059EF94 /* Color.swift in Sources */,
 				8CCFD0D92BF32CD40059EF94 /* Item.swift in Sources */,
+				8CCFD11F2BF338540059EF94 /* Strings.swift in Sources */,
 				8CCFD0D52BF32CD40059EF94 /* SumSumZipApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -432,6 +604,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -440,8 +613,11 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.InnerPeace.SumSumZip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -458,6 +634,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -466,8 +643,11 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.InnerPeace.SumSumZip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
