@@ -1,0 +1,5 @@
+# Exclude user specific Xcode files
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+
+*.xcworkspace/xcuserdata/
