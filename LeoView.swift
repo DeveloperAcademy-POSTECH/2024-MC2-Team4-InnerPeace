@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LeoView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("되어라 업로드!")
     }
 }
 
