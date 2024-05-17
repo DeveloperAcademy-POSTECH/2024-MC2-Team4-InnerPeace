@@ -10,6 +10,9 @@ import SwiftData
 
 @main
 struct SumSumZipApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @Environment(\.scenePhase) private var scenePhase
+    
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Item.self,
@@ -28,5 +31,27 @@ struct SumSumZipApp: App {
             ContentView()
         }
         .modelContainer(sharedModelContainer)
+        .onChange(of: scenePhase, { oldValue, newValue in
+            switch newValue {
+            case .active:
+                print("Active")
+                EmergencyLiveActivityManager.shared.endActivity()
+            case .inactive:
+                print("Inactive")
+            case .background:
+                print("Background")
+                EmergencyLiveActivityManager.shared.startActivity(name: "안녕", emoji: "이너피스")
+            default:
+                print("scenePhase err")
+            }
+        })
+    }
+}
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+    func applicationWillTerminate(_ application: UIApplication) {
+        // 앱이 종료될 때 호출
+        print("Appdelegate applicationwillTerminate")
+        EmergencyLiveActivityManager.shared.endActivity()
     }
 }
