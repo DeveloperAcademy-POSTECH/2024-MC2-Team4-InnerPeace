@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		512A01E02BF7847200EE8B39 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512A01DF2BF7847200EE8B39 /* MessageView.swift */; };
 		8CCFD0D52BF32CD40059EF94 /* SumSumZipApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCFD0D42BF32CD40059EF94 /* SumSumZipApp.swift */; };
 		8CCFD0D72BF32CD40059EF94 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCFD0D62BF32CD40059EF94 /* ContentView.swift */; };
 		8CCFD0D92BF32CD40059EF94 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCFD0D82BF32CD40059EF94 /* Item.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		512A01DF2BF7847200EE8B39 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		8CCFD0D12BF32CD40059EF94 /* SumSumZip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SumSumZip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CCFD0D42BF32CD40059EF94 /* SumSumZipApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SumSumZipApp.swift; sourceTree = "<group>"; };
 		8CCFD0D62BF32CD40059EF94 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 		8CCFD1022BF330660059EF94 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				512A01DF2BF7847200EE8B39 /* MessageView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -440,6 +443,7 @@
 				8CCFD1192BF336EB0059EF94 /* Color.swift in Sources */,
 				8CCFD0D92BF32CD40059EF94 /* Item.swift in Sources */,
 				8CCFD11F2BF338540059EF94 /* Strings.swift in Sources */,
+				512A01E02BF7847200EE8B39 /* MessageView.swift in Sources */,
 				8CCFD0D52BF32CD40059EF94 /* SumSumZipApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -605,7 +609,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SumSumZip/Preview Content\"";
-				DEVELOPMENT_TEAM = 5C6W5SYCQQ;
+				DEVELOPMENT_TEAM = TC3AW42G83;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -637,7 +641,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SumSumZip/Preview Content\"";
-				DEVELOPMENT_TEAM = 5C6W5SYCQQ;
+				DEVELOPMENT_TEAM = TC3AW42G83;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
