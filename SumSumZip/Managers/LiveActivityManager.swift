@@ -16,9 +16,9 @@ class EmergencyLiveActivityManager {
     
     private init() {}
     
-    func startActivity(name: String, emoji: String) {
-        let attributes = EmergencyLiveActivityAttributes(name: name)
-        let initialContentState = EmergencyLiveActivityAttributes.ContentState(emoji: emoji)
+    func startActivity(title: String, firstSubtitle: String, secondSubtitle: String) {
+        let attributes = EmergencyLiveActivityAttributes(title: title, firstSubtitle: firstSubtitle, secondSubtitle: secondSubtitle)
+        let initialContentState = EmergencyLiveActivityAttributes.ContentState(emoji: "")
 
         do {
             activity = try Activity<EmergencyLiveActivityAttributes>.request(
@@ -29,6 +29,21 @@ class EmergencyLiveActivityManager {
             print("Started Live Activity with ID: \(activity?.id ?? "unknown")")
         } catch {
             print("Failed to start Live Activity: \(error.localizedDescription)")
+        }
+    }
+    
+    func endActivity(activity: Activity<EmergencyLiveActivityAttributes>) {
+            let content = EmergencyLiveActivityAttributes.ContentState(emoji: "종료")
+
+            Task {
+                await activity.end(using: content, dismissalPolicy: .immediate)
+                print("Ended Live Activity with ID: \(activity.id)")
+            }
+        }
+    
+    func endAllActivities() {
+        for activity in Activity<EmergencyLiveActivityAttributes>.activities {
+            endActivity(activity: activity)
         }
     }
     
@@ -43,19 +58,6 @@ class EmergencyLiveActivityManager {
         Task {
             await activity.update(using: updatedContentState)
             print("Updated Live Activity with new emoji.")
-        }
-    }
-    
-    func endActivity() {
-        guard let activity = activity else {
-            print("No active Live Activity to end.")
-            return
-        }
-
-        Task {
-            await activity.end(dismissalPolicy: .immediate)
-            print("Ended Live Activity.")
-            self.activity = nil
         }
     }
 }

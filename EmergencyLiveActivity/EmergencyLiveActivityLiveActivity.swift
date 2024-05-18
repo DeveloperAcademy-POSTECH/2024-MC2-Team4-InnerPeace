@@ -5,76 +5,85 @@
 //  Created by 신승아 on 5/15/24.
 //
 
+import SwiftUI
 import ActivityKit
 import WidgetKit
-import SwiftUI
 
 struct EmergencyLiveActivityAttributes: ActivityAttributes {
     public struct ContentState: Codable, Hashable {
-        // Dynamic stateful properties about your activity go here!
         var emoji: String
     }
 
-    // Fixed non-changing properties about your activity go here!
-    var name: String
+    var title: String
+    var firstSubtitle: String
+    var secondSubtitle: String
 }
 
 struct EmergencyLiveActivityLiveActivity: Widget {
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: EmergencyLiveActivityAttributes.self) { context in
             // Lock screen/banner UI goes here
-            VStack {
-                Text("Hello \(context.state.emoji)")
-            }
-            .activityBackgroundTint(Color.cyan)
-            .activitySystemActionForegroundColor(Color.black)
-
+            commonView(context: context, isForDynamicIsland: false)
         } dynamicIsland: { context in
             DynamicIsland {
-                // Expanded UI goes here.  Compose the expanded UI through
-                // various regions, like leading/trailing/center/bottom
+                // Expanded UI goes here
                 DynamicIslandExpandedRegion(.leading) {
-                    Text("Leading")
+
                 }
                 DynamicIslandExpandedRegion(.trailing) {
-                    Text("Trailing")
+
                 }
                 DynamicIslandExpandedRegion(.bottom) {
-                    Text("Bottom \(context.state.emoji)")
-                    // more content
+                    commonView(context: context, isForDynamicIsland: true)
                 }
             } compactLeading: {
-                Text("L")
+                Image(systemName: "exclamationmark.triangle")
+                    .foregroundColor(AppColors.lightCyan)
             } compactTrailing: {
-                Text("T \(context.state.emoji)")
+                CircularProgressView(progress: 1)
             } minimal: {
-                Text(context.state.emoji)
+                Image(systemName: "exclamationmark.triangle")
+                    .foregroundColor(.red)
             }
             .widgetURL(URL(string: "http://www.apple.com"))
             .keylineTint(Color.red)
         }
     }
-}
-
-extension EmergencyLiveActivityAttributes {
-    fileprivate static var preview: EmergencyLiveActivityAttributes {
-        EmergencyLiveActivityAttributes(name: "World")
-    }
-}
-
-extension EmergencyLiveActivityAttributes.ContentState {
-    fileprivate static var smiley: EmergencyLiveActivityAttributes.ContentState {
-        EmergencyLiveActivityAttributes.ContentState(emoji: "😀")
-     }
-     
-     fileprivate static var starEyes: EmergencyLiveActivityAttributes.ContentState {
-         EmergencyLiveActivityAttributes.ContentState(emoji: "🤩")
-     }
-}
-
-#Preview("Notification", as: .content, using: EmergencyLiveActivityAttributes.preview) {
-   EmergencyLiveActivityLiveActivity()
-} contentStates: {
-    EmergencyLiveActivityAttributes.ContentState.smiley
-    EmergencyLiveActivityAttributes.ContentState.starEyes
+    
+    private func commonView(context: ActivityViewContext<EmergencyLiveActivityAttributes>, isForDynamicIsland: Bool) -> some View {
+            VStack {
+                HStack {
+                    Image(systemName: "exclamationmark.triangle")
+                        .font(.system(size: 22))
+                        .foregroundColor(AppColors.lightCyan)
+                        .padding(.leading, 19)
+                        .padding(.top, isForDynamicIsland ? 0 : 34)
+                    
+                    Text(context.attributes.title)
+                        .bold()
+                        .padding(.top, isForDynamicIsland ? 0 : 29)
+                        .font(.system(size: 22))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                
+                Spacer()
+                    .frame(height: isForDynamicIsland ? 14 : 36)
+                
+                VStack {
+                    Text(context.attributes.firstSubtitle)
+                        .padding(.bottom, isForDynamicIsland ? 0 : 5)
+                        .font(.system(size: 18))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.leading, 19)
+                    
+                    Text(context.attributes.secondSubtitle)
+                        .padding(.bottom, 23)
+                        .font(.system(size: 18))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.leading, 19)
+                        .foregroundColor(AppColors.lightCyan)
+                }
+            }
+            .activitySystemActionForegroundColor(Color.black)
+        }
 }
