@@ -34,12 +34,6 @@ struct SOSTimeSetting: View {
                     ToolbarItem(placement: .navigationBarLeading) {
                         HStack(spacing: 0){
                             Button(action: {
-                               dismiss()
-                           }) {
-                               Image(systemName: "chevron.left")
-                                   .foregroundColor(AppColors.darkGreen)
-                           }
-                            Button(action: {
                                 selectedTime = 30 // Back To Default Value
                             }) {
                                 Text("취소")
