@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00C1A7C02BFAEB0D004747E6 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C1A7BF2BFAEB0D004747E6 /* SummaryView.swift */; };
 		8B1F63D12BFAD41C00049B0B /* BreathingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F63D02BFAD41C00049B0B /* BreathingView.swift */; };
 		20CE35B12BFAFE2200AF7C09 /* SOSTimeSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE35B02BFAFE2200AF7C09 /* SOSTimeSetting.swift */; };
 		20CE35AF2BFAFCE300AF7C09 /* BreathTimeSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE35AE2BFAFCE300AF7C09 /* BreathTimeSetting.swift */; };
@@ -79,6 +80,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		00C1A7BF2BFAEB0D004747E6 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
 		8B1F63D02BFAD41C00049B0B /* BreathingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingView.swift; sourceTree = "<group>"; };
 		20CE35B02BFAFE2200AF7C09 /* SOSTimeSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSTimeSetting.swift; sourceTree = "<group>"; };
 		20CE35AE2BFAFCE300AF7C09 /* BreathTimeSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathTimeSetting.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 		8CCFD1022BF330660059EF94 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				00C1A7BF2BFAEB0D004747E6 /* SummaryView.swift */,
 				8B1F63D02BFAD41C00049B0B /* BreathingView.swift */,
 				20CE35B02BFAFE2200AF7C09 /* SOSTimeSetting.swift */,
 				20CE35AE2BFAFCE300AF7C09 /* BreathTimeSetting.swift */,
@@ -564,6 +567,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CCFD0D72BF32CD40059EF94 /* ContentView.swift in Sources */,
+				00C1A7C02BFAEB0D004747E6 /* SummaryView.swift in Sources */,
 				20CE35B12BFAFE2200AF7C09 /* SOSTimeSetting.swift in Sources */,
 				8C9A150B2BF8608B00F16283 /* CircularProgressView.swift in Sources */,
 				512A01F82BFAEDBB00EE8B39 /* MessageView.swift in Sources */,
