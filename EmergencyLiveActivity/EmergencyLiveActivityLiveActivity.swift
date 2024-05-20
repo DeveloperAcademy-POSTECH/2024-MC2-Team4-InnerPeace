@@ -11,7 +11,7 @@ import WidgetKit
 
 struct EmergencyLiveActivityAttributes: ActivityAttributes {
     public struct ContentState: Codable, Hashable {
-        var emoji: String
+        var progress: Double
     }
 
     var title: String

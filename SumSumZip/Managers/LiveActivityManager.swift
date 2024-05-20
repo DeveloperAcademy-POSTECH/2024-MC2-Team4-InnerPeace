@@ -18,7 +18,7 @@ class EmergencyLiveActivityManager {
     
     func startActivity(title: String, firstSubtitle: String, secondSubtitle: String) {
         let attributes = EmergencyLiveActivityAttributes(title: title, firstSubtitle: firstSubtitle, secondSubtitle: secondSubtitle)
-        let initialContentState = EmergencyLiveActivityAttributes.ContentState(emoji: "")
+        let initialContentState = EmergencyLiveActivityAttributes.ContentState(progress: 0.0)
 
         do {
             activity = try Activity<EmergencyLiveActivityAttributes>.request(
@@ -33,7 +33,7 @@ class EmergencyLiveActivityManager {
     }
     
     func endActivity(activity: Activity<EmergencyLiveActivityAttributes>) {
-            let content = EmergencyLiveActivityAttributes.ContentState(emoji: "종료")
+        let content = EmergencyLiveActivityAttributes.ContentState(progress: 1.0)
 
             Task {
                 await activity.end(using: content, dismissalPolicy: .immediate)
@@ -47,13 +47,13 @@ class EmergencyLiveActivityManager {
         }
     }
     
-    func updateActivity(emoji: String) {
+    func updateActivity(progress: Double) {
         guard let activity = activity else {
             print("No active Live Activity to update.")
             return
         }
 
-        let updatedContentState = EmergencyLiveActivityAttributes.ContentState(emoji: emoji)
+        let updatedContentState = EmergencyLiveActivityAttributes.ContentState(progress: progress)
 
         Task {
             await activity.update(using: updatedContentState)
