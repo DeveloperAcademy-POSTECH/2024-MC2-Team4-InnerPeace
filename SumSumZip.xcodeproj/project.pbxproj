@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B1F63D12BFAD41C00049B0B /* BreathingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F63D02BFAD41C00049B0B /* BreathingView.swift */; };
 		20CE35B12BFAFE2200AF7C09 /* SOSTimeSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE35B02BFAFE2200AF7C09 /* SOSTimeSetting.swift */; };
 		20CE35AF2BFAFCE300AF7C09 /* BreathTimeSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE35AE2BFAFCE300AF7C09 /* BreathTimeSetting.swift */; };
 		512A01F82BFAEDBB00EE8B39 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512A01F72BFAEDBB00EE8B39 /* MessageView.swift */; };
@@ -77,6 +78,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8B1F63D02BFAD41C00049B0B /* BreathingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingView.swift; sourceTree = "<group>"; };
 		20CE35B02BFAFE2200AF7C09 /* SOSTimeSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSTimeSetting.swift; sourceTree = "<group>"; };
 		20CE35AE2BFAFCE300AF7C09 /* BreathTimeSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathTimeSetting.swift; sourceTree = "<group>"; };
 		512A01F72BFAEDBB00EE8B39 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 		8CCFD1022BF330660059EF94 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8B1F63D02BFAD41C00049B0B /* BreathingView.swift */,
 				20CE35B02BFAFE2200AF7C09 /* SOSTimeSetting.swift */,
 				20CE35AE2BFAFCE300AF7C09 /* BreathTimeSetting.swift */,
 			);
@@ -562,6 +565,7 @@
 				8C9A150B2BF8608B00F16283 /* CircularProgressView.swift in Sources */,
 				512A01F82BFAEDBB00EE8B39 /* MessageView.swift in Sources */,
 				8CCFD11D2BF337EA0059EF94 /* Color+Extension.swift in Sources */,
+				8B1F63D12BFAD41C00049B0B /* BreathingView.swift in Sources */,
 				8CD4FF1A2BF6E1AB009A8BC9 /* EmergencyLiveActivityLiveActivity.swift in Sources */,
 				8CCFD1192BF336EB0059EF94 /* Color.swift in Sources */,
 				8CCFD0D92BF32CD40059EF94 /* Item.swift in Sources */,
@@ -753,7 +757,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SumSumZip/Preview Content\"";
-				DEVELOPMENT_TEAM = 5C6W5SYCQQ;
+				DEVELOPMENT_TEAM = GF3B5LP7RQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -786,7 +790,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SumSumZip/Preview Content\"";
-				DEVELOPMENT_TEAM = 5C6W5SYCQQ;
+				DEVELOPMENT_TEAM = GF3B5LP7RQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
