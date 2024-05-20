@@ -54,10 +54,11 @@ class EmergencyLiveActivityManager {
         }
 
         let updatedContentState = EmergencyLiveActivityAttributes.ContentState(progress: progress)
+        print("Updated Dynamic Island with progress: \(progress)")
 
         Task {
             await activity.update(using: updatedContentState)
-            print("Updated Live Activity with new emoji.")
+            print("Updated Dynamic Island with progress.")
         }
     }
 }
