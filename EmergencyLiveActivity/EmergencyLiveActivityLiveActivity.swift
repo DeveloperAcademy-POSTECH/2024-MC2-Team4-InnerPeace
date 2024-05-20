@@ -22,7 +22,7 @@ struct EmergencyLiveActivityAttributes: ActivityAttributes {
 struct EmergencyLiveActivityLiveActivity: Widget {
     
     // 우선은 임시로 30초컷..?
-    @State private var timerInterval = Date()...Date().addingTimeInterval(30)
+//    @State private var timerInterval = Date()...Date().addingTimeInterval(30)
         
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: EmergencyLiveActivityAttributes.self) { context in
@@ -45,7 +45,7 @@ struct EmergencyLiveActivityLiveActivity: Widget {
                 Image(systemName: "exclamationmark.triangle")
                     .foregroundColor(AppColors.lightCyan)
             } compactTrailing: {
-                sosProgressView(timerInterval)
+                sosProgressView()
             } minimal: {
                 Image(systemName: "exclamationmark.triangle")
                     .foregroundColor(.red)
@@ -55,9 +55,9 @@ struct EmergencyLiveActivityLiveActivity: Widget {
         }
     }
     
-    private func sosProgressView(_ time: ClosedRange<Date>) -> some View {
+    private func sosProgressView() -> some View {
         // 여기서 시간이 0이 되는 시점을 어떻게 잡을 수 있지...???
-        ProgressView(timerInterval: time,
+        ProgressView(timerInterval: Date()...Date().addingTimeInterval(30),
                      countsDown: true, label: { EmptyView() },
                      currentValueLabel: { EmptyView() })
             .progressViewStyle(CircularProgressViewStyle())
