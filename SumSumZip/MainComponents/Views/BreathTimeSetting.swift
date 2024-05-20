@@ -1,6 +1,13 @@
+//
+//  BreathTimeSetting.swift
+//  SumSumZip
+//
+//  Created by Dongin Kang on 5/20/24.
+//
+
 import SwiftUI
 
-struct SOSTimeSetting: View {
+struct BreathTimeSetting: View {
     @State private var selectedTime: Int = 30
     @Environment(\.dismiss) var dismiss
 
@@ -26,7 +33,7 @@ struct SOSTimeSetting: View {
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .principal) {
-                        Text("구조 타이밍 설정")
+                        Text("호흡 유도 시간")
                             .fontWeight(.bold)
                             .font(.headline)
                             .foregroundColor(AppColors.darkGreen)
@@ -57,7 +64,7 @@ struct SOSTimeSetting: View {
     
     var headerView: some View {
         HStack {
-            Text("구조 타이밍 설정")
+            Text("호흡 유도 시간 설정하기")
                 //.font(.headline)
                 .fontWeight(.bold)
                 .font(.system(size: 19))
@@ -70,7 +77,7 @@ struct SOSTimeSetting: View {
             Text("\(Int(selectedTime))")
                 .font(.system(size: 37, weight: .bold))
                 .foregroundColor(AppColors.darkGreen)
-            Text("초")
+            Text("분")
                 .font(.system(size: 17))
                 .foregroundColor(AppColors.darkGreen)
                 .baselineOffset(5)
@@ -100,8 +107,7 @@ struct SOSTimeSetting: View {
                                     Circle()
                                         .stroke(
                                             LinearGradient(
-                                                gradient: Gradient(colors: [
-                                                    AppColors.lightCyan, AppColors.lightBlue]), // 그라데이션 색상 배열을 설정합니다.
+                                                gradient: Gradient(colors: [AppColors.lightCyan, AppColors.lightBlue]), // 그라데이션 색상 배열을 설정합니다.
                                                 startPoint: .topLeading, // 그라데이션의 시작 지점을 설정합니다.
                                                 endPoint: .bottomTrailing // 그라데이션의 끝 지점을 설정합니다.
                                             ),
@@ -116,7 +122,7 @@ struct SOSTimeSetting: View {
                                  }
 
                              Spacer().frame(height: 21)
-                             Text("\(time)초")
+                             Text("\(time)분")
                                  .foregroundColor(AppColors.darkGreen)
                          }
                      }
@@ -124,10 +130,8 @@ struct SOSTimeSetting: View {
              }
          }
      }
- }
-
-
-#Preview {
-    SOSTimeSetting()
 }
 
+#Preview {
+    BreathTimeSetting()
+}
