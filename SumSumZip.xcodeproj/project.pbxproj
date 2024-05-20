@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00C1A7C02BFAEB0D004747E6 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C1A7BF2BFAEB0D004747E6 /* SummaryView.swift */; };
 		8CCFD0D52BF32CD40059EF94 /* SumSumZipApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCFD0D42BF32CD40059EF94 /* SumSumZipApp.swift */; };
 		8CCFD0D72BF32CD40059EF94 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCFD0D62BF32CD40059EF94 /* ContentView.swift */; };
 		8CCFD0D92BF32CD40059EF94 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCFD0D82BF32CD40059EF94 /* Item.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00C1A7BF2BFAEB0D004747E6 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
 		8CCFD0D12BF32CD40059EF94 /* SumSumZip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SumSumZip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CCFD0D42BF32CD40059EF94 /* SumSumZipApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SumSumZipApp.swift; sourceTree = "<group>"; };
 		8CCFD0D62BF32CD40059EF94 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 		8CCFD1022BF330660059EF94 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				00C1A7BF2BFAEB0D004747E6 /* SummaryView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -436,6 +439,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CCFD0D72BF32CD40059EF94 /* ContentView.swift in Sources */,
+				00C1A7C02BFAEB0D004747E6 /* SummaryView.swift in Sources */,
 				8CCFD11D2BF337EA0059EF94 /* Color+Extension.swift in Sources */,
 				8CCFD1192BF336EB0059EF94 /* Color.swift in Sources */,
 				8CCFD0D92BF32CD40059EF94 /* Item.swift in Sources */,
@@ -671,8 +675,11 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.InnerPeace.SumSumZipTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SumSumZip.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SumSumZip";
 			};
 			name = Debug;
@@ -689,8 +696,11 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.InnerPeace.SumSumZipTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SumSumZip.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SumSumZip";
 			};
 			name = Release;
@@ -705,8 +715,11 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.InnerPeace.SumSumZipUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_TARGET_NAME = SumSumZip;
 			};
 			name = Debug;
@@ -721,8 +734,11 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.InnerPeace.SumSumZipUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_TARGET_NAME = SumSumZip;
 			};
 			name = Release;
