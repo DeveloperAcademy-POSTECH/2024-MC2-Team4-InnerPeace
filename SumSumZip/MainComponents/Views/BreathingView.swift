@@ -50,7 +50,7 @@ struct BreathingView: View {
                             .shadow(color: .white, radius: 40)
                             .padding(.horizontal, 20)
                             .scaleEffect(isAnimating ? 1.0 : 1.5)
-                            .animation(.easeOut(duration: 2.5).repeatForever(),
+                            .animation(.easeOut(duration: 4).repeatForever(),
                                        value: isAnimating)
                         
                         Circle()
@@ -60,8 +60,9 @@ struct BreathingView: View {
                             .foregroundStyle(Color.white)
                             .font(.title)
                             .fontWeight(.bold)
-                            .animation(.linear(duration: 2.0).delay(0.5).repeatForever(),
-                                       value: isAnimating)
+                            .animation(.linear(duration: 4).repeatForever(), value: isAnimating)
+//                            .animation(.linear(duration: 2.0).delay(0.5).repeatForever(),
+//                                       value: isAnimating)
                     }
                     .onAppear(perform: {
                         isAnimating.toggle()
