@@ -16,7 +16,7 @@ struct SOSView: View {
         
         NavigationView{
             ZStack{
-                LinearGradient(gradient: Gradient(colors: [Color.black,Color("PointColor2"), Color("PointColor")]),
+                LinearGradient(gradient: Gradient(colors: [Color.black,AppColors.lightSage, AppColors.lightGreen]),
                                startPoint: .top, endPoint: .bottom)
                             .edgesIgnoringSafeArea(.all)
                 VStack{
@@ -33,7 +33,7 @@ struct SOSView: View {
                     
                     ZStack{
                         Capsule()
-                            .foregroundStyle(Gradient(colors: [Color("PointColor2"), Color.white]))
+                            .foregroundStyle(Gradient(colors: [AppColors.lightSage, Color.white]))
                             .shadow(radius: 10)
                             .shadow(color: .white, radius: 40)
                             .padding(.horizontal, 20)
@@ -83,7 +83,7 @@ struct SOSView: View {
                 Button("상황종료"){
                     print("상황종료")
                 }
-                .foregroundStyle(Color("FontColor"))
+                .foregroundStyle(AppColors.lightSage)
             }
             .toolbar{
                 ToolbarItemGroup(placement: .bottomBar){
