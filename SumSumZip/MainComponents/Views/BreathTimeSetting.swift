@@ -41,7 +41,8 @@ struct BreathTimeSetting: View {
                     ToolbarItem(placement: .navigationBarLeading) {
                         HStack(spacing: 0){
                             Button(action: {
-                                selectedTime = 30 // Back To Default Value
+                                let BreathsavedTime = BreathTimeDataManager.shared.fetchTime()
+                                selectedTime = BreathsavedTime != 0 ? BreathsavedTime : 30
                             }) {
                                 Text("취소")
                                     .foregroundColor(AppColors.darkGreen)
@@ -50,7 +51,7 @@ struct BreathTimeSetting: View {
                     }
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button(action: {
-                            // 저장 버튼 액션
+                            BreathTimeDataManager.shared.saveTime(selectedTime)
                         }) {
                             Text("저장")
                                 .foregroundColor(AppColors.darkGreen)
@@ -59,6 +60,11 @@ struct BreathTimeSetting: View {
                 }
                 
             }
+        }
+        .onAppear(){
+            let BreathsavedTime = BreathTimeDataManager.shared.fetchTime()
+            selectedTime = BreathsavedTime != 0 ? BreathsavedTime : 30
+            
         }
     }
     

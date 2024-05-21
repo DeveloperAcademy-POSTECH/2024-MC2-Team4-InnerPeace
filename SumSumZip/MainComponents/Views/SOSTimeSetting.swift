@@ -41,7 +41,8 @@ struct SOSTimeSetting: View {
                     ToolbarItem(placement: .navigationBarLeading) {
                         HStack(spacing: 0){
                             Button(action: {
-                                selectedTime = 30 // Back To Default Value
+                                let SOSsavedTime = SOSTimeDataManager.shared.fetchTime()
+                                selectedTime = SOSsavedTime != 0 ? SOSsavedTime : 30
                             }) {
                                 Text("취소")
                                     .foregroundColor(AppColors.darkGreen)
@@ -50,7 +51,7 @@ struct SOSTimeSetting: View {
                     }
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button(action: {
-                            // 저장 버튼 액션
+                            SOSTimeDataManager.shared.saveTime(selectedTime)
                         }) {
                             Text("저장")
                                 .foregroundColor(AppColors.darkGreen)
@@ -59,6 +60,11 @@ struct SOSTimeSetting: View {
                 }
                 
             }
+        }
+        .onAppear(){
+            let SOSsavedTime = SOSTimeDataManager.shared.fetchTime()
+            selectedTime = SOSsavedTime != 0 ? SOSsavedTime : 30
+            
         }
     }
     
