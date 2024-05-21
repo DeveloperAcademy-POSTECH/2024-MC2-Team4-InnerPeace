@@ -199,6 +199,10 @@ struct SummaryView: View {
                         Button{
                             // Action 들어갈 공간(Full Screen ...)
                             alertShowing = true
+                            EmergencyLiveActivityManager.shared.startActivity(
+                                title: Strings.LiveActivityView.title,
+                                firstSubtitle: Strings.LiveActivityView.firstSubtitle,
+                                secondSubtitle: Strings.LiveActivityView.secodSubtitle)
                             startTimer()
                         } label: {
                             VStack{
@@ -238,6 +242,7 @@ struct SummaryView: View {
                                 timerActive = false
                                 isPresented = true
                                 cancelTimer()
+                                EmergencyLiveActivityManager.shared.endAllActivities()
                             }
                         }
                     }
@@ -262,6 +267,7 @@ extension SummaryView {
     func cancelTimer() {
         timerActive = false
         alertShowing = false
+        EmergencyLiveActivityManager.shared.endAllActivities()
     }
 }
 
