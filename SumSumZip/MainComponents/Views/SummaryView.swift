@@ -93,6 +93,7 @@ struct SummaryView: View {
                 // #3: 3번버튼(환자 정보)
                 Button {
                     // Action 들어갈 공간(Full Screen ...)
+                    
                 } label: {
                     VStack(alignment: .leading) {
                         Spacer()
