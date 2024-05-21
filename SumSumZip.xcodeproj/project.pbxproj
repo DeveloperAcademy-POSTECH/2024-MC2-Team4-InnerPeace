@@ -34,12 +34,12 @@
 		8CD4FEEF2BF4E41B009A8BC9 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD4FEEE2BF4E41B009A8BC9 /* WidgetKit.framework */; };
 		8CD4FEF12BF4E41B009A8BC9 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD4FEF02BF4E41B009A8BC9 /* SwiftUI.framework */; };
 		8CD4FEF42BF4E41B009A8BC9 /* EmergencyLiveActivityBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD4FEF32BF4E41B009A8BC9 /* EmergencyLiveActivityBundle.swift */; };
-		8CD4FEF62BF4E41B009A8BC9 /* EmergencyLiveActivityLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD4FEF52BF4E41B009A8BC9 /* EmergencyLiveActivityLiveActivity.swift */; };
-		8CD4FEF82BF4E41B009A8BC9 /* EmergencyLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD4FEF72BF4E41B009A8BC9 /* EmergencyLiveActivity.swift */; };
+		8CD4FEF62BF4E41B009A8BC9 /* EmergencyLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD4FEF52BF4E41B009A8BC9 /* EmergencyLiveActivity.swift */; };
+		8CD4FEF82BF4E41B009A8BC9 /* EmergencyWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD4FEF72BF4E41B009A8BC9 /* EmergencyWidget.swift */; };
 		8CD4FEFA2BF4E41B009A8BC9 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD4FEF92BF4E41B009A8BC9 /* AppIntent.swift */; };
 		8CD4FEFC2BF4E41C009A8BC9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CD4FEFB2BF4E41C009A8BC9 /* Assets.xcassets */; };
 		8CD4FF002BF4E41C009A8BC9 /* EmergencyLiveActivityExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 8CD4FEEC2BF4E41B009A8BC9 /* EmergencyLiveActivityExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		8CD4FF1A2BF6E1AB009A8BC9 /* EmergencyLiveActivityLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD4FEF52BF4E41B009A8BC9 /* EmergencyLiveActivityLiveActivity.swift */; };
+		8CD4FF1A2BF6E1AB009A8BC9 /* EmergencyLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD4FEF52BF4E41B009A8BC9 /* EmergencyLiveActivity.swift */; };
 		8CD4FF1C2BF6E355009A8BC9 /* LiveActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD4FF1B2BF6E355009A8BC9 /* LiveActivityManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -110,8 +110,8 @@
 		8CD4FEEE2BF4E41B009A8BC9 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		8CD4FEF02BF4E41B009A8BC9 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		8CD4FEF32BF4E41B009A8BC9 /* EmergencyLiveActivityBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyLiveActivityBundle.swift; sourceTree = "<group>"; };
-		8CD4FEF52BF4E41B009A8BC9 /* EmergencyLiveActivityLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyLiveActivityLiveActivity.swift; sourceTree = "<group>"; };
-		8CD4FEF72BF4E41B009A8BC9 /* EmergencyLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyLiveActivity.swift; sourceTree = "<group>"; };
+		8CD4FEF52BF4E41B009A8BC9 /* EmergencyLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyLiveActivity.swift; sourceTree = "<group>"; };
+		8CD4FEF72BF4E41B009A8BC9 /* EmergencyWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyWidget.swift; sourceTree = "<group>"; };
 		8CD4FEF92BF4E41B009A8BC9 /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
 		8CD4FEFB2BF4E41C009A8BC9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8CD4FEFD2BF4E41C009A8BC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -399,8 +399,8 @@
 			isa = PBXGroup;
 			children = (
 				8CD4FEF32BF4E41B009A8BC9 /* EmergencyLiveActivityBundle.swift */,
-				8CD4FEF52BF4E41B009A8BC9 /* EmergencyLiveActivityLiveActivity.swift */,
-				8CD4FEF72BF4E41B009A8BC9 /* EmergencyLiveActivity.swift */,
+				8CD4FEF52BF4E41B009A8BC9 /* EmergencyLiveActivity.swift */,
+				8CD4FEF72BF4E41B009A8BC9 /* EmergencyWidget.swift */,
 				8CD4FEF92BF4E41B009A8BC9 /* AppIntent.swift */,
 				8CD4FEFB2BF4E41C009A8BC9 /* Assets.xcassets */,
 				8CD4FEFD2BF4E41C009A8BC9 /* Info.plist */,
@@ -577,7 +577,7 @@
 				512A01F82BFAEDBB00EE8B39 /* MessageView.swift in Sources */,
 				8CCFD11D2BF337EA0059EF94 /* Color+Extension.swift in Sources */,
 				8B1F63D12BFAD41C00049B0B /* BreathingView.swift in Sources */,
-				8CD4FF1A2BF6E1AB009A8BC9 /* EmergencyLiveActivityLiveActivity.swift in Sources */,
+				8CD4FF1A2BF6E1AB009A8BC9 /* EmergencyLiveActivity.swift in Sources */,
 				8CCFD1192BF336EB0059EF94 /* Color.swift in Sources */,
 				8CCFD0D92BF32CD40059EF94 /* Item.swift in Sources */,
 				8CCFD11F2BF338540059EF94 /* Strings.swift in Sources */,
@@ -610,13 +610,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8CD4FEF82BF4E41B009A8BC9 /* EmergencyLiveActivity.swift in Sources */,
+				8CD4FEF82BF4E41B009A8BC9 /* EmergencyWidget.swift in Sources */,
 				8C9A150E2BF8617200F16283 /* Color+Extension.swift in Sources */,
 				8CD4FEFA2BF4E41B009A8BC9 /* AppIntent.swift in Sources */,
 				8CD4FEF42BF4E41B009A8BC9 /* EmergencyLiveActivityBundle.swift in Sources */,
 				8C3CE2D82BFB11E2002D26C2 /* LiveActivityManager.swift in Sources */,
 				8C9A150C2BF860FB00F16283 /* CircularProgressView.swift in Sources */,
-				8CD4FEF62BF4E41B009A8BC9 /* EmergencyLiveActivityLiveActivity.swift in Sources */,
+				8CD4FEF62BF4E41B009A8BC9 /* EmergencyLiveActivity.swift in Sources */,
 				8C9A150D2BF8610600F16283 /* Color.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
