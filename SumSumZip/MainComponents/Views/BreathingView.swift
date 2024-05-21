@@ -28,7 +28,7 @@ struct BreathingView: View {
     var body: some View {
         NavigationView{
             ZStack{
-                LinearGradient(gradient: Gradient(colors: [Color.black,Color("PointColor2"), Color("PointColor")]),
+                LinearGradient(gradient: Gradient(colors: [Color.black, AppColors.lightSage, AppColors.lightGreen]),
                                startPoint: .top, endPoint: .bottom)
                             .edgesIgnoringSafeArea(.all)
                 VStack{
@@ -45,7 +45,7 @@ struct BreathingView: View {
                     
                     ZStack{
                         Circle()
-                            .foregroundStyle(Gradient(colors: [Color("PointColor2"), Color.white]))
+                            .foregroundStyle(Gradient(colors: [AppColors.lightSage, Color.white]))
                             .shadow(radius: 10)
                             .shadow(color: .white, radius: 40)
                             .padding(.horizontal, 20)
@@ -81,7 +81,7 @@ struct BreathingView: View {
                     Text("만약 제가 의식이 없다면\n긴급연락과 119에 신고해주세요")
                         .font(.title3)
                         .multilineTextAlignment(.center)
-                        .foregroundColor(.secondary)
+                        .foregroundColor(AppColors.systemGray)
                     Spacer().frame(height: 20)
                     ProgressView(timerInterval: workoutDateRange, countsDown: false)
                         .padding()
@@ -94,7 +94,7 @@ struct BreathingView: View {
                 Button("상황종료"){
                     print("상황종료")
                 }
-                .foregroundStyle(Color("FontColor"))
+                .foregroundStyle(AppColors.lightSage)
             }
             .toolbar{
                 ToolbarItemGroup(placement: .bottomBar){
