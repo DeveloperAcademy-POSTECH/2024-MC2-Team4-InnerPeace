@@ -30,7 +30,7 @@ struct SumSumZipApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContactSettingView()
+            SummaryView()
         }
         .modelContainer(sharedModelContainer)
         .onChange(of: scenePhase, { oldValue, newValue in
