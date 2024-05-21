@@ -16,6 +16,12 @@
 		8B1F63D32BFADCDF00049B0B /* SOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F63D22BFADCDF00049B0B /* SOSView.swift */; };
 		8C3CE2D82BFB11E2002D26C2 /* LiveActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD4FF1B2BF6E355009A8BC9 /* LiveActivityManager.swift */; };
 		8C7622202BFC6D4500B6BFFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CCFD0DA2BF32CD60059EF94 /* Assets.xcassets */; };
+		8C76222E2BFC808300B6BFFF /* CustomNavigationModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C76222D2BFC808300B6BFFF /* CustomNavigationModifier.swift */; };
+		8C7622302BFC80A100B6BFFF /* CustomTextEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C76222F2BFC80A100B6BFFF /* CustomTextEditorView.swift */; };
+		8C7622322BFC80BF00B6BFFF /* PatientInfoSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7622312BFC80BF00B6BFFF /* PatientInfoSettingView.swift */; };
+		8C7622342BFC811D00B6BFFF /* SettingQuestionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7622332BFC811D00B6BFFF /* SettingQuestionLabel.swift */; };
+		8C7622362BFC819900B6BFFF /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7622352BFC819900B6BFFF /* View+Extension.swift */; };
+		8C7622382BFC847A00B6BFFF /* CustomDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7622372BFC847A00B6BFFF /* CustomDivider.swift */; };
 		8C9A150B2BF8608B00F16283 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9A150A2BF8608B00F16283 /* CircularProgressView.swift */; };
 		8C9A150C2BF860FB00F16283 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9A150A2BF8608B00F16283 /* CircularProgressView.swift */; };
 		8C9A150D2BF8610600F16283 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCFD1182BF336EB0059EF94 /* Color.swift */; };
@@ -90,6 +96,12 @@
 		512A01F92BFB1D8A00EE8B39 /* ContactSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactSettingView.swift; sourceTree = "<group>"; };
 		8B1F63D02BFAD41C00049B0B /* BreathingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingView.swift; sourceTree = "<group>"; };
 		8B1F63D22BFADCDF00049B0B /* SOSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSView.swift; sourceTree = "<group>"; };
+		8C76222D2BFC808300B6BFFF /* CustomNavigationModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationModifier.swift; sourceTree = "<group>"; };
+		8C76222F2BFC80A100B6BFFF /* CustomTextEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextEditorView.swift; sourceTree = "<group>"; };
+		8C7622312BFC80BF00B6BFFF /* PatientInfoSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientInfoSettingView.swift; sourceTree = "<group>"; };
+		8C7622332BFC811D00B6BFFF /* SettingQuestionLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingQuestionLabel.swift; sourceTree = "<group>"; };
+		8C7622352BFC819900B6BFFF /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
+		8C7622372BFC847A00B6BFFF /* CustomDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDivider.swift; sourceTree = "<group>"; };
 		8C9A150A2BF8608B00F16283 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		8CCFD0D12BF32CD40059EF94 /* SumSumZip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SumSumZip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CCFD0D42BF32CD40059EF94 /* SumSumZipApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SumSumZipApp.swift; sourceTree = "<group>"; };
@@ -235,6 +247,7 @@
 				8B1F63D02BFAD41C00049B0B /* BreathingView.swift */,
 				20CE35B02BFAFE2200AF7C09 /* SOSTimeSetting.swift */,
 				20CE35AE2BFAFCE300AF7C09 /* BreathTimeSetting.swift */,
+				8C7622312BFC80BF00B6BFFF /* PatientInfoSettingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -359,6 +372,10 @@
 			isa = PBXGroup;
 			children = (
 				8C9A150A2BF8608B00F16283 /* CircularProgressView.swift */,
+				8C76222D2BFC808300B6BFFF /* CustomNavigationModifier.swift */,
+				8C76222F2BFC80A100B6BFFF /* CustomTextEditorView.swift */,
+				8C7622332BFC811D00B6BFFF /* SettingQuestionLabel.swift */,
+				8C7622372BFC847A00B6BFFF /* CustomDivider.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -383,6 +400,7 @@
 			isa = PBXGroup;
 			children = (
 				8CCFD11C2BF337EA0059EF94 /* Color+Extension.swift */,
+				8C7622352BFC819900B6BFFF /* View+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -578,16 +596,22 @@
 				8C9A150B2BF8608B00F16283 /* CircularProgressView.swift in Sources */,
 				512A01F82BFAEDBB00EE8B39 /* MessageView.swift in Sources */,
 				8CCFD11D2BF337EA0059EF94 /* Color+Extension.swift in Sources */,
+				8C7622382BFC847A00B6BFFF /* CustomDivider.swift in Sources */,
 				8B1F63D12BFAD41C00049B0B /* BreathingView.swift in Sources */,
 				8CD4FF1A2BF6E1AB009A8BC9 /* EmergencyLiveActivity.swift in Sources */,
 				8CCFD1192BF336EB0059EF94 /* Color.swift in Sources */,
 				8CCFD0D92BF32CD40059EF94 /* Item.swift in Sources */,
 				8CCFD11F2BF338540059EF94 /* Strings.swift in Sources */,
+				8C7622302BFC80A100B6BFFF /* CustomTextEditorView.swift in Sources */,
+				8C7622322BFC80BF00B6BFFF /* PatientInfoSettingView.swift in Sources */,
 				8B1F63D32BFADCDF00049B0B /* SOSView.swift in Sources */,
+				8C76222E2BFC808300B6BFFF /* CustomNavigationModifier.swift in Sources */,
 				20CE35AF2BFAFCE300AF7C09 /* BreathTimeSetting.swift in Sources */,
 				8CCFD0D52BF32CD40059EF94 /* SumSumZipApp.swift in Sources */,
 				8CD4FF1C2BF6E355009A8BC9 /* LiveActivityManager.swift in Sources */,
 				512A01FA2BFB1D8A00EE8B39 /* ContactSettingView.swift in Sources */,
+				8C7622362BFC819900B6BFFF /* View+Extension.swift in Sources */,
+				8C7622342BFC811D00B6BFFF /* SettingQuestionLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
