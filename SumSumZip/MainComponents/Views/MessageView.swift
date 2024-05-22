@@ -68,7 +68,7 @@ struct MessageView: View {
             }
             
         }.onAppear {
-            message = MessageManager.shared.fetchMessage() != "" ? MessageManager.shared.fetchMessage() : ""
+           let message = MessageManager.shared.fetchMessage() != "" ? MessageManager.shared.fetchMessage() : ""
         }
     }
 }
