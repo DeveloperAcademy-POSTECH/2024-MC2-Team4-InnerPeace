@@ -6,17 +6,17 @@
 //
 
 import ActivityKit
-import Foundation
+import SwiftUI
 
-/// LiveActivity의 Start/Update/End를 관리하는 매니저
 class EmergencyLiveActivityManager {
     
     static let shared = EmergencyLiveActivityManager()
     private var activity: Activity<EmergencyLiveActivityAttributes>?
+    private var progressTimer: Timer?
     
     private init() {}
     
-    func startActivity(title: String, firstSubtitle: String, secondSubtitle: String) {
+    func startActivity(title: String, firstSubtitle: String, secondSubtitle: String, isPresented: Binding<Bool>) {
         let attributes = EmergencyLiveActivityAttributes(title: title, firstSubtitle: firstSubtitle, secondSubtitle: secondSubtitle)
         let initialContentState = EmergencyLiveActivityAttributes.ContentState(progress: 0.0)
 
@@ -27,21 +27,46 @@ class EmergencyLiveActivityManager {
                 pushType: nil
             )
             print("Started Live Activity with ID: \(activity?.id ?? "unknown")")
+            
+            startProgressUpdates(isPresented: isPresented)
         } catch {
             print("Failed to start Live Activity: \(error.localizedDescription)")
         }
     }
     
+    func startProgressUpdates(isPresented: Binding<Bool>) {
+        progressTimer?.invalidate()
+        var currentProgress: Double = 0.0
+        let duration: Double = 30.0 // Duration in seconds
+        let updateInterval: Double = 0.1 // Timer interval in seconds
+        let progressIncrement = updateInterval / duration // Calculate the increment based on the desired duration
+        
+        progressTimer = Timer.scheduledTimer(withTimeInterval: updateInterval, repeats: true) { timer in
+            guard currentProgress < 1.0 else {
+//                self.endAllActivities()
+                timer.invalidate()
+                isPresented.wrappedValue = true
+                return
+            }
+            
+            currentProgress += progressIncrement
+            self.updateActivity(progress: currentProgress)
+        }
+    }
+
+    
     func endActivity(activity: Activity<EmergencyLiveActivityAttributes>) {
         let content = EmergencyLiveActivityAttributes.ContentState(progress: 1.0)
 
-            Task {
-                await activity.end(using: content, dismissalPolicy: .immediate)
-                print("Ended Live Activity with ID: \(activity.id)")
-            }
+        Task {
+            await activity.end(using: content, dismissalPolicy: .immediate)
+            print("Ended Live Activity with ID: \(activity.id)")
         }
+    }
     
     func endAllActivities() {
+        progressTimer?.invalidate()
+        
         for activity in Activity<EmergencyLiveActivityAttributes>.activities {
             endActivity(activity: activity)
         }

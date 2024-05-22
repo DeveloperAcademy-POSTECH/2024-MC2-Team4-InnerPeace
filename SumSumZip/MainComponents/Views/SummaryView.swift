@@ -30,10 +30,6 @@ struct SummaryView: View {
     @State private var isPresented = false
     // alert 뜰 때 사용
     @State private var alertShowing = false
-    // 남은 시간
-    @State private var timeRemaining = 30
-    // 타이머 활성화 여부
-    @State private var timerActive = false
 
     // 타이머
     var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -207,8 +203,7 @@ struct SummaryView: View {
                                 EmergencyLiveActivityManager.shared.startActivity(
                                     title: Strings.LiveActivityView.title,
                                     firstSubtitle: Strings.LiveActivityView.firstSubtitle,
-                                    secondSubtitle: Strings.LiveActivityView.secodSubtitle)
-                                startTimer()
+                                    secondSubtitle: Strings.LiveActivityView.secodSubtitle, isPresented: $isPresented)
                             } label: {
                                 VStack{
                                     Spacer(minLength: 40)
@@ -224,33 +219,20 @@ struct SummaryView: View {
                             }
                             .alert("30초 뒤 시작", isPresented: $alertShowing) {
                                 Button("취소", role: .cancel) {
-                                    cancelTimer()
+                                    
                                 }
                                 
                                 Button("바로 시작", role: .destructive) {
                                     isPresented = true
-                                    cancelTimer()
                                 }
                             } message: {
-                                Text("\(timeRemaining)초 뒤 자동으로 SOS 알람이 시작됩니다.")
+                                Text("30초 뒤 자동으로 SOS 알람이 시작됩니다.")
                             }
                         }
                         .fullScreenCover(isPresented: $isPresented) {
                             SOSView()
                         }
-                        .onReceive(timer) { _ in
-                            if timerActive {
-                                if timeRemaining > 0 {
-                                    timeRemaining -= 1
-                                    print("타이머 잔여시간: \(timeRemaining)")
-                                } else {
-                                    timerActive = false
-                                    isPresented = true
-                                    cancelTimer()
-                                    EmergencyLiveActivityManager.shared.endAllActivities()
-                                }
-                            }
-                        }
+                        
                         Spacer()
                     }
                     Spacer()
@@ -259,21 +241,6 @@ struct SummaryView: View {
                 .padding()
             }
         }
-    }
-}
-
-/// Mark: 타이머 함수
-extension SummaryView {
-
-    func startTimer() {
-        timeRemaining = 30
-        timerActive = true
-    }
-    
-    func cancelTimer() {
-        timerActive = false
-        alertShowing = false
-        EmergencyLiveActivityManager.shared.endAllActivities()
     }
 }
 

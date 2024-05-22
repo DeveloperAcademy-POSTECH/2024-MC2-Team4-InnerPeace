@@ -20,14 +20,11 @@ struct EmergencyLiveActivityAttributes: ActivityAttributes {
 }
 
 struct EmergencyLiveActivity: Widget {
-    
-    // 우선은 임시로 30초컷..?
-//    @State private var timerInterval = Date()...Date().addingTimeInterval(30)
-        
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: EmergencyLiveActivityAttributes.self) { context in
             // Lock screen/banner UI goes here
             activityView(context: context, isForDynamicIsland: false)
+                .background(AppColors.black)
         } dynamicIsland: { context in
             DynamicIsland {
                 // Expanded UI goes here
@@ -42,62 +39,73 @@ struct EmergencyLiveActivity: Widget {
                     
                 }
             } compactLeading: {
-                Image(systemName: "exclamationmark.triangle")
-                    .foregroundColor(AppColors.lightCyan)
+                Image("SOS_1")
+                    .resizable()
+                    .scaledToFit()
+
             } compactTrailing: {
-                sosProgressView()
+                // 만약 타이머가 다되었으면 숨기는 조건 필요
+                if context.state.progress <= 1 {
+                    sosProgressView(progress: context.state.progress)
+                }
             } minimal: {
                 Image(systemName: "exclamationmark.triangle")
                     .foregroundColor(.red)
             }
-            .widgetURL(URL(string: "http://www.apple.com"))
-            .keylineTint(Color.red)
         }
     }
     
-    private func sosProgressView() -> some View {
-        // 여기서 시간이 0이 되는 시점을 어떻게 잡을 수 있지...???
-        ProgressView(timerInterval: Date()...Date().addingTimeInterval(30),
-                     countsDown: true, label: { EmptyView() },
-                     currentValueLabel: { EmptyView() })
+    private func sosProgressView(progress: Double) -> some View {
+        ProgressView(value: progress, total: 1.0)
             .progressViewStyle(CircularProgressViewStyle())
             .tint(AppColors.lightCyan)
     }
     
     private func activityView(context: ActivityViewContext<EmergencyLiveActivityAttributes>, isForDynamicIsland: Bool) -> some View {
-            VStack {
-                HStack {
-                    Image(systemName: "exclamationmark.triangle")
-                        .font(.system(size: 22))
-                        .foregroundColor(AppColors.lightCyan)
-                        .padding(.leading, 19)
-                        .padding(.top, isForDynamicIsland ? 0 : 34)
-                    
-                    Text(context.attributes.title)
-                        .bold()
-                        .padding(.top, isForDynamicIsland ? 0 : 29)
-                        .font(.system(size: 22))
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                }
+        VStack {
+            HStack {
+                Image(systemName: "exclamationmark.triangle")
+                    .font(.system(size: 22))
+                    .foregroundColor(AppColors.lightCyan)
+                    .padding(.leading, 19)
+                    .padding(.top, isForDynamicIsland ? 0 : 70)
                 
-                Spacer()
-                    .frame(height: isForDynamicIsland ? 14 : 36)
-                
+                Text(context.attributes.title)
+                    .bold()
+                    .padding(.top, isForDynamicIsland ? 0 : 70)
+                    .font(.system(size: 22))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .foregroundStyle(.white)
+            }
+            
+//            Spacer()
+//                .frame(height: isForDynamicIsland ? 14 : 10)
+            
+            HStack {
                 VStack {
                     Text(context.attributes.firstSubtitle)
-                        .padding(.bottom, isForDynamicIsland ? 0 : 5)
+                        .padding(.bottom, isForDynamicIsland ? 0 : 0)
                         .font(.system(size: 18))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.leading, 19)
+                        .foregroundStyle(.white)
                     
                     Text(context.attributes.secondSubtitle)
                         .padding(.bottom, 23)
                         .font(.system(size: 18))
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.leading, 19)
+                        .padding(.bottom, 10)
                         .foregroundColor(AppColors.lightCyan)
                 }
+                
+                Image("SOS_1")
+                    .frame(width: 90, height: 90)
+                    .padding(.bottom, 30)
+                    
             }
-            .activitySystemActionForegroundColor(Color.black)
+            
         }
+        .activitySystemActionForegroundColor(Color.black)
+    }
 }

@@ -11,6 +11,7 @@ import SwiftData
 @main
 struct SumSumZipApp: App {
     
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @Environment(\.scenePhase) private var scenePhase
     
     var sharedModelContainer: ModelContainer = {
@@ -33,3 +34,10 @@ struct SumSumZipApp: App {
         .modelContainer(sharedModelContainer)
     }
 }
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+    func applicationWillTerminate(_ application: UIApplication) {
+        EmergencyLiveActivityManager.shared.endAllActivities()
+    }
+}
+
