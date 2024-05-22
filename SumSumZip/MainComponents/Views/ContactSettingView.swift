@@ -8,15 +8,19 @@
 import SwiftUI
 import ContactsUI
 import Combine
+import Foundation
+//import SwiftData
+
+
 
 struct ContactSettingView: View {
     
-    @Environment(\.managedObjectContext) var managedObjContext
+    //    @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) var dismiss
     
-    @State private var pickedNumber: String?
-    @State private var pickedNumber2: String?
-    @State private var pickedNumber3: String?
+    @State var pickedNumber: String?
+    @State var pickedNumber2: String?
+    @State var pickedNumber3: String?
     
     @State var relation: String = ""
     @State var relation2: String = ""
@@ -26,18 +30,17 @@ struct ContactSettingView: View {
     
     var body: some View {
         NavigationView {
-            VStack (alignment: .leading) {
+            VStack(alignment: .leading) {
                 
                 Section {
-                    HStack (spacing: 10) {
+                    // 첫 번째 연락처
+                    HStack(spacing: 10) {
                         Button {
                             openContactPicker(coordinator: coordinator, for: \.pickedNumber)
+                        } label: {
+                            Image(systemName: "plus.app.fill")
+                                .foregroundColor(AppColors.darkGreen)
                         }
-                    label:{
-                        Image(systemName: "plus.app.fill")
-                            .foregroundColor(AppColors.darkGreen)
-                        
-                    }
                         TextField("관계", text: $relation)
                             .frame(width: 60)
                             .onReceive(relation.publisher.collect()) {
@@ -51,31 +54,27 @@ struct ContactSettingView: View {
                             }
                         Spacer()
                         
-                        // 연락처 삭제 버튼
                         Button {
-                            pickedNumber = nil
+                            pickedNumber = ""
                             relation = ""
                         } label: {
                             Image(systemName: "x.circle")
                                 .foregroundColor(AppColors.darkGreen)
-                        } // :  연락처 삭제 버튼
-                        
+                        }
                     }
                     .padding(20)
                     .frame(width: 360, height: 60)
                     .background(AppColors.paleGreen)
                     .cornerRadius(10)
                     
-                    // 2번 째 연락처
-                    HStack (spacing: 10) {
+                    // 두 번째 연락처
+                    HStack(spacing: 10) {
                         Button {
                             openContactPicker(coordinator: coordinator, for: \.pickedNumber2)
+                        } label: {
+                            Image(systemName: "plus.app.fill")
+                                .foregroundColor(AppColors.darkGreen)
                         }
-                    label:{
-                        Image(systemName: "plus.app.fill")
-                            .foregroundColor(AppColors.darkGreen)
-                        
-                    }
                         TextField("관계", text: $relation2)
                             .frame(width: 60)
                             .onReceive(relation2.publisher.collect()) {
@@ -89,31 +88,27 @@ struct ContactSettingView: View {
                             }
                         Spacer()
                         
-                        // 연락처 삭제 버튼
                         Button {
-                            pickedNumber2 = nil
+                            pickedNumber2 = ""
                             relation2 = ""
                         } label: {
                             Image(systemName: "x.circle")
                                 .foregroundColor(AppColors.darkGreen)
-                        } // :  연락처 삭제 버튼
-                        
+                        }
                     }
                     .padding(20)
                     .frame(width: 360, height: 60)
                     .background(AppColors.paleGreen)
                     .cornerRadius(10)
                     
-                    // 3번 째 연락처
-                    HStack (spacing: 10) {
+                    // 세 번째 연락처
+                    HStack(spacing: 10) {
                         Button {
                             openContactPicker(coordinator: coordinator, for: \.pickedNumber3)
+                        } label: {
+                            Image(systemName: "plus.app.fill")
+                                .foregroundColor(AppColors.darkGreen)
                         }
-                    label:{
-                        Image(systemName: "plus.app.fill")
-                            .foregroundColor(AppColors.darkGreen)
-                        
-                    }
                         TextField("관계", text: $relation3)
                             .frame(width: 60)
                             .onReceive(relation3.publisher.collect()) {
@@ -127,15 +122,13 @@ struct ContactSettingView: View {
                             }
                         Spacer()
                         
-                        // 연락처 삭제 버튼
                         Button {
-                            pickedNumber3 = nil
+                            pickedNumber3 = ""
                             relation3 = ""
                         } label: {
                             Image(systemName: "x.circle")
                                 .foregroundColor(AppColors.darkGreen)
-                        } // :  연락처 삭제 버튼
-                        
+                        }
                     }
                     .padding(20)
                     .frame(width: 360, height: 60)
@@ -144,7 +137,6 @@ struct ContactSettingView: View {
                     
                 } header: {
                     Text("긴급 연락처를 입력해 주세요")
-                    //    .font(.headline)
                         .fontWeight(.bold)
                         .foregroundColor(AppColors.darkGreen)
                 }
@@ -156,7 +148,10 @@ struct ContactSettingView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
+                        ContactsManager.shared.saveContacts(pickedNumber ?? "", pickedNumber2 ?? "", pickedNumber3 ?? "", relation, relation2, relation3)
+                        
                         dismiss()
+                        print("연락처 저장 완료")
                     } label: {
                         HStack {
                             Text("저장")
@@ -172,10 +167,21 @@ struct ContactSettingView: View {
                     }
                     .foregroundColor(AppColors.darkGreen)
                 }
+            }.onAppear {
+                let contacts = ContactsManager.shared.fetchContacts()
+                if contacts.count == 6 {
+                    pickedNumber = contacts[0]
+                    pickedNumber2 = contacts[1]
+                    pickedNumber3 = contacts[2]
+                    relation = contacts[3]
+                    relation2 = contacts[4]
+                    relation3 = contacts[5]
+                }
             }
         }
     }
 }
+
 
 func openContactPicker(coordinator: Coordinator, for keyPath: ReferenceWritableKeyPath<Coordinator, String?>) {
     let contactPicker = CNContactPickerViewController()
@@ -185,11 +191,17 @@ func openContactPicker(coordinator: Coordinator, for keyPath: ReferenceWritableK
     contactPicker.predicateForEnablingContact = NSPredicate(format: "phoneNumbers.@count > 0")
     contactPicker.predicateForSelectionOfContact = NSPredicate(format: "phoneNumbers.@count == 1")
     contactPicker.predicateForSelectionOfProperty = NSPredicate(format: "key == 'phoneNumbers'")
-    let scenes = UIApplication.shared.connectedScenes
-    let windowScenes = scenes.first as? UIWindowScene
-    let window = windowScenes?.windows.first
-    window?.rootViewController?.present(contactPicker, animated: true, completion: nil)
+    
+    guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+          let window = windowScene.windows.first,
+          let rootViewController = window.rootViewController else {
+        print("Error: Could not get root view controller.")
+        return
+    }
+    
+    rootViewController.present(contactPicker, animated: true, completion: nil)
 }
+
 
 class Coordinator: NSObject, ObservableObject, CNContactPickerDelegate {
     @Published var pickedNumber: String?
@@ -219,21 +231,9 @@ class Coordinator: NSObject, ObservableObject, CNContactPickerDelegate {
             }
         }
     }
-    
-    // Fuction
-    //    func delete(indexSet: IndexSet) {
-    //        fruits.remove(atOffsets: indexSet)
-    //    }
-    //
-    //    func move(indices: IndexSet, newOffset: Int) {
-    //        fruits.move(fromOffsets: indices, toOffset: newOffset)
-    //    }
 }
 
 #Preview {
     ContactSettingView()
 }
-
-// 딕셔너리 자료형
-// enum
 
