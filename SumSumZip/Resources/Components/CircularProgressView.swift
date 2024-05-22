@@ -27,7 +27,7 @@ struct CircularProgressView: View {
             if remainingTime > 0 {
                 remainingTime -= 1
                 progress = Double(30 - remainingTime) / 30.0
-                EmergencyLiveActivityManager.shared.updateActivity(progress: progress)
+                EmergencyLiveActivityManager.shared.updateActivity(progress: progress, imgName: nil)
             } else {
                 timer.upstream.connect().cancel()
             }
