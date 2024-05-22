@@ -248,6 +248,8 @@
 				20CE35B02BFAFE2200AF7C09 /* SOSTimeSetting.swift */,
 				20CE35AE2BFAFCE300AF7C09 /* BreathTimeSetting.swift */,
 				8C7622312BFC80BF00B6BFFF /* PatientInfoSettingView.swift */,
+				512A01F72BFAEDBB00EE8B39 /* MessageView.swift */,
+				512A01F92BFB1D8A00EE8B39 /* ContactSettingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -308,8 +310,6 @@
 		8CCFD10B2BF332130059EF94 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				512A01F72BFAEDBB00EE8B39 /* MessageView.swift */,
-				512A01F92BFB1D8A00EE8B39 /* ContactSettingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
