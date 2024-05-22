@@ -17,7 +17,7 @@ struct AppColors {
     static let lightGreen = Color(hex: "CDFFBA")
     static let lightCyan = Color(hex: "91FFD1")
     static let black = Color(hex: "000000")
-    static let white = Color(hex: "fffffff")
+    static let white = Color(hex: "ffffff")
     static let lightSage = Color(hex: "AFEDD7")
     static let paleGreen = Color(hex: "F1F4F4")
     static let darkGreen = Color(hex: "115049")
