@@ -49,6 +49,10 @@
 		8CD4FF002BF4E41C009A8BC9 /* EmergencyLiveActivityExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 8CD4FEEC2BF4E41B009A8BC9 /* EmergencyLiveActivityExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8CD4FF1A2BF6E1AB009A8BC9 /* EmergencyLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD4FEF52BF4E41B009A8BC9 /* EmergencyLiveActivity.swift */; };
 		8CD4FF1C2BF6E355009A8BC9 /* LiveActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD4FF1B2BF6E355009A8BC9 /* LiveActivityManager.swift */; };
+		8CF6FDAA2BFCCB3700B59608 /* AnimationImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF6FDA92BFCCB3700B59608 /* AnimationImageView.swift */; };
+		8CF6FDAB2BFCCB6C00B59608 /* AnimationImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF6FDA92BFCCB3700B59608 /* AnimationImageView.swift */; };
+		8CF6FDB02BFCD7F800B59608 /* SOS.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8CF6FDAF2BFCD69D00B59608 /* SOS.gif */; };
+		8CF6FDB12BFCD7F800B59608 /* SOS.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8CF6FDAF2BFCD69D00B59608 /* SOS.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +136,9 @@
 		8CD4FEFB2BF4E41C009A8BC9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8CD4FEFD2BF4E41C009A8BC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8CD4FF1B2BF6E355009A8BC9 /* LiveActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityManager.swift; sourceTree = "<group>"; };
+		8CF6FDA82BFCCA3C00B59608 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8CF6FDA92BFCCB3700B59608 /* AnimationImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationImageView.swift; sourceTree = "<group>"; };
+		8CF6FDAF2BFCD69D00B59608 /* SOS.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = SOS.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +202,7 @@
 		8CCFD0D32BF32CD40059EF94 /* SumSumZip */ = {
 			isa = PBXGroup;
 			children = (
+				8CF6FDA82BFCCA3C00B59608 /* Info.plist */,
 				8CCFD1062BF3319F0059EF94 /* MainComponents */,
 				8CCFD10D2BF332310059EF94 /* LiveActivityComponents */,
 				8CCFD1072BF331B00059EF94 /* WidgetComponents */,
@@ -425,8 +433,10 @@
 				8CD4FEF52BF4E41B009A8BC9 /* EmergencyLiveActivity.swift */,
 				8CD4FEF72BF4E41B009A8BC9 /* EmergencyWidget.swift */,
 				8CD4FEF92BF4E41B009A8BC9 /* AppIntent.swift */,
+				8CF6FDAF2BFCD69D00B59608 /* SOS.gif */,
 				8CD4FEFB2BF4E41C009A8BC9 /* Assets.xcassets */,
 				8CD4FEFD2BF4E41C009A8BC9 /* Info.plist */,
+				8CF6FDA92BFCCB3700B59608 /* AnimationImageView.swift */,
 			);
 			path = EmergencyLiveActivity;
 			sourceTree = "<group>";
@@ -558,6 +568,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CF6FDB12BFCD7F800B59608 /* SOS.gif in Resources */,
 				8CCFD0DE2BF32CD60059EF94 /* Preview Assets.xcassets in Resources */,
 				8CD4FEE72BF4DDE0009A8BC9 /* .gitignore in Resources */,
 				8CCFD0DB2BF32CD60059EF94 /* Assets.xcassets in Resources */,
@@ -582,6 +593,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CF6FDB02BFCD7F800B59608 /* SOS.gif in Resources */,
 				8C7622202BFC6D4500B6BFFF /* Assets.xcassets in Resources */,
 				8CD4FEFC2BF4E41C009A8BC9 /* Assets.xcassets in Resources */,
 			);
@@ -594,6 +606,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CF6FDAA2BFCCB3700B59608 /* AnimationImageView.swift in Sources */,
 				8CCFD0D72BF32CD40059EF94 /* ContentView.swift in Sources */,
 				00C1A7C02BFAEB0D004747E6 /* SummaryView.swift in Sources */,
 				20CE35B12BFAFE2200AF7C09 /* SOSTimeSetting.swift in Sources */,
@@ -641,6 +654,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CF6FDAB2BFCCB6C00B59608 /* AnimationImageView.swift in Sources */,
 				8CD4FEF82BF4E41B009A8BC9 /* EmergencyWidget.swift in Sources */,
 				8C9A150E2BF8617200F16283 /* Color+Extension.swift in Sources */,
 				8CD4FEFA2BF4E41B009A8BC9 /* AppIntent.swift in Sources */,
@@ -805,6 +819,7 @@
 				DEVELOPMENT_TEAM = 5C6W5SYCQQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SumSumZip/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -838,6 +853,7 @@
 				DEVELOPMENT_TEAM = 5C6W5SYCQQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SumSumZip/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
