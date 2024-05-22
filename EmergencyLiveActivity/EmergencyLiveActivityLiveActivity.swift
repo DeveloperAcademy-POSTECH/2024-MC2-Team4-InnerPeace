@@ -11,7 +11,7 @@ import WidgetKit
 
 struct EmergencyLiveActivityAttributes: ActivityAttributes {
     public struct ContentState: Codable, Hashable {
-        var emoji: String
+        var progress: Double
     }
 
     var title: String
@@ -20,10 +20,14 @@ struct EmergencyLiveActivityAttributes: ActivityAttributes {
 }
 
 struct EmergencyLiveActivityLiveActivity: Widget {
+    
+    // 우선은 임시로 30초컷..?
+//    @State private var timerInterval = Date()...Date().addingTimeInterval(30)
+        
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: EmergencyLiveActivityAttributes.self) { context in
             // Lock screen/banner UI goes here
-            commonView(context: context, isForDynamicIsland: false)
+            activityView(context: context, isForDynamicIsland: false)
         } dynamicIsland: { context in
             DynamicIsland {
                 // Expanded UI goes here
@@ -34,13 +38,14 @@ struct EmergencyLiveActivityLiveActivity: Widget {
 
                 }
                 DynamicIslandExpandedRegion(.bottom) {
-                    commonView(context: context, isForDynamicIsland: true)
+                    activityView(context: context, isForDynamicIsland: true)
+                    
                 }
             } compactLeading: {
                 Image(systemName: "exclamationmark.triangle")
                     .foregroundColor(AppColors.lightCyan)
             } compactTrailing: {
-                CircularProgressView(progress: 1)
+                sosProgressView()
             } minimal: {
                 Image(systemName: "exclamationmark.triangle")
                     .foregroundColor(.red)
@@ -50,7 +55,16 @@ struct EmergencyLiveActivityLiveActivity: Widget {
         }
     }
     
-    private func commonView(context: ActivityViewContext<EmergencyLiveActivityAttributes>, isForDynamicIsland: Bool) -> some View {
+    private func sosProgressView() -> some View {
+        // 여기서 시간이 0이 되는 시점을 어떻게 잡을 수 있지...???
+        ProgressView(timerInterval: Date()...Date().addingTimeInterval(30),
+                     countsDown: true, label: { EmptyView() },
+                     currentValueLabel: { EmptyView() })
+            .progressViewStyle(CircularProgressViewStyle())
+            .tint(AppColors.lightCyan)
+    }
+    
+    private func activityView(context: ActivityViewContext<EmergencyLiveActivityAttributes>, isForDynamicIsland: Bool) -> some View {
             VStack {
                 HStack {
                     Image(systemName: "exclamationmark.triangle")

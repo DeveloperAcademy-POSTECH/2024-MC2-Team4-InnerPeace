@@ -14,6 +14,7 @@
 		512A01FA2BFB1D8A00EE8B39 /* ContactSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512A01F92BFB1D8A00EE8B39 /* ContactSettingView.swift */; };
 		8B1F63D12BFAD41C00049B0B /* BreathingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F63D02BFAD41C00049B0B /* BreathingView.swift */; };
 		8B1F63D32BFADCDF00049B0B /* SOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F63D22BFADCDF00049B0B /* SOSView.swift */; };
+		8C3CE2D82BFB11E2002D26C2 /* LiveActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD4FF1B2BF6E355009A8BC9 /* LiveActivityManager.swift */; };
 		8C9A150B2BF8608B00F16283 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9A150A2BF8608B00F16283 /* CircularProgressView.swift */; };
 		8C9A150C2BF860FB00F16283 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9A150A2BF8608B00F16283 /* CircularProgressView.swift */; };
 		8C9A150D2BF8610600F16283 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCFD1182BF336EB0059EF94 /* Color.swift */; };
@@ -613,6 +614,7 @@
 				8C9A150E2BF8617200F16283 /* Color+Extension.swift in Sources */,
 				8CD4FEFA2BF4E41B009A8BC9 /* AppIntent.swift in Sources */,
 				8CD4FEF42BF4E41B009A8BC9 /* EmergencyLiveActivityBundle.swift in Sources */,
+				8C3CE2D82BFB11E2002D26C2 /* LiveActivityManager.swift in Sources */,
 				8C9A150C2BF860FB00F16283 /* CircularProgressView.swift in Sources */,
 				8CD4FEF62BF4E41B009A8BC9 /* EmergencyLiveActivityLiveActivity.swift in Sources */,
 				8C9A150D2BF8610600F16283 /* Color.swift in Sources */,
@@ -769,7 +771,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SumSumZip/Preview Content\"";
-				DEVELOPMENT_TEAM = GF3B5LP7RQ;
+				DEVELOPMENT_TEAM = 5C6W5SYCQQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
@@ -802,7 +804,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SumSumZip/Preview Content\"";
-				DEVELOPMENT_TEAM = GF3B5LP7RQ;
+				DEVELOPMENT_TEAM = 5C6W5SYCQQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
