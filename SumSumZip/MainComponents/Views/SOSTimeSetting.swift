@@ -64,7 +64,7 @@ struct SOSTimeSetting: View {
         .onAppear(){
             let SOSsavedTime = SOSTimeDataManager.shared.fetchTime()
             selectedTime = SOSsavedTime != 0 ? SOSsavedTime : 30
-            
+            // 저장된 값이 있으면 그 값을 selectedTime에 저장하고, 그렇지 않으면 기본값인 30을 사용합니다.
         }
     }
     
