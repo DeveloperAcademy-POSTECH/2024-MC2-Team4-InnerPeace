@@ -169,14 +169,12 @@ struct ContactSettingView: View {
                 }
             }.onAppear {
                 let contacts = ContactsManager.shared.fetchContacts()
-                if contacts.count == 6 {
                     pickedNumber = contacts[0]
                     pickedNumber2 = contacts[1]
                     pickedNumber3 = contacts[2]
                     relation = contacts[3]
                     relation2 = contacts[4]
                     relation3 = contacts[5]
-                }
             }
         }
     }
