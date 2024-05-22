@@ -36,6 +36,10 @@ struct SummaryView: View {
     // 타이머
     var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
+    // 환자정보 가져오기
+    @State private var hospitalInfo: String = UserdefaultsManager.hospitalInfo
+    @State private var medicineInfo: String = UserdefaultsManager.medicineInfo
+    
     var body: some View {
         
         NavigationView {
@@ -138,7 +142,7 @@ struct SummaryView: View {
                     
                     // #3: 3번버튼(환자 정보)
                     NavigationLink {
-                        PatientInfoSettingView()
+                        PatientInfoSettingView(hospitalInfo: $hospitalInfo, medicineInfo: $medicineInfo)
                     } label: {
                         VStack(alignment: .leading) {
                             Spacer()
