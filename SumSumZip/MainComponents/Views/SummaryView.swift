@@ -1,4 +1,6 @@
-// Assignee: Leo
+//
+//  ContentView.swift
+//  LeoView_1
 //
 //  Created by Leo Yoon on 5/17/24.
 //
@@ -35,11 +37,129 @@ struct SummaryView: View {
     var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        
-        NavigationView {
-            ZStack(alignment: .leading) {
+        ZStack(alignment:.leading){
+            
+            Image("BG_MainView")
+                .resizable() // ?? resizable 풀고, fit 시킨다음에, Z스택문제 해결해야함.
+            
+            VStack(alignment: .leading){
+                Spacer()
                 
-                Image("BG_MainView").resizable() // ?? rㅌㅋesizable 풀고, fit 시킨다음에, Z스택문제 해결해야함.
+                HStack{
+                    Text("숨숨집")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .foregroundStyle(Color(AppColors.darkGreen))
+                    Spacer()
+                    Button{ // 미리보기 버튼...
+                        //Action...
+                    } label: {
+                        Text("미리보기")
+                            .font(.system(size: 17))
+                            .foregroundStyle(Color(AppColors.darkGreen))
+                    }.frame(width:88 ,height: 37, alignment: .center)
+                        .background(Color(AppColors.white))
+                        .clipShape(RoundedRectangle(cornerRadius: 30, style: .circular))
+                }
+                Text("SOS 화면 설정").font(.title)
+                    .fontWeight(.bold)
+                    .foregroundStyle(Color(AppColors.systemBlack))
+                
+                Spacer()
+                
+                // #1: 1번버튼(긴급 메시지)
+                Button {
+                    // Action 들어갈 공간(Full Screen ...)
+                } label: {
+                    VStack(alignment: .leading) {
+                        Spacer()
+                        HStack{
+                            Image(systemName: "light.beacon.max")
+                                .foregroundStyle(Color(AppColors.systemDarkGray))
+                            Text("긴급 메세지").font(.system(size: 16))
+                                .foregroundStyle(Color(AppColors.systemDarkGray))
+                                .fontWeight(.bold)
+                            Spacer()
+                            Image(systemName:"chevron.forward")
+                                .font(.system(size: 12))
+                                .foregroundStyle(Color(AppColors.systemGray))
+                        }
+                        Spacer()
+                        Text("일시적인 공황장애 발생")
+                            .font(.system(size: 17))
+                            .foregroundStyle(Color(AppColors.darkGreen))
+                        Spacer()                                                // ?? Spacer를 min값 말고, 고정값으로는 못 쓰나?
+                    }.padding(8)
+                }.frame(width:360 ,height: 88, alignment: .leading)
+                    .background(Color(AppColors.white))
+                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .circular))
+                
+                // #2: 2번버튼(긴급 연락처)
+                Button {
+                    // Action 들어갈 공간(Full Screen ...)
+                } label: {
+                    VStack(alignment: .leading) {
+                        Spacer()
+                        HStack{
+                            Image(systemName: "phone.fill")
+                                .foregroundStyle(Color(AppColors.systemDarkGray))
+                            Text("긴급 연락처")
+                                .font(.system(size: 16))
+                                .foregroundStyle(Color(AppColors.systemDarkGray))
+                                .fontWeight(.bold)
+                            Spacer()
+                            Image(systemName:"chevron.forward")
+                                .font(.system(size: 12))
+                                .foregroundStyle(Color(AppColors.systemGray))
+                        }
+                        Spacer()
+                        HStack {
+                            Text("2").font(.system(size: 30))
+                                .fontWeight(.heavy)
+                                .fontDesign(.rounded)
+                                .foregroundStyle(Color(AppColors.darkGreen))
+                            Text("개의 연락처가 지정되어있습니다.")
+                                .font(.system(size:13))
+                                .foregroundStyle(Color(AppColors.systemGray))
+                                .frame(height:25, alignment: .bottom)
+                        }
+                        Spacer()
+                    }.padding(8)
+                }.frame(width:360 ,height: 88, alignment: .leading)
+                    .background(Color(AppColors.white)) // @@ 흰색으로 바뀌어야함(배경 깐 뒤에 할게요오)
+                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .circular))
+                
+                // #3: 3번버튼(환자 정보)
+                Button {
+                    // Action 들어갈 공간(Full Screen ...)
+                } label: {
+                    VStack(alignment: .leading) {
+                        Spacer()
+                        HStack{
+                            Image(systemName: "stethoscope")
+                                .foregroundStyle(Color(AppColors.systemDarkGray))
+                            Text("환자 정보")
+                                .font(.system(size: 16))
+                                .foregroundStyle(Color(AppColors.systemDarkGray))
+                                .fontWeight(.bold)
+                            Spacer()
+                            Image(systemName:"chevron.forward")
+                                .font(.system(size: 12))
+                                .foregroundStyle(Color(AppColors.systemGray))
+                        }
+                        Spacer()
+                        HStack {
+                            Text("홍길동, 28세, 남, 공황장애, 포항성모병원")
+                                .font(.system(size: 20))
+                                .fontWeight(.heavy)
+                                .fontDesign(.rounded)
+                                .foregroundStyle(Color(AppColors.darkGreen))
+                        }
+                        Spacer()
+                    }.padding(8)
+                }.frame(width:360 ,height: 88, alignment: .leading)
+                    .background(Color(AppColors.white))
+                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .circular))
                 
                 VStack(alignment: .leading){
                     Spacer()
@@ -58,19 +178,35 @@ struct SummaryView: View {
                         VStack(alignment: .leading) {
                             Spacer()
                             HStack{
-                                Image(systemName: "light.beacon.max").foregroundStyle(Color("Button_1"))
-                                Text("긴급 메세지").font(.system(size: 16)).foregroundStyle(Color("Button_1")).fontWeight(.bold)
+                                Image(systemName: "exclamationmark.arrow.circlepath")
+                                    .foregroundStyle(Color(AppColors.systemDarkGray))
+                                Text("호흡 유도 시간")
+                                    .font(.system(size: 16))
+                                    .foregroundStyle(Color(AppColors.systemDarkGray))
+                                    .fontWeight(.bold)
+                            }
+                            Spacer()
+                            HStack {
+                                Text("2")
+                                    .font(.system(size: 30))
+                                    .fontWeight(.heavy)
+                                    .fontDesign(.rounded)
+                                    .foregroundStyle(Color(AppColors.darkGreen))
+                                Text("분").font(.system(size:13))
+                                    .foregroundStyle(Color(AppColors.systemGray))
+                                    .frame(height:25, alignment: .bottom)
                                 Spacer()
-                                Image(systemName:"chevron.forward").font(.system(size: 12))
-                                    .foregroundStyle(Color("Button_1"))
+                                Image(systemName:"chevron.forward")
+                                    .font(.system(size: 12))
+                                    .foregroundStyle(Color(AppColors.systemGray))
                             }
                             Spacer()
                             Text("일시적인 공황장애 발생").font(.system(size: 17))
                                 .foregroundStyle(Color("Button_2"))
                             Spacer()                                                // ?? Spacer를 min값 말고, 고정값으로는 못 쓰나?
                         }.padding(8)
-                    }.frame(width:360 ,height: 88, alignment: .leading)
-                        .background(.white) // @@ 흰색으로 바뀌어야함(배경 깐 뒤에 할게요오)
+                    }.frame(width:173 ,height: 88, alignment: .leading)
+                        .background(Color(AppColors.white))
                         .clipShape(RoundedRectangle(cornerRadius: 10, style: .circular))
                     
                     // #2: 2번버튼(긴급 연락처)
@@ -80,18 +216,23 @@ struct SummaryView: View {
                         VStack(alignment: .leading) {
                             Spacer()
                             HStack{
-                                Image(systemName: "phone.fill").foregroundStyle(Color("Button_1"))
-                                Text("긴급 연락처").font(.system(size: 16)).foregroundStyle(Color("Button_1")).fontWeight(.bold)
-                                Spacer()
-                                Image(systemName:"chevron.forward").font(.system(size: 12))
-                                    .foregroundStyle(Color("Button_1"))
+                                Image(systemName: "phone.fill")
+                                    .foregroundStyle(Color(AppColors.systemDarkGray))
+                                Text("긴급 연락처")
+                                    .font(.system(size: 16))
+                                    .foregroundStyle(Color(AppColors.systemDarkGray))
+                                    .fontWeight(.bold)
                             }
                             Spacer()
                             HStack {
-                                Text("2").font(.system(size: 30)).fontWeight(.heavy).fontDesign(.rounded)
-                                    .foregroundStyle(Color("Button_2"))
-                                Text("개의 연락처가 지정되어있습니다.").font(.system(size:13))
-                                    .foregroundStyle(Color("Button_2sub"))
+                                Text("30")
+                                    .font(.system(size: 30))
+                                    .fontWeight(.heavy)
+                                    .fontDesign(.rounded)
+                                    .foregroundStyle(Color(AppColors.darkGreen))
+                                Text("초")
+                                    .font(.system(size:13))
+                                    .foregroundStyle(Color(AppColors.systemGray))
                                     .frame(height:25, alignment: .bottom)
                             }
                             Spacer()                                                // ?? Spacer를 min값 말고, 고정값으로는 못 쓰나?
@@ -111,8 +252,9 @@ struct SummaryView: View {
                                 Image(systemName: "stethoscope").foregroundStyle(Color("Button_1"))
                                 Text("환자 정보").font(.system(size: 16)).foregroundStyle(Color("Button_1")).fontWeight(.bold)
                                 Spacer()
-                                Image(systemName:"chevron.forward").font(.system(size: 12))
-                                    .foregroundStyle(Color("Button_1"))
+                                Image(systemName:"chevron.forward")
+                                    .font(.system(size: 12))
+                                    .foregroundStyle(Color(AppColors.systemGray))
                             }
                             Spacer()
                             HStack {
@@ -122,79 +264,42 @@ struct SummaryView: View {
                             }
                             Spacer()                                                // ?? Spacer를 min값 말고, 고정값으로는 못 쓰나?
                         }.padding(8)
-                    }.frame(width:360 ,height: 88, alignment: .leading)
-                        .background(.white) // @@ 흰색으로 바뀌어야함(배경 깐 뒤에 할게요오)
+                    }.frame(width:173 ,height: 88, alignment: .leading)
+                        .background(Color(AppColors.white)) // @@ 흰색으로 바뀌어야함(배경 깐 뒤에 할게요오)
                         .clipShape(RoundedRectangle(cornerRadius: 10, style: .circular))
-            
-                    
-                    // #4: 4번버튼(호흡 유도 시간)
-                    HStack {
-                        Button {
+                }
+                Spacer()
+                
+                // ## SOS뷰 버튼
+                
+                HStack {
+                    Spacer()
+                    ZStack {
+                        Button{
                             // Action 들어갈 공간(Full Screen ...)
-                        } label: {
-                            VStack(alignment: .leading) {
-                                Spacer()
-                                HStack{
-                                    Image(systemName: "exclamationmark.arrow.circlepath").foregroundStyle(Color("Button_1"))
-                                    Text("호흡 유도 시간").font(.system(size: 16)).foregroundStyle(Color("Button_1")).fontWeight(.bold)
-                                }
-                                Spacer()
-                                HStack {
-                                    Text("2").font(.system(size: 30)).fontWeight(.heavy).fontDesign(.rounded)
-                                        .foregroundStyle(Color("Button_2"))
-                                    Text("분").font(.system(size:13))
-                                        .foregroundStyle(Color("Button_2sub"))
-                                        .frame(height:25, alignment: .bottom)
-                                    Spacer()
-                                    Image(systemName:"chevron.forward").font(.system(size: 12))
-                                        .foregroundStyle(Color("Button_1"))
-                                }
-                                Spacer()                                                // ?? Spacer를 min값 말고, 고정값으로는 못 쓰나?
-                            }.padding(8)
-                        }.frame(width:173 ,height: 88, alignment: .leading)
-                            .background(.white) // @@ 흰색으로 바뀌어야함(배경 깐 뒤에 할게요오)
-                            .clipShape(RoundedRectangle(cornerRadius: 10, style: .circular))
-                        
+                        } label:{
+                            Text(" ")
+                        }.frame(width:330, height:190)
+                            .background(Color(AppColors.white))
+                            .clipShape(RoundedRectangle(cornerRadius: 90, style: .circular))
                         
                         // #5: 5번버튼(구조 타이밍 설정)
                         Button {
                             // Action 들어갈 공간(Full Screen ...)
                         } label: {
-                            VStack(alignment: .leading) {
-                                Spacer()
-                                HStack{
-                                    Image(systemName: "phone.fill").foregroundStyle(Color("Button_1"))
-                                    Text("긴급 연락처").font(.system(size: 16)).foregroundStyle(Color("Button_1")).fontWeight(.bold)
-                                }
-                                Spacer()
-                                HStack {
-                                    Text("30").font(.system(size: 30)).fontWeight(.heavy).fontDesign(.rounded)
-                                        .foregroundStyle(Color("Button_2"))
-                                    Text("초").font(.system(size:13))
-                                        .foregroundStyle(Color("Button_2sub"))
-                                        .frame(height:25, alignment: .bottom)
-                                    Spacer()
-                                    Image(systemName:"chevron.forward").font(.system(size: 12))
-                                        .foregroundStyle(Color("Button_1"))
-                                }
-                                Spacer()                                                // ?? Spacer를 min값 말고, 고정값으로는 못 쓰나?
-                            }.padding(8)
-                        }.frame(width:173 ,height: 88, alignment: .leading)
-                            .background(.white) // @@ 흰색으로 바뀌어야함(배경 깐 뒤에 할게요오)
-                            .clipShape(RoundedRectangle(cornerRadius: 10, style: .circular))
-                    }
-                    Spacer()
-                    
-                    // ## SOS뷰 버튼
-                    
-                    HStack {
-                        Spacer()
-                        ZStack {
-                            Button{
-                                
-                            } label:{
-                                
-                            }.frame(width:330, height:190).background(.white)
+                            VStack{
+                                Spacer(minLength: 40)
+                                Text("도와주세요!")
+                                    .font(.system(size: 35))
+                                    .fontWeight(.heavy)
+                                    .foregroundStyle(Color(AppColors.white))
+                                Spacer(minLength: 1)
+                                Text("공황 증상이 올 것 같다면\n지금 바로 PUSH!")
+                                    .font(.system(size: 14))
+                                    .foregroundStyle(Color(AppColors.systemDarkGray))
+                                Spacer(minLength: 40)
+                            }.frame(width:310, height:167)
+                                .background(.black)
                                 .clipShape(RoundedRectangle(cornerRadius: 90, style: .circular))
                             
                             Button{
@@ -232,13 +337,24 @@ struct SummaryView: View {
                         .fullScreenCover(isPresented: $isPresented) {
                             SOSView()
                         }
-                        
-                        Spacer()
+                        .onReceive(timer) { _ in
+                            if timerActive {
+                                if timeRemaining > 0 {
+                                    timeRemaining -= 1
+                                    print("타이머 잔여시간: \(timeRemaining)")
+                                } else {
+                                    timerActive = false
+                                    isPresented = true
+                                    cancelTimer()
+                                    EmergencyLiveActivityManager.shared.endAllActivities()
+                                }
+                            }
+                        }
                     }
                     Spacer()
                     
                 }
-                .padding()
+
             }
         }
     }

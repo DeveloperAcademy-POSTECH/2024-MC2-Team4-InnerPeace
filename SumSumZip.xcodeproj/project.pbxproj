@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		00C1A7C02BFAEB0D004747E6 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C1A7BF2BFAEB0D004747E6 /* SummaryView.swift */; };
+		20C930042BFCBDF000F57ED2 /* TimeSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C930032BFCBDF000F57ED2 /* TimeSettingModel.swift */; };
 		20CE35AF2BFAFCE300AF7C09 /* BreathTimeSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE35AE2BFAFCE300AF7C09 /* BreathTimeSetting.swift */; };
 		20CE35B12BFAFE2200AF7C09 /* SOSTimeSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE35B02BFAFE2200AF7C09 /* SOSTimeSetting.swift */; };
 		512A01F82BFAEDBB00EE8B39 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512A01F72BFAEDBB00EE8B39 /* MessageView.swift */; };
@@ -93,6 +94,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		00C1A7BF2BFAEB0D004747E6 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; };
+		20C930032BFCBDF000F57ED2 /* TimeSettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSettingModel.swift; sourceTree = "<group>"; };
 		00C1A7BF2BFAEB0D004747E6 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		20CE35AE2BFAFCE300AF7C09 /* BreathTimeSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathTimeSetting.swift; sourceTree = "<group>"; };
 		20CE35B02BFAFE2200AF7C09 /* SOSTimeSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSTimeSetting.swift; sourceTree = "<group>"; };
@@ -243,6 +246,7 @@
 		8CCFD1012BF3305A0059EF94 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				20C930032BFCBDF000F57ED2 /* TimeSettingModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -256,6 +260,8 @@
 				20CE35B02BFAFE2200AF7C09 /* SOSTimeSetting.swift */,
 				20CE35AE2BFAFCE300AF7C09 /* BreathTimeSetting.swift */,
 				8C7622312BFC80BF00B6BFFF /* PatientInfoSettingView.swift */,
+				512A01F72BFAEDBB00EE8B39 /* MessageView.swift */,
+				512A01F92BFB1D8A00EE8B39 /* ContactSettingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -316,8 +322,6 @@
 		8CCFD10B2BF332130059EF94 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				512A01F72BFAEDBB00EE8B39 /* MessageView.swift */,
-				512A01F92BFB1D8A00EE8B39 /* ContactSettingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -620,6 +624,7 @@
 				8B1F63D32BFADCDF00049B0B /* SOSView.swift in Sources */,
 				8C76222E2BFC808300B6BFFF /* CustomNavigationModifier.swift in Sources */,
 				20CE35AF2BFAFCE300AF7C09 /* BreathTimeSetting.swift in Sources */,
+				20C930042BFCBDF000F57ED2 /* TimeSettingModel.swift in Sources */,
 				8CCFD0D52BF32CD40059EF94 /* SumSumZipApp.swift in Sources */,
 				8CD4FF1C2BF6E355009A8BC9 /* LiveActivityManager.swift in Sources */,
 				512A01FA2BFB1D8A00EE8B39 /* ContactSettingView.swift in Sources */,
