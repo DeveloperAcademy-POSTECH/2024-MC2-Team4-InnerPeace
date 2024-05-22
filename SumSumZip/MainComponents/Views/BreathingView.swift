@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct BreathingView: View {
-    @Binding var isAnimating : Bool
+    @Binding var isAnimating: Bool
+    @Binding var isShownSheet: Bool
+    @Binding var isShownContact: Bool
+    @State private var showingAlert: Bool = false
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State private var count: Int = 1
@@ -28,7 +31,7 @@ struct BreathingView: View {
     var body: some View {
         NavigationView{
             ZStack{
-                LinearGradient(gradient: Gradient(colors: [Color.black,Color("PointColor2"), Color("PointColor")]),
+                LinearGradient(gradient: Gradient(colors: [Color.black, AppColors.lightSage, AppColors.lightGreen]),
                                startPoint: .top, endPoint: .bottom)
                             .edgesIgnoringSafeArea(.all)
                 VStack{
@@ -50,7 +53,7 @@ struct BreathingView: View {
                             .shadow(color: .white, radius: 40)
                             .padding(.horizontal, 20)
                             .scaleEffect(isAnimating ? 1.0 : 1.5)
-                            .animation(.easeOut(duration: 4).repeatForever(),
+                            .animation(.easeOut(duration: 4).delay(1).repeatForever(),
                                        value: isAnimating)
                         
                         Circle()
@@ -60,9 +63,8 @@ struct BreathingView: View {
                             .foregroundStyle(Color.white)
                             .font(.title)
                             .fontWeight(.bold)
-                            .animation(.linear(duration: 4).repeatForever(), value: isAnimating)
-//                            .animation(.linear(duration: 2.0).delay(0.5).repeatForever(),
-//                                       value: isAnimating)
+                            .animation(.easeOut(duration: 4).delay(1).repeatForever(), value: isAnimating)
+
                     }
                     .onAppear(perform: {
                         isAnimating.toggle()
@@ -93,8 +95,15 @@ struct BreathingView: View {
             .toolbar{
                 Button("상황종료"){
                     print("상황종료")
+                    showingAlert = true
+                    isShownSheet = false
+ 
                 }
-                .foregroundStyle(Color("FontColor"))
+                .foregroundStyle(AppColors.lightSage)
+                .alert(isPresented: $showingAlert){
+                    Alert(title: Text("도와주셔서 감사합니다."), message: Text("당신은 영웅입니다."),
+                                      dismissButton: .default(Text("상황종료")))
+                }
             }
             .toolbar{
                 ToolbarItemGroup(placement: .bottomBar){
@@ -107,6 +116,7 @@ struct BreathingView: View {
                     
                     Button("긴급 연락"){
                         print("긴급 연락")
+                        isShownContact = true
                     }
                     .foregroundStyle(Color.red)
                     .font(.title3)
@@ -122,10 +132,14 @@ struct BreathingView: View {
                 }
                 updateTimeRemaining()
             }
+            .fullScreenCover(isPresented: $isShownContact, content: {
+                ContactView(isShownContact: $isShownContact)
+            })
         }
+        .blur(radius: isShownContact ? 5.0 : 0)
     }
 }
-//
-//#Preview {
-//    SOSView()
-//}
+
+#Preview {
+    SOSView()
+}
