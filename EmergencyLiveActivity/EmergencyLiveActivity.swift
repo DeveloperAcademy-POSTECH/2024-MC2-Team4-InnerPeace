@@ -12,6 +12,7 @@ import WidgetKit
 struct EmergencyLiveActivityAttributes: ActivityAttributes {
     public struct ContentState: Codable, Hashable {
         var progress: Double
+        var imageName: String
     }
 
     var title: String
@@ -23,8 +24,13 @@ struct EmergencyLiveActivity: Widget {
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: EmergencyLiveActivityAttributes.self) { context in
             // Lock screen/banner UI goes here
-            activityView(context: context, isForDynamicIsland: false)
-                .background(AppColors.black)
+//            activityView(context: context, isForDynamicIsland: false)
+//                .background(AppColors.black)
+            VStack {
+                Text(context.state.imageName)
+                Image(context.state.imageName)
+                
+            }
         } dynamicIsland: { context in
             DynamicIsland {
                 // Expanded UI goes here
@@ -36,6 +42,12 @@ struct EmergencyLiveActivity: Widget {
                 }
                 DynamicIslandExpandedRegion(.bottom) {
                     activityView(context: context, isForDynamicIsland: true)
+//                    VStack {
+//                        Text(context.state.imageName)
+//                        Image(context.state.imageName)
+//                        
+//                    }
+                    
                     
                 }
             } compactLeading: {
@@ -60,6 +72,8 @@ struct EmergencyLiveActivity: Widget {
             .progressViewStyle(CircularProgressViewStyle())
             .tint(AppColors.lightCyan)
     }
+    
+
     
     private func activityView(context: ActivityViewContext<EmergencyLiveActivityAttributes>, isForDynamicIsland: Bool) -> some View {
         VStack {
