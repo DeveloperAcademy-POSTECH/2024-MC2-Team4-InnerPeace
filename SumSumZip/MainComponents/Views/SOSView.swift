@@ -8,15 +8,14 @@
 import SwiftUI
 
 struct SOSView: View {
-    
     @State private var isAnimating: Bool = false
     @State private var isShownSheet: Bool = false
+    @State private var isShownContact: Bool = false
 
     var body: some View {
-        
         NavigationView{
             ZStack{
-                LinearGradient(gradient: Gradient(colors: [Color.black,Color("PointColor2"), Color("PointColor")]),
+                LinearGradient(gradient: Gradient(colors: [Color.black, AppColors.lightSage, AppColors.lightGreen]),
                                startPoint: .top, endPoint: .bottom)
                             .edgesIgnoringSafeArea(.all)
                 VStack{
@@ -33,7 +32,7 @@ struct SOSView: View {
                     
                     ZStack{
                         Capsule()
-                            .foregroundStyle(Gradient(colors: [Color("PointColor2"), Color.white]))
+                            .foregroundStyle(Gradient(colors: [AppColors.lightSage, Color.white]))
                             .shadow(radius: 10)
                             .shadow(color: .white, radius: 40)
                             .padding(.horizontal, 20)
@@ -49,7 +48,7 @@ struct SOSView: View {
                                         Text("30분")
                                             .fontWeight(.bold)
                                             .foregroundStyle(Color.gray)
-                                            .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                                            .font(.title)
                                         Spacer().frame(height:10)
                                         Text("호흡 유도 시작")
                                             .fontWeight(.heavy)
@@ -67,7 +66,7 @@ struct SOSView: View {
                                 .padding(.horizontal, 45)
                         })
                         .fullScreenCover(isPresented: $isShownSheet, content: {
-                            BreathingView(isAnimating: $isAnimating)
+                            BreathingView(isAnimating: $isAnimating, isShownSheet: $isShownSheet, isShownContact: $isShownContact)
                         })
                     }
                         
@@ -83,26 +82,34 @@ struct SOSView: View {
                 Button("상황종료"){
                     print("상황종료")
                 }
-                .foregroundStyle(Color("FontColor"))
+                .foregroundStyle(AppColors.lightSage)
             }
             .toolbar{
-                ToolbarItemGroup(placement: .bottomBar){
-                    Button("환자 정보"){
+                ToolbarItemGroup(placement: .bottomBar) {
+                    Button("환자 정보") {
                         print("환자 정보")
                     }
                     .foregroundStyle(Color.gray)
                     .font(.title3)
                     .fontWeight(.bold)
                     
-                    Button("긴급 연락"){
+                    Button("긴급 연락") {
                         print("긴급 연락")
+                        isShownContact = true
                     }
                     .foregroundStyle(Color.red)
                     .font(.title3)
                     .fontWeight(.bold)
                 }
             }
+            .fullScreenCover(isPresented: $isShownContact, content: {
+                ContactView(isShownContact: $isShownContact)
+            })
         }
+        .onAppear{
+            UIApplication.shared.isIdleTimerDisabled = true
+        }
+        .blur(radius: isShownContact ? 5.0 : 0)
     }
 }
 
