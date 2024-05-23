@@ -64,6 +64,7 @@ struct BreathTimeSetting: View {
                 
             }
         }
+        .navigationBarBackButtonHidden ()
         .onAppear(){
             let BreathsavedTime = BreathTimeDataManager.shared.fetchTime()
             selectedTime = BreathsavedTime != 0 ? BreathsavedTime : 30

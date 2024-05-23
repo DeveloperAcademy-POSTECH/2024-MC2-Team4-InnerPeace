@@ -1,6 +1,5 @@
-//
-//  ContentView.swift
-//  LeoView_1
+//  Assignee: Leo
+//  SummaryView.swift
 //
 //  Created by Leo Yoon on 5/17/24.
 //
@@ -41,6 +40,7 @@ struct SummaryView: View {
     
     // 긴급 연락처 가져오기
 //    @State private var pickedNumber = ContactSettingView.pickedNumber
+    @State private var numOfRelation = ContactsManager.shared.fetchContacts().last ?? "0"
     
     // 환자정보 가져오기(완료)
     @State private var hospitalInfo: String = UserdefaultsManager.hospitalInfo
@@ -63,6 +63,7 @@ struct SummaryView: View {
                     .ignoresSafeArea()
                 
                 VStack(alignment: .leading){
+//                    Spacer().frame(height:20)
                     Spacer()
                     
                     HStack{
@@ -89,6 +90,7 @@ struct SummaryView: View {
                         .fontWeight(.bold)
                         .foregroundStyle(Color(AppColors.black))
                     Spacer()
+                    
                     // #1: 1번버튼(긴급 메시지)
                     NavigationLink {
                         MessageView(message: $message)
@@ -98,7 +100,8 @@ struct SummaryView: View {
                             HStack{
                                 Image(systemName: "light.beacon.max")
                                     .foregroundStyle(Color(AppColors.systemDarkGray))
-                                Text("긴급 메세지").font(.system(size: 16))
+                                Text("긴급 메세지")
+                                    .font(.system(size: 16))
                                     .foregroundStyle(Color(AppColors.systemDarkGray))
                                     .fontWeight(.bold)
                                 Spacer()
@@ -115,10 +118,11 @@ struct SummaryView: View {
                     }.frame(width:360 ,height: 88, alignment: .leading)
                         .background(Color(AppColors.white))
                         .clipShape(RoundedRectangle(cornerRadius: 10, style: .circular))
+                        .shadow(color: Color.black.opacity(0.1), radius: 2, x: 1, y: 1)
                     
                     // #2: 2번버튼(긴급 연락처)
-                    Button {
-//                        ContactSettingView(pickedNumber: $pickedNumber, pickedNumber2: $pickedNumber2, pickedNumber3: $pickedNumber3)
+                    NavigationLink {
+                        ContactSettingView()
                         // Action 들어갈 공간(Full Screen ...)
                     } label: {
                         VStack(alignment: .leading) {
@@ -137,7 +141,8 @@ struct SummaryView: View {
                             }
                             Spacer()
                             HStack {
-                                Text("2")
+                                Text(numOfRelation)
+//                                Text("\(numOfRelation)")
                                     .font(.system(size: 30))
                                     .fontWeight(.heavy)
                                     .fontDesign(.rounded)
@@ -152,6 +157,7 @@ struct SummaryView: View {
                     }.frame(width:360 ,height: 88, alignment: .leading)
                         .background(Color(AppColors.white))
                         .clipShape(RoundedRectangle(cornerRadius: 10, style: .circular))
+                        .shadow(color: Color.black.opacity(0.1), radius: 2, x: 1, y: 1)
                     
                     // #3: 3번버튼(환자 정보)
                     NavigationLink {
@@ -160,13 +166,15 @@ struct SummaryView: View {
                         VStack(alignment: .leading) {
                             Spacer()
                             HStack{
-                                Image(systemName: "stethoscope").foregroundStyle(Color(AppColors.systemDarkGray))
+                                Image(systemName: "stethoscope")
+                                    .foregroundStyle(Color(AppColors.systemDarkGray))
                                 Text("환자 정보")
                                     .font(.system(size: 16))
                                     .foregroundStyle(Color(AppColors.systemDarkGray))
                                     .fontWeight(.bold)
                                 Spacer()
-                                Image(systemName:"chevron.forward").font(.system(size: 12))
+                                Image(systemName:"chevron.forward")
+                                    .font(.system(size: 12))
                                     .foregroundStyle(Color(AppColors.systemGray))
                             }
                             Spacer()
@@ -183,6 +191,7 @@ struct SummaryView: View {
                     }.frame(width:360 ,height: 88, alignment: .leading)
                         .background(Color(AppColors.white))
                         .clipShape(RoundedRectangle(cornerRadius: 10, style: .circular))
+                        .shadow(color: Color.black.opacity(0.1), radius: 2, x: 1, y: 1)
             
                     
                     // #4: 4번버튼(호흡 유도 시간)
@@ -221,6 +230,7 @@ struct SummaryView: View {
                         }.frame(width:173 ,height: 88, alignment: .leading)
                             .background(Color(AppColors.white))
                             .clipShape(RoundedRectangle(cornerRadius: 10, style: .circular))
+                            .shadow(color: Color.black.opacity(0.1), radius: 2, x: 1, y: 1)
                         
                         Spacer()
                         
@@ -233,13 +243,15 @@ struct SummaryView: View {
                                 HStack{
                                     Image(systemName: "exclamationmark.arrow.circlepath")
                                         .foregroundStyle(Color(AppColors.systemDarkGray))
-                                    Text("구조 타이밍 설정").font(.system(size: 16))
+                                    Text("구조 타이밍 설정")
+                                        .font(.system(size: 16))
                                         .foregroundStyle(Color(AppColors.systemDarkGray))
                                         .fontWeight(.bold)
                                 }
                                 Spacer()
                                 HStack {
-                                    Text("30").font(.system(size: 30))
+                                    Text("\(waitingTime)")
+                                        .font(.system(size: 30))
                                         .fontWeight(.heavy)
                                         .fontDesign(.rounded)
                                         .foregroundStyle(Color(AppColors.darkGreen))
@@ -256,6 +268,7 @@ struct SummaryView: View {
                         }.frame(width:173 ,height: 88, alignment: .leading)
                             .background(Color(AppColors.white))
                             .clipShape(RoundedRectangle(cornerRadius: 10, style: .circular))
+                            .shadow(color: Color.black.opacity(0.1), radius: 2, x: 1, y: 1)
                     }
                     Spacer()
                     
@@ -290,7 +303,8 @@ struct SummaryView: View {
                                         .foregroundStyle(Color(AppColors.white))
                                     Spacer(minLength: 1)
                                     
-                                    Text("공황 증상이 올 것 같다면\n지금 바로 PUSH!").font(.system(size: 14))
+                                    Text("공황 증상이 올 것 같다면\n지금 바로 PUSH!")
+                                        .font(.system(size: 14))
                                         .foregroundStyle(Color(AppColors.systemGray))
                                     Spacer(minLength: 40)
                                     
@@ -301,11 +315,9 @@ struct SummaryView: View {
                             }
                             .alert("30초 뒤 시작", isPresented: $alertShowing) {
                                 Button("취소", role: .cancel) {
-                                    EmergencyLiveActivityManager.shared.endAllActivities()
                                 }
                                 
                                 Button("바로 시작", role: .destructive) {
-                                    EmergencyLiveActivityManager.shared.endAllActivities()
                                     isPresented = true
                                 }
                             } message: {
@@ -317,7 +329,7 @@ struct SummaryView: View {
                         }
                         Spacer()
                     }
-                    Spacer()
+//                    Spacer()
                 }
                 .padding()
             }

@@ -1,4 +1,5 @@
-// Assignee: Leo
+//  Assignee: Leo
+//  OnboardingView.swift
 //
 //  Created by Leo Yoon on 5/21/24.
 //
