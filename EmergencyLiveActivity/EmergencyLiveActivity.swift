@@ -26,11 +26,64 @@ struct EmergencyLiveActivity: Widget {
             // Lock screen/banner UI goes here
 //            activityView(context: context, isForDynamicIsland: false)
 //                .background(AppColors.black)
+//            VStack {
+//                Text(context.state.imageName)
+//                Image(context.state.imageName)
+//                
+//            }
+            
             VStack {
-                Text(context.state.imageName)
-                Image(context.state.imageName)
+                HStack {
+                    Image(systemName: "exclamationmark.triangle")
+                        .font(.system(size: 22))
+                        .foregroundColor(AppColors.lightCyan)
+                        .padding(.leading, 19)
+                        .padding(.top, 70)
+                    
+                    Text(context.attributes.title)
+                        .bold()
+                        .padding(.top, 70)
+                        .font(.system(size: 22))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .foregroundStyle(.white)
+                }
+                
+                HStack {
+                    VStack {
+                        Text(context.attributes.firstSubtitle)
+                            .padding(.bottom, 0)
+                            .font(.system(size: 18))
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.leading, 19)
+                            .foregroundStyle(.white)
+                        
+                        Text(context.attributes.secondSubtitle)
+                            .padding(.bottom, 23)
+                            .font(.system(size: 18))
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.leading, 19)
+                            .padding(.bottom, 10)
+                            .foregroundColor(AppColors.lightCyan)
+                    }
+                    
+                    Image(context.state.imageName)
+                        .frame(width: 90, height: 90)
+                        .padding(.bottom, 30)
+                        
+                }
                 
             }
+            // 왜 이친구는 밑에 있을 때만 적용이됨??????
+            .activitySystemActionForegroundColor(Color.black)
+            .background(Color.black)
+            
+            
+            
+            
+//            Spacer()
+//                .frame(height: isForDynamicIsland ? 14 : 10)
+            
+            
         } dynamicIsland: { context in
             DynamicIsland {
                 // Expanded UI goes here
