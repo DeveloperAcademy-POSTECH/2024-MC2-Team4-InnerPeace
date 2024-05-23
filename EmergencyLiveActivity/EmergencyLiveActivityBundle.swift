@@ -12,6 +12,7 @@ import SwiftUI
 struct EmergencyLiveActivityBundle: WidgetBundle {
     var body: some Widget {
         EmergencyWidget()
+        EmergencyLockScreenWidget()
         EmergencyLiveActivity()
     }
 }
