@@ -169,14 +169,12 @@ struct ContactSettingView: View {
                 }
             }.onAppear {
                 let contacts = ContactsManager.shared.fetchContacts()
-                if contacts.count == 6 {
                     pickedNumber = contacts[0]
                     pickedNumber2 = contacts[1]
                     pickedNumber3 = contacts[2]
                     relation = contacts[3]
                     relation2 = contacts[4]
                     relation3 = contacts[5]
-                }
             }
         }
     }
@@ -237,3 +235,50 @@ class Coordinator: NSObject, ObservableObject, CNContactPickerDelegate {
     ContactSettingView()
 }
 
+//
+//  SwiftUIView3.swift
+//  RainP
+//
+//  Created by heesohee on 5/22/24.
+//
+
+//import SwiftUI
+//
+//struct SwiftUIView3: View {
+//    
+//    @State private var pickedNumber: String = ""
+//    @State private var pickedNumber2: String = ""
+//    @State private var pickedNumber3: String = ""
+//    @State private var relation: String = ""
+//    @State private var relation2: String = ""
+//    @State private var relation3: String = ""
+//    
+//    var body: some View {
+//        VStack {
+//            Text("Number 1: \(pickedNumber)")
+//            Text("Number 2: \(pickedNumber2)")
+//            Text("Number 3: \(pickedNumber3)")
+//            Text("Relation 1: \(relation)")
+//            Text("Relation 2: \(relation2)")
+//            Text("Relation 3: \(relation3)")
+//        }
+//        .onAppear {
+//            let contacts = ContactsManager.shared.fetchContacts()
+//            
+//            pickedNumber = contacts[0]
+//            pickedNumber2 = contacts[1]
+//            pickedNumber3 = contacts[2]
+//            relation = contacts[3]
+//            relation2 = contacts[4]
+//            relation3 = contacts[5]
+//            
+//        }
+//    }
+//}
+//
+//#Preview {
+//    SwiftUIView3(number1: "Sample Number")
+//}
+//
+//
+//
