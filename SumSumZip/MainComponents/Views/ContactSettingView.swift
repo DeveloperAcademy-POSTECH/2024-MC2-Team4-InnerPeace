@@ -178,64 +178,65 @@ struct ContactSettingView: View {
                     relation3 = contacts[5]
                 }
             }
-        }
-    }
-}
-
-
-func openContactPicker(coordinator: Coordinator, for keyPath: ReferenceWritableKeyPath<Coordinator, String?>) {
-    let contactPicker = CNContactPickerViewController()
-    contactPicker.delegate = coordinator
-    coordinator.keyPath = keyPath
-    contactPicker.displayedPropertyKeys = [CNContactPhoneNumbersKey]
-    contactPicker.predicateForEnablingContact = NSPredicate(format: "phoneNumbers.@count > 0")
-    contactPicker.predicateForSelectionOfContact = NSPredicate(format: "phoneNumbers.@count == 1")
-    contactPicker.predicateForSelectionOfProperty = NSPredicate(format: "key == 'phoneNumbers'")
-    
-    guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-          let window = windowScene.windows.first,
-          let rootViewController = window.rootViewController else {
-        print("Error: Could not get root view controller.")
-        return
-    }
-    
-    rootViewController.present(contactPicker, animated: true, completion: nil)
-}
-
-
-class Coordinator: NSObject, ObservableObject, CNContactPickerDelegate {
-    @Published var pickedNumber: String?
-    @Published var pickedNumber2: String?
-    @Published var pickedNumber3: String?
-    
-    var keyPath: ReferenceWritableKeyPath<Coordinator, String?>?
-    
-    func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
-        if let phoneNumber = contact.phoneNumbers.first?.value.stringValue {
-            handlePhoneNumber(phoneNumber)
+            
         }
     }
     
-    func contactPicker(_ picker: CNContactPickerViewController, didSelect contactProperty: CNContactProperty) {
-        if contactProperty.key == CNContactPhoneNumbersKey, let phoneNumber = contactProperty.value as? CNPhoneNumber {
-            handlePhoneNumber(phoneNumber.stringValue)
+    
+    func openContactPicker(coordinator: Coordinator, for keyPath: ReferenceWritableKeyPath<Coordinator, String?>) {
+        let contactPicker = CNContactPickerViewController()
+        contactPicker.delegate = coordinator
+        coordinator.keyPath = keyPath
+        contactPicker.displayedPropertyKeys = [CNContactPhoneNumbersKey]
+        contactPicker.predicateForEnablingContact = NSPredicate(format: "phoneNumbers.@count > 0")
+        contactPicker.predicateForSelectionOfContact = NSPredicate(format: "phoneNumbers.@count == 1")
+        contactPicker.predicateForSelectionOfProperty = NSPredicate(format: "key == 'phoneNumbers'")
+        
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let window = windowScene.windows.first,
+              let rootViewController = window.rootViewController else {
+            print("Error: Could not get root view controller.")
+            return
         }
+        
+        rootViewController.present(contactPicker, animated: true, completion: nil)
     }
     
-    private func handlePhoneNumber(_ phoneNumber: String) {
-        let phoneNumberWithoutSpace = phoneNumber.replacingOccurrences(of: " ", with: "")
-        let sanitizedPhoneNumber = phoneNumberWithoutSpace.hasPrefix("+") ? String(phoneNumberWithoutSpace.dropFirst()) : phoneNumberWithoutSpace
-        DispatchQueue.main.async {
-            if let keyPath = self.keyPath {
-                self[keyPath: keyPath] = sanitizedPhoneNumber
+    
+    class Coordinator: NSObject, ObservableObject, CNContactPickerDelegate {
+        @Published var pickedNumber: String?
+        @Published var pickedNumber2: String?
+        @Published var pickedNumber3: String?
+        
+        var keyPath: ReferenceWritableKeyPath<Coordinator, String?>?
+        
+        func contactPicker(_ picker: CNContactPickerViewController, didSelect contact: CNContact) {
+            if let phoneNumber = contact.phoneNumbers.first?.value.stringValue {
+                handlePhoneNumber(phoneNumber)
+            }
+        }
+        
+        func contactPicker(_ picker: CNContactPickerViewController, didSelect contactProperty: CNContactProperty) {
+            if contactProperty.key == CNContactPhoneNumbersKey, let phoneNumber = contactProperty.value as? CNPhoneNumber {
+                handlePhoneNumber(phoneNumber.stringValue)
+            }
+        }
+        
+        private func handlePhoneNumber(_ phoneNumber: String) {
+            let phoneNumberWithoutSpace = phoneNumber.replacingOccurrences(of: " ", with: "")
+            let sanitizedPhoneNumber = phoneNumberWithoutSpace.hasPrefix("+") ? String(phoneNumberWithoutSpace.dropFirst()) : phoneNumberWithoutSpace
+            DispatchQueue.main.async {
+                if let keyPath = self.keyPath {
+                    self[keyPath: keyPath] = sanitizedPhoneNumber
+                }
             }
         }
     }
+    
 }
-
-#Preview {
-    ContactSettingView()
-}
+//#Preview {
+//    ContactSettingView()
+//}
 
 //
 //  SwiftUIView3.swift
@@ -247,14 +248,14 @@ class Coordinator: NSObject, ObservableObject, CNContactPickerDelegate {
 //import SwiftUI
 //
 //struct SwiftUIView3: View {
-//    
+//
 //    @State private var pickedNumber: String = ""
 //    @State private var pickedNumber2: String = ""
 //    @State private var pickedNumber3: String = ""
 //    @State private var relation: String = ""
 //    @State private var relation2: String = ""
 //    @State private var relation3: String = ""
-//    
+//
 //    var body: some View {
 //        VStack {
 //            Text("Number 1: \(pickedNumber)")
@@ -266,14 +267,14 @@ class Coordinator: NSObject, ObservableObject, CNContactPickerDelegate {
 //        }
 //        .onAppear {
 //            let contacts = ContactsManager.shared.fetchContacts()
-//            
+//
 //            pickedNumber = contacts[0]
 //            pickedNumber2 = contacts[1]
 //            pickedNumber3 = contacts[2]
 //            relation = contacts[3]
 //            relation2 = contacts[4]
 //            relation3 = contacts[5]
-//            
+//
 //        }
 //    }
 //}

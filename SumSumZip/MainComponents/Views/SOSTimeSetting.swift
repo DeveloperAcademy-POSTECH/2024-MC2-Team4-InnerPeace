@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct SOSTimeSetting: View {
-    @State private var selectedTime: Int = 30
+//    @State private var selectedTime: Int = 30
+    // selectedTime 이름을 waitingTime으로 바꾸었습니다.
+    @Binding var waitingTime: Int
     @Environment(\.dismiss) var dismiss
 
     
@@ -42,7 +44,8 @@ struct SOSTimeSetting: View {
                         HStack(spacing: 0){
                             Button(action: {
                                 let SOSsavedTime = SOSTimeDataManager.shared.fetchTime()
-                                selectedTime = SOSsavedTime != 0 ? SOSsavedTime : 30
+                                waitingTime = SOSsavedTime != 0 ? SOSsavedTime : 30
+                                dismiss()
                             }) {
                                 Text("취소")
                                     .foregroundColor(AppColors.darkGreen)
@@ -51,7 +54,8 @@ struct SOSTimeSetting: View {
                     }
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button(action: {
-                            SOSTimeDataManager.shared.saveTime(selectedTime)
+                            SOSTimeDataManager.shared.saveTime(waitingTime)
+                            dismiss()
                         }) {
                             Text("저장")
                                 .foregroundColor(AppColors.darkGreen)
@@ -63,8 +67,8 @@ struct SOSTimeSetting: View {
         }
         .onAppear(){
             let SOSsavedTime = SOSTimeDataManager.shared.fetchTime()
-            selectedTime = SOSsavedTime != 0 ? SOSsavedTime : 30
-            // 저장된 값이 있으면 그 값을 selectedTime에 저장하고, 그렇지 않으면 기본값인 30을 사용합니다.
+            waitingTime = SOSsavedTime != 0 ? SOSsavedTime : 30
+            // 저장된 값이 있으면 그 값을 waitingTime(selectedTime)에 저장하고, 그렇지 않으면 기본값인 30을 사용합니다.
         }
     }
     
@@ -80,7 +84,7 @@ struct SOSTimeSetting: View {
     
     var selectedTimeView: some View {
         HStack(alignment: .bottom, spacing: 0) {
-            Text("\(Int(selectedTime))")
+            Text("\(Int(waitingTime))")
                 .font(.system(size: 37, weight: .bold))
                 .foregroundColor(AppColors.darkGreen)
             Text("초")
@@ -105,10 +109,10 @@ struct SOSTimeSetting: View {
                      ForEach(times, id: \.self) { time in
                          VStack {
                              Circle()
-                                 .fill(time == selectedTime ? AppColors.black : AppColors.darkGreen) // 선택된 시간일 때는 검은색, 그렇지 않을 때는 어두운 녹색으로 채웁니다.
+                                 .fill(time == waitingTime ? AppColors.black : AppColors.darkGreen) // 선택된 시간일 때는 검은색, 그렇지 않을 때는 어두운 녹색으로 채웁니다.
                                  .frame(width: 17, height: 17) // 원의 크기를 설정합니다.
-                                 .scaleEffect(time == selectedTime ? 2.0 : 1.0) // 선택된 원의 크기를 두 배로 확대합니다.
-                                 .animation(.easeInOut, value: selectedTime) // 선택된 시간이 변경될 때 애니메이션 효과를 적용합니다.
+                                 .scaleEffect(time == waitingTime ? 2.0 : 1.0) // 선택된 원의 크기를 두 배로 확대합니다.
+                                 .animation(.easeInOut, value: waitingTime) // 선택된 시간이 변경될 때 애니메이션 효과를 적용합니다.
                                  .overlay(
                                     Circle()
                                         .stroke(
@@ -120,11 +124,11 @@ struct SOSTimeSetting: View {
                                             ),
                                             lineWidth: 3 // 테두리 두께를 설정합니다.
                                         )
-                                        .scaleEffect(time == selectedTime ? 2.0 : 0) // 선택된 원의 테두리를 두 배로 확대합니다.
+                                        .scaleEffect(time == waitingTime ? 2.0 : 0) // 선택된 원의 테두리를 두 배로 확대합니다.
                                 )
                                  .onTapGesture {
                                      withAnimation {
-                                         selectedTime = time // 원을 탭하면 선택된 시간을 해당 시간으로 변경합니다.
+                                         waitingTime = time // 원을 탭하면 선택된 시간을 해당 시간으로 변경합니다.
                                      }
                                  }
 
@@ -140,6 +144,14 @@ struct SOSTimeSetting: View {
  }
 
 
-#Preview {
-    SOSTimeSetting()
+//#Preview {
+//    SOSTimeSetting()
+//}
+
+struct SOSTimeSetting_Previews: PreviewProvider {
+    @State static var waitingTime: Int = 30
+
+    static var previews: some View {
+        SOSTimeSetting(waitingTime: $waitingTime)
+    }
 }

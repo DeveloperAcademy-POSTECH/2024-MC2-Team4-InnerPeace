@@ -28,17 +28,30 @@
 import SwiftUI
 
 struct SummaryView: View {
-    // SOSView로 전환될 때 사용
-    @State private var isPresented = false
-    // alert 뜰 때 사용
-    @State private var alertShowing = false
+    
+    // SOS View 전환용
+    @State private var isPresented = false // SOSView로 전환될 때 사용
+    @State private var alertShowing = false // alert 뜰 때 사용
 
     // 타이머
     var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
-    // 환자정보 가져오기
+    // 긴급 메시지 가져오기(완료)
+    @State private var message = MessageManager.shared.fetchMessage()
+    
+    // 긴급 연락처 가져오기
+//    @State private var pickedNumber = ContactSettingView.pickedNumber
+    
+    // 환자정보 가져오기(완료)
     @State private var hospitalInfo: String = UserdefaultsManager.hospitalInfo
     @State private var medicineInfo: String = UserdefaultsManager.medicineInfo
+    
+    // 호흡유도시간 가져오기
+//    @State private var selectedTime = BreathTimeDataManager.shared.fetchTime()
+    @State private var selectedTime: Int = BreathTimeDataManager.shared.fetchTime() // != 0 ? BreathTimeDataManager.shared.fetchTime() : 30
+    
+    // 구조 타이밍 가져오기
+    @State private var waitingTime: Int = SOSTimeDataManager.shared.fetchTime()
     
     var body: some View {
         
@@ -76,10 +89,9 @@ struct SummaryView: View {
                         .fontWeight(.bold)
                         .foregroundStyle(Color(AppColors.black))
                     Spacer()
-                    
                     // #1: 1번버튼(긴급 메시지)
-                    Button {
-                        // Action 들어갈 공간(Full Screen ...)
+                    NavigationLink {
+                        MessageView(message: $message)
                     } label: {
                         VStack(alignment: .leading) {
                             Spacer()
@@ -95,7 +107,7 @@ struct SummaryView: View {
                                     .foregroundStyle(Color(AppColors.systemGray))
                             }
                             Spacer()
-                            Text("일시적인 공황장애 발생")
+                            Text(message)
                                 .font(.system(size: 17))
                                 .foregroundStyle(Color(AppColors.darkGreen))
                             Spacer()
@@ -106,6 +118,7 @@ struct SummaryView: View {
                     
                     // #2: 2번버튼(긴급 연락처)
                     Button {
+//                        ContactSettingView(pickedNumber: $pickedNumber, pickedNumber2: $pickedNumber2, pickedNumber3: $pickedNumber3)
                         // Action 들어갈 공간(Full Screen ...)
                     } label: {
                         VStack(alignment: .leading) {
@@ -158,7 +171,7 @@ struct SummaryView: View {
                             }
                             Spacer()
                             HStack {
-                                Text("홍길동, 30세, 남, 공황장애, 포항성모병원")
+                                Text(hospitalInfo)
                                     .font(.system(size: 20))
                                     .fontWeight(.heavy)
                                     .fontDesign(.rounded)
@@ -174,8 +187,8 @@ struct SummaryView: View {
                     
                     // #4: 4번버튼(호흡 유도 시간)
                     HStack {
-                        Button {
-                            // Action 들어갈 공간(Full Screen ...)
+                        NavigationLink {
+                            BreathTimeSetting(selectedTime: $selectedTime)
                         } label: {
                             VStack(alignment: .leading) {
                                 Spacer()
@@ -189,15 +202,18 @@ struct SummaryView: View {
                                 }
                                 Spacer()
                                 HStack {
-                                    Text("2").font(.system(size: 30))
+                                    Text("\(selectedTime)")
+                                        .font(.system(size: 30))
                                         .fontWeight(.heavy)
                                         .fontDesign(.rounded)
                                         .foregroundStyle(Color(AppColors.darkGreen))
-                                    Text("분").font(.system(size:13))
+                                    Text("분")
+                                        .font(.system(size:13))
                                         .foregroundStyle(Color(AppColors.systemGray))
                                         .frame(height:25, alignment: .bottom)
                                     Spacer()
-                                    Image(systemName:"chevron.forward").font(.system(size: 12))
+                                    Image(systemName:"chevron.forward")
+                                        .font(.system(size: 12))
                                         .foregroundStyle(Color(AppColors.systemGray))
                                 }
                                 Spacer()
@@ -209,8 +225,8 @@ struct SummaryView: View {
                         Spacer()
                         
                         // #5: 5번버튼(구조 타이밍 설정)
-                        Button {
-                            // Action 들어갈 공간(Full Screen ...)
+                        NavigationLink {
+                            SOSTimeSetting(waitingTime: $waitingTime)
                         } label: {
                             VStack(alignment: .leading) {
                                 Spacer()
@@ -285,11 +301,9 @@ struct SummaryView: View {
                             }
                             .alert("30초 뒤 시작", isPresented: $alertShowing) {
                                 Button("취소", role: .cancel) {
-                                    EmergencyLiveActivityManager.shared.endAllActivities()
                                 }
                                 
                                 Button("바로 시작", role: .destructive) {
-                                    EmergencyLiveActivityManager.shared.endAllActivities()
                                     isPresented = true
                                 }
                             } message: {
@@ -297,7 +311,7 @@ struct SummaryView: View {
                             }
                         }
                         .fullScreenCover(isPresented: $isPresented) {
-                            SOSView(SOSmessage: "", breathTime: 1)
+                            SOSView()
                         }
                         Spacer()
                     }
@@ -305,7 +319,7 @@ struct SummaryView: View {
                 }
                 .padding()
             }
-        }
+        }.onAppear{message = MessageManager.shared.fetchMessage()}
     }
 }
 
