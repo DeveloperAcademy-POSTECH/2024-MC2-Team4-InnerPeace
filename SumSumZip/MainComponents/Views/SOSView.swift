@@ -90,6 +90,7 @@ struct SOSView: View {
                 Button("상황종료"){
                     print("상황종료")
                     showingAlert = true
+                    AlertManager.shared.stopAll()
                 }
                 .foregroundStyle(AppColors.lightSage)
                 .alert(isPresented: $showingAlert){
