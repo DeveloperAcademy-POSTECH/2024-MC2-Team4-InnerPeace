@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SOSView: View {
+    
+    @StateObject private var alertManager = AlertManager.shared
 
     @State var SOSmessage: String
     @State var breathTime: Int
@@ -122,11 +124,15 @@ struct SOSView: View {
             })
             .onAppear {
                 updateTimeRemaining()
+                // 물리동작 시작
+                alertManager.startAll()
+                
             }
             .onReceive(timer) { value in
                 withAnimation(.default) {
                     count = count == 5 ? 1 : count + 1
                 }
+    
                 updateTimeRemaining()
             }
         }
@@ -143,6 +149,12 @@ struct SOSView: View {
 }
 
 struct CapsuleView: View {
+    
+    @ObservedObject private var alertManager = AlertManager.shared
+    
+    let breathingDuration: TimeInterval = 4.0 // 들이마시는 시간 (초)
+    let pauseDuration: TimeInterval = 5.0 // 멈추는 시간 (초)
+    
     @Binding var isShownBreathing: Bool
     @Binding var breathTime: Int
     
@@ -155,6 +167,7 @@ struct CapsuleView: View {
                 .padding(.horizontal, 20)
             
             Button(action: {
+                startBreathingCycle()
                 isShownBreathing = true
             }, label: {
                 Rectangle()
@@ -182,13 +195,25 @@ struct CapsuleView: View {
             })
         }
     }
+    
+    private func startBreathingCycle() {
+        
+        alertManager.stopAll()
+        
+        alertManager.changeToBreath()
+        
+        Timer.scheduledTimer(withTimeInterval: breathingDuration + pauseDuration, repeats: true) { _ in
+            print("BreathTimer 생성")
+            alertManager.changeToBreath()
+        }
+    }
 }
 
 struct CircleView: View {
     @Binding var isBreathing: Bool
     
     var body: some View {
-        ZStack{
+        ZStack {
             Circle()
                 .foregroundStyle(Gradient(colors: [AppColors.lightSage, Color.white]))
                 .shadow(radius: 10)
@@ -208,6 +233,7 @@ struct CircleView: View {
         }
     }
 }
+
 
 //#Preview {
 //    SOSView(breathTime: )

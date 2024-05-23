@@ -61,6 +61,8 @@
 		8CD78B192BFEC6960054C170 /* LockScreenWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD78B182BFEC6960054C170 /* LockScreenWidget.swift */; };
 		8CD78B1A2BFEC6960054C170 /* LockScreenWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD78B182BFEC6960054C170 /* LockScreenWidget.swift */; };
 		8CD78B1B2BFEC8950054C170 /* EmergencyWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD4FEF72BF4E41B009A8BC9 /* EmergencyWidget.swift */; };
+		8CF6FA1C2BFF1769008C827C /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF6FA1B2BFF1769008C827C /* AlertManager.swift */; };
+		8CF6FA1E2BFF31CD008C827C /* HapticWave_2.ahap in Resources */ = {isa = PBXBuildFile; fileRef = 8CF6FA1D2BFF31CD008C827C /* HapticWave_2.ahap */; };
 		8CF6FDAA2BFCCB3700B59608 /* AnimationImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF6FDA92BFCCB3700B59608 /* AnimationImageView.swift */; };
 		8CF6FDAB2BFCCB6C00B59608 /* AnimationImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF6FDA92BFCCB3700B59608 /* AnimationImageView.swift */; };
 		8CF6FDB02BFCD7F800B59608 /* SOS.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8CF6FDAF2BFCD69D00B59608 /* SOS.gif */; };
@@ -160,6 +162,8 @@
 		8CD4FEFD2BF4E41C009A8BC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8CD4FF1B2BF6E355009A8BC9 /* LiveActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityManager.swift; sourceTree = "<group>"; };
 		8CD78B182BFEC6960054C170 /* LockScreenWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenWidget.swift; sourceTree = "<group>"; };
+		8CF6FA1B2BFF1769008C827C /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
+		8CF6FA1D2BFF31CD008C827C /* HapticWave_2.ahap */ = {isa = PBXFileReference; lastKnownFileType = text; path = HapticWave_2.ahap; sourceTree = "<group>"; };
 		8CF6FDA82BFCCA3C00B59608 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8CF6FDA92BFCCB3700B59608 /* AnimationImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationImageView.swift; sourceTree = "<group>"; };
 		8CF6FDAF2BFCD69D00B59608 /* SOS.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = SOS.gif; sourceTree = "<group>"; };
@@ -208,6 +212,7 @@
 				0020A3CB2BFD82F400607BAF /* SOSPhysics_TestView.swift */,
 				0020A3CA2BFD82F400607BAF /* SOSPhysical_Model.swift */,
 				0020A3C62BFD7A9900607BAF /* HapticWave_1.ahap */,
+				8CF6FA1D2BFF31CD008C827C /* HapticWave_2.ahap */,
 				0020A3C82BFD7AB500607BAF /* windows-xp-startup-sound.mp3 */,
 			);
 			path = SOSPhysics_Component;
@@ -354,6 +359,7 @@
 			children = (
 				8CD4FF1B2BF6E355009A8BC9 /* LiveActivityManager.swift */,
 				8CF6FDB82BFDCB1D00B59608 /* UserdefaultsManager.swift */,
+				8CF6FA1B2BFF1769008C827C /* AlertManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -616,6 +622,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CF6FA1E2BFF31CD008C827C /* HapticWave_2.ahap in Resources */,
 				0020A3C92BFD7AB500607BAF /* windows-xp-startup-sound.mp3 in Resources */,
 				8CF6FDB12BFCD7F800B59608 /* SOS.gif in Resources */,
 				8CCFD0DE2BF32CD60059EF94 /* Preview Assets.xcassets in Resources */,
@@ -664,6 +671,7 @@
 				8C9A150B2BF8608B00F16283 /* CircularProgressView.swift in Sources */,
 				512A01F82BFAEDBB00EE8B39 /* MessageView.swift in Sources */,
 				8CCFD11D2BF337EA0059EF94 /* Color+Extension.swift in Sources */,
+				8CF6FA1C2BFF1769008C827C /* AlertManager.swift in Sources */,
 				0020A3CC2BFD82F400607BAF /* SOSPhysical_Model.swift in Sources */,
 				8C7622382BFC847A00B6BFFF /* CustomDivider.swift in Sources */,
 				8B1F63D12BFAD41C00049B0B /* BreathingView.swift in Sources */,
