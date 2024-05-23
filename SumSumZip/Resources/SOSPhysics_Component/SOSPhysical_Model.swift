@@ -50,11 +50,10 @@ class TorchControl: ObservableObject {
     
 }
 
-// #2. Haptic 컨트롤용
 class HapticControl: ObservableObject {
     
     private var engine: CHHapticEngine? // 햅틱 엔진
-    @Published var hapURL = "HapticWave_1" // 햅틱 ahap 파일 불러오기 - (Project Name) - Build&Phases - Copy Bundle Resources
+    private var player: CHHapticPatternPlayer? // 현재 실행 중인 플레이어
     
     func prepareHaptics() {
         guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else {
@@ -64,10 +63,10 @@ class HapticControl: ObservableObject {
         
         do {
             engine = try CHHapticEngine()
-            engine?.resetHandler = { // 엔진 리셋 핸들러... 안정용이라는데 구체적으로는 모름.
+            engine?.resetHandler = { [weak self] in // 엔진 리셋 핸들러
                 print("The engine reset --> Restarting...")
                 do {
-                    try self.engine?.start()
+                    try self?.engine?.start()
                 } catch {
                     print("Failed to restart the engine: \(error.localizedDescription)")
                 }
@@ -80,7 +79,7 @@ class HapticControl: ObservableObject {
     }
     
     // #2-2. 햅틱 구동(진동 1회 - 부우웅~)
-    func playHaptic() {
+    func playHaptic(hapURL: String) {
         guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else {
             print("Haptics are not supported on this device.")
             return
@@ -92,14 +91,29 @@ class HapticControl: ObservableObject {
         
         do {
             let pattern = try CHHapticPattern(contentsOf: url)
-            let player = try engine?.makePlayer(with: pattern)
+            player = try engine?.makePlayer(with: pattern)
             try player?.start(atTime: CHHapticTimeImmediate)
             print("Haptic pattern played successfully.")
         } catch {
             print("Failed to play pattern: \(error.localizedDescription)")
         }
     }
+    
+    /// 햅틱 멈추기
+    func stopHaptic() {
+        guard let player = player else {
+            print("No active haptic player found to stop.")
+            return
+        }
+        do {
+            try player.stop(atTime: CHHapticTimeImmediate)
+            print("Haptic pattern stopped successfully.")
+        } catch {
+            print("Failed to stop pattern: \(error.localizedDescription)")
+        }
+    }
 }
+
 
 // # 3. Sound 컨트롤용
 class SoundControl: ObservableObject {
@@ -122,4 +136,14 @@ class SoundControl: ObservableObject {
             print("Sound Error occured: \(error.localizedDescription)")
         }
     }
+    
+    func stopSound() {
+        guard let player = player else {
+            print("No active audio player found to stop.")
+            return
+        }
+        player.stop()
+        self.player = nil // 플레이어 초기화
+    }
+    
 }

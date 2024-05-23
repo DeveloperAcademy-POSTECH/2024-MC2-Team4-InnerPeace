@@ -24,7 +24,7 @@ struct SOSPhysics_TestView: View {
         }
         self.hapticControl.prepareHaptics()
         hapticTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true){ _ in
-            self.hapticControl.playHaptic()
+            self.hapticControl.playHaptic(hapURL: "HapticWave_1")
         }
         soundTimer = Timer.scheduledTimer(withTimeInterval: 9, repeats: true){ _ in
             self.soundControl.playSound()
