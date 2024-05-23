@@ -4,7 +4,6 @@
 //
 //  Created by 원주연 on 5/20/24.
 //
-
 import SwiftUI
 
 struct SOSView: View {
@@ -104,7 +103,11 @@ struct SOSView: View {
                 .foregroundStyle(AppColors.lightSage)
                 .alert(isPresented: $showingAlert){
                     Alert(title: Text("도와주셔서 감사합니다."), message: Text("당신은 영웅입니다."),
-                          dismissButton: .default(Text("상황종료"), action:{isPresented = false}))
+                          dismissButton: .default(Text("상황종료"), action:{
+                                    isPresented = false
+                                    print("isPresented: \(isPresented)")
+                                    alertManager.stopAll()
+                                }))
                 }
             }
             .toolbar{
@@ -160,9 +163,6 @@ struct CapsuleView: View {
     
     @ObservedObject private var alertManager = AlertManager.shared
     
-    let breathingDuration: TimeInterval = 4.0 // 들이마시는 시간 (초)
-    let pauseDuration: TimeInterval = 5.0 // 멈추는 시간 (초)
-    
     @Binding var isShownBreathing: Bool
     @Binding var breathTime: Int
     
@@ -175,7 +175,10 @@ struct CapsuleView: View {
                 .padding(.horizontal, 20)
             
             Button(action: {
-                startBreathingCycle()
+                // 모든 물리 동작 멈춤
+                alertManager.stopAll()
+                // 호흡전용 물리동작 실행
+                alertManager.changeToBreath()
                 isShownBreathing = true
             }, label: {
                 Rectangle()
@@ -201,18 +204,6 @@ struct CapsuleView: View {
                     .padding(.vertical, 25)
                     .padding(.horizontal, 45)
             })
-        }
-    }
-    
-    private func startBreathingCycle() {
-        
-        alertManager.stopAll()
-        
-        alertManager.changeToBreath()
-        
-        Timer.scheduledTimer(withTimeInterval: breathingDuration + pauseDuration, repeats: true) { _ in
-            print("BreathTimer 생성")
-            alertManager.changeToBreath()
         }
     }
 }
