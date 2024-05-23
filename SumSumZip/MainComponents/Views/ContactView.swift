@@ -32,16 +32,22 @@ struct MyCell: View { //ListRow 뷰 입니다
 
 struct ContactView: View {
     @Binding var isShownContact: Bool
+    @State private var pickedNumber: String = ""
+    @State private var pickedNumber2: String = ""
+    @State private var pickedNumber3: String = ""
+    @State private var relation: String = ""
+    @State private var relation2: String = ""
+    @State private var relation3: String = ""
 
     var body: some View {
             VStack {
                 Spacer().frame(height: 130)
                 List {
                     Section {
-                        MyCell(relationship: "엄마", number: "010-1234-5678")
-                        MyCell(relationship: "아빠", number: "010-3731-8185")
-                        MyCell(relationship: "동생", number: "010-1234-5678")
-                        MyCell(relationship: "남자친구", number: "010-1234-5678")
+                        MyCell(relationship: relation, number: pickedNumber)
+                        MyCell(relationship: relation2, number: pickedNumber2)
+                        MyCell(relationship: relation3, number: pickedNumber3)
+//                        MyCell(relationship: "남자친구", number: "010-1234-5678")
                     } header: {
                         Text("보호자 연락처")
                             .font(.title)
@@ -70,6 +76,17 @@ struct ContactView: View {
                         .background(Color.white).clipShape(Circle())
                 })
                 Spacer().frame(height: 40)
+            }
+            .onAppear {
+                let contacts = ContactsManager.shared.fetchContacts()
+                
+                pickedNumber = contacts[0]
+                pickedNumber2 = contacts[1]
+                pickedNumber3 = contacts[2]
+                relation = contacts[3]
+                relation2 = contacts[4]
+                relation3 = contacts[5]
+                
             }
             .background(Color.black.opacity(0.82))
             .background(ClearBackground())
