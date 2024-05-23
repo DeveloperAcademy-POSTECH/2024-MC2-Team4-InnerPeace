@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct SOSView: View {
+
     @State var SOSmessage: String
     @State var breathTime: Int
+    @State var medicineInfo = UserdefaultsManager.medicineInfo
+    @State var hospitalInfo = UserdefaultsManager.hospitalInfo
+    @State private var isShownPatientInfo: Bool = false
     @State private var isShownBreathing: Bool = false
     @State private var isShownContact: Bool = false
     @State private var isBreathing: Bool = false
@@ -93,6 +97,7 @@ struct SOSView: View {
                 ToolbarItemGroup(placement: .bottomBar) {
                     Button("환자 정보") {
                         print("환자 정보")
+                        isShownPatientInfo = true
                     }
                     .foregroundStyle(Color.gray)
                     .font(.title3)
@@ -109,6 +114,9 @@ struct SOSView: View {
             }
             .fullScreenCover(isPresented: $isShownContact, content: {
                 ContactView(isShownContact: $isShownContact)
+            })
+            .fullScreenCover(isPresented: $isShownPatientInfo, content: {
+                PatientInfoView(hospitalInfo: $hospitalInfo, medicineInfo: $medicineInfo, isShownPatientInfo: $isShownPatientInfo)
             })
             .onAppear {
                 updateTimeRemaining()
@@ -128,6 +136,7 @@ struct SOSView: View {
             UIApplication.shared.isIdleTimerDisabled = true
         }
         .blur(radius: isShownContact ? 5.0 : 0)
+        .blur(radius: isShownPatientInfo ? 5.0 : 0)
     }
 }
 
