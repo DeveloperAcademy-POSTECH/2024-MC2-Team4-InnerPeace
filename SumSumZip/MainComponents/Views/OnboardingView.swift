@@ -24,7 +24,7 @@ struct OnboardingView: View {
         ZStack {
             switch (widgetClicked, appClicked) {
             case (true, _):
-                SOSView()
+                SOSView(SOSmessage: "", breathTime: 1)
             case (false, true):
                 SummaryView()
             case (false, false):
