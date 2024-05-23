@@ -49,6 +49,7 @@ struct EmergencyLockScreenWidgetEntryView: View {
                     .frame(width: 50, height: 50)
             }
             .widgetBackground(Color.white)
+            .widgetURL(URL(string: "SumSumZip://target"))
             
         default:
             Text("숨숨집")
@@ -69,6 +70,18 @@ struct EmergencyLockScreenWidget: Widget {
         .configurationDisplayName("Emergency Lock Screen Widget")
         .description("This widget displays an image on the lock screen.")
         .supportedFamilies([.accessoryRectangular, .accessoryCircular, .accessoryInline])
+    }
+}
+
+extension View {
+    func widgetBackground(_ backgroundView: some View) -> some View {
+        if #available(iOSApplicationExtension 17.0, *) {
+            return containerBackground(for: .widget) {
+                backgroundView
+            }
+        } else {
+            return background(backgroundView)
+        }
     }
 }
 

@@ -13,37 +13,45 @@ import SwiftUI
 
 struct OnboardingView: View {
     
-    @State private var isActive: Bool = false
+    @State private var appClicked: Bool = false
     @State private var fadeInOut = false
     @State private var opacity: Double = 0.0
     
+    // 위젯용
+    @State private var widgetClicked: Bool = false
+    
     var body: some View {
-        
-        if isActive {
-            SummaryView()
-        } else {
-            
-            ZStack{
+        ZStack {
+            switch (widgetClicked, appClicked) {
+            case (true, _):
+                SOSView()
+            case (false, true):
+                SummaryView()
+            case (false, false):
                 Image("BG_OnboardingView")
                     .resizable()
                     .ignoresSafeArea()
                 
-                    Image("Img_OnboardingView")
-                        .onAppear() {
-                            withAnimation(Animation.easeIn(duration: 0.8)
-                            ){
-                                fadeInOut.toggle()
-                            }
-                        }.opacity(fadeInOut ? 1: 0)
-
-            }.onAppear() {
-                DispatchQueue.main.asyncAfter(deadline:.now() + 1.3){
-                    isActive = true
-                }
+                Image("Img_OnboardingView")
+                    .onAppear() {
+                        withAnimation(Animation.easeIn(duration: 0.8)) {
+                            fadeInOut.toggle()
+                        }
+                    }
+                    .opacity(fadeInOut ? 1 : 0)
+                    .onAppear() {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.3) {
+                            appClicked = true
+                        }
+                    }
             }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("NavigateToTargetView"))) { _ in
+            widgetClicked = true
         }
     }
 }
+
 
 
 
