@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct CustomTextEditorView: View {
-    @State private var message = ""
+    @Binding var message: String
+    
     var body: some View {
         TextEditor(text: $message)
             .padding(4)
