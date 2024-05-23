@@ -65,6 +65,7 @@ struct SOSTimeSetting: View {
                 
             }
         }
+        .navigationBarBackButtonHidden ()
         .onAppear(){
             let SOSsavedTime = SOSTimeDataManager.shared.fetchTime()
             waitingTime = SOSsavedTime != 0 ? SOSsavedTime : 30

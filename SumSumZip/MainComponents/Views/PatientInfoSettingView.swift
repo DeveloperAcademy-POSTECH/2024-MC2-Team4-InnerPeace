@@ -14,7 +14,7 @@ struct PatientInfoSettingView: View {
     @Binding var hospitalInfo: String
     @Binding var medicineInfo: String
     
-
+    
     var body: some View {
         NavigationView {
             VStack(alignment: .leading,
@@ -38,14 +38,19 @@ struct PatientInfoSettingView: View {
             Spacer()
             
         }
+        .navigationBarBackButtonHidden ()
+        .onAppear {
+            hospitalInfo = hospitalInfo != "" ? hospitalInfo : ""
+            medicineInfo = medicineInfo != "" ? hospitalInfo : ""
+        }
+        }
     }
-}
-
-struct PatientInfoSetting_Previews: PreviewProvider {
-    @State static var hospitalInfo = "자주 가는 병원"
-    @State static var medicineInfo = "투약정보"
-
-    static var previews: some View {
-        PatientInfoSettingView(hospitalInfo: $hospitalInfo, medicineInfo: $medicineInfo)
+    
+    struct PatientInfoSetting_Previews: PreviewProvider {
+        @State static var hospitalInfo = "자주 가는 병원"
+        @State static var medicineInfo = "투약정보"
+        
+        static var previews: some View {
+            PatientInfoSettingView(hospitalInfo: $hospitalInfo, medicineInfo: $medicineInfo)
+        }
     }
-}

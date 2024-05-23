@@ -26,6 +26,8 @@ struct ContactSettingView: View {
     @State var relation2: String = ""
     @State var relation3: String = ""
     
+    @State var numOfRelation: String = "0"
+    
     @StateObject private var coordinator = Coordinator()
     
     var body: some View {
@@ -148,7 +150,8 @@ struct ContactSettingView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        ContactsManager.shared.saveContacts(pickedNumber ?? "", pickedNumber2 ?? "", pickedNumber3 ?? "", relation, relation2, relation3)
+                        self.numOfRelation = String("\([relation, relation2, relation3].filter{ !$0.isEmpty }.count)")
+                        ContactsManager.shared.saveContacts(pickedNumber ?? "", pickedNumber2 ?? "", pickedNumber3 ?? "", relation, relation2, relation3, numOfRelation)
                         
                         dismiss()
                         print("연락처 저장 완료")
@@ -167,7 +170,8 @@ struct ContactSettingView: View {
                     }
                     .foregroundColor(AppColors.darkGreen)
                 }
-            }.onAppear {
+            }
+            .onAppear {
                 let contacts = ContactsManager.shared.fetchContacts()
                 if contacts.count >= 6 {
                     pickedNumber = contacts[0]
@@ -179,9 +183,9 @@ struct ContactSettingView: View {
                 }
             }
             
-        }
+        }.navigationBarBackButtonHidden()
     }
-    
+}
     
     func openContactPicker(coordinator: Coordinator, for keyPath: ReferenceWritableKeyPath<Coordinator, String?>) {
         let contactPicker = CNContactPickerViewController()
@@ -232,8 +236,6 @@ struct ContactSettingView: View {
             }
         }
     }
-    
-}
 //#Preview {
 //    ContactSettingView()
 //}
@@ -285,3 +287,11 @@ struct ContactSettingView: View {
 //
 //
 //
+
+//struct ContactSettingView_Previews: PreviewProvider {
+//    @State static var numOfRelation: String = "0"
+//
+//    static var previews: some View {
+//        ContactSettingView()
+//    }
+//}
