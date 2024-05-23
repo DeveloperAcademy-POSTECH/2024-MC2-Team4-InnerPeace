@@ -18,6 +18,8 @@ struct OnboardingView: View {
     @State private var fadeInOut = false
     @State private var opacity: Double = 0.0
     
+    @Binding var isPresented: Bool
+    
     // 위젯용
     @State private var widgetClicked: Bool = false
     
@@ -25,9 +27,9 @@ struct OnboardingView: View {
         ZStack {
             switch (widgetClicked, appClicked) {
             case (true, _):
-                SOSView(SOSmessage: "", breathTime: 1)
+                SOSView(SOSmessage: "", breathTime: 1, isPresented: $isPresented)
             case (false, true):
-                SummaryView()
+                SummaryView(isPresented: $isPresented)
             case (false, false):
                 Image("BG_OnboardingView")
                     .resizable()
@@ -56,6 +58,10 @@ struct OnboardingView: View {
 
 
 
-#Preview {
-    OnboardingView()
+struct OnboardingView_Preview: PreviewProvider {
+    @State static var isPresented = false
+    
+    static var previews: some View {
+        OnboardingView(isPresented: $isPresented)
+    }
 }

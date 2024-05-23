@@ -29,7 +29,7 @@ import SwiftUI
 struct SummaryView: View {
     
     // SOS View 전환용
-    @State private var isPresented = false // SOSView로 전환될 때 사용
+    @Binding var isPresented: Bool // SOSView로 전환될 때 사용
     @State private var alertShowing = false // alert 뜰 때 사용
 
     // 타이머
@@ -335,7 +335,7 @@ struct SummaryView: View {
                             }
                         }
                         .fullScreenCover(isPresented: $isPresented) {
-                            SOSView(SOSmessage: "", breathTime: 1)
+                            SOSView(SOSmessage: "", breathTime: 1, isPresented: $isPresented)
                         }
                         Spacer()
                     }
@@ -347,8 +347,10 @@ struct SummaryView: View {
     }
 }
 
-#Preview {
-    SummaryView()
+struct SummaryView_Previews: PreviewProvider {
+    @State static var isPresented: Bool = false
+
+    static var previews: some View {
+        SummaryView(isPresented: $isPresented)
+    }
 }
-
-
