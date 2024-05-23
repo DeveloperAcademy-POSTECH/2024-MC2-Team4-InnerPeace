@@ -11,6 +11,7 @@ struct PatientInfoView: View {
     // PatientInfoView로 화면전환할 때, 파라미터에 해당 Userdefaults 값 넘겨주세요
     @Binding var hospitalInfo: String
     @Binding var medicineInfo: String
+    @Binding var isShownPatientInfo: Bool
 
     var body: some View {
         VStack(spacing: 20) {
@@ -24,11 +25,13 @@ struct PatientInfoView: View {
 
             CustomXButton(action: {
                 // 화면 전환 로직
-                
+                isShownPatientInfo = false
             })
             .padding(.bottom, 30)
         }
         .background(Color.black.opacity(0.82))
+        .background(ClearBackground())
+//        .background(Color.black.opacity(0.82))
     }
     
     @ViewBuilder
