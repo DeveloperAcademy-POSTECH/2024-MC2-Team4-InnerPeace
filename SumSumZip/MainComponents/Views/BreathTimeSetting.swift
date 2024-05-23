@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct BreathTimeSetting: View {
-    @State private var selectedTime: Int = 30
+//    @State private var selectedTime: Int = 30
+    @Binding var selectedTime: Int
     @Environment(\.dismiss) var dismiss
 
     
@@ -43,6 +44,7 @@ struct BreathTimeSetting: View {
                             Button(action: {
                                 let BreathsavedTime = BreathTimeDataManager.shared.fetchTime()
                                 selectedTime = BreathsavedTime != 0 ? BreathsavedTime : 30
+                                dismiss()
                             }) {
                                 Text("취소")
                                     .foregroundColor(AppColors.darkGreen)
@@ -52,6 +54,7 @@ struct BreathTimeSetting: View {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button(action: {
                             BreathTimeDataManager.shared.saveTime(selectedTime)
+                            dismiss()
                         }) {
                             Text("저장")
                                 .foregroundColor(AppColors.darkGreen)
@@ -138,6 +141,15 @@ struct BreathTimeSetting: View {
      }
 }
 
-#Preview {
-    BreathTimeSetting()
+//#Preview {
+//    BreathTimeSetting()
+//}
+
+
+struct BreathTimeSetting_Previews: PreviewProvider {
+    @State static var selectedTime: Int = 30
+
+    static var previews: some View {
+        BreathTimeSetting(selectedTime: $selectedTime)
+    }
 }

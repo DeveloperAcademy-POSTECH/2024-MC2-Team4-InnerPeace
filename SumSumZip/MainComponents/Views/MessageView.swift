@@ -15,7 +15,7 @@ struct MessageView: View {
     //    @Environment(\.managedObjectContext) var managedObjContext
     @Environment(\.dismiss) var dismiss
     
-    @State private var message: String = "긴급 메세지"
+    @Binding var message: String
     
     var body: some View {
         NavigationView {
@@ -67,12 +67,22 @@ struct MessageView: View {
                 }
             }
             
-        }.onAppear {
-           let message = MessageManager.shared.fetchMessage() != "" ? MessageManager.shared.fetchMessage() : ""
+        }.navigationBarBackButtonHidden ()
+        .onAppear {
+           message = MessageManager.shared.fetchMessage() != "" ? MessageManager.shared.fetchMessage() : ""
         }
+        
     }
 }
 
-#Preview {
-    MessageView()
+//#Preview {
+//    MessageView()
+//}
+
+struct MessageView_Previews: PreviewProvider {
+    @State static var message = "긴급 메시지"
+
+    static var previews: some View {
+        MessageView(message: $message)
+    }
 }
