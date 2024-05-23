@@ -18,6 +18,8 @@ struct SOSView: View {
     @State private var isShownContact: Bool = false
     @State private var isBreathing: Bool = false
     @State private var showingAlert: Bool = false
+    
+    @Binding var isPresented: Bool
 
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State private var count: Int = 1
@@ -90,7 +92,7 @@ struct SOSView: View {
                 .foregroundStyle(AppColors.lightSage)
                 .alert(isPresented: $showingAlert){
                     Alert(title: Text("도와주셔서 감사합니다."), message: Text("당신은 영웅입니다."),
-                                      dismissButton: .default(Text("상황종료")))
+                          dismissButton: .default(Text("상황종료"), action:{isPresented = false}))
                 }
             }
             .toolbar{

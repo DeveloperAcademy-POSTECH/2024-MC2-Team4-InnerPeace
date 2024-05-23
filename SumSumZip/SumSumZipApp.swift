@@ -13,6 +13,7 @@ struct SumSumZipApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @Environment(\.scenePhase) private var scenePhase
+    @State private var isPresented = false
     
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
@@ -29,7 +30,7 @@ struct SumSumZipApp: App {
 
     var body: some Scene {
         WindowGroup {
-            OnboardingView()
+            OnboardingView(isPresented: $isPresented)
                 .onOpenURL { url in
                     
                     print("Received URL: \(url.absoluteString)")
