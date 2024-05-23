@@ -23,20 +23,30 @@ struct SOSView: View {
     
     @Binding var isPresented: Bool
 
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @State private var timer: Timer? = nil
     @State private var count: Int = 1
     @State private var finishedText: String? = nil
-    @State private var timeRemaining = ""
-    var futureData: Date {
-        Calendar.current.date(byAdding: .minute, value: breathTime, to: Date()) ?? Date()
-    }
+    @State private var timeRemaining: String = ""
+    @State private var futureData: Date = Date()
     
     func updateTimeRemaining() {
         let remaining = Calendar.current.dateComponents([.minute, .second], from: Date(), to: futureData)
         let minute = remaining.minute ?? 0
         let second = remaining.second ?? 0
-        timeRemaining = "\(minute) : \(second)"
+        timeRemaining = String(format: "%02d:%02d", minute, second)
     }
+
+    func startTimer() {
+        futureData = Calendar.current.date(byAdding: .minute, value: breathTime, to: Date()) ?? Date()
+        futureData = Calendar.current.date(byAdding: .second, value: 1, to: futureData) ?? Date()
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+            withAnimation(.default) {
+                count = count == 5 ? 1 : count + 1
+            }
+            updateTimeRemaining()
+        }
+    }
+    
     var workoutDateRange: ClosedRange<Date> {
         Date()...Date().addingTimeInterval(Double(breathTime)*60)
     }
@@ -123,17 +133,9 @@ struct SOSView: View {
                 PatientInfoView(hospitalInfo: $hospitalInfo, medicineInfo: $medicineInfo, isShownPatientInfo: $isShownPatientInfo)
             })
             .onAppear {
-                updateTimeRemaining()
                 // 물리동작 시작
                 alertManager.startAll()
                 
-            }
-            .onReceive(timer) { value in
-                withAnimation(.default) {
-                    count = count == 5 ? 1 : count + 1
-                }
-    
-                updateTimeRemaining()
             }
         }
         .onAppear{
@@ -141,7 +143,13 @@ struct SOSView: View {
             breathTime = BreathsavedTime != 0 ? BreathsavedTime : 30
             let message = MessageManager.shared.fetchMessage()
             SOSmessage = message != "" ? message : ""
+            timeRemaining =  String(format: "%02d:00", breathTime)
             UIApplication.shared.isIdleTimerDisabled = true
+        }
+        .onChange(of: isShownBreathing) {
+            if isShownBreathing {
+                startTimer()
+            }
         }
         .blur(radius: isShownContact ? 5.0 : 0)
         .blur(radius: isShownPatientInfo ? 5.0 : 0)
