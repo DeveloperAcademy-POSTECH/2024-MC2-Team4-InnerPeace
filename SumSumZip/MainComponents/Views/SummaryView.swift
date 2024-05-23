@@ -295,7 +295,7 @@ struct SummaryView: View {
                             }
                         }
                         .fullScreenCover(isPresented: $isPresented) {
-                            SOSView()
+                            SOSView(SOSmessage: "", breathTime: 1)
                         }
                         Spacer()
                     }

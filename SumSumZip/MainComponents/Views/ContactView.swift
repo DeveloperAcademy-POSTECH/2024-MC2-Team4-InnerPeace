@@ -144,6 +144,6 @@ extension String {
 }
 
 
-#Preview {
-    SOSView()
-}
+//#Preview {
+//    SOSView()
+//}

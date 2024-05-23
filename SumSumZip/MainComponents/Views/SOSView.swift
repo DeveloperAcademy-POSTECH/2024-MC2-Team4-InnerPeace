@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SOSView: View {
+    @State var SOSmessage: String
+    @State var breathTime: Int
     @State private var isShownBreathing: Bool = false
     @State private var isShownContact: Bool = false
     @State private var isBreathing: Bool = false
@@ -17,7 +19,9 @@ struct SOSView: View {
     @State private var count: Int = 1
     @State private var finishedText: String? = nil
     @State private var timeRemaining = ""
-    let futureData: Date = Calendar.current.date(byAdding: .minute, value: 30, to: Date()) ?? Date()
+    var futureData: Date {
+        Calendar.current.date(byAdding: .minute, value: breathTime, to: Date()) ?? Date()
+    }
     
     func updateTimeRemaining() {
         let remaining = Calendar.current.dateComponents([.minute, .second], from: Date(), to: futureData)
@@ -25,8 +29,9 @@ struct SOSView: View {
         let second = remaining.second ?? 0
         timeRemaining = "\(minute) : \(second)"
     }
-    
-    let workoutDateRange = Date()...Date().addingTimeInterval(30*60)
+    var workoutDateRange: ClosedRange<Date> {
+        Date()...Date().addingTimeInterval(Double(breathTime)*60)
+    }
     
     var body: some View {
         NavigationView{
@@ -41,7 +46,7 @@ struct SOSView: View {
                         .font(.largeTitle)
                         .fontWeight(.black)
                         .padding(.bottom, 7)
-                    Text("일시적인 공황 증상 발생")
+                    Text(SOSmessage)
                         .foregroundStyle(Color.white)
                         .font(.title2)
                     Spacer().frame(height: 100)
@@ -52,7 +57,7 @@ struct SOSView: View {
                                 isBreathing.toggle()
                             })
                     } else {
-                        CapsuleView(isShownBreathing: $isShownBreathing)
+                        CapsuleView(isShownBreathing: $isShownBreathing, breathTime: $breathTime)
                     }
                     Spacer().frame(height: 40)
                     Text(timeRemaining)
@@ -116,6 +121,10 @@ struct SOSView: View {
             }
         }
         .onAppear{
+            let BreathsavedTime = BreathTimeDataManager.shared.fetchTime()
+            breathTime = BreathsavedTime != 0 ? BreathsavedTime : 30
+            let message = MessageManager.shared.fetchMessage()
+            SOSmessage = message != "" ? message : ""
             UIApplication.shared.isIdleTimerDisabled = true
         }
         .blur(radius: isShownContact ? 5.0 : 0)
@@ -124,6 +133,7 @@ struct SOSView: View {
 
 struct CapsuleView: View {
     @Binding var isShownBreathing: Bool
+    @Binding var breathTime: Int
     
     var body: some View {
         ZStack{
@@ -141,7 +151,7 @@ struct CapsuleView: View {
                     .cornerRadius(150)
                     .overlay{
                         VStack{
-                            Text("30분")
+                            Text("\(breathTime)분")
                                 .fontWeight(.bold)
                                 .foregroundStyle(Color.gray)
                                 .font(.title)
@@ -188,6 +198,6 @@ struct CircleView: View {
     }
 }
 
-#Preview {
-    SOSView()
-}
+//#Preview {
+//    SOSView(breathTime: )
+//}
