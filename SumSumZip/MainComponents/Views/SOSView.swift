@@ -233,7 +233,7 @@ struct CircleView: View {
             
             Circle()
                 .frame(width: 200, height: 200)
-            GifImageViewer("BreathingFace")
+            GifImageViewer("BreathingFace_10s")
                 .frame(width: 200, height: 200)
                 .cornerRadius(100)
             VStack{
