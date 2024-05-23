@@ -23,6 +23,7 @@
 		8B1F63D12BFAD41C00049B0B /* BreathingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F63D02BFAD41C00049B0B /* BreathingView.swift */; };
 		8B1F63D32BFADCDF00049B0B /* SOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F63D22BFADCDF00049B0B /* SOSView.swift */; };
 		8B1F64462BFD934300049B0B /* ContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F64452BFD934300049B0B /* ContactView.swift */; };
+		8B680ABB2BFF177C0099E7D9 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B680ABA2BFF177C0099E7D9 /* PreviewView.swift */; };
 		8C3CE2D82BFB11E2002D26C2 /* LiveActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD4FF1B2BF6E355009A8BC9 /* LiveActivityManager.swift */; };
 		8C7622202BFC6D4500B6BFFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CCFD0DA2BF32CD60059EF94 /* Assets.xcassets */; };
 		8C76222E2BFC808300B6BFFF /* CustomNavigationModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C76222D2BFC808300B6BFFF /* CustomNavigationModifier.swift */; };
@@ -124,6 +125,7 @@
 		8B1F63D02BFAD41C00049B0B /* BreathingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingView.swift; sourceTree = "<group>"; };
 		8B1F63D22BFADCDF00049B0B /* SOSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSView.swift; sourceTree = "<group>"; };
 		8B1F64452BFD934300049B0B /* ContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactView.swift; sourceTree = "<group>"; };
+		8B680ABA2BFF177C0099E7D9 /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		8C76222D2BFC808300B6BFFF /* CustomNavigationModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationModifier.swift; sourceTree = "<group>"; };
 		8C76222F2BFC80A100B6BFFF /* CustomTextEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextEditorView.swift; sourceTree = "<group>"; };
 		8C7622312BFC80BF00B6BFFF /* PatientInfoSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientInfoSettingView.swift; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 				512A01F92BFB1D8A00EE8B39 /* ContactSettingView.swift */,
 				8B1F64452BFD934300049B0B /* ContactView.swift */,
 				8CF6FDB42BFDBE9300B59608 /* PatientInfoView.swift */,
+				8B680ABA2BFF177C0099E7D9 /* PreviewView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -682,6 +685,7 @@
 				8CCFD0D52BF32CD40059EF94 /* SumSumZipApp.swift in Sources */,
 				8CD4FF1C2BF6E355009A8BC9 /* LiveActivityManager.swift in Sources */,
 				0020A3C42BFD78F900607BAF /* OnboardingView.swift in Sources */,
+				8B680ABB2BFF177C0099E7D9 /* PreviewView.swift in Sources */,
 				0020A3CD2BFD82F400607BAF /* SOSPhysics_TestView.swift in Sources */,
 				512A01FA2BFB1D8A00EE8B39 /* ContactSettingView.swift in Sources */,
 				8C7622362BFC819900B6BFFF /* View+Extension.swift in Sources */,

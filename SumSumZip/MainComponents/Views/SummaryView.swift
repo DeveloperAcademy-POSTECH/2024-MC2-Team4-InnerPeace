@@ -53,6 +53,9 @@ struct SummaryView: View {
     // 구조 타이밍 가져오기
     @State private var waitingTime: Int = SOSTimeDataManager.shared.fetchTime()
     
+    // Preview 전환
+    @State private var isShownPreview = false
+    
     var body: some View {
         
         NavigationView {
@@ -72,17 +75,24 @@ struct SummaryView: View {
                             .fontWeight(.bold)
                             .foregroundStyle(Color(AppColors.darkGreen))
                         Spacer()
+                        
                         Button{ // 미리보기 버튼...
                             //Action...
+                            isShownPreview = true
                         } label: {
                             Text("미리보기")
+                                .fontWeight(.bold)
                                 .font(.system(size: 17))
                                 .foregroundStyle(Color(AppColors.darkGreen))
-                        }.frame(width:88 ,height: 37, alignment: .center)
+                        }
+                        .sheet(isPresented: $isShownPreview) {
+                            PreviewView(SOSmessage: "", breathTime: 1)
+                        }
+                        .frame(width:88 ,height: 37, alignment: .center)
                             .background(Color(AppColors.white))
                             .clipShape(RoundedRectangle(cornerRadius: 30, style: .circular))
                             .shadow(color: Color.black.opacity(0.3), radius: 4, x: 0, y: 2)
-
+                        
                     }
                     
                     Text("SOS 화면 설정")
