@@ -120,7 +120,7 @@ class SoundControl: ObservableObject {
     static let instance = SoundControl()
     var player: AVAudioPlayer?
     
-    var soundURL = "windows-xp-startup-sound" // sound 파일 불러오기
+    var soundURL = "electronic-alarm-clock-151927" // sound 파일 불러오기
     
     func playSound() { // 왜 func이 class안에 들어있을까?
         guard let url = Bundle.main.url(forResource: soundURL, withExtension: ".mp3") else {return}
