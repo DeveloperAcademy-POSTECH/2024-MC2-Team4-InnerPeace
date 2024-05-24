@@ -76,7 +76,7 @@ struct PatientInfoSettingView: View {
         .navigationBarBackButtonHidden ()
         .onAppear {
             hospitalInfo = hospitalInfo != "" ? hospitalInfo : ""
-            medicineInfo = medicineInfo != "" ? hospitalInfo : ""
+            medicineInfo = medicineInfo != "" ? medicineInfo : ""
         }
     }
 }
