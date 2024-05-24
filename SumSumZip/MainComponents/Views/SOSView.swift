@@ -84,7 +84,7 @@ struct SOSView: View {
                             .edgesIgnoringSafeArea(.all)
                 VStack{
                     Spacer().frame(height: 40)
-                    Text("도움이 필요합니다")
+                    Text(isBreathing ? "호흡을 도와주세요" : "도움이 필요합니다")
                         .foregroundStyle(Color.white)
                         .font(.largeTitle)
                         .fontWeight(.black)
