@@ -25,6 +25,8 @@ class AlertManager: ObservableObject {
     private init() {}
     
     func startAll() {
+        // endButton 초기화
+        endButtonClicked = false
         flashTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { [weak self] _ in
             guard let self = self else { return }
             self.torchControl.torchBrightness = self.torchControl.torchBrightness == 0.0 ? 1.0 : 0.0
@@ -65,7 +67,7 @@ class AlertManager: ObservableObject {
             self.stopHaptic()
             
             // 5초 후에 다시 시작
-            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
                 if !self.endButtonClicked {
                     self.startBreathingCycle()
                 }
