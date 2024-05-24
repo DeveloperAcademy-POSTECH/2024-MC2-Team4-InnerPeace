@@ -18,7 +18,7 @@ class EmergencyLiveActivityManager {
     
     private init() {}
     
-    func startActivity(title: String, firstSubtitle: String, secondSubtitle: String, isPresented: Binding<Bool>) {
+    func startActivity(title: String, firstSubtitle: String, secondSubtitle: String, isPresented: Binding<Bool>, duration: Int) {
         let attributes = EmergencyLiveActivityAttributes(title: title, firstSubtitle: firstSubtitle, secondSubtitle: secondSubtitle)
         let initialContentState = EmergencyLiveActivityAttributes.ContentState(progress: 0.0)
 
@@ -30,16 +30,16 @@ class EmergencyLiveActivityManager {
             )
             print("Started Live Activity with ID: \(activity?.id ?? "unknown")")
             
-            startProgressUpdates(isPresented: isPresented)
+            startProgressUpdates(isPresented: isPresented, duration: duration)
         } catch {
             print("Failed to start Live Activity: \(error.localizedDescription)")
         }
     }
     
-    func startProgressUpdates(isPresented: Binding<Bool>) {
+    func startProgressUpdates(isPresented: Binding<Bool>, duration: Int) {
         progressTimer?.invalidate()
         var currentProgress: Double = 0.0
-        let duration: Double = 30.0 // Duration in seconds
+        let duration: Double = Double(duration) // Duration in seconds
         let updateInterval: Double = 0.1 // Timer interval in seconds
         let progressIncrement = updateInterval / duration // Calculate the increment based on the desired duration
         

@@ -304,7 +304,7 @@ struct SummaryView: View {
                                 EmergencyLiveActivityManager.shared.startActivity(
                                     title: Strings.LiveActivityView.title,
                                     firstSubtitle: Strings.LiveActivityView.firstSubtitle,
-                                    secondSubtitle: Strings.LiveActivityView.secodSubtitle, isPresented: $isPresented)
+                                    secondSubtitle: Strings.LiveActivityView.secodSubtitle, isPresented: $isPresented, duration: selectedTime)
                             } label: {
                                 
                                 VStack{
@@ -326,7 +326,7 @@ struct SummaryView: View {
                                     .clipShape(RoundedRectangle(cornerRadius: 90, style: .circular))
                                 
                             }
-                            .alert("30초 뒤 시작", isPresented: $alertShowing) {
+                            .alert("\(selectedTime)초 뒤 시작", isPresented: $alertShowing) {
                                 Button("취소", role: .cancel) {
                                     EmergencyLiveActivityManager.shared.endAllActivities()
                                 }
@@ -336,7 +336,7 @@ struct SummaryView: View {
                                     isPresented = true
                                 }
                             } message: {
-                                Text("30초 뒤 자동으로 SOS 알람이 시작됩니다.")
+                                Text("\(selectedTime)초 뒤 자동으로 SOS 알람이 시작됩니다.")
                             }
                         }
                         .fullScreenCover(isPresented: $isPresented) {
