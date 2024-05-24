@@ -16,8 +16,12 @@ class AlertManager: ObservableObject {
     private var flashTimer: Timer?
     private var hapticTimer: Timer?
     private var soundTimer: Timer?
+    var breathingTimer: Timer?
     
     var checkBreath = false
+    
+    let breathingDuration: TimeInterval = 4.0 // 들이마시는 시간 (초)
+    let pauseDuration: TimeInterval = 5.0 // 멈추는 시간 (초)
     
     static let shared = AlertManager()
     private init() {}
@@ -48,19 +52,21 @@ class AlertManager: ObservableObject {
     }
     
     func changeToBreath() {
-        print("호흡 물리동작으로 변경되었습니다")
-        
-        hapticControl.playHaptic(hapURL: "HapticWave_2")
         
         checkBreath = true
         
-        // 호흡용 소리 및 햅틱으로 변경
+        breathingTimer = Timer.scheduledTimer(withTimeInterval: breathingDuration + pauseDuration, repeats: true) { _ in
+            print("BreathTimer 생성")
+            self.hapticControl.playHaptic(hapURL: "HapticWave_2")
+        }
+        
     }
     
     func stopAll() {
         flashTimer?.invalidate()
         hapticTimer?.invalidate()
         soundTimer?.invalidate()
+        breathingTimer?.invalidate()
         
         torchControl.torchBrightness = 0.0
         hapticControl.stopHaptic()

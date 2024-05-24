@@ -325,9 +325,11 @@ struct SummaryView: View {
                             }
                             .alert("30초 뒤 시작", isPresented: $alertShowing) {
                                 Button("취소", role: .cancel) {
+                                    EmergencyLiveActivityManager.shared.endAllActivities()
                                 }
                                 
                                 Button("바로 시작", role: .destructive) {
+                                    EmergencyLiveActivityManager.shared.endAllActivities()
                                     isPresented = true
                                 }
                             } message: {
