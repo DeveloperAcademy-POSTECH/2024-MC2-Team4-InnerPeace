@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-import SwiftUI
-
 class AlertManager: ObservableObject {
     
     @Published var torchControl = TorchControl()
@@ -21,6 +19,7 @@ class AlertManager: ObservableObject {
     var breathingTimer: Timer?
     
     var checkBreath = false
+    var endButtonClicked = false
     
     static let shared = AlertManager()
     private init() {}
@@ -66,13 +65,15 @@ class AlertManager: ObservableObject {
             self.stopHaptic()
             
             // 5초 후에 다시 시작
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                self.startBreathingCycle()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                if !self.endButtonClicked {
+                    self.startBreathingCycle()
+                }
             }
         }
     }
     
-    private func stopHaptic() {
+    func stopHaptic() {
         // 진동 멈춤 로직이 필요하면 여기에 추가합니다.
         // 예: hapticControl.stopHaptic()
         print("진동 멈춤")

@@ -130,6 +130,7 @@ struct SOSView: View {
             .toolbar{
                 Button("상황종료"){
                     print("상황종료")
+                    AlertManager.shared.endButtonClicked = true
                     showingAlert = true
                 }
                 .foregroundStyle(AppColors.lightSage)
