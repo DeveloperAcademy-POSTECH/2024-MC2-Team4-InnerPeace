@@ -28,7 +28,7 @@ struct PreviewView: View {
                 .edgesIgnoringSafeArea(.all)
                 VStack{
                     Spacer().frame(height: 10)
-                    Text("미리보기 화면입니다.")
+                    Text("도와주세요 버튼 클릭 시 보이는 화면입니다.")
                         .fontWeight(.bold)
                         .foregroundStyle(AppColors.systemGray)
                     Spacer().frame(height: 40)

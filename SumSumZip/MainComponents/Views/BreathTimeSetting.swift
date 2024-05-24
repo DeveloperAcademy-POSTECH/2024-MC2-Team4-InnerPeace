@@ -73,12 +73,17 @@ struct BreathTimeSetting: View {
     }
     
     var headerView: some View {
-        HStack {
-            Text("호흡 유도 시간 설정하기")
-                //.font(.headline)
-                .fontWeight(.bold)
-                .font(.system(size: 19))
-            Spacer() // 왼쪽 정렬 유지
+        VStack(alignment: .leading){
+            HStack{
+                Text("호흡 유도 시간 설정하기")
+                    //.font(.headline)
+                    .fontWeight(.bold)
+                    .font(.system(size: 20))
+                Spacer() // 왼쪽 정렬 유지
+            }
+            Text("설정한 시간동안 호흡유도를 요청할 수 있습니다.")
+                .font(.caption)
+                .foregroundStyle(AppColors.systemGray)
         }
     }
     

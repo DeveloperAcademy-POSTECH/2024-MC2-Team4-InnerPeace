@@ -19,6 +19,6 @@ class MessageManager {
     }
     
     func fetchMessage() -> String {
-        return UserDefaults.standard.string(forKey: messageKey) ?? "기본 메세지"
+        return UserDefaults.standard.string(forKey: messageKey) ?? "긴급메세지를 작성해주세요."
     }
 }

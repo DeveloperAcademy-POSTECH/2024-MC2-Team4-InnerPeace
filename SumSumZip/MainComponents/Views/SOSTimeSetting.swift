@@ -74,12 +74,17 @@ struct SOSTimeSetting: View {
     }
     
     var headerView: some View {
-        HStack {
-            Text("구조 타이밍 설정")
-                //.font(.headline)
-                .fontWeight(.bold)
-                .font(.system(size: 19))
-            Spacer() // 왼쪽 정렬 유지
+        VStack(alignment: .leading){
+            HStack {
+                Text("구조 타이밍 설정")
+                    //.font(.headline)
+                    .fontWeight(.bold)
+                    .font(.system(size: 20))
+                Spacer() // 왼쪽 정렬 유지
+            }
+            Text("도와주세요 버튼 클릭 시, 설정한 구조타이밍 시간 이후에\nSOS 알람이 활성화됩니다.")
+                .font(.caption)
+                .foregroundStyle(AppColors.systemGray)
         }
     }
     
