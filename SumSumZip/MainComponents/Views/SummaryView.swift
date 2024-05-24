@@ -37,6 +37,7 @@ struct SummaryView: View {
     
     // 긴급 메시지 가져오기(완료)
     @State private var message = MessageManager.shared.fetchMessage()
+    @State private var message_tmp = MessageManager.shared.fetchMessage()
     
     // 긴급 연락처 가져오기
 //    @State private var pickedNumber = ContactSettingView.pickedNumber
@@ -45,6 +46,8 @@ struct SummaryView: View {
     // 환자정보 가져오기(완료)
     @State private var hospitalInfo: String = UserdefaultsManager.hospitalInfo
     @State private var medicineInfo: String = UserdefaultsManager.medicineInfo
+    @State private var hospitalInfo_tmp: String = UserdefaultsManager.hospitalInfo
+    @State private var medicineInfo_tmp: String = UserdefaultsManager.medicineInfo
     
     // 호흡유도시간 가져오기
 //    @State private var selectedTime = BreathTimeDataManager.shared.fetchTime()
@@ -103,7 +106,7 @@ struct SummaryView: View {
                     
                     // #1: 1번버튼(긴급 메시지)
                     NavigationLink {
-                        MessageView(message: $message)
+                        MessageView(message: $message, message_tmp: $message_tmp)
                     } label: {
                         VStack(alignment: .leading) {
                             Spacer()
@@ -132,7 +135,7 @@ struct SummaryView: View {
                     
                     // #2: 2번버튼(긴급 연락처)
                     NavigationLink {
-                        ContactSettingView()
+                        ContactSettingView(numOfRelation: $numOfRelation)
                         // Action 들어갈 공간(Full Screen ...)
                     } label: {
                         VStack(alignment: .leading) {
@@ -171,7 +174,7 @@ struct SummaryView: View {
                     
                     // #3: 3번버튼(환자 정보)
                     NavigationLink {
-                        PatientInfoSettingView(hospitalInfo: $hospitalInfo, medicineInfo: $medicineInfo)
+                        PatientInfoSettingView(hospitalInfo: $hospitalInfo, medicineInfo: $medicineInfo, hospitalInfo_tmp: $hospitalInfo_tmp, medicineInfo_tmp: $medicineInfo)
                     } label: {
                         VStack(alignment: .leading) {
                             Spacer()
@@ -189,7 +192,7 @@ struct SummaryView: View {
                             }
                             Spacer()
                             HStack {
-                                Text(hospitalInfo)
+                                Text("\(hospitalInfo) & \(medicineInfo)")
                                     .font(.system(size: 20))
                                     .fontWeight(.heavy)
                                     .fontDesign(.rounded)
@@ -301,7 +304,7 @@ struct SummaryView: View {
                                 EmergencyLiveActivityManager.shared.startActivity(
                                     title: Strings.LiveActivityView.title,
                                     firstSubtitle: Strings.LiveActivityView.firstSubtitle,
-                                    secondSubtitle: Strings.LiveActivityView.secodSubtitle, isPresented: $isPresented)
+                                    secondSubtitle: Strings.LiveActivityView.secodSubtitle, isPresented: $isPresented, duration: waitingTime)
                             } label: {
                                 
                                 VStack{
@@ -323,15 +326,17 @@ struct SummaryView: View {
                                     .clipShape(RoundedRectangle(cornerRadius: 90, style: .circular))
                                 
                             }
-                            .alert("30초 뒤 시작", isPresented: $alertShowing) {
+                            .alert("\(waitingTime)초 뒤 시작", isPresented: $alertShowing) {
                                 Button("취소", role: .cancel) {
+                                    EmergencyLiveActivityManager.shared.endAllActivities()
                                 }
                                 
                                 Button("바로 시작", role: .destructive) {
+                                    EmergencyLiveActivityManager.shared.endAllActivities()
                                     isPresented = true
                                 }
                             } message: {
-                                Text("30초 뒤 자동으로 SOS 알람이 시작됩니다.")
+                                Text("\(waitingTime)초 뒤 자동으로 SOS 알람이 시작됩니다.")
                             }
                         }
                         .fullScreenCover(isPresented: $isPresented) {

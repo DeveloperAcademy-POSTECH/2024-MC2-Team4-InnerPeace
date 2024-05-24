@@ -84,7 +84,6 @@ struct PatientInfoSettingView: View {
 struct PatientInfoSetting_Previews: PreviewProvider {
     @State static var hospitalInfo = "자주 가는 병원"
     @State static var medicineInfo = "투약정보"
-    
     @State static var hospitalInfo_tmp = "자주 가는 병원"
     @State static var medicineInfo_tmp = "투약정보"
     

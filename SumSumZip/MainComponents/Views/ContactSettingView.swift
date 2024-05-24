@@ -26,7 +26,7 @@ struct ContactSettingView: View {
     @State var relation2: String = ""
     @State var relation3: String = ""
     
-    @State var numOfRelation: String = "0"
+    @Binding var numOfRelation: String
     
     @StateObject private var coordinator = Coordinator()
     
