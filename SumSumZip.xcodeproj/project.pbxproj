@@ -20,13 +20,13 @@
 		512A01FA2BFB1D8A00EE8B39 /* ContactSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512A01F92BFB1D8A00EE8B39 /* ContactSettingView.swift */; };
 		51BE25F42BFD97E900D6F587 /* MessageSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BE25F22BFD97E900D6F587 /* MessageSettingModel.swift */; };
 		51BE25F52BFD97E900D6F587 /* ContactsSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BE25F32BFD97E900D6F587 /* ContactsSettingModel.swift */; };
+		6D49B4EC2C00364100F9D44D /* BreathingFace_10s.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6D49B4EB2C00364100F9D44D /* BreathingFace_10s.gif */; };
 		6D8D80042BFF9EF700A739D2 /* GifImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8D80032BFF9EF700A739D2 /* GifImageViewer.swift */; };
 		8B1F63D12BFAD41C00049B0B /* BreathingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F63D02BFAD41C00049B0B /* BreathingView.swift */; };
 		8B1F63D32BFADCDF00049B0B /* SOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F63D22BFADCDF00049B0B /* SOSView.swift */; };
 		8B1F64462BFD934300049B0B /* ContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F64452BFD934300049B0B /* ContactView.swift */; };
 		8B680ABB2BFF177C0099E7D9 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B680ABA2BFF177C0099E7D9 /* PreviewView.swift */; };
 		8C3CE2D82BFB11E2002D26C2 /* LiveActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD4FF1B2BF6E355009A8BC9 /* LiveActivityManager.swift */; };
-		8C5DBBE32C002239001B6562 /* BreathingFace_10s.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8C5DBBE22C002239001B6562 /* BreathingFace_10s.gif */; };
 		8C7622202BFC6D4500B6BFFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CCFD0DA2BF32CD60059EF94 /* Assets.xcassets */; };
 		8C76222E2BFC808300B6BFFF /* CustomNavigationModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C76222D2BFC808300B6BFFF /* CustomNavigationModifier.swift */; };
 		8C7622302BFC80A100B6BFFF /* CustomTextEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C76222F2BFC80A100B6BFFF /* CustomTextEditorView.swift */; };
@@ -126,12 +126,12 @@
 		512A01F92BFB1D8A00EE8B39 /* ContactSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactSettingView.swift; sourceTree = "<group>"; };
 		51BE25F22BFD97E900D6F587 /* MessageSettingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageSettingModel.swift; sourceTree = "<group>"; };
 		51BE25F32BFD97E900D6F587 /* ContactsSettingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsSettingModel.swift; sourceTree = "<group>"; };
+		6D49B4EB2C00364100F9D44D /* BreathingFace_10s.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = BreathingFace_10s.gif; sourceTree = "<group>"; };
 		6D8D80032BFF9EF700A739D2 /* GifImageViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifImageViewer.swift; sourceTree = "<group>"; };
 		8B1F63D02BFAD41C00049B0B /* BreathingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingView.swift; sourceTree = "<group>"; };
 		8B1F63D22BFADCDF00049B0B /* SOSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSView.swift; sourceTree = "<group>"; };
 		8B1F64452BFD934300049B0B /* ContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactView.swift; sourceTree = "<group>"; };
 		8B680ABA2BFF177C0099E7D9 /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
-		8C5DBBE22C002239001B6562 /* BreathingFace_10s.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = BreathingFace_10s.gif; path = ../../../../../../Downloads/BreathingFace_10s.gif; sourceTree = "<group>"; };
 		8C76222D2BFC808300B6BFFF /* CustomNavigationModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationModifier.swift; sourceTree = "<group>"; };
 		8C76222F2BFC80A100B6BFFF /* CustomTextEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextEditorView.swift; sourceTree = "<group>"; };
 		8C7622312BFC80BF00B6BFFF /* PatientInfoSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientInfoSettingView.swift; sourceTree = "<group>"; };
@@ -431,7 +431,7 @@
 		8CCFD1142BF3350D0059EF94 /* Image */ = {
 			isa = PBXGroup;
 			children = (
-				8C5DBBE22C002239001B6562 /* BreathingFace_10s.gif */,
+				6D49B4EB2C00364100F9D44D /* BreathingFace_10s.gif */,
 				8CCFD0DA2BF32CD60059EF94 /* Assets.xcassets */,
 			);
 			path = Image;
@@ -639,11 +639,11 @@
 				8CF6FA1E2BFF31CD008C827C /* HapticWave_2.ahap in Resources */,
 				0020A3C92BFD7AB500607BAF /* windows-xp-startup-sound.mp3 in Resources */,
 				8CF6FDB12BFCD7F800B59608 /* SOS.gif in Resources */,
-				8C5DBBE32C002239001B6562 /* BreathingFace_10s.gif in Resources */,
 				8CCFD0DE2BF32CD60059EF94 /* Preview Assets.xcassets in Resources */,
 				0020A3C72BFD7A9900607BAF /* HapticWave_1.ahap in Resources */,
 				8CD4FEE72BF4DDE0009A8BC9 /* .gitignore in Resources */,
 				8CCFD0DB2BF32CD60059EF94 /* Assets.xcassets in Resources */,
+				6D49B4EC2C00364100F9D44D /* BreathingFace_10s.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -903,7 +903,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"SumSumZip/Preview Content\"";
-				DEVELOPMENT_TEAM = 5C6W5SYCQQ;
+				DEVELOPMENT_TEAM = RPGB6NZTYC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SumSumZip/Info.plist;
@@ -1049,7 +1049,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5C6W5SYCQQ;
+				DEVELOPMENT_TEAM = RPGB6NZTYC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EmergencyLiveActivity/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = EmergencyLiveActivity;
