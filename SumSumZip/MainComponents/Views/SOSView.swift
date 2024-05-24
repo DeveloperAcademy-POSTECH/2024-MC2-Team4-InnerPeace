@@ -31,12 +31,34 @@ struct SOSView: View {
     @State private var finishedText: String? = nil
     @State private var timeRemaining: String = ""
     @State private var futureData: Date = Date()
+    @State private var progressValue: Double = 1.0
+    @State private var progressTimeRemaining: String = "00:00"
     
     func updateTimeRemaining() {
-        let remaining = Calendar.current.dateComponents([.minute, .second], from: Date(), to: futureData)
+        let now = Date()
+        let remaining = Calendar.current.dateComponents([.minute, .second], from: now, to: futureData)
         let minute = remaining.minute ?? 0
         let second = remaining.second ?? 0
+        
+        // 남은 시간을 계산
         timeRemaining = String(format: "%02d:%02d", minute, second)
+        
+        // 경과된 시간을 계산
+        let totalTime = Double(breathTime * 60)
+        let elapsedTime = totalTime - Double(minute * 60 + second)
+        progressValue = elapsedTime / totalTime
+        
+        // progressTimeRemaining: 누적된 시간 계산 (1초 추가)
+        let startTime = futureData.addingTimeInterval(-totalTime)
+        let elapsedInterval = now.timeIntervalSince(startTime) + 1
+        let elapsedMinute = Int(elapsedInterval) / 60
+        let elapsedSecond = Int(elapsedInterval) % 60
+        progressTimeRemaining = String(format: "%02d:%02d", elapsedMinute, elapsedSecond)
+        
+        if minute == 0 && second == 0 {
+            showingAlert = true
+            timer?.invalidate() // Timer 무효화
+        }
     }
 
     func startTimer() {
@@ -78,7 +100,7 @@ struct SOSView: View {
                                 isBreathing.toggle()
                             })
                     } else {
-                        CapsuleView(isShownBreathing: $isShownBreathing, breathTime: $breathTime)
+                        CapsuleView(isShownBreathing: $isShownBreathing, breathTime: $breathTime, progressValue: $progressValue)
                     }
                     Spacer().frame(height: 40)
                     Text(timeRemaining)
@@ -94,9 +116,15 @@ struct SOSView: View {
                         .multilineTextAlignment(.center)
                         .foregroundColor(.secondary)
                     Spacer().frame(height: 20)
-                    ProgressView(timerInterval: workoutDateRange, countsDown: false)
-                        .padding()
-                        .progressViewStyle(LinearProgressViewStyle(tint: .white))
+                    ZStack(alignment: .bottom) {
+                        ProgressView(value: progressValue)
+                            .padding()
+                            .progressViewStyle(LinearProgressViewStyle(tint: .white))
+                        Text(progressTimeRemaining)
+                            .foregroundStyle(Color.white)
+                            .font(.title3)
+                            .offset(x: -153, y: -19) // x와 y 값은 디자인에 맞게 조정하세요.
+                    }
                 }
             }
             .toolbar{
@@ -169,6 +197,7 @@ struct CapsuleView: View {
     
     @Binding var isShownBreathing: Bool
     @Binding var breathTime: Int
+    @Binding var progressValue: Double
     
     var body: some View {
         ZStack{
@@ -184,6 +213,7 @@ struct CapsuleView: View {
                 // 호흡전용 물리동작 실행
                 alertManager.changeToBreath()
                 isShownBreathing = true
+                progressValue = 0.0
             }, label: {
                 Rectangle()
                     .foregroundColor(.black)

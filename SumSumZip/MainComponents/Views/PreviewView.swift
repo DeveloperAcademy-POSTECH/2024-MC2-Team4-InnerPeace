@@ -18,6 +18,7 @@ struct PreviewView: View {
     @State private var isShownContact: Bool = false
     @State private var isBreathing: Bool = false
     @State private var showingAlert: Bool = false
+    @State private var progressValue: Double = 1.0
     
     var body: some View {
         NavigationView{
@@ -47,7 +48,7 @@ struct PreviewView: View {
                                 isBreathing.toggle()
                             })
                     } else {
-                        CapsuleView(isShownBreathing: $isShownBreathing, breathTime: $breathTime)
+                        CapsuleView(isShownBreathing: $isShownBreathing, breathTime: $breathTime, progressValue: $progressValue)
                     }
                     Spacer().frame(height: 100)
                     
