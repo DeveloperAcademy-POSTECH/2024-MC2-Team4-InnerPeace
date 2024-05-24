@@ -20,6 +20,9 @@
 		512A01FA2BFB1D8A00EE8B39 /* ContactSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512A01F92BFB1D8A00EE8B39 /* ContactSettingView.swift */; };
 		51BE25F42BFD97E900D6F587 /* MessageSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BE25F22BFD97E900D6F587 /* MessageSettingModel.swift */; };
 		51BE25F52BFD97E900D6F587 /* ContactsSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BE25F32BFD97E900D6F587 /* ContactsSettingModel.swift */; };
+		6D49B4E82BFFC6AA00F9D44D /* BreathingFace_10s.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6D49B4E72BFFC6AA00F9D44D /* BreathingFace_10s.gif */; };
+		6D8D80042BFF9EF700A739D2 /* GifImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8D80032BFF9EF700A739D2 /* GifImageViewer.swift */; };
+		6D8D80062BFF9F5700A739D2 /* BreathingFace.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6D8D80052BFF9F5700A739D2 /* BreathingFace.gif */; };
 		8B1F63D12BFAD41C00049B0B /* BreathingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F63D02BFAD41C00049B0B /* BreathingView.swift */; };
 		8B1F63D32BFADCDF00049B0B /* SOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F63D22BFADCDF00049B0B /* SOSView.swift */; };
 		8B1F64462BFD934300049B0B /* ContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F64452BFD934300049B0B /* ContactView.swift */; };
@@ -124,6 +127,9 @@
 		512A01F92BFB1D8A00EE8B39 /* ContactSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactSettingView.swift; sourceTree = "<group>"; };
 		51BE25F22BFD97E900D6F587 /* MessageSettingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageSettingModel.swift; sourceTree = "<group>"; };
 		51BE25F32BFD97E900D6F587 /* ContactsSettingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsSettingModel.swift; sourceTree = "<group>"; };
+		6D49B4E72BFFC6AA00F9D44D /* BreathingFace_10s.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = BreathingFace_10s.gif; path = "../../../../../../Library/Mobile Documents/com~apple~CloudDocs/App Dev /MC2/SumSumZip/BreathingFace_10s.gif"; sourceTree = "<group>"; };
+		6D8D80032BFF9EF700A739D2 /* GifImageViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifImageViewer.swift; sourceTree = "<group>"; };
+		6D8D80052BFF9F5700A739D2 /* BreathingFace.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = BreathingFace.gif; path = "../../../../../../Library/Mobile Documents/com~apple~CloudDocs/App Dev /MC2/SumSumZip/BreathingFace.gif"; sourceTree = "<group>"; };
 		8B1F63D02BFAD41C00049B0B /* BreathingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingView.swift; sourceTree = "<group>"; };
 		8B1F63D22BFADCDF00049B0B /* SOSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSView.swift; sourceTree = "<group>"; };
 		8B1F64452BFD934300049B0B /* ContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactView.swift; sourceTree = "<group>"; };
@@ -216,6 +222,15 @@
 				0020A3C82BFD7AB500607BAF /* windows-xp-startup-sound.mp3 */,
 			);
 			path = SOSPhysics_Component;
+			sourceTree = "<group>";
+		};
+		6D8D80022BFF9EBE00A739D2 /* Gifimage */ = {
+			isa = PBXGroup;
+			children = (
+				6D8D80032BFF9EF700A739D2 /* GifImageViewer.swift */,
+				6D49B4E72BFFC6AA00F9D44D /* BreathingFace_10s.gif */,
+			);
+			path = Gifimage;
 			sourceTree = "<group>";
 		};
 		8CCFD0C82BF32CD40059EF94 = {
@@ -419,6 +434,7 @@
 		8CCFD1142BF3350D0059EF94 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				6D8D80052BFF9F5700A739D2 /* BreathingFace.gif */,
 				8CCFD0DA2BF32CD60059EF94 /* Assets.xcassets */,
 			);
 			path = Image;
@@ -456,6 +472,7 @@
 		8CCFD11A2BF337C20059EF94 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				6D8D80022BFF9EBE00A739D2 /* Gifimage */,
 				8CCFD11B2BF337DB0059EF94 /* Extensions */,
 			);
 			path = Helpers;
@@ -622,6 +639,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D8D80062BFF9F5700A739D2 /* BreathingFace.gif in Resources */,
 				8CF6FA1E2BFF31CD008C827C /* HapticWave_2.ahap in Resources */,
 				0020A3C92BFD7AB500607BAF /* windows-xp-startup-sound.mp3 in Resources */,
 				8CF6FDB12BFCD7F800B59608 /* SOS.gif in Resources */,
@@ -629,6 +647,7 @@
 				0020A3C72BFD7A9900607BAF /* HapticWave_1.ahap in Resources */,
 				8CD4FEE72BF4DDE0009A8BC9 /* .gitignore in Resources */,
 				8CCFD0DB2BF32CD60059EF94 /* Assets.xcassets in Resources */,
+				6D49B4E82BFFC6AA00F9D44D /* BreathingFace_10s.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -685,6 +704,7 @@
 				8C7622302BFC80A100B6BFFF /* CustomTextEditorView.swift in Sources */,
 				8C7622322BFC80BF00B6BFFF /* PatientInfoSettingView.swift in Sources */,
 				8CF6FDB92BFDCB1D00B59608 /* UserdefaultsManager.swift in Sources */,
+				6D8D80042BFF9EF700A739D2 /* GifImageViewer.swift in Sources */,
 				8B1F63D32BFADCDF00049B0B /* SOSView.swift in Sources */,
 				8C76222E2BFC808300B6BFFF /* CustomNavigationModifier.swift in Sources */,
 				20CE35AF2BFAFCE300AF7C09 /* BreathTimeSetting.swift in Sources */,

@@ -4,6 +4,10 @@
 //
 //  Created by 원주연 on 5/20/24.
 //
+
+// BADA 수정 on 5/24/24 -> gif face 추가 하면서 패딩 값들 수정 필요한지 확인...
+
+
 import SwiftUI
 
 struct SOSView: View {
@@ -21,7 +25,7 @@ struct SOSView: View {
     @State private var showingAlert: Bool = false
     
     @Binding var isPresented: Bool
-
+    
     @State private var timer: Timer? = nil
     @State private var count: Int = 1
     @State private var finishedText: String? = nil
@@ -218,22 +222,27 @@ struct CircleView: View {
                 .shadow(radius: 10)
                 .shadow(color: .white, radius: 40)
                 .padding(.horizontal, 20)
-                .scaleEffect(isBreathing ? 0.9 : 1.4)
+                .scaleEffect(isBreathing ? 0.7 : 1.2)
                 .animation(.easeOut(duration: 4).delay(1).repeatForever(), value: isBreathing)
             
             Circle()
                 .frame(width: 200, height: 200)
-            
-            Text(isBreathing ? "내쉬고" : "들이마시고")
-                .foregroundStyle(Color.white)
-                .font(.title)
-                .fontWeight(.bold)
-                .animation(.easeOut(duration: 4).delay(1).repeatForever(), value: isBreathing)
+            GifImageViewer("BreathingFace_10s")
+                .frame(width: 200, height: 200)
+                .cornerRadius(100)
+            VStack{
+                Text(isBreathing ? "내쉬고" : "들이마시고")
+                    .foregroundStyle(Color.primary)
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .animation(.easeOut(duration: 4).delay(1).repeatForever(), value: isBreathing)
+                Spacer(minLength: 240)
+            }
         }
     }
 }
 
-
-//#Preview {
-//    SOSView(breathTime: )
+//#Preview{
+//    SOSView()
 //}
+//
