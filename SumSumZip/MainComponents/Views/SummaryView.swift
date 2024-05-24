@@ -124,7 +124,7 @@ struct SummaryView: View {
                             }
                             Spacer()
                             Text(message)
-                                .font(.system(size: 17))
+                                .font(.system(size: 18))
                                 .foregroundStyle(Color(AppColors.darkGreen))
                             Spacer()
                         }.padding(8)
@@ -192,9 +192,9 @@ struct SummaryView: View {
                             }
                             Spacer()
                             HStack {
-                                Text("\(hospitalInfo) & \(medicineInfo)")
-                                    .font(.system(size: 20))
-                                    .fontWeight(.heavy)
+                                Text("\(hospitalInfo=="" ? "병원정보" : hospitalInfo) & \(medicineInfo=="" ? "투약정보" : medicineInfo)")
+                                    .font(.system(size: 18))
+//                                    .fontWeight(.heavy)
                                     .fontDesign(.rounded)
                                     .foregroundStyle(Color(AppColors.darkGreen))
                                 
