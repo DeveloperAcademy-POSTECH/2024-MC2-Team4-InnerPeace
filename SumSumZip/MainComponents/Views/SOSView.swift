@@ -121,9 +121,9 @@ struct SOSView: View {
                             .padding()
                             .progressViewStyle(LinearProgressViewStyle(tint: .white))
                         Text(progressTimeRemaining)
-                            .foregroundStyle(Color.white)
+                            .foregroundStyle(Color.gray)
                             .font(.title3)
-                            .offset(x: -153, y: -19) // x와 y 값은 디자인에 맞게 조정하세요.
+                            .offset(x: -153, y: -25) // x와 y 값은 디자인에 맞게 조정하세요.
                     }
                 }
             }
