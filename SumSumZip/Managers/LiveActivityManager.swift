@@ -14,6 +14,8 @@ class EmergencyLiveActivityManager {
     private var activity: Activity<EmergencyLiveActivityAttributes>?
     private var progressTimer: Timer?
     
+    @Environment(\.scenePhase) var scenePhase
+    
     private init() {}
     
     func startActivity(title: String, firstSubtitle: String, secondSubtitle: String, isPresented: Binding<Bool>) {
@@ -46,6 +48,7 @@ class EmergencyLiveActivityManager {
 //                self.endAllActivities()
                 timer.invalidate()
                 isPresented.wrappedValue = true
+                
                 return
             }
             
