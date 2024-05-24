@@ -16,6 +16,7 @@ struct MessageView: View {
     @Environment(\.dismiss) var dismiss
     
     @Binding var message: String
+    @Binding var message_tmp : String
     
     var body: some View {
         NavigationView {
@@ -26,14 +27,14 @@ struct MessageView: View {
                     .foregroundColor(AppColors.darkGreen)
                 
                 
-                TextEditor(text: $message)
+                TextEditor(text: $message_tmp)
                     .padding(4)
                     .background(AppColors.paleGreen.opacity(1))
                     .frame(width: 359, height: 90)
                     .cornerRadius(10)
                     .scrollContentBackground(.hidden)
-                    .onReceive(message.publisher.collect()) {
-                        self.message = String($0.prefix(100))
+                    .onReceive(message_tmp.publisher.collect()) {
+                        self.message_tmp = String($0.prefix(100))
                         // 100자로 입력값 고정
                     }
                 
@@ -46,6 +47,7 @@ struct MessageView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
+                        message = message_tmp
                         MessageManager.shared.saveMessage(message)
                         print("dd")
                         dismiss()
@@ -61,6 +63,7 @@ struct MessageView: View {
                 
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("취소") {
+                        message_tmp = message
                         dismiss()
                     }
                     .foregroundColor(AppColors.darkGreen)
@@ -68,9 +71,10 @@ struct MessageView: View {
             }
             
         }.navigationBarBackButtonHidden ()
-        .onAppear {
-           message = MessageManager.shared.fetchMessage() != "" ? MessageManager.shared.fetchMessage() : ""
-        }
+            .onAppear {
+                message = MessageManager.shared.fetchMessage() != "" ? MessageManager.shared.fetchMessage() : ""
+                message_tmp = message
+            }
         
     }
 }
@@ -81,8 +85,9 @@ struct MessageView: View {
 
 struct MessageView_Previews: PreviewProvider {
     @State static var message = "긴급 메시지"
-
+    @State static var message_tmp = "긴급 메시지"
+    
     static var previews: some View {
-        MessageView(message: $message)
+        MessageView(message: $message, message_tmp: $message_tmp)
     }
 }
