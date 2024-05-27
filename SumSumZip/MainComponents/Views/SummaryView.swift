@@ -332,7 +332,7 @@ struct SummaryView: View {
                                 }
                                 
                                 Button("바로 시작", role: .destructive) {
-                                    EmergencyLiveActivityManager.shared.endAllActivities()
+//                                    EmergencyLiveActivityManager.shared.endAllActivities()
                                     isPresented = true
                                 }
                             } message: {
