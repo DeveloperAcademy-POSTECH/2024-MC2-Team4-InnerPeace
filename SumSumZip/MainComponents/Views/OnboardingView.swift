@@ -21,13 +21,14 @@ struct OnboardingView: View {
     @Binding var isPresented: Bool
     
     // 위젯용
+    @State private var sosPresented: Bool = true
     @State private var widgetClicked: Bool = false
     
     var body: some View {
         ZStack {
             switch (widgetClicked, appClicked) {
             case (true, _):
-                SOSView(SOSmessage: "", breathTime: 1, isPresented: $isPresented)
+                SummaryView(isPresented: $sosPresented)
             case (false, true):
                 SummaryView(isPresented: $isPresented)
             case (false, false):
@@ -51,6 +52,7 @@ struct OnboardingView: View {
         }
         .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("NavigateToTargetView"))) { _ in
             widgetClicked = true
+            sosPresented = true
         }
     }
 }
