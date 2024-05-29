@@ -38,8 +38,6 @@ class EmergencyLiveActivityManager {
                 print("Failed to start Live Activity: \(error.localizedDescription)")
             }
         }
-
-        
     }
     
     func startProgressUpdates(isPresented: Binding<Bool>, duration: Int) {
@@ -51,10 +49,9 @@ class EmergencyLiveActivityManager {
         
         progressTimer = Timer.scheduledTimer(withTimeInterval: updateInterval, repeats: true) { timer in
             guard currentProgress < 1.0 else {
-//                self.endAllActivities()
                 timer.invalidate()
+                self.progressTimer = nil
                 isPresented.wrappedValue = true
-                
                 return
             }
             
@@ -65,6 +62,8 @@ class EmergencyLiveActivityManager {
     
     func endTimer() {
         progressTimer?.invalidate()
+        progressTimer = nil
+        updateActivity(progress: 1.0)
     }
 
     
@@ -78,7 +77,7 @@ class EmergencyLiveActivityManager {
     }
     
     func endAllActivities() {
-        progressTimer?.invalidate()
+        endTimer()
         
         for activity in Activity<EmergencyLiveActivityAttributes>.activities {
             endActivity(activity: activity)
@@ -94,7 +93,7 @@ class EmergencyLiveActivityManager {
         }
 
         let updatedContentState = EmergencyLiveActivityAttributes.ContentState(progress: progress)
-        print("Updated Dynamic Island with progress: \(progress)")
+        print("Updating Dynamic Island with progress: \(progress)")
 
         Task {
             await activity.update(using: updatedContentState)
