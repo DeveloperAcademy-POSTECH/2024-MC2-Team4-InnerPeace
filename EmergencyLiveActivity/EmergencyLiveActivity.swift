@@ -45,9 +45,16 @@ struct EmergencyLiveActivity: Widget {
 
             } compactTrailing: {
                 // 만약 타이머가 다되었으면 숨기는 조건 필요
-                if context.state.progress <= 1 {
-                    sosProgressView(progress: context.state.progress)
+                if let timerValid =  EmergencyLiveActivityManager.shared.progressTimer?.isValid {
+                    if timerValid {
+                        if context.state.progress <= 1 {
+                            sosProgressView(progress: context.state.progress)
+                        }
+                    } else {
+                        
+                    }
                 }
+                
             } minimal: {
                 Image(systemName: "exclamationmark.triangle")
                     .foregroundColor(.red)

@@ -140,6 +140,7 @@ struct SOSView: View {
                                     isPresented = false
                                     print("isPresented: \(isPresented)")
                                     alertManager.stopAll()
+                        EmergencyLiveActivityManager.shared.endAllActivities()
                                 }))
                 }
             }
