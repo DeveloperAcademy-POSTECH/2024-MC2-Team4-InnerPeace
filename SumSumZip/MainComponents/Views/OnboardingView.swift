@@ -21,7 +21,7 @@ struct OnboardingView: View {
     @Binding var isPresented: Bool
     
     // 위젯용
-    @State private var sosPresented: Bool = true
+    @State private var sosPresented: Bool = false
     @State private var widgetClicked: Bool = false
     
     var body: some View {
@@ -29,8 +29,12 @@ struct OnboardingView: View {
             switch (widgetClicked, appClicked) {
             case (true, _):
                 SummaryView(isPresented: $sosPresented)
+                    .onAppear {
+                        sosPresented = true
+                    }
             case (false, true):
                 SummaryView(isPresented: $isPresented)
+                
             case (false, false):
                 Image("BG_OnboardingView")
                     .resizable()
@@ -56,6 +60,7 @@ struct OnboardingView: View {
         }
     }
 }
+
 
 
 
