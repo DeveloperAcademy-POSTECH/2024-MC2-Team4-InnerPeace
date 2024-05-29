@@ -12,28 +12,34 @@ class EmergencyLiveActivityManager {
     
     static let shared = EmergencyLiveActivityManager()
     private var activity: Activity<EmergencyLiveActivityAttributes>?
-    private var progressTimer: Timer?
+    var progressTimer: Timer?
     
     @Environment(\.scenePhase) var scenePhase
+    @Published var isLiveActivityRunning = false
     
     private init() {}
     
     func startActivity(title: String, firstSubtitle: String, secondSubtitle: String, isPresented: Binding<Bool>, duration: Int) {
         let attributes = EmergencyLiveActivityAttributes(title: title, firstSubtitle: firstSubtitle, secondSubtitle: secondSubtitle)
         let initialContentState = EmergencyLiveActivityAttributes.ContentState(progress: 0.0)
-
-        do {
-            activity = try Activity<EmergencyLiveActivityAttributes>.request(
-                attributes: attributes,
-                contentState: initialContentState,
-                pushType: nil
-            )
-            print("Started Live Activity with ID: \(activity?.id ?? "unknown")")
+        
+        if !isLiveActivityRunning {
+            do {
+                activity = try Activity<EmergencyLiveActivityAttributes>.request(
+                    attributes: attributes,
+                    contentState: initialContentState,
+                    pushType: nil
+                )
+                print("Started Live Activity with ID: \(activity?.id ?? "unknown")")
             
-            startProgressUpdates(isPresented: isPresented, duration: duration)
-        } catch {
-            print("Failed to start Live Activity: \(error.localizedDescription)")
+                startProgressUpdates(isPresented: isPresented, duration: duration)
+                isLiveActivityRunning = true
+            } catch {
+                print("Failed to start Live Activity: \(error.localizedDescription)")
+            }
         }
+
+        
     }
     
     func startProgressUpdates(isPresented: Binding<Bool>, duration: Int) {
@@ -56,6 +62,10 @@ class EmergencyLiveActivityManager {
             self.updateActivity(progress: currentProgress)
         }
     }
+    
+    func endTimer() {
+        progressTimer?.invalidate()
+    }
 
     
     func endActivity(activity: Activity<EmergencyLiveActivityAttributes>) {
@@ -73,6 +83,8 @@ class EmergencyLiveActivityManager {
         for activity in Activity<EmergencyLiveActivityAttributes>.activities {
             endActivity(activity: activity)
         }
+        
+        isLiveActivityRunning = false
     }
     
     func updateActivity(progress: Double) {
