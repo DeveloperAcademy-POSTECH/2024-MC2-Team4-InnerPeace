@@ -28,6 +28,7 @@
 		6D8D80042BFF9EF700A739D2 /* GifImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8D80032BFF9EF700A739D2 /* GifImageViewer.swift */; };
 		8B160D692C4224A1000F881A /* SOSButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B160D682C4224A1000F881A /* SOSButtonView.swift */; };
 		8B160D6B2C423E32000F881A /* SOSMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B160D6A2C423E32000F881A /* SOSMessageView.swift */; };
+		8B160D6D2C427F68000F881A /* SumSumTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B160D6C2C427F68000F881A /* SumSumTabView.swift */; };
 		8B1F63D12BFAD41C00049B0B /* BreathingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F63D02BFAD41C00049B0B /* BreathingView.swift */; };
 		8B1F63D32BFADCDF00049B0B /* SOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F63D22BFADCDF00049B0B /* SOSView.swift */; };
 		8B1F64462BFD934300049B0B /* ContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F64452BFD934300049B0B /* ContactView.swift */; };
@@ -143,6 +144,7 @@
 		6D8D80032BFF9EF700A739D2 /* GifImageViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifImageViewer.swift; sourceTree = "<group>"; };
 		8B160D682C4224A1000F881A /* SOSButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSButtonView.swift; sourceTree = "<group>"; };
 		8B160D6A2C423E32000F881A /* SOSMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSMessageView.swift; sourceTree = "<group>"; };
+		8B160D6C2C427F68000F881A /* SumSumTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SumSumTabView.swift; sourceTree = "<group>"; };
 		8B1F63D02BFAD41C00049B0B /* BreathingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingView.swift; sourceTree = "<group>"; };
 		8B1F63D22BFADCDF00049B0B /* SOSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSView.swift; sourceTree = "<group>"; };
 		8B1F64452BFD934300049B0B /* ContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactView.swift; sourceTree = "<group>"; };
@@ -340,6 +342,7 @@
 			isa = PBXGroup;
 			children = (
 				0020A3C32BFD78F900607BAF /* OnboardingView.swift */,
+				8B160D6C2C427F68000F881A /* SumSumTabView.swift */,
 				00C1A7BF2BFAEB0D004747E6 /* SummaryView.swift */,
 				00467FDB2C4215E400DA7BB6 /* SettingView.swift */,
 				512A01F92BFB1D8A00EE8B39 /* ContactSettingView.swift */,
@@ -718,6 +721,7 @@
 				8CCFD0D72BF32CD40059EF94 /* ContentView.swift in Sources */,
 				8B160D6B2C423E32000F881A /* SOSMessageView.swift in Sources */,
 				8CD78B192BFEC6960054C170 /* LockScreenWidget.swift in Sources */,
+				8B160D6D2C427F68000F881A /* SumSumTabView.swift in Sources */,
 				00C1A7C02BFAEB0D004747E6 /* SummaryView.swift in Sources */,
 				20CE35B12BFAFE2200AF7C09 /* SOSTimeSetting.swift in Sources */,
 				8C9A150B2BF8608B00F16283 /* CircularProgressView.swift in Sources */,
