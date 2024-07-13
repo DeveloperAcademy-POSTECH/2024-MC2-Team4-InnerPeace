@@ -22,6 +22,7 @@
 		51BE25F52BFD97E900D6F587 /* ContactsSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BE25F32BFD97E900D6F587 /* ContactsSettingModel.swift */; };
 		6D49B4EC2C00364100F9D44D /* BreathingFace_10s.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6D49B4EB2C00364100F9D44D /* BreathingFace_10s.gif */; };
 		6D8D80042BFF9EF700A739D2 /* GifImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8D80032BFF9EF700A739D2 /* GifImageViewer.swift */; };
+		8B160D6B2C423E32000F881A /* SOSMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B160D6A2C423E32000F881A /* SOSMessageView.swift */; };
 		8B1F63D12BFAD41C00049B0B /* BreathingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F63D02BFAD41C00049B0B /* BreathingView.swift */; };
 		8B1F63D32BFADCDF00049B0B /* SOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F63D22BFADCDF00049B0B /* SOSView.swift */; };
 		8B1F64462BFD934300049B0B /* ContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F64452BFD934300049B0B /* ContactView.swift */; };
@@ -129,6 +130,7 @@
 		51BE25F32BFD97E900D6F587 /* ContactsSettingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsSettingModel.swift; sourceTree = "<group>"; };
 		6D49B4EB2C00364100F9D44D /* BreathingFace_10s.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = BreathingFace_10s.gif; sourceTree = "<group>"; };
 		6D8D80032BFF9EF700A739D2 /* GifImageViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifImageViewer.swift; sourceTree = "<group>"; };
+		8B160D6A2C423E32000F881A /* SOSMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSMessageView.swift; sourceTree = "<group>"; };
 		8B1F63D02BFAD41C00049B0B /* BreathingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingView.swift; sourceTree = "<group>"; };
 		8B1F63D22BFADCDF00049B0B /* SOSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSView.swift; sourceTree = "<group>"; };
 		8B1F64452BFD934300049B0B /* ContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactView.swift; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 				00C1A7BF2BFAEB0D004747E6 /* SummaryView.swift */,
 				8B1F63D02BFAD41C00049B0B /* BreathingView.swift */,
 				8B1F63D22BFADCDF00049B0B /* SOSView.swift */,
+				8B160D6A2C423E32000F881A /* SOSMessageView.swift */,
 				20CE35B02BFAFE2200AF7C09 /* SOSTimeSetting.swift */,
 				20CE35AE2BFAFCE300AF7C09 /* BreathTimeSetting.swift */,
 				8C7622312BFC80BF00B6BFFF /* PatientInfoSettingView.swift */,
@@ -684,6 +687,7 @@
 			files = (
 				8CF6FDAA2BFCCB3700B59608 /* AnimationImageView.swift in Sources */,
 				8CCFD0D72BF32CD40059EF94 /* ContentView.swift in Sources */,
+				8B160D6B2C423E32000F881A /* SOSMessageView.swift in Sources */,
 				8CD78B192BFEC6960054C170 /* LockScreenWidget.swift in Sources */,
 				00C1A7C02BFAEB0D004747E6 /* SummaryView.swift in Sources */,
 				20CE35B12BFAFE2200AF7C09 /* SOSTimeSetting.swift in Sources */,

@@ -143,7 +143,7 @@ struct SOSView: View {
                         EmergencyLiveActivityManager.shared.endAllActivities()
                                 }))
                 }
-            }
+            } // 상황종료
             .toolbar{
                 ToolbarItemGroup(placement: .bottomBar) {
                     Button("환자 정보") {
@@ -162,7 +162,7 @@ struct SOSView: View {
                     .font(.title3)
                     .fontWeight(.bold)
                 }
-            }
+            } // 환자정보, 긴급연락
             .fullScreenCover(isPresented: $isShownContact, content: {
                 ContactView(isShownContact: $isShownContact)
             })
