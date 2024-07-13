@@ -12,6 +12,9 @@
 		0020A3C92BFD7AB500607BAF /* windows-xp-startup-sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0020A3C82BFD7AB500607BAF /* windows-xp-startup-sound.mp3 */; };
 		0020A3CC2BFD82F400607BAF /* SOSPhysical_Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0020A3CA2BFD82F400607BAF /* SOSPhysical_Model.swift */; };
 		0020A3CD2BFD82F400607BAF /* SOSPhysics_TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0020A3CB2BFD82F400607BAF /* SOSPhysics_TestView.swift */; };
+		00467FDC2C4215E400DA7BB6 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00467FDB2C4215E400DA7BB6 /* SettingView.swift */; };
+		00467FDE2C42203B00DA7BB6 /* CustomTextEditorSimpleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00467FDD2C42203B00DA7BB6 /* CustomTextEditorSimpleView.swift */; };
+		00467FE02C4227A700DA7BB6 /* PatientContactEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00467FDF2C4227A700DA7BB6 /* PatientContactEditorView.swift */; };
 		00C1A7C02BFAEB0D004747E6 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C1A7BF2BFAEB0D004747E6 /* SummaryView.swift */; };
 		20C930042BFCBDF000F57ED2 /* TimeSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C930032BFCBDF000F57ED2 /* TimeSettingModel.swift */; };
 		20CE35AF2BFAFCE300AF7C09 /* BreathTimeSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE35AE2BFAFCE300AF7C09 /* BreathTimeSetting.swift */; };
@@ -23,6 +26,7 @@
 		6D49B4EC2C00364100F9D44D /* BreathingFace_10s.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6D49B4EB2C00364100F9D44D /* BreathingFace_10s.gif */; };
 		6D8D80042BFF9EF700A739D2 /* GifImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8D80032BFF9EF700A739D2 /* GifImageViewer.swift */; };
 		8B160D6B2C423E32000F881A /* SOSMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B160D6A2C423E32000F881A /* SOSMessageView.swift */; };
+		8B160D692C4224A1000F881A /* SOSButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B160D682C4224A1000F881A /* SOSButtonView.swift */; };
 		8B1F63D12BFAD41C00049B0B /* BreathingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F63D02BFAD41C00049B0B /* BreathingView.swift */; };
 		8B1F63D32BFADCDF00049B0B /* SOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F63D22BFADCDF00049B0B /* SOSView.swift */; };
 		8B1F64462BFD934300049B0B /* ContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F64452BFD934300049B0B /* ContactView.swift */; };
@@ -36,6 +40,8 @@
 		8C7622342BFC811D00B6BFFF /* SettingQuestionLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7622332BFC811D00B6BFFF /* SettingQuestionLabel.swift */; };
 		8C7622362BFC819900B6BFFF /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7622352BFC819900B6BFFF /* View+Extension.swift */; };
 		8C7622382BFC847A00B6BFFF /* CustomDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7622372BFC847A00B6BFFF /* CustomDivider.swift */; };
+		8C7CE5032C4221A800AB5C28 /* PracticeBreathingIntro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7CE5022C4221A800AB5C28 /* PracticeBreathingIntro.swift */; };
+		8C7CE5082C424A3B00AB5C28 /* StartBreathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C7CE5072C424A3B00AB5C28 /* StartBreathView.swift */; };
 		8C9A150B2BF8608B00F16283 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9A150A2BF8608B00F16283 /* CircularProgressView.swift */; };
 		8C9A150C2BF860FB00F16283 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C9A150A2BF8608B00F16283 /* CircularProgressView.swift */; };
 		8C9A150D2BF8610600F16283 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCFD1182BF336EB0059EF94 /* Color.swift */; };
@@ -120,6 +126,9 @@
 		0020A3C82BFD7AB500607BAF /* windows-xp-startup-sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "windows-xp-startup-sound.mp3"; sourceTree = "<group>"; };
 		0020A3CA2BFD82F400607BAF /* SOSPhysical_Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOSPhysical_Model.swift; sourceTree = "<group>"; };
 		0020A3CB2BFD82F400607BAF /* SOSPhysics_TestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOSPhysics_TestView.swift; sourceTree = "<group>"; };
+		00467FDB2C4215E400DA7BB6 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		00467FDD2C42203B00DA7BB6 /* CustomTextEditorSimpleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextEditorSimpleView.swift; sourceTree = "<group>"; };
+		00467FDF2C4227A700DA7BB6 /* PatientContactEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientContactEditorView.swift; sourceTree = "<group>"; };
 		00C1A7BF2BFAEB0D004747E6 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		20C930032BFCBDF000F57ED2 /* TimeSettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSettingModel.swift; sourceTree = "<group>"; };
 		20CE35AE2BFAFCE300AF7C09 /* BreathTimeSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathTimeSetting.swift; sourceTree = "<group>"; };
@@ -131,6 +140,7 @@
 		6D49B4EB2C00364100F9D44D /* BreathingFace_10s.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = BreathingFace_10s.gif; sourceTree = "<group>"; };
 		6D8D80032BFF9EF700A739D2 /* GifImageViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifImageViewer.swift; sourceTree = "<group>"; };
 		8B160D6A2C423E32000F881A /* SOSMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSMessageView.swift; sourceTree = "<group>"; };
+		8B160D682C4224A1000F881A /* SOSButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSButtonView.swift; sourceTree = "<group>"; };
 		8B1F63D02BFAD41C00049B0B /* BreathingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingView.swift; sourceTree = "<group>"; };
 		8B1F63D22BFADCDF00049B0B /* SOSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSView.swift; sourceTree = "<group>"; };
 		8B1F64452BFD934300049B0B /* ContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactView.swift; sourceTree = "<group>"; };
@@ -142,6 +152,8 @@
 		8C7622332BFC811D00B6BFFF /* SettingQuestionLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingQuestionLabel.swift; sourceTree = "<group>"; };
 		8C7622352BFC819900B6BFFF /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		8C7622372BFC847A00B6BFFF /* CustomDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDivider.swift; sourceTree = "<group>"; };
+		8C7CE5022C4221A800AB5C28 /* PracticeBreathingIntro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeBreathingIntro.swift; sourceTree = "<group>"; };
+		8C7CE5072C424A3B00AB5C28 /* StartBreathView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartBreathView.swift; sourceTree = "<group>"; };
 		8C9A150A2BF8608B00F16283 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		8CCFD0D12BF32CD40059EF94 /* SumSumZip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SumSumZip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CCFD0D42BF32CD40059EF94 /* SumSumZipApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SumSumZipApp.swift; sourceTree = "<group>"; };
@@ -235,6 +247,15 @@
 			path = Gifimage;
 			sourceTree = "<group>";
 		};
+		8C7CE5042C4246FB00AB5C28 /* Breathing */ = {
+			isa = PBXGroup;
+			children = (
+				8C7CE5022C4221A800AB5C28 /* PracticeBreathingIntro.swift */,
+				8C7CE5072C424A3B00AB5C28 /* StartBreathView.swift */,
+			);
+			path = Breathing;
+			sourceTree = "<group>";
+		};
 		8CCFD0C82BF32CD40059EF94 = {
 			isa = PBXGroup;
 			children = (
@@ -318,6 +339,9 @@
 			children = (
 				0020A3C32BFD78F900607BAF /* OnboardingView.swift */,
 				00C1A7BF2BFAEB0D004747E6 /* SummaryView.swift */,
+				00467FDB2C4215E400DA7BB6 /* SettingView.swift */,
+				00467FDF2C4227A700DA7BB6 /* PatientContactEditorView.swift */,
+				512A01F92BFB1D8A00EE8B39 /* ContactSettingView.swift */,
 				8B1F63D02BFAD41C00049B0B /* BreathingView.swift */,
 				8B1F63D22BFADCDF00049B0B /* SOSView.swift */,
 				8B160D6A2C423E32000F881A /* SOSMessageView.swift */,
@@ -325,10 +349,11 @@
 				20CE35AE2BFAFCE300AF7C09 /* BreathTimeSetting.swift */,
 				8C7622312BFC80BF00B6BFFF /* PatientInfoSettingView.swift */,
 				512A01F72BFAEDBB00EE8B39 /* MessageView.swift */,
-				512A01F92BFB1D8A00EE8B39 /* ContactSettingView.swift */,
 				8B1F64452BFD934300049B0B /* ContactView.swift */,
 				8CF6FDB42BFDBE9300B59608 /* PatientInfoView.swift */,
 				8B680ABA2BFF177C0099E7D9 /* PreviewView.swift */,
+				8C7CE5042C4246FB00AB5C28 /* Breathing */,
+				8B160D682C4224A1000F881A /* SOSButtonView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -457,6 +482,7 @@
 				8C9A150A2BF8608B00F16283 /* CircularProgressView.swift */,
 				8C76222D2BFC808300B6BFFF /* CustomNavigationModifier.swift */,
 				8C76222F2BFC80A100B6BFFF /* CustomTextEditorView.swift */,
+				00467FDD2C42203B00DA7BB6 /* CustomTextEditorSimpleView.swift */,
 				8C7622332BFC811D00B6BFFF /* SettingQuestionLabel.swift */,
 				8C7622372BFC847A00B6BFFF /* CustomDivider.swift */,
 				8CF6FDB62BFDC87D00B59608 /* CustomXButton.swift */,
@@ -598,7 +624,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1520;
-				LastUpgradeCheck = 1520;
+				LastUpgradeCheck = 1540;
 				TargetAttributes = {
 					8CCFD0D02BF32CD40059EF94 = {
 						CreatedOnToolsVersion = 15.2;
@@ -705,8 +731,10 @@
 				8CCFD0D92BF32CD40059EF94 /* Item.swift in Sources */,
 				8CCFD11F2BF338540059EF94 /* Strings.swift in Sources */,
 				8CF6FDB52BFDBE9300B59608 /* PatientInfoView.swift in Sources */,
+				8C7CE5032C4221A800AB5C28 /* PracticeBreathingIntro.swift in Sources */,
 				8C7622302BFC80A100B6BFFF /* CustomTextEditorView.swift in Sources */,
 				8C7622322BFC80BF00B6BFFF /* PatientInfoSettingView.swift in Sources */,
+				00467FDC2C4215E400DA7BB6 /* SettingView.swift in Sources */,
 				8CF6FDB92BFDCB1D00B59608 /* UserdefaultsManager.swift in Sources */,
 				6D8D80042BFF9EF700A739D2 /* GifImageViewer.swift in Sources */,
 				8B1F63D32BFADCDF00049B0B /* SOSView.swift in Sources */,
@@ -714,16 +742,20 @@
 				20CE35AF2BFAFCE300AF7C09 /* BreathTimeSetting.swift in Sources */,
 				20C930042BFCBDF000F57ED2 /* TimeSettingModel.swift in Sources */,
 				51BE25F42BFD97E900D6F587 /* MessageSettingModel.swift in Sources */,
+				8B160D692C4224A1000F881A /* SOSButtonView.swift in Sources */,
 				8CCFD0D52BF32CD40059EF94 /* SumSumZipApp.swift in Sources */,
 				8CD4FF1C2BF6E355009A8BC9 /* LiveActivityManager.swift in Sources */,
 				0020A3C42BFD78F900607BAF /* OnboardingView.swift in Sources */,
 				8B680ABB2BFF177C0099E7D9 /* PreviewView.swift in Sources */,
 				0020A3CD2BFD82F400607BAF /* SOSPhysics_TestView.swift in Sources */,
+				00467FE02C4227A700DA7BB6 /* PatientContactEditorView.swift in Sources */,
 				512A01FA2BFB1D8A00EE8B39 /* ContactSettingView.swift in Sources */,
 				8C7622362BFC819900B6BFFF /* View+Extension.swift in Sources */,
 				8CF6FDB72BFDC87D00B59608 /* CustomXButton.swift in Sources */,
 				51BE25F52BFD97E900D6F587 /* ContactsSettingModel.swift in Sources */,
+				00467FDE2C42203B00DA7BB6 /* CustomTextEditorSimpleView.swift in Sources */,
 				8C7622342BFC811D00B6BFFF /* SettingQuestionLabel.swift in Sources */,
+				8C7CE5082C424A3B00AB5C28 /* StartBreathView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -816,6 +848,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -879,6 +912,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -910,6 +944,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"SumSumZip/Preview Content\"";
 				DEVELOPMENT_TEAM = 5C6W5SYCQQ;
 				ENABLE_PREVIEWS = YES;
@@ -945,6 +980,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"SumSumZip/Preview Content\"";
 				DEVELOPMENT_TEAM = 5C6W5SYCQQ;
 				ENABLE_PREVIEWS = YES;
@@ -977,6 +1013,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
@@ -998,6 +1035,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
@@ -1018,6 +1056,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.InnerPeace.SumSumZipUITests;
@@ -1037,6 +1076,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.InnerPeace.SumSumZipUITests;
