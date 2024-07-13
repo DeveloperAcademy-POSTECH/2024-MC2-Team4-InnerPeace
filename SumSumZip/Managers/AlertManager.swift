@@ -12,6 +12,7 @@ class BreathTimeManager: ObservableObject {
     @Published var hapticControl = HapticControl()
     private var hapticTimer: Timer?
     private var isHapticActive = false
+    private var isHapticEnabled = true // 진동 활성화 여부를 나타내는 플래그
     private var hapticStateDuration = 4.0 // 진동 시간
     
     static let shared = BreathTimeManager()
@@ -22,8 +23,9 @@ class BreathTimeManager: ObservableObject {
     
     func startHaptic() {
         print("startHaptic: \(isHapticActive)")
-        hapticStateDuration = 4.0 // 첫 번째 상태는 진동
+        hapticStateDuration = 1 // 첫 번째 상태는 진동
         isHapticActive = true
+        isHapticEnabled = true // 진동을 활성화합니다.
         resetTimer() // 타이머 재설정
     }
     
@@ -31,6 +33,15 @@ class BreathTimeManager: ObservableObject {
         hapticTimer?.invalidate()
         hapticTimer = nil
         isHapticActive = false
+    }
+    
+    func disableHaptic() {
+        isHapticEnabled = false
+//        hapticControl.stopHaptic()
+    }
+    
+    func enableHaptic() {
+        isHapticEnabled = true
     }
     
     private func resetTimer() {
@@ -41,13 +52,16 @@ class BreathTimeManager: ObservableObject {
     @objc private func toggleHapticState() {
         print(#function)
         
-        if isHapticActive {
-            hapticControl.playHaptic(hapURL: "HapticWave_1")
-            hapticStateDuration = 11.0 // 진동 후 정적 시간
-        } else {
-            hapticControl.stopHaptic() // 진동을 멈춥니다. 이 메소드는 HapticControl 클래스에 있어야 합니다.
-            hapticStateDuration = 7.0 // 정적 후 진동 시간
+        if isHapticEnabled {
+            if isHapticActive {
+                hapticControl.playHaptic(hapURL: "HapticWave_1")
+                hapticStateDuration = 11.0 // 진동 후 정적 시간
+            } else {
+                hapticControl.stopHaptic() // 진동을 멈춥니다.
+                hapticStateDuration = 6.0 // 정적 후 진동 시간
+            }
         }
+        
         isHapticActive.toggle()
         
         // 타이머를 업데이트합니다.

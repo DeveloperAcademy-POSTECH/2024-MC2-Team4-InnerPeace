@@ -44,7 +44,10 @@ struct PracticeBreathingIntro: View {
                     }
                     
                     // 거북이 움짤
-                    Rectangle()
+                    Image("BreathintTurtleIntro")
+                        .resizable()
+                        .scaledToFill()
+                        .foregroundStyle(.clear)
                         .frame(width: 189, height: 221)
                         .padding(.bottom, 86)
                         .padding(.top, 64)

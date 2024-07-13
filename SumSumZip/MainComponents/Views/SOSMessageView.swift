@@ -8,16 +8,18 @@
 import SwiftUI
 
 struct SOSMessageView: View {
-    @State private var showingAlert: Bool = false
+    //상황종료 Alert
+    @State private var showingSOSEndAlert: Bool = false
     
     //SOSMessageView 보여주는지 여부
     //    @State var isPresentedSOSMessageView: Bool = true
     @Binding var isPresentedSOSMessageView: Bool
     
-    //환자 정보
+    //환자 정보 & 연락처
     @State var medicineInfo = UserdefaultsManager.medicineInfo
     @State var hospitalInfo = UserdefaultsManager.hospitalInfo
-    @State private var isShownPatientInfo: Bool = false
+    @State private var isShownPatientInfo_Contact: Bool = false
+//    @State private var isShownContact: Bool = false
     
     //햅틱, 사운드 등등 관리자
     @StateObject private var alertManager = AlertManager.shared
@@ -25,14 +27,17 @@ struct SOSMessageView: View {
     //환자의 SOSMessage
     @State var SOSMessage: String
     
-    @State var SOSTime: Int = 30
+    //SOSMessageView를 띄울 시간 (30분 고정)
+    @State var SOSTime: Int = 30 //test 3분
     
     @State private var timer: Timer? = nil
     @State private var count: Int = 1
     @State private var finishedText: String? = nil
-    @State private var timeRemaining: String = ""
     @State private var futureData: Date = Date()
     @State private var progressTimeRemaining: String = "00:00"
+    
+    
+    @State var isAfter20Min: Bool = false
     
     func updateTimeRemaining() {
         let now = Date()
@@ -40,11 +45,9 @@ struct SOSMessageView: View {
         let minute = remaining.minute ?? 0
         let second = remaining.second ?? 0
         
-        // 남은 시간을 계산
-        timeRemaining = String(format: "%02d : %02d", minute, second)
         
         // 경과된 시간을 계산
-        let totalTime = Double(SOSTime)
+        let totalTime = Double(SOSTime * 60)
         let elapsedTime = totalTime - Double(minute * 60 + second)
         
         // progressTimeRemaining: 누적된 시간 계산 (1초 추가)
@@ -55,9 +58,14 @@ struct SOSMessageView: View {
         progressTimeRemaining = String(format: "%02d : %02d", elapsedMinute, elapsedSecond)
         
         if minute == 0 && second == 0 {
-            showingAlert = true
+            showingSOSEndAlert = true
             timer?.invalidate() // Timer 무효화
         }
+        
+        if elapsedTime >= (20 * 60) {
+            isAfter20Min = true
+        }
+        
     }
     
     func startTimer() {
@@ -75,7 +83,8 @@ struct SOSMessageView: View {
     var body: some View {
         NavigationView{
             ZStack{
-                Image("BG_SOSMessageView_green")
+                isAfter20Min ? Image("BG_SOSMessageView_red") : Image("BG_SOSMessageView_green")
+                
                 VStack{
                     Spacer().frame(height: 70)
                     Text("공황 증상 발생")
@@ -84,11 +93,13 @@ struct SOSMessageView: View {
                         .font(.largeTitle)
                         .padding(1)
                     Text("도움이 필요합니다")
-                        .foregroundStyle(AppColors.paleGreen02)
+                        .foregroundStyle(isAfter20Min ? AppColors.red03 : AppColors.paleGreen02)
                         .font(.title)
                     
                     Spacer().frame(height: 50)
                     
+                    
+                    // 환자의 SOS 메세지
                     RoundedRectangle(cornerRadius: 17)
                         .frame(width: 350, height: 220)
                         .foregroundStyle(AppColors.black.opacity(0.35))
@@ -101,27 +112,34 @@ struct SOSMessageView: View {
                     
                     Spacer().frame(height: 40)
                     
+                    
+                    // 경과 시간 (타이머)
                     Text("경과시간")
-                        .foregroundStyle(AppColors.paleGreen02)
+                        .foregroundStyle(isAfter20Min ? AppColors.red03 : AppColors.paleGreen02)
                     Text(progressTimeRemaining)
-                        .foregroundStyle(AppColors.paleGreen02)
+                        .foregroundStyle(isAfter20Min ? AppColors.red03 : AppColors.paleGreen02)
                         .font(.system(size: 45))
                         .fontWeight(.thin)
                     
                     Spacer().frame(height: 60)
                     
-                    Text("환자의 의식이 없다면 119에 신고해주세요")
-                        .foregroundStyle(AppColors.paleGreen02)
                     
+                    // 119 신고 메세지
+                    Text("환자의 의식이 없다면 119에 신고해주세요")
+                        .foregroundStyle(isAfter20Min ? AppColors.red03 : AppColors.paleGreen02)
+    
                     Spacer().frame(height: 30)
                     
+                    Button(action: {isShownPatientInfo_Contact = true},
+                    
+                    // 환자 정보 확인 버튼
                     Button(action: {},
                            label: {RoundedRectangle(cornerRadius: 17)
                             .frame(width: 350, height: 60)
-                            .foregroundStyle(AppColors.cyan03.opacity(0.25))
+                            .foregroundStyle(isAfter20Min ? AppColors.red03.opacity(0.25) :AppColors.cyan03.opacity(0.25))
                             .overlay{
                                 Text("환자 정보 확인")
-                                    .foregroundStyle(AppColors.cyan03)
+                                    .foregroundStyle(isAfter20Min ? AppColors.red03 : AppColors.cyan03)
                                     .fontWeight(.bold)
                                     .font(.headline)
                             }
@@ -133,10 +151,10 @@ struct SOSMessageView: View {
                 Button("상황종료"){
                     print("상황종료")
                     AlertManager.shared.endButtonClicked = true
-                    showingAlert = true
+                    showingSOSEndAlert = true
                 }
-                .foregroundStyle(AppColors.cyan02)
-                .alert(isPresented: $showingAlert){
+                .foregroundStyle(isAfter20Min ? AppColors.red03 : AppColors.cyan02)
+                .alert(isPresented: $showingSOSEndAlert){
                     Alert(title: Text("도와주셔서 감사합니다."), message: Text("당신은 영웅입니다."),
                           dismissButton: .default(Text("상황종료"), action:{
                         isPresentedSOSMessageView = false
@@ -145,24 +163,31 @@ struct SOSMessageView: View {
                         EmergencyLiveActivityManager.shared.endAllActivities()
                     }))
                 }
+
             }
+            .fullScreenCover(isPresented: $isShownPatientInfo_Contact, content: {
+                PatientInfo_ContactView(hospitalInfo: $hospitalInfo, medicineInfo: $medicineInfo, isShownPatientInfo_Contact: $isShownPatientInfo_Contact)
+
+            } //상황종료
             .fullScreenCover(isPresented: $isShownPatientInfo, content: {
                 PatientInfoView(hospitalInfo: $hospitalInfo, medicineInfo: $medicineInfo, isShownPatientInfo: $isShownPatientInfo)
+
             }) // 환자정보 창 띄우기
         }
         .onAppear{
-            let BreathsavedTime = BreathTimeDataManager.shared.fetchTime()
-            SOSTime = BreathsavedTime != 0 ? BreathsavedTime : 30
             let message = MessageManager.shared.fetchMessage()
             SOSMessage = message != "" ? message : ""
-            timeRemaining =  String(format: "%02d:00", SOSTime)
             UIApplication.shared.isIdleTimerDisabled = true
         }
-        //        .onChange(of: isPresentedSOSMessageView) {
-        //            if isPresentedSOSMessageView {
-        //                startTimer()
-        //            }
-        //        }
+
+        .blur(radius: isShownPatientInfo_Contact ? 5.0 : 0)
+
+        .onAppear {
+            // 물리동작 시작
+            alertManager.startAll()
+            startTimer()
+        }
+
     }
 }
 
