@@ -11,12 +11,20 @@ struct CustomTextEditorView: View {
     @Binding var message: String
     
     var body: some View {
-        TextEditor(text: $message)
-            .padding(4)
-            .background(AppColors.paleGreen.opacity(1))
-            .frame(width: 359, height: 90)
-            .cornerRadius(10)
-            .scrollContentBackground(.hidden)
+        ZStack{
+            Rectangle()
+                .foregroundColor(AppColors.white.opacity(1))
+                .frame(width: .infinity, height: 126)
+                .cornerRadius(17)
+            
+            TextEditor(text: $message)
+                .padding(4)
+                .foregroundColor(AppColors.systemGray)
+                .frame(width: .infinity, height: 126)
+                .font(.system(size:15))
+                .cornerRadius(10)
+                .scrollContentBackground(.hidden)
+        }
     }
 }
 
