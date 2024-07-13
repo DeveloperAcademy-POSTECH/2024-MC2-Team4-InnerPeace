@@ -24,6 +24,10 @@
 		512A01FA2BFB1D8A00EE8B39 /* ContactSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512A01F92BFB1D8A00EE8B39 /* ContactSettingView.swift */; };
 		51BE25F42BFD97E900D6F587 /* MessageSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BE25F22BFD97E900D6F587 /* MessageSettingModel.swift */; };
 		51BE25F52BFD97E900D6F587 /* ContactsSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BE25F32BFD97E900D6F587 /* ContactsSettingModel.swift */; };
+		51E71CEC2C428D100015B3A7 /* OnboardingTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E71CEB2C428D100015B3A7 /* OnboardingTabView.swift */; };
+		51E71CEE2C428D320015B3A7 /* OnboardingFisrtView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E71CED2C428D320015B3A7 /* OnboardingFisrtView.swift */; };
+		51E71CF02C428D600015B3A7 /* OnboardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E71CEF2C428D600015B3A7 /* OnboardingPageView.swift */; };
+		51E71CF22C4291EB0015B3A7 /* ContentView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E71CF12C4291EB0015B3A7 /* ContentView2.swift */; };
 		6D49B4EC2C00364100F9D44D /* BreathingFace_10s.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6D49B4EB2C00364100F9D44D /* BreathingFace_10s.gif */; };
 		6D8D80042BFF9EF700A739D2 /* GifImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8D80032BFF9EF700A739D2 /* GifImageViewer.swift */; };
 		8B160D692C4224A1000F881A /* SOSButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B160D682C4224A1000F881A /* SOSButtonView.swift */; };
@@ -142,6 +146,10 @@
 		512A01F92BFB1D8A00EE8B39 /* ContactSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactSettingView.swift; sourceTree = "<group>"; };
 		51BE25F22BFD97E900D6F587 /* MessageSettingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageSettingModel.swift; sourceTree = "<group>"; };
 		51BE25F32BFD97E900D6F587 /* ContactsSettingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsSettingModel.swift; sourceTree = "<group>"; };
+		51E71CEB2C428D100015B3A7 /* OnboardingTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTabView.swift; sourceTree = "<group>"; };
+		51E71CED2C428D320015B3A7 /* OnboardingFisrtView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFisrtView.swift; sourceTree = "<group>"; };
+		51E71CEF2C428D600015B3A7 /* OnboardingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageView.swift; sourceTree = "<group>"; };
+		51E71CF12C4291EB0015B3A7 /* ContentView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView2.swift; sourceTree = "<group>"; };
 		6D49B4EB2C00364100F9D44D /* BreathingFace_10s.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = BreathingFace_10s.gif; sourceTree = "<group>"; };
 		6D8D80032BFF9EF700A739D2 /* GifImageViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifImageViewer.swift; sourceTree = "<group>"; };
 		8B160D682C4224A1000F881A /* SOSButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSButtonView.swift; sourceTree = "<group>"; };
@@ -247,6 +255,17 @@
 			path = SOSPhysics_Component;
 			sourceTree = "<group>";
 		};
+		51E71CEA2C428CE80015B3A7 /* OnboardingViews */ = {
+			isa = PBXGroup;
+			children = (
+				51E71CEB2C428D100015B3A7 /* OnboardingTabView.swift */,
+				51E71CED2C428D320015B3A7 /* OnboardingFisrtView.swift */,
+				51E71CEF2C428D600015B3A7 /* OnboardingPageView.swift */,
+				51E71CF12C4291EB0015B3A7 /* ContentView2.swift */,
+			);
+			path = OnboardingViews;
+			sourceTree = "<group>";
+		};
 		6D8D80022BFF9EBE00A739D2 /* Gifimage */ = {
 			isa = PBXGroup;
 			children = (
@@ -345,6 +364,7 @@
 		8CCFD1022BF330660059EF94 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				51E71CEA2C428CE80015B3A7 /* OnboardingViews */,
 				0020A3C32BFD78F900607BAF /* OnboardingView.swift */,
 				8B160D6C2C427F68000F881A /* SumSumTabView.swift */,
 				00C1A7BF2BFAEB0D004747E6 /* SummaryView.swift */,
@@ -731,10 +751,12 @@
 				8B160D6D2C427F68000F881A /* SumSumTabView.swift in Sources */,
 				00C1A7C02BFAEB0D004747E6 /* SummaryView.swift in Sources */,
 				20CE35B12BFAFE2200AF7C09 /* SOSTimeSetting.swift in Sources */,
+				51E71CEC2C428D100015B3A7 /* OnboardingTabView.swift in Sources */,
 				8C9A150B2BF8608B00F16283 /* CircularProgressView.swift in Sources */,
 				512A01F82BFAEDBB00EE8B39 /* MessageView.swift in Sources */,
 				8CCFD11D2BF337EA0059EF94 /* Color+Extension.swift in Sources */,
 				8CF6FA1C2BFF1769008C827C /* AlertManager.swift in Sources */,
+				51E71CF22C4291EB0015B3A7 /* ContentView2.swift in Sources */,
 				0020A3CC2BFD82F400607BAF /* SOSPhysical_Model.swift in Sources */,
 				8C7622382BFC847A00B6BFFF /* CustomDivider.swift in Sources */,
 				8B1F63D12BFAD41C00049B0B /* BreathingView.swift in Sources */,
@@ -743,6 +765,7 @@
 				8B1F64462BFD934300049B0B /* ContactView.swift in Sources */,
 				8CCFD1192BF336EB0059EF94 /* Color.swift in Sources */,
 				8CCFD0D92BF32CD40059EF94 /* Item.swift in Sources */,
+				51E71CF02C428D600015B3A7 /* OnboardingPageView.swift in Sources */,
 				8CCFD11F2BF338540059EF94 /* Strings.swift in Sources */,
 				8CF6FDB52BFDBE9300B59608 /* PatientInfoView.swift in Sources */,
 				8C7CE5032C4221A800AB5C28 /* PracticeBreathingIntro.swift in Sources */,
@@ -759,6 +782,7 @@
 				8B160D692C4224A1000F881A /* SOSButtonView.swift in Sources */,
 				8CCFD0D52BF32CD40059EF94 /* SumSumZipApp.swift in Sources */,
 				8CD4FF1C2BF6E355009A8BC9 /* LiveActivityManager.swift in Sources */,
+				51E71CEE2C428D320015B3A7 /* OnboardingFisrtView.swift in Sources */,
 				0020A3C42BFD78F900607BAF /* OnboardingView.swift in Sources */,
 				8B680ABB2BFF177C0099E7D9 /* PreviewView.swift in Sources */,
 				0020A3CD2BFD82F400607BAF /* SOSPhysics_TestView.swift in Sources */,
@@ -962,7 +986,11 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"SumSumZip/Preview Content\"";
+
+				DEVELOPMENT_TEAM = TC3AW42G83;
+
 				DEVELOPMENT_TEAM = 5C6W5SYCQQ;
+
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SumSumZip/Info.plist;
@@ -998,7 +1026,11 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"SumSumZip/Preview Content\"";
+
+				DEVELOPMENT_TEAM = TC3AW42G83;
+
 				DEVELOPMENT_TEAM = 5C6W5SYCQQ;
+
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SumSumZip/Info.plist;
@@ -1113,7 +1145,11 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+
+				DEVELOPMENT_TEAM = TC3AW42G83;
+
 				DEVELOPMENT_TEAM = 5C6W5SYCQQ;
+
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EmergencyLiveActivity/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = EmergencyLiveActivity;
@@ -1146,7 +1182,11 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+
+				DEVELOPMENT_TEAM = TC3AW42G83;
+
 				DEVELOPMENT_TEAM = 5C6W5SYCQQ;
+
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EmergencyLiveActivity/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = EmergencyLiveActivity;

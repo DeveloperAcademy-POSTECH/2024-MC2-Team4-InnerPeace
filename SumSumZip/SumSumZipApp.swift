@@ -15,6 +15,8 @@ struct SumSumZipApp: App {
     @Environment(\.scenePhase) private var scenePhase
     @State private var isPresented = false
     
+    @AppStorage("_isFirstLaunching") var isFirstLaunching: Bool = true
+
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Item.self,
