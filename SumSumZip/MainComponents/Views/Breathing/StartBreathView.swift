@@ -10,11 +10,16 @@ import SwiftUI
 struct StartBreathView: View {
     
     @State private var isVibrateOff: Bool = false
-    
     @Binding var isShowingFirstView: Bool
+    @State private var showAlert: Bool = false
+    
+    @Binding var breathTime: Int
+    @State private var timeRemaining: Int = 0
+    @State private var timer: Timer?
+    
+    @StateObject private var breathTimerManager = BreathTimeManager.shared
     
     var body: some View {
-        
         VStack {
             // 종료하기
             HStack {
@@ -42,12 +47,50 @@ struct StartBreathView: View {
             // 진동 버튼
             vibrateButton()
         }
+        .onAppear {
+            startTimer()
+        }
+        .onDisappear {
+            stopTimer()
+        }
+        .alert(isPresented: $showAlert) {
+                    Alert(
+                        title: Text("완벽해요!"),
+                        message: Text("하루하루 더 나아지는 자신을 느껴보세요"),
+                        dismissButton: .default(Text("종료")) {
+                            isShowingFirstView.toggle()
+                            stopTimer()
+                            breathTimerManager.stopHaptic()
+                        }
+                    )
+                }
+    }
+    
+    func startTimer() {
+        print("start timer: \(breathTime)")
+        breathTimerManager.startHaptic()
+        
+        timeRemaining = breathTime * 60 // breathTime을 초 단위로 변환
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+            if timeRemaining > 0 {
+                timeRemaining -= 1
+            } else {
+                stopTimer()
+                isShowingFirstView.toggle()
+            }
+        }
+    }
+    
+    func stopTimer() {
+        timer?.invalidate()
+        timer = nil
     }
     
     @ViewBuilder
     func stopButton() -> some View {
         Button(action: {
-            isShowingFirstView.toggle()
+            // 알림 뜨기
+            showAlert.toggle()
         }, label: {
             Text("종료하기")
                 .fontWeight(.light)
@@ -65,9 +108,15 @@ struct StartBreathView: View {
     
     @ViewBuilder
     func timerText() -> some View {
-        Text("임의:임의")
+        Text(timeString(from: timeRemaining))
             .fontWeight(.thin)
             .font(.system(size: 50))
+    }
+    
+    func timeString(from seconds: Int) -> String {
+        let minutes = seconds / 60
+        let seconds = seconds % 60
+        return String(format: "%02d:%02d", minutes, seconds)
     }
     
     @ViewBuilder
@@ -85,17 +134,21 @@ struct StartBreathView: View {
     
     @ViewBuilder
     func vibrateTitle() -> some View {
-        Text("진동 끄기")
+        Text(isVibrateOff ? "진동켜기" : "진동끄기")
             .fontWeight(.regular)
             .font(.system(size: 14))
             .foregroundStyle(isVibrateOff ? AppColors.gray01 : AppColors.white)
-        
     }
     
     @ViewBuilder
     func vibrateButton() -> some View {
         Button(action: {
             isVibrateOff.toggle()
+            if isVibrateOff {
+                breathTimerManager.muteHaptic()
+            } else {
+                breathTimerManager.startHaptic()
+            }
         }, label: {
             VStack {
                 vibrateIcon()

@@ -6,6 +6,54 @@
 //
 
 import SwiftUI
+import Combine
+
+class BreathTimeManager: ObservableObject {
+    @Published var hapticControl = HapticControl()
+    private var hapticTimer: Timer?
+    private var isHapticActive = false
+    private var hapticStateDuration = 4.0 // 진동 시간
+    
+    static let shared = BreathTimeManager()
+    
+    private init() {
+        hapticControl.prepareHaptics()
+    }
+    
+    func startHaptic() {
+        print("startHaptic: \(isHapticActive)")
+        hapticStateDuration = 4.0 // 첫 번째 상태는 진동
+        isHapticActive = true
+        resetTimer() // 타이머 재설정
+    }
+    
+    func stopHaptic() {
+        hapticTimer?.invalidate()
+        hapticTimer = nil
+        isHapticActive = false
+    }
+    
+    private func resetTimer() {
+        hapticTimer?.invalidate()
+        hapticTimer = Timer.scheduledTimer(timeInterval: hapticStateDuration, target: self, selector: #selector(toggleHapticState), userInfo: nil, repeats: false)
+    }
+    
+    @objc private func toggleHapticState() {
+        print(#function)
+        
+        if isHapticActive {
+            hapticControl.playHaptic(hapURL: "HapticWave_1")
+            hapticStateDuration = 11.0 // 진동 후 정적 시간
+        } else {
+            hapticControl.stopHaptic() // 진동을 멈춥니다. 이 메소드는 HapticControl 클래스에 있어야 합니다.
+            hapticStateDuration = 7.0 // 정적 후 진동 시간
+        }
+        isHapticActive.toggle()
+        
+        // 타이머를 업데이트합니다.
+        resetTimer()
+    }
+}
 
 class AlertManager: ObservableObject {
     
