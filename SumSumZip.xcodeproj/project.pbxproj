@@ -243,6 +243,21 @@
 			path = SOSPhysics_Component;
 			sourceTree = "<group>";
 		};
+		00467FE72C42998B00DA7BB6 /* LegacyViews(240713) */ = {
+			isa = PBXGroup;
+			children = (
+				512A01F72BFAEDBB00EE8B39 /* MessageView.swift */,
+				8B1F63D22BFADCDF00049B0B /* SOSView.swift */,
+				8B1F63D02BFAD41C00049B0B /* BreathingView.swift */,
+				20CE35B02BFAFE2200AF7C09 /* SOSTimeSetting.swift */,
+				20CE35AE2BFAFCE300AF7C09 /* BreathTimeSetting.swift */,
+				00C1A7BF2BFAEB0D004747E6 /* SummaryView.swift */,
+				8C7622312BFC80BF00B6BFFF /* PatientInfoSettingView.swift */,
+				8B680ABA2BFF177C0099E7D9 /* PreviewView.swift */,
+			);
+			path = "LegacyViews(240713)";
+			sourceTree = "<group>";
+		};
 		6D8D80022BFF9EBE00A739D2 /* Gifimage */ = {
 			isa = PBXGroup;
 			children = (
@@ -343,20 +358,13 @@
 			children = (
 				0020A3C32BFD78F900607BAF /* OnboardingView.swift */,
 				8B160D6C2C427F68000F881A /* SumSumTabView.swift */,
-				00C1A7BF2BFAEB0D004747E6 /* SummaryView.swift */,
 				00467FDB2C4215E400DA7BB6 /* SettingView.swift */,
-				512A01F92BFB1D8A00EE8B39 /* ContactSettingView.swift */,
-				8B1F63D02BFAD41C00049B0B /* BreathingView.swift */,
-				8B1F63D22BFADCDF00049B0B /* SOSView.swift */,
 				8B160D6A2C423E32000F881A /* SOSMessageView.swift */,
-				20CE35B02BFAFE2200AF7C09 /* SOSTimeSetting.swift */,
-				20CE35AE2BFAFCE300AF7C09 /* BreathTimeSetting.swift */,
-				8C7622312BFC80BF00B6BFFF /* PatientInfoSettingView.swift */,
-				512A01F72BFAEDBB00EE8B39 /* MessageView.swift */,
+				8B160D682C4224A1000F881A /* SOSButtonView.swift */,
 				8B1F64452BFD934300049B0B /* ContactView.swift */,
 				8CF6FDB42BFDBE9300B59608 /* PatientInfoView.swift */,
-				8B680ABA2BFF177C0099E7D9 /* PreviewView.swift */,
-				8B160D682C4224A1000F881A /* SOSButtonView.swift */,
+				512A01F92BFB1D8A00EE8B39 /* ContactSettingView.swift */,
+				00467FE72C42998B00DA7BB6 /* LegacyViews(240713) */,
 				8C7CE5042C4246FB00AB5C28 /* Breathing */,
 			);
 			path = Views;
