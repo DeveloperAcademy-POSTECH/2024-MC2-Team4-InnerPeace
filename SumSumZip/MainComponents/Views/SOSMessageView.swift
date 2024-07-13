@@ -11,13 +11,21 @@ struct SOSMessageView: View {
     @State private var showingAlert: Bool = false
     
     //SOSMessageView 보여주는지 여부
-    @State var isPresentedSOSMessageView: Bool = true
-    //    @Binding var isPresentedSOSMessageView: Bool
+    //    @State var isPresentedSOSMessageView: Bool = true
+    @Binding var isPresentedSOSMessageView: Bool
+    
+    //환자 정보
+    @State var medicineInfo = UserdefaultsManager.medicineInfo
+    @State var hospitalInfo = UserdefaultsManager.hospitalInfo
+    @State private var isShownPatientInfo: Bool = false
     
     //햅틱, 사운드 등등 관리자
     @StateObject private var alertManager = AlertManager.shared
     
-    @State var SOSTime: Double = 30
+    //환자의 SOSMessage
+    @State var SOSMessage: String
+    
+    @State var SOSTime: Int = 30
     
     @State private var timer: Timer? = nil
     @State private var count: Int = 1
@@ -36,11 +44,11 @@ struct SOSMessageView: View {
         timeRemaining = String(format: "%02d : %02d", minute, second)
         
         // 경과된 시간을 계산
-//        let totalTime = SOSTime
-        let elapsedTime = SOSTime - Double(minute * 60 + second)
+        let totalTime = Double(SOSTime)
+        let elapsedTime = totalTime - Double(minute * 60 + second)
         
         // progressTimeRemaining: 누적된 시간 계산 (1초 추가)
-        let startTime = futureData.addingTimeInterval(-SOSTime)
+        let startTime = futureData.addingTimeInterval(-totalTime)
         let elapsedInterval = now.timeIntervalSince(startTime) + 1
         let elapsedMinute = Int(elapsedInterval) / 60
         let elapsedSecond = Int(elapsedInterval) % 60
@@ -85,7 +93,7 @@ struct SOSMessageView: View {
                         .frame(width: 350, height: 220)
                         .foregroundStyle(AppColors.black.opacity(0.35))
                         .overlay{
-                            Text("가방 안에 긴급 약이 있습니다.")
+                            Text(SOSMessage)
                                 .foregroundStyle(AppColors.white)
                                 .fontWeight(.bold)
                                 .font(.title2)
@@ -138,16 +146,27 @@ struct SOSMessageView: View {
                     }))
                 }
             }
+            .fullScreenCover(isPresented: $isShownPatientInfo, content: {
+                PatientInfoView(hospitalInfo: $hospitalInfo, medicineInfo: $medicineInfo, isShownPatientInfo: $isShownPatientInfo)
+            }) // 환자정보 창 띄우기
         }
-        .onChange(of: isPresentedSOSMessageView) {
-            if isPresentedSOSMessageView {
-                startTimer()
-            }
+        .onAppear{
+            let BreathsavedTime = BreathTimeDataManager.shared.fetchTime()
+            SOSTime = BreathsavedTime != 0 ? BreathsavedTime : 30
+            let message = MessageManager.shared.fetchMessage()
+            SOSMessage = message != "" ? message : ""
+            timeRemaining =  String(format: "%02d:00", SOSTime)
+            UIApplication.shared.isIdleTimerDisabled = true
         }
+        //        .onChange(of: isPresentedSOSMessageView) {
+        //            if isPresentedSOSMessageView {
+        //                startTimer()
+        //            }
+        //        }
     }
 }
 
-
-#Preview {
-    SOSMessageView()
-}
+//
+//#Preview {
+//    SOSMessageView(isPresentedSOSMessageView: )
+//}
