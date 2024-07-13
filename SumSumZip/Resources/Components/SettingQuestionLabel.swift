@@ -12,7 +12,7 @@ struct SettingQuestionLabel: View {
     
     var body: some View {
         Text(text)
-            .fontWeight(.bold)
-            .foregroundColor(AppColors.black)
+            .fontWeight(.semibold)
+            .foregroundColor(AppColors.systemGray)
     }
 }

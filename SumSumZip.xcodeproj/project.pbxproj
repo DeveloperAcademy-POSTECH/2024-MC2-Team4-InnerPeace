@@ -15,6 +15,7 @@
 		00467FDC2C4215E400DA7BB6 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00467FDB2C4215E400DA7BB6 /* SettingView.swift */; };
 		00467FDE2C42203B00DA7BB6 /* CustomTextEditorSimpleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00467FDD2C42203B00DA7BB6 /* CustomTextEditorSimpleView.swift */; };
 		00467FE02C4227A700DA7BB6 /* PatientContactEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00467FDF2C4227A700DA7BB6 /* PatientContactEditorView.swift */; };
+		00467FE42C425EA200DA7BB6 /* CustomToggleSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00467FE32C425EA200DA7BB6 /* CustomToggleSet.swift */; };
 		00C1A7C02BFAEB0D004747E6 /* SummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C1A7BF2BFAEB0D004747E6 /* SummaryView.swift */; };
 		20C930042BFCBDF000F57ED2 /* TimeSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C930032BFCBDF000F57ED2 /* TimeSettingModel.swift */; };
 		20CE35AF2BFAFCE300AF7C09 /* BreathTimeSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE35AE2BFAFCE300AF7C09 /* BreathTimeSetting.swift */; };
@@ -25,8 +26,8 @@
 		51BE25F52BFD97E900D6F587 /* ContactsSettingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51BE25F32BFD97E900D6F587 /* ContactsSettingModel.swift */; };
 		6D49B4EC2C00364100F9D44D /* BreathingFace_10s.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6D49B4EB2C00364100F9D44D /* BreathingFace_10s.gif */; };
 		6D8D80042BFF9EF700A739D2 /* GifImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8D80032BFF9EF700A739D2 /* GifImageViewer.swift */; };
-		8B160D6B2C423E32000F881A /* SOSMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B160D6A2C423E32000F881A /* SOSMessageView.swift */; };
 		8B160D692C4224A1000F881A /* SOSButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B160D682C4224A1000F881A /* SOSButtonView.swift */; };
+		8B160D6B2C423E32000F881A /* SOSMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B160D6A2C423E32000F881A /* SOSMessageView.swift */; };
 		8B1F63D12BFAD41C00049B0B /* BreathingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F63D02BFAD41C00049B0B /* BreathingView.swift */; };
 		8B1F63D32BFADCDF00049B0B /* SOSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F63D22BFADCDF00049B0B /* SOSView.swift */; };
 		8B1F64462BFD934300049B0B /* ContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F64452BFD934300049B0B /* ContactView.swift */; };
@@ -129,6 +130,7 @@
 		00467FDB2C4215E400DA7BB6 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		00467FDD2C42203B00DA7BB6 /* CustomTextEditorSimpleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextEditorSimpleView.swift; sourceTree = "<group>"; };
 		00467FDF2C4227A700DA7BB6 /* PatientContactEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientContactEditorView.swift; sourceTree = "<group>"; };
+		00467FE32C425EA200DA7BB6 /* CustomToggleSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomToggleSet.swift; sourceTree = "<group>"; };
 		00C1A7BF2BFAEB0D004747E6 /* SummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryView.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		20C930032BFCBDF000F57ED2 /* TimeSettingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSettingModel.swift; sourceTree = "<group>"; };
 		20CE35AE2BFAFCE300AF7C09 /* BreathTimeSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathTimeSetting.swift; sourceTree = "<group>"; };
@@ -139,8 +141,8 @@
 		51BE25F32BFD97E900D6F587 /* ContactsSettingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsSettingModel.swift; sourceTree = "<group>"; };
 		6D49B4EB2C00364100F9D44D /* BreathingFace_10s.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = BreathingFace_10s.gif; sourceTree = "<group>"; };
 		6D8D80032BFF9EF700A739D2 /* GifImageViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifImageViewer.swift; sourceTree = "<group>"; };
-		8B160D6A2C423E32000F881A /* SOSMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSMessageView.swift; sourceTree = "<group>"; };
 		8B160D682C4224A1000F881A /* SOSButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSButtonView.swift; sourceTree = "<group>"; };
+		8B160D6A2C423E32000F881A /* SOSMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSMessageView.swift; sourceTree = "<group>"; };
 		8B1F63D02BFAD41C00049B0B /* BreathingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreathingView.swift; sourceTree = "<group>"; };
 		8B1F63D22BFADCDF00049B0B /* SOSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSView.swift; sourceTree = "<group>"; };
 		8B1F64452BFD934300049B0B /* ContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactView.swift; sourceTree = "<group>"; };
@@ -340,7 +342,6 @@
 				0020A3C32BFD78F900607BAF /* OnboardingView.swift */,
 				00C1A7BF2BFAEB0D004747E6 /* SummaryView.swift */,
 				00467FDB2C4215E400DA7BB6 /* SettingView.swift */,
-				00467FDF2C4227A700DA7BB6 /* PatientContactEditorView.swift */,
 				512A01F92BFB1D8A00EE8B39 /* ContactSettingView.swift */,
 				8B1F63D02BFAD41C00049B0B /* BreathingView.swift */,
 				8B1F63D22BFADCDF00049B0B /* SOSView.swift */,
@@ -483,9 +484,11 @@
 				8C76222D2BFC808300B6BFFF /* CustomNavigationModifier.swift */,
 				8C76222F2BFC80A100B6BFFF /* CustomTextEditorView.swift */,
 				00467FDD2C42203B00DA7BB6 /* CustomTextEditorSimpleView.swift */,
+				00467FE32C425EA200DA7BB6 /* CustomToggleSet.swift */,
 				8C7622332BFC811D00B6BFFF /* SettingQuestionLabel.swift */,
 				8C7622372BFC847A00B6BFFF /* CustomDivider.swift */,
 				8CF6FDB62BFDC87D00B59608 /* CustomXButton.swift */,
+				00467FDF2C4227A700DA7BB6 /* PatientContactEditorView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -748,6 +751,7 @@
 				0020A3C42BFD78F900607BAF /* OnboardingView.swift in Sources */,
 				8B680ABB2BFF177C0099E7D9 /* PreviewView.swift in Sources */,
 				0020A3CD2BFD82F400607BAF /* SOSPhysics_TestView.swift in Sources */,
+				00467FE42C425EA200DA7BB6 /* CustomToggleSet.swift in Sources */,
 				00467FE02C4227A700DA7BB6 /* PatientContactEditorView.swift in Sources */,
 				512A01FA2BFB1D8A00EE8B39 /* ContactSettingView.swift in Sources */,
 				8C7622362BFC819900B6BFFF /* View+Extension.swift in Sources */,
