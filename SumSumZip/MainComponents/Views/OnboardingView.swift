@@ -52,7 +52,8 @@ struct OnboardingView: View {
 //                        }
 //                }
             case (true):
-                SummaryView(isPresented: $isPresented)
+//                SummaryView(isPresented: $isPresented)
+                SumSumTabView()
                 
             case (false):
                 Image("BG_OnboardingView")
