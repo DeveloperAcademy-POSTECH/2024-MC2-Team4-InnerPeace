@@ -79,7 +79,7 @@ struct SOSView: View {
     var body: some View {
         NavigationView{
             ZStack{
-                LinearGradient(gradient: Gradient(colors: [Color.black, AppColors.lightSage, AppColors.lightGreen]),
+                LinearGradient(gradient: Gradient(colors: [Color.black, AppColors.lightGreen, AppColors.lightGreen]),
                                startPoint: .top, endPoint: .bottom)
                             .edgesIgnoringSafeArea(.all)
                 VStack{
@@ -133,7 +133,7 @@ struct SOSView: View {
                     AlertManager.shared.endButtonClicked = true
                     showingAlert = true
                 }
-                .foregroundStyle(AppColors.lightSage)
+                .foregroundStyle(AppColors.lightGreen)
                 .alert(isPresented: $showingAlert){
                     Alert(title: Text("도와주셔서 감사합니다."), message: Text("당신은 영웅입니다."),
                           dismissButton: .default(Text("상황종료"), action:{
@@ -204,7 +204,7 @@ struct CapsuleView: View {
     var body: some View {
         ZStack{
             Capsule()
-                .foregroundStyle(Gradient(colors: [AppColors.lightSage, Color.white]))
+                .foregroundStyle(Gradient(colors: [AppColors.lightGreen, Color.white]))
                 .shadow(radius: 10)
                 .shadow(color: .white, radius: 40)
                 .padding(.horizontal, 20)
@@ -250,7 +250,7 @@ struct CircleView: View {
     var body: some View {
         ZStack {
             Circle()
-                .foregroundStyle(Gradient(colors: [AppColors.lightSage, Color.white]))
+                .foregroundStyle(Gradient(colors: [AppColors.lightGreen, Color.white]))
                 .shadow(radius: 10)
                 .shadow(color: .white, radius: 40)
                 .padding(.horizontal, 20)
