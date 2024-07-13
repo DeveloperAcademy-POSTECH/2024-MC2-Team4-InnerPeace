@@ -11,6 +11,7 @@ class UserdefaultsManager {
     
     private static let hospitalInfoKey = "hospitalInfo"
     private static let medicineInfoKey = "medicineInfoKey"
+    private static let breathingPracticeTimeKey = "breathingPracticeTimeKey"
     
     static var hospitalInfo: String {
         get {
@@ -29,6 +30,16 @@ class UserdefaultsManager {
         
         set {
             UserDefaults.standard.set(newValue, forKey: medicineInfoKey)
+        }
+    }
+    
+    static var breathingPracticeInfo: Int {
+        get {
+            UserDefaults.standard.integer(forKey: breathingPracticeTimeKey)
+        }
+        
+        set {
+            UserDefaults.standard.set(newValue, forKey: breathingPracticeTimeKey)
         }
     }
     
