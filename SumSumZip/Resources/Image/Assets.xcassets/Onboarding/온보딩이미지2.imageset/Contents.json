@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "온보딩이미지2.png",
+      "filename" : "온보딩이미지2 3.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "온보딩이미지2 1.png",
+      "filename" : "온보딩이미지2 4.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "온보딩이미지2 2.png",
+      "filename" : "온보딩이미지2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

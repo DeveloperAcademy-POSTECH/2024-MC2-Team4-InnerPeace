@@ -130,10 +130,10 @@ struct SOSMessageView: View {
     
                     Spacer().frame(height: 30)
                     
-                    Button(action: {isShownPatientInfo_Contact = true},
+//                    Button(action: {isShownPatientInfo_Contact = true},
                     
                     // 환자 정보 확인 버튼
-                    Button(action: {},
+                    Button(action: {isShownPatientInfo_Contact = true},
                            label: {RoundedRectangle(cornerRadius: 17)
                             .frame(width: 350, height: 60)
                             .foregroundStyle(isAfter20Min ? AppColors.red03.opacity(0.25) :AppColors.cyan03.opacity(0.25))
@@ -164,13 +164,9 @@ struct SOSMessageView: View {
                     }))
                 }
 
-            }
+            }//상황종료
             .fullScreenCover(isPresented: $isShownPatientInfo_Contact, content: {
                 PatientInfo_ContactView(hospitalInfo: $hospitalInfo, medicineInfo: $medicineInfo, isShownPatientInfo_Contact: $isShownPatientInfo_Contact)
-
-            } //상황종료
-            .fullScreenCover(isPresented: $isShownPatientInfo, content: {
-                PatientInfoView(hospitalInfo: $hospitalInfo, medicineInfo: $medicineInfo, isShownPatientInfo: $isShownPatientInfo)
 
             }) // 환자정보 창 띄우기
         }
