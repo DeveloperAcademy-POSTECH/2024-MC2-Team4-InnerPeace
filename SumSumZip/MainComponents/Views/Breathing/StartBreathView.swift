@@ -42,6 +42,7 @@ struct StartBreathView: View {
             
             // 거북이 움짤
             turtleGIF()
+                .foregroundStyle(.clear)
                 .padding(.bottom, 144)
             
             // 진동 버튼
@@ -121,7 +122,7 @@ struct StartBreathView: View {
     
     @ViewBuilder
     func turtleGIF() -> some View {
-        Rectangle()
+        GifImageViewer("BreathingSumSum")
             .frame(width: 189, height: 221)
     }
     
@@ -144,11 +145,11 @@ struct StartBreathView: View {
     func vibrateButton() -> some View {
         Button(action: {
             isVibrateOff.toggle()
-//            if isVibrateOff {
-//                breathTimerManager.muteHaptic()
-//            } else {
-//                breathTimerManager.startHaptic()
-//            }
+            if isVibrateOff {
+                breathTimerManager.disableHaptic()
+            } else {
+                breathTimerManager.enableHaptic()
+            }
         }, label: {
             VStack {
                 vibrateIcon()
