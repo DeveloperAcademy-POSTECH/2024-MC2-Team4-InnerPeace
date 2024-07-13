@@ -41,7 +41,7 @@ struct SummaryView: View {
     
     // 긴급 연락처 가져오기
 //    @State private var pickedNumber = ContactSettingView.pickedNumber
-    @State private var numOfRelation = ContactsManager.shared.fetchContacts().last ?? "0"
+//    @State private var numOfRelation = ContactsManager.shared.fetchContacts().last ?? "0"
     
     // 환자정보 가져오기(완료)
     @State private var hospitalInfo: String = UserdefaultsManager.hospitalInfo
@@ -135,7 +135,7 @@ struct SummaryView: View {
                     
                     // #2: 2번버튼(긴급 연락처)
                     NavigationLink {
-                        ContactSettingView(numOfRelation: $numOfRelation)
+//                        ContactSettingView(numOfRelation: $numOfRelation)
                         // Action 들어갈 공간(Full Screen ...)
                     } label: {
                         VStack(alignment: .leading) {
@@ -154,12 +154,12 @@ struct SummaryView: View {
                             }
                             Spacer()
                             HStack {
-                                Text(numOfRelation)
+//                                Text(numOfRelation)
 //                                Text("\(numOfRelation)")
-                                    .font(.system(size: 30))
-                                    .fontWeight(.heavy)
-                                    .fontDesign(.rounded)
-                                    .foregroundStyle(Color(AppColors.darkGreen))
+//                                    .font(.system(size: 30))
+//                                    .fontWeight(.heavy)
+//                                    .fontDesign(.rounded)
+//                                    .foregroundStyle(Color(AppColors.darkGreen))
                                 Text("개의 연락처가 지정되어있습니다.")
                                     .font(.system(size:13))
                                     .foregroundStyle(Color(AppColors.systemDarkGray))
