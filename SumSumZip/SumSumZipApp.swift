@@ -30,20 +30,21 @@ struct SumSumZipApp: App {
 
     var body: some Scene {
         WindowGroup {
-            OnboardingView(isPresented: $isPresented)
-                .onOpenURL { url in
-                    
-                    print("Received URL: \(url.absoluteString)")
-                    print("Path components: \(url.pathComponents)")
-                    
-                    if url.host(percentEncoded: true) == "target" {
-                        
-                        NotificationCenter.default.post(name: NSNotification.Name("NavigateToTargetView"), object: nil)
-                        print("앱 첫 화면에서 위젯 눌렸는지 분기 확인")
-                    } else {
-                        print("URL에 target이 포함되어 있지 않음")
-                    }
-                }
+            PracticeBreathingIntro()
+//            OnboardingView(isPresented: $isPresented)
+//                .onOpenURL { url in
+//                    
+//                    print("Received URL: \(url.absoluteString)")
+//                    print("Path components: \(url.pathComponents)")
+//                    
+//                    if url.host(percentEncoded: true) == "target" {
+//                        
+//                        NotificationCenter.default.post(name: NSNotification.Name("NavigateToTargetView"), object: nil)
+//                        print("앱 첫 화면에서 위젯 눌렸는지 분기 확인")
+//                    } else {
+//                        print("URL에 target이 포함되어 있지 않음")
+//                    }
+//                }
         }
         .modelContainer(sharedModelContainer)
     }
