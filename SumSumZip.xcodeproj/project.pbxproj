@@ -34,6 +34,7 @@
 		8B1F64462BFD934300049B0B /* ContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1F64452BFD934300049B0B /* ContactView.swift */; };
 		8B680ABB2BFF177C0099E7D9 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B680ABA2BFF177C0099E7D9 /* PreviewView.swift */; };
 		8B680ABD2C0043340099E7D9 /* electronic-alarm-clock-151927.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8B680ABC2C0043330099E7D9 /* electronic-alarm-clock-151927.mp3 */; };
+		8B8E72952C42A8ED00B84CFA /* PatientInfo_ContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8E72942C42A8ED00B84CFA /* PatientInfo_ContactView.swift */; };
 		8C3CE2D82BFB11E2002D26C2 /* LiveActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD4FF1B2BF6E355009A8BC9 /* LiveActivityManager.swift */; };
 		8C7622202BFC6D4500B6BFFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CCFD0DA2BF32CD60059EF94 /* Assets.xcassets */; };
 		8C76222E2BFC808300B6BFFF /* CustomNavigationModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C76222D2BFC808300B6BFFF /* CustomNavigationModifier.swift */; };
@@ -150,6 +151,7 @@
 		8B1F64452BFD934300049B0B /* ContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactView.swift; sourceTree = "<group>"; };
 		8B680ABA2BFF177C0099E7D9 /* PreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		8B680ABC2C0043330099E7D9 /* electronic-alarm-clock-151927.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "electronic-alarm-clock-151927.mp3"; sourceTree = "<group>"; };
+		8B8E72942C42A8ED00B84CFA /* PatientInfo_ContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientInfo_ContactView.swift; sourceTree = "<group>"; };
 		8C76222D2BFC808300B6BFFF /* CustomNavigationModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationModifier.swift; sourceTree = "<group>"; };
 		8C76222F2BFC80A100B6BFFF /* CustomTextEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextEditorView.swift; sourceTree = "<group>"; };
 		8C7622312BFC80BF00B6BFFF /* PatientInfoSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientInfoSettingView.swift; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 				8B1F63D02BFAD41C00049B0B /* BreathingView.swift */,
 				8B1F63D22BFADCDF00049B0B /* SOSView.swift */,
 				8B160D6A2C423E32000F881A /* SOSMessageView.swift */,
+				8B8E72942C42A8ED00B84CFA /* PatientInfo_ContactView.swift */,
 				20CE35B02BFAFE2200AF7C09 /* SOSTimeSetting.swift */,
 				20CE35AE2BFAFCE300AF7C09 /* BreathTimeSetting.swift */,
 				8C7622312BFC80BF00B6BFFF /* PatientInfoSettingView.swift */,
@@ -755,6 +758,7 @@
 				0020A3C42BFD78F900607BAF /* OnboardingView.swift in Sources */,
 				8B680ABB2BFF177C0099E7D9 /* PreviewView.swift in Sources */,
 				0020A3CD2BFD82F400607BAF /* SOSPhysics_TestView.swift in Sources */,
+				8B8E72952C42A8ED00B84CFA /* PatientInfo_ContactView.swift in Sources */,
 				00467FE42C425EA200DA7BB6 /* CustomToggleSet.swift in Sources */,
 				00467FE02C4227A700DA7BB6 /* PatientContactEditorView.swift in Sources */,
 				512A01FA2BFB1D8A00EE8B39 /* ContactSettingView.swift in Sources */,

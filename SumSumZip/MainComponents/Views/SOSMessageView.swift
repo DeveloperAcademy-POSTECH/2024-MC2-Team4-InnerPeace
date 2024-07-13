@@ -14,10 +14,11 @@ struct SOSMessageView: View {
     //    @State var isPresentedSOSMessageView: Bool = true
     @Binding var isPresentedSOSMessageView: Bool
     
-    //환자 정보
+    //환자 정보 & 연락처
     @State var medicineInfo = UserdefaultsManager.medicineInfo
     @State var hospitalInfo = UserdefaultsManager.hospitalInfo
-    @State private var isShownPatientInfo: Bool = false
+    @State private var isShownPatientInfo_Contact: Bool = false
+//    @State private var isShownContact: Bool = false
     
     //햅틱, 사운드 등등 관리자
     @StateObject private var alertManager = AlertManager.shared
@@ -115,7 +116,7 @@ struct SOSMessageView: View {
                     
                     Spacer().frame(height: 30)
                     
-                    Button(action: {},
+                    Button(action: {isShownPatientInfo_Contact = true},
                            label: {RoundedRectangle(cornerRadius: 17)
                             .frame(width: 350, height: 60)
                             .foregroundStyle(AppColors.cyan03.opacity(0.25))
@@ -146,8 +147,8 @@ struct SOSMessageView: View {
                     }))
                 }
             }
-            .fullScreenCover(isPresented: $isShownPatientInfo, content: {
-                PatientInfoView(hospitalInfo: $hospitalInfo, medicineInfo: $medicineInfo, isShownPatientInfo: $isShownPatientInfo)
+            .fullScreenCover(isPresented: $isShownPatientInfo_Contact, content: {
+                PatientInfo_ContactView(hospitalInfo: $hospitalInfo, medicineInfo: $medicineInfo, isShownPatientInfo_Contact: $isShownPatientInfo_Contact)
             }) // 환자정보 창 띄우기
         }
         .onAppear{
@@ -158,11 +159,7 @@ struct SOSMessageView: View {
             timeRemaining =  String(format: "%02d:00", SOSTime)
             UIApplication.shared.isIdleTimerDisabled = true
         }
-        //        .onChange(of: isPresentedSOSMessageView) {
-        //            if isPresentedSOSMessageView {
-        //                startTimer()
-        //            }
-        //        }
+        .blur(radius: isShownPatientInfo_Contact ? 5.0 : 0)
     }
 }
 
