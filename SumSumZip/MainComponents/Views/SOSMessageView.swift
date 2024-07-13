@@ -15,10 +15,11 @@ struct SOSMessageView: View {
     //    @State var isPresentedSOSMessageView: Bool = true
     @Binding var isPresentedSOSMessageView: Bool
     
-    //환자 정보
+    //환자 정보 & 연락처
     @State var medicineInfo = UserdefaultsManager.medicineInfo
     @State var hospitalInfo = UserdefaultsManager.hospitalInfo
-    @State private var isShownPatientInfo: Bool = false
+    @State private var isShownPatientInfo_Contact: Bool = false
+//    @State private var isShownContact: Bool = false
     
     //햅틱, 사운드 등등 관리자
     @StateObject private var alertManager = AlertManager.shared
@@ -129,6 +130,7 @@ struct SOSMessageView: View {
     
                     Spacer().frame(height: 30)
                     
+                    Button(action: {isShownPatientInfo_Contact = true},
                     
                     // 환자 정보 확인 버튼
                     Button(action: {},
@@ -161,9 +163,15 @@ struct SOSMessageView: View {
                         EmergencyLiveActivityManager.shared.endAllActivities()
                     }))
                 }
+
+            }
+            .fullScreenCover(isPresented: $isShownPatientInfo_Contact, content: {
+                PatientInfo_ContactView(hospitalInfo: $hospitalInfo, medicineInfo: $medicineInfo, isShownPatientInfo_Contact: $isShownPatientInfo_Contact)
+
             } //상황종료
             .fullScreenCover(isPresented: $isShownPatientInfo, content: {
                 PatientInfoView(hospitalInfo: $hospitalInfo, medicineInfo: $medicineInfo, isShownPatientInfo: $isShownPatientInfo)
+
             }) // 환자정보 창 띄우기
         }
         .onAppear{
@@ -171,11 +179,15 @@ struct SOSMessageView: View {
             SOSMessage = message != "" ? message : ""
             UIApplication.shared.isIdleTimerDisabled = true
         }
+
+        .blur(radius: isShownPatientInfo_Contact ? 5.0 : 0)
+
         .onAppear {
             // 물리동작 시작
             alertManager.startAll()
             startTimer()
         }
+
     }
 }
 
