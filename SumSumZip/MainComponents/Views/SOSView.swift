@@ -165,10 +165,10 @@ struct SOSView: View {
             } // 환자정보, 긴급연락
             .fullScreenCover(isPresented: $isShownContact, content: {
                 ContactView(isShownContact: $isShownContact)
-            })
+            }) // 긴급연락 창 띄우기
             .fullScreenCover(isPresented: $isShownPatientInfo, content: {
                 PatientInfoView(hospitalInfo: $hospitalInfo, medicineInfo: $medicineInfo, isShownPatientInfo: $isShownPatientInfo)
-            })
+            }) // 환자정보 창 띄우기
             .onAppear {
                 // 물리동작 시작
                 alertManager.startAll()
