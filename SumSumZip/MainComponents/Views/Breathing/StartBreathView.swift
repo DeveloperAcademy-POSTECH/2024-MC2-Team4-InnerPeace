@@ -144,11 +144,11 @@ struct StartBreathView: View {
     func vibrateButton() -> some View {
         Button(action: {
             isVibrateOff.toggle()
-            if isVibrateOff {
-                breathTimerManager.muteHaptic()
-            } else {
-                breathTimerManager.startHaptic()
-            }
+//            if isVibrateOff {
+//                breathTimerManager.muteHaptic()
+//            } else {
+//                breathTimerManager.startHaptic()
+//            }
         }, label: {
             VStack {
                 vibrateIcon()
