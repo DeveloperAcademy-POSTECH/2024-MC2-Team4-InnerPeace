@@ -23,7 +23,7 @@ struct PreviewView: View {
     var body: some View {
         NavigationView{
             ZStack{
-                LinearGradient(gradient: Gradient(colors: [Color.black, AppColors.lightSage, AppColors.lightGreen]),
+                LinearGradient(gradient: Gradient(colors: [Color.black, AppColors.lightGreen, AppColors.lightGreen]),
                                startPoint: .top, endPoint: .bottom)
                 .edgesIgnoringSafeArea(.all)
                 VStack{
