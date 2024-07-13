@@ -9,53 +9,59 @@ import SwiftUI
 
 struct PracticeBreathingIntro: View {
     
-    @State var breathTime: Int = UserdefaultsManager.breathingPracticeInfo
+    @State var breathTime: Int = 0
     
     @State private var isShowingFirstView: Bool = true
     
     var body: some View {
-        VStack {
+        
+        ZStack {
+            Image("BG_SettingView")
             
-            if isShowingFirstView {
-                // 제목
-                HStack {
-                    Text("호흡 연습하기")
-                        .fontWeight(.bold)
-                        .font(.system(size: 32))
-                        .padding(.leading, 17)
-                        .foregroundStyle(AppColors.green01)
+            VStack {
+                
+                if isShowingFirstView {
+                    // 제목
+                    HStack {
+                        Text("호흡 연습하기")
+                            .fontWeight(.bold)
+                            .font(.system(size: 32))
+                            .padding(.leading, 17)
+                            .foregroundStyle(AppColors.green01)
+                        
+                        Spacer()
+                            .frame(height: 55)
+                    }
                     
-                    Spacer()
-                        .frame(height: 55)
+                    HStack {
+                        // 부제
+                        Text("편안한 자세로 매일 조금씩 연습해보세요")
+                            .font(.system(size: 17))
+                            .padding(.leading, 17)
+                            .foregroundStyle(AppColors.green01)
+                        
+                        Spacer()
+                    }
+                    
+                    // 거북이 움짤
+                    Rectangle()
+                        .frame(width: 189, height: 221)
+                        .padding(.bottom, 86)
+                        .padding(.top, 64)
+                    
+                    // 정보
+                    TimerSelectionGroup(breathTime: $breathTime)
+                        .padding(.bottom, 72)
+                    
+                    // 시작하기 버튼
+                    StartBreathButton(isShowingFirstView: $isShowingFirstView)
+                } else {
+                    StartBreathView(isShowingFirstView: $isShowingFirstView, breathTime: $breathTime)
                 }
                 
-                HStack {
-                    // 부제
-                    Text("편안한 자세로 매일 조금씩 연습해보세요")
-                        .font(.system(size: 17))
-                        .padding(.leading, 17)
-                        .foregroundStyle(AppColors.green01)
-                    
-                    Spacer()
-                }
-                
-                // 거북이 움짤
-                Rectangle()
-                    .frame(width: 189, height: 221)
-                    .padding(.bottom, 86)
-                    .padding(.top, 64)
-                
-                // 정보
-                TimerSelectionGroup(breathTime: $breathTime)
-                    .padding(.bottom, 72)
-                
-                // 시작하기 버튼
-                StartBreathButton(isShowingFirstView: $isShowingFirstView)
-            } else {
-                StartBreathView(isShowingFirstView: $isShowingFirstView)
             }
-            
         }
+
     }
 }
 
