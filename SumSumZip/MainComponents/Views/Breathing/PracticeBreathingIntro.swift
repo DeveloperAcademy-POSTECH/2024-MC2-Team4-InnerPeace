@@ -11,51 +11,64 @@ struct PracticeBreathingIntro: View {
     
     @State var breathTime: Int = UserdefaultsManager.breathingPracticeInfo
     
+    @State private var isShowingFirstView: Bool = true
+    
     var body: some View {
         VStack {
-            // 제목
-            HStack {
-                Text("호흡 연습하기")
-                    .fontWeight(.bold)
-                    .font(.system(size: 32))
-                    .padding(.leading, 17)
-                    .foregroundStyle(AppColors.green01)
+            
+            if isShowingFirstView {
+                // 제목
+                HStack {
+                    Text("호흡 연습하기")
+                        .fontWeight(.bold)
+                        .font(.system(size: 32))
+                        .padding(.leading, 17)
+                        .foregroundStyle(AppColors.green01)
+                    
+                    Spacer()
+                        .frame(height: 55)
+                }
                 
-                Spacer()
-                    .frame(height: 55)
-            }
-            
-            HStack {
-                // 부제
-                Text("편안한 자세로 매일 조금씩 연습해보세요")
-                    .font(.system(size: 17))
-                    .padding(.leading, 17)
-                    .foregroundStyle(AppColors.green01)
+                HStack {
+                    // 부제
+                    Text("편안한 자세로 매일 조금씩 연습해보세요")
+                        .font(.system(size: 17))
+                        .padding(.leading, 17)
+                        .foregroundStyle(AppColors.green01)
+                    
+                    Spacer()
+                }
                 
-                Spacer()
+                // 거북이 움짤
+                Rectangle()
+                    .frame(width: 189, height: 221)
+                    .padding(.bottom, 86)
+                    .padding(.top, 64)
+                
+                // 정보
+                TimerSelectionGroup(breathTime: $breathTime)
+                    .padding(.bottom, 72)
+                
+                // 시작하기 버튼
+                StartBreathButton(isShowingFirstView: $isShowingFirstView)
+            } else {
+                StartBreathView(isShowingFirstView: $isShowingFirstView)
             }
-            
-            // 거북이 움짤
-            Rectangle()
-                .frame(width: 189, height: 221)
-                .padding(.bottom, 86)
-                .padding(.top, 64)
-            
-            // 정보
-            TimerSelectionGroup(breathTime: $breathTime)
-                .padding(.bottom, 72)
-            
-            // 시작하기 버튼
-            StartBreathButton()
             
         }
     }
 }
 
 struct StartBreathButton: View {
+    @Binding var isShowingFirstView: Bool
+    
     var body: some View {
         Button(action: {
             // 버튼 액션 처리
+            withAnimation(.easeInOut(duration: 0.5)) {
+                isShowingFirstView.toggle()
+            }
+            
         }) {
             Text("시작하기")
                 .font(.system(size: 22, weight: .bold))

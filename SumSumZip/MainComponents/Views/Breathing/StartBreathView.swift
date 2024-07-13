@@ -11,6 +11,8 @@ struct StartBreathView: View {
     
     @State private var isVibrateOff: Bool = false
     
+    @Binding var isShowingFirstView: Bool
+    
     var body: some View {
         
         VStack {
@@ -45,7 +47,7 @@ struct StartBreathView: View {
     @ViewBuilder
     func stopButton() -> some View {
         Button(action: {
-            
+            isShowingFirstView.toggle()
         }, label: {
             Text("종료하기")
                 .fontWeight(.light)
@@ -103,8 +105,4 @@ struct StartBreathView: View {
             }
         })
     }
-}
-
-#Preview {
-    StartBreathView()
 }
