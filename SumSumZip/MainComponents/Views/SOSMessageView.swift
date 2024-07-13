@@ -27,7 +27,7 @@ struct SOSMessageView: View {
     @State var SOSMessage: String
     
     //SOSMessageView를 띄울 시간 (30분 고정)
-    @State var SOSTime: Int = 3 //test 3분
+    @State var SOSTime: Int = 30 //test 3분
     
     @State private var timer: Timer? = nil
     @State private var count: Int = 1
@@ -61,7 +61,7 @@ struct SOSMessageView: View {
             timer?.invalidate() // Timer 무효화
         }
         
-        if elapsedTime >= (1 * 60) {
+        if elapsedTime >= (20 * 60) {
             isAfter20Min = true
         }
         
