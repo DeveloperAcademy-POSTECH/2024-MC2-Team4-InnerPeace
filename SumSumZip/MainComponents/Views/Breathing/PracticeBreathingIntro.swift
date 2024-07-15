@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PracticeBreathingIntro: View {
     
-    @State var breathTime: Int = 0
+    @State var breathTime: Int = 1
     
     @State private var isShowingFirstView: Bool = true
     

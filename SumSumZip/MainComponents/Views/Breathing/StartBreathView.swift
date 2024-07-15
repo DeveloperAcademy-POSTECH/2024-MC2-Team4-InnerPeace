@@ -61,7 +61,7 @@ struct StartBreathView: View {
                         dismissButton: .default(Text("종료")) {
                             isShowingFirstView.toggle()
                             stopTimer()
-                            breathTimerManager.stopHaptic()
+                            breathTimerManager.stopTimer()
                         }
                     )
                 }
@@ -84,6 +84,7 @@ struct StartBreathView: View {
     
     func stopTimer() {
         timer?.invalidate()
+        breathTimerManager.stopTimer()
         timer = nil
     }
     
