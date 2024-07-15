@@ -29,7 +29,7 @@ class BreathTimeManager: ObservableObject {
         resetTimer() // 타이머 재설정
     }
     
-    func stopHaptic() {
+    func stopTimer() {
         hapticTimer?.invalidate()
         hapticTimer = nil
         isHapticActive = false
@@ -37,7 +37,7 @@ class BreathTimeManager: ObservableObject {
     
     func disableHaptic() {
         isHapticEnabled = false
-//        hapticControl.stopHaptic()
+        hapticControl.stopHaptic()
     }
     
     func enableHaptic() {
@@ -50,23 +50,20 @@ class BreathTimeManager: ObservableObject {
     }
     
     @objc private func toggleHapticState() {
-        print(#function)
-        
-        if isHapticEnabled {
-            if isHapticActive {
-                hapticControl.playHaptic(hapURL: "HapticWave_1")
-                hapticStateDuration = 11.0 // 진동 후 정적 시간
-            } else {
-                hapticControl.stopHaptic() // 진동을 멈춥니다.
-                hapticStateDuration = 6.0 // 정적 후 진동 시간
-            }
+        // 진동 상태를 토글하기 전에 진동을 멈추는 로직을 처리
+        if !isHapticActive {
+            hapticControl.stopHaptic()
+            hapticStateDuration = 6.0 // 정적 후 진동 시간
+        } else if isHapticEnabled {
+            hapticControl.playHaptic(hapURL: "HapticWave_1")
+            hapticStateDuration = 11.0 // 진동 후 정적 시간
         }
-        
+
         isHapticActive.toggle()
         
-        // 타이머를 업데이트합니다.
         resetTimer()
     }
+
 }
 
 class AlertManager: ObservableObject {
