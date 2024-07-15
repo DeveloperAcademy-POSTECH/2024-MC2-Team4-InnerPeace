@@ -18,6 +18,7 @@ class BreathTimeManager: ObservableObject {
     static let shared = BreathTimeManager()
     
     private init() {
+        print("BreathTimeManager initialize")
         hapticControl.prepareHaptics()
     }
     
