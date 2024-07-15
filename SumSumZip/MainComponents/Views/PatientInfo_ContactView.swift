@@ -73,17 +73,31 @@ struct PatientInfo_ContactView: View {
             })
             .padding(.bottom, 30)
         }
+        // onAppear 내부 수정
         .onAppear {
             let contacts = ContactsManager.shared.fetchContacts()
             
-            pickedNumber = contacts[0]
-            pickedNumber2 = contacts[1]
-            pickedNumber3 = contacts[2]
-            relation = contacts[3]
-            relation2 = contacts[4]
-            relation3 = contacts[5]
-            
+            // 연락처 배열의 요소들을 안전하게 할당
+            if contacts.indices.contains(0) {
+                pickedNumber = contacts[0]
+            }
+            if contacts.indices.contains(1) {
+                pickedNumber2 = contacts[1]
+            }
+            if contacts.indices.contains(2) {
+                pickedNumber3 = contacts[2]
+            }
+            if contacts.indices.contains(3) {
+                relation = contacts[3]
+            }
+            if contacts.indices.contains(4) {
+                relation2 = contacts[4]
+            }
+            if contacts.indices.contains(5) {
+                relation3 = contacts[5]
+            }
         }
+
         .background(Color.black.opacity(0.82))
         .background(ClearBackground())
     }
