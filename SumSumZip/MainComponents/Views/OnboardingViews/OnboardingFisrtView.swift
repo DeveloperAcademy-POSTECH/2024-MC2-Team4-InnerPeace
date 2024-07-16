@@ -20,17 +20,17 @@ struct OnboardingFirstView: View {
             Text(title)
                 .font(.system(size: 32))
                 .fontWeight(.bold)
-                .foregroundColor(.white)
+                .foregroundStyle(Color(AppColors.green01))
 
             Text(subtitle)
                 .font(.system(size: 17))
                 .fontWeight(.regular)
-                .foregroundColor(.white)
+                .foregroundStyle(Color(AppColors.gray02))
 
             Text(subtitle2)
                 .font(.system(size: 17))
                 .fontWeight(.regular)
-                .foregroundColor(.white)
+                .foregroundStyle(Color(AppColors.gray02))
 
             Spacer()
 
@@ -57,7 +57,7 @@ struct OnboardingFirstView: View {
                         .cornerRadius(17)
                 }
             }
-          //  .padding(.bottom, 56)
+            .padding(.bottom, 40)
          //   .padding(.horizontal, 16)
         }
        

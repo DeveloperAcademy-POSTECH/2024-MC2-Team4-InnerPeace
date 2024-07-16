@@ -46,9 +46,9 @@ struct OnboardingTabView: View {
                             isFirstLaunching: $isFirstLaunching
                         )
                         .tag(OnboardingPage.first)
+                        .kerning(-0.3)
                         .multilineTextAlignment(.leading)
-                        .padding(.leading, 16)
-
+                       
                         OnboardingPageView(
                             imageName: "Img_Onboarding1",
                             title: "SOS창 설정하기",
@@ -57,6 +57,7 @@ struct OnboardingTabView: View {
                             isFirstLaunching: $isFirstLaunching
                         )
                         .tag(OnboardingPage.sosSetup)
+                        .kerning(-0.3)
                         .multilineTextAlignment(.center)
 
                         OnboardingPageView(
@@ -67,6 +68,7 @@ struct OnboardingTabView: View {
                             isFirstLaunching: $isFirstLaunching
                         )
                         .tag(OnboardingPage.emergencyMessage)
+                        .kerning(-0.3)
                         .multilineTextAlignment(.center)
 
                         OnboardingPageView(
@@ -81,7 +83,7 @@ struct OnboardingTabView: View {
                     }
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 }
-                .padding(.bottom, 80)
+                .padding(.top, 80)
             }
         } else {
             SumSumTabView()

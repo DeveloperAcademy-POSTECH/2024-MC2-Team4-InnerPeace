@@ -27,8 +27,8 @@ struct OnboardingPageView: View {
                     .font(.system(size: 17))
                     .fontWeight(.regular)
                     .foregroundStyle(Color(AppColors.gray02))
-            }
-            .frame(height: 131)
+            
+//            .frame(maxHeight: 0)
 
             Spacer()
 
@@ -37,7 +37,7 @@ struct OnboardingPageView: View {
                 .scaledToFit()
                 .frame(width: 292)
 
-            Spacer()
+            }
 
             HStack {
                 if currentPage.rawValue > 0 {
@@ -81,13 +81,17 @@ struct OnboardingPageView: View {
                             .background(Color(AppColors.green01))
                             .cornerRadius(17)
                     }
+                    .frame(height: 56)
+                                            .background(
+                                                LinearGradient(gradient: Gradient(colors: [Color.color, Color.color2]), startPoint: .bottom, endPoint: .top))
+                                        } // else끝
+                                    } // VStack전체 버튼들 들어있음
+                                    .padding(.bottom, 40)
+                                    .padding(.horizontal, 16)
                 }
             }
         }
        
-    }
-}
-
 #Preview {
     @State var currentPage: OnboardingPage = .first
     @State var isFirstLaunching: Bool = true
