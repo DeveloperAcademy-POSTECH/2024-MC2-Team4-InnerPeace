@@ -22,6 +22,7 @@ struct SOSButtonView: View {
     var body: some View {
         ZStack{
             Image("SOSButtonView")
+                .resizable()
                 .edgesIgnoringSafeArea(.all)
             VStack(){
                 
