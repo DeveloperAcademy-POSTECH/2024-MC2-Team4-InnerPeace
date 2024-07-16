@@ -12,25 +12,33 @@ struct OnboardingFirstView: View {
     let title: String
     let subtitle: String
     let subtitle2: String
+    let subtitle3: String
+    
     @Binding var currentPage: OnboardingPage
     @Binding var isFirstLaunching: Bool
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
+        VStack(alignment: .leading, spacing: 10) {
             Text(title)
                 .font(.system(size: 32))
                 .fontWeight(.bold)
-                .foregroundStyle(Color(AppColors.green01))
-
+                .foregroundStyle(Color.black)
+            
             Text(subtitle)
-                .font(.system(size: 17))
-                .fontWeight(.regular)
-                .foregroundStyle(Color(AppColors.gray02))
-
+                .font(.system(size: 27))
+                .fontWeight(.bold)
+                .foregroundStyle(Color(AppColors.green01))
+            
             Text(subtitle2)
                 .font(.system(size: 17))
                 .fontWeight(.regular)
                 .foregroundStyle(Color(AppColors.gray02))
+
+            Text(subtitle3)
+                .font(.system(size: 17))
+                .fontWeight(.bold)
+                .foregroundStyle(Color(AppColors.gray02))
+                .padding(.top, -10)
 
             Spacer()
 
@@ -72,7 +80,8 @@ struct OnboardingFirstView: View {
         imageName: "",
         title: "반가워요!",
         subtitle: "맘편한 하루를 위한 한걸음.",
-        subtitle2: "공황 환우들의 용기있는 한걸음을 응원합니다.\n위기 상황에 대비 할 수 있도록\nSOS 화면을 설정 하는 법을 알려드릴게요!",
+        subtitle2: "공황 환우들의 용기있는 한걸음을 응원합니다.\n위기 상황에 대비 할 수 있도록",
+        subtitle3: "SOS 화면을 설정 하는 법을 알려드릴게요!",
         currentPage: $currentPage,
         isFirstLaunching: $isFirstLaunching
     )
