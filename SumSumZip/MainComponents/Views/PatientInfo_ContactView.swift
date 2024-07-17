@@ -20,70 +20,68 @@ struct PatientInfo_ContactView: View {
     @State private var relation2: String = ""
     @State private var relation3: String = ""
     
+    @State private var numOfRelation = ContactsManager.shared.fetchContacts().last ?? "0"
+    
     var body: some View {
-        VStack(spacing: 20) {
+        VStack(/*spacing: 10*/) {
             Spacer()
             
             TitleView()
             
             ContentView()
             
-            Spacer()
-            
             VStack {
-                Spacer().frame(height: 130)
                 List {
                     Section {
                         MyCell(relationship: relation, number: pickedNumber)
                         MyCell(relationship: relation2, number: pickedNumber2)
                         MyCell(relationship: relation3, number: pickedNumber3)
-                    } header: {
-                        Text("보호자 연락처")
+                    }header: {
+                        Text("긴급 연락처")
                             .font(.title)
                             .fontWeight(.black)
                             .foregroundStyle(Color.white)
                     }
-                    
                     Section {
                         MyCell(relationship: "119", number: "119")
                             .foregroundStyle(Color.red)
-                    } header: {
-                        Text("긴급 통화")
-                            .font(.title)
-                            .fontWeight(.black)
-                            .foregroundStyle(Color.white)
                     }
                 }
                 .listStyle(.insetGrouped)
                 .scrollContentBackground(.hidden)
-                
-                Button(action: {isShownPatientInfo_Contact = false}, label: {
-                    Image(systemName: "x.circle.fill")
-                        .resizable()
-                        .frame(width: 70, height: 70)
-                        .foregroundStyle(Color.secondary)
-                        .background(Color.white).clipShape(Circle())
-                })
-                Spacer().frame(height: 40)
             }
-
+            
             CustomXButton(action: {
                 // 화면 전환 로직
                 isShownPatientInfo_Contact = false
             })
-            .padding(.bottom, 30)
+            .padding(.bottom, 10)
         }
+        // onAppear 내부 수정
         .onAppear {
             let contacts = ContactsManager.shared.fetchContacts()
             
-            pickedNumber = contacts[0]
-            pickedNumber2 = contacts[1]
-            pickedNumber3 = contacts[2]
-            relation = contacts[3]
-            relation2 = contacts[4]
-            relation3 = contacts[5]
-            
+            // 연락처 배열의 요소들을 안전하게 할당
+            if contacts.indices.contains(0) {
+                pickedNumber = contacts[0]
+            }
+            if contacts.indices.contains(1) {
+                pickedNumber2 = contacts[1]
+            }
+            if contacts.indices.contains(2) {
+                pickedNumber3 = contacts[2]
+            }
+            if contacts.indices.contains(3) {
+                relation = contacts[3]
+            }
+            if contacts.indices.contains(4) {
+                relation2 = contacts[4]
+            }
+            if contacts.indices.contains(5) {
+                relation3 = contacts[5]
+            }
         }
+
         .background(Color.black.opacity(0.82))
         .background(ClearBackground())
     }
@@ -101,13 +99,13 @@ struct PatientInfo_ContactView: View {
     private func ContentView() -> some View {
         VStack(alignment: .leading, spacing: 20) {
             InfoSection("자주 가는 병원", $hospitalInfo)
-                .padding(.bottom, 49)
+            //.padding(.bottom, 30)
             InfoSection("복용 중인 약", $medicineInfo)
         }
         .padding()
         .background(RoundedRectangle(cornerRadius: 12)
-                        .fill(Color.white)
-                        .shadow(radius: 5))
+            .fill(Color.white)
+            .shadow(radius: 5))
         .padding(.horizontal, 20)
     }
     
@@ -118,13 +116,22 @@ struct PatientInfo_ContactView: View {
             SettingQuestionLabel(text: infoTitle)
             
             TextEditor(text: infoContent)
-                .frame(height: 90)
+                .frame(height: 30)
                 .padding(10)
                 .background(AppColors.paleGreen.opacity(1))
                 .cornerRadius(10)
                 .scrollContentBackground(.hidden)
                 .disabled(true)
         }
+    }
+    
+    @ViewBuilder
+    private func TitleView2() -> some View {
+        Text("긴급 연락처")
+            .font(.title)
+            .fontWeight(.bold)
+            .padding(.top, 20)
+            .foregroundColor(.white)
     }
 }
 
@@ -221,4 +228,14 @@ extension String {
 
 //#Preview {
 //    PatientInfo_ContactView()
+//}
+
+//struct PatientInfo_ContactView_Preview:
+//    PreviewProvider {
+//    @State static var hospitalInfo: String = "0"
+//    @State static var medicineInfo: String = "0"
+//    @State static var isShownPatientInfo_Contact: Bool = true
+//    static var previews: some View{
+//        PatientInfo_ContactView(hospitalInfo: $hospitalInfo, medicineInfo: $medicineInfo, isShownPatientInfo_Contact: $isShownPatientInfo_Contact)
+//    }
 //}

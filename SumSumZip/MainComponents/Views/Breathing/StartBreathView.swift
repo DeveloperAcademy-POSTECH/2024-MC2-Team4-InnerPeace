@@ -49,6 +49,7 @@ struct StartBreathView: View {
             vibrateButton()
         }
         .onAppear {
+            print("start breathing timer")
             startTimer()
         }
         .onDisappear {
