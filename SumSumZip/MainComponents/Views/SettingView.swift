@@ -9,10 +9,11 @@ import SwiftUI
 
 
 struct SettingView: View{
-    @Binding var message : String // 긴급메시지 저장 전에
-    @Binding var hospitalInfo : String // 자주가는 병원
-    @Binding var medicineInfo : String
-    
+
+    // 유저 디폴트값 불러오기
+    @State var message: String = MessageManager.shared.fetchMessage()
+    @State var hospitalInfo: String = UserdefaultsManager.hospitalInfo
+    @State var medicineInfo: String = UserdefaultsManager.medicineInfo
     @State private var numOfRelation = ContactsManager.shared.fetchContacts().last ?? "0"
     
     @State var bellToggled: Bool = true // 알람소리 On/Off
@@ -115,6 +116,13 @@ struct SettingView: View{
                             .padding(.horizontal, 16)
                         // 여기 shadow는 컴포넌트 내부에 있습니다.
                     }
+                    .onChange(of: hospitalInfo, initial: true) { // hospitalInfo 내용바뀌면 Userdefaults 값 업데이트
+                        UserdefaultsManager.hospitalInfo = hospitalInfo
+                    }
+                    .onChange(of: medicineInfo, initial: true) { // medicineInfo 내용바뀌면 Userdefaults 값 업데이트
+                        UserdefaultsManager.medicineInfo = medicineInfo
+                    }
+                
                 }
                 // Scroll 영역 끝
                 
@@ -153,7 +161,7 @@ struct SettingView_Preview: PreviewProvider{
     @State static var medicineInfo = "자주가는 병원"
     
     static var previews: some View{
-        SettingView(message: $message, hospitalInfo: $hospitalInfo, medicineInfo: $medicineInfo)
+        SettingView(message: message, hospitalInfo: hospitalInfo, medicineInfo: medicineInfo)
     }
 }
 

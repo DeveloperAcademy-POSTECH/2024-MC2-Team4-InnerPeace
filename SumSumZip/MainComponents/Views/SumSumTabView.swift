@@ -8,10 +8,7 @@
 import SwiftUI
 
 struct SumSumTabView: View {
-    @State var message: String = "" // 긴급메시지 저장 전에
-    @State var hospitalInfo: String = "" // 자주가는 병원
-    @State var medicineInfo: String = ""
-    
+
     @AppStorage("_isFirstLaunching") var isFirstLaunching: Bool = true
     
     var body: some View {
@@ -26,7 +23,7 @@ struct SumSumTabView: View {
                     Image(systemName: "person.wave.2.fill")
                     Text("호흡 연습하기")
                 }
-            SettingView(message: $message, hospitalInfo: $hospitalInfo, medicineInfo: $medicineInfo)
+            SettingView()
                 .tabItem {
                     Image(systemName: "person.circle")
                     Text("사용자 설명")

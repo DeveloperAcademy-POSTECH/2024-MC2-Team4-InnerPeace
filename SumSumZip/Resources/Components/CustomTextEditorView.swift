@@ -18,12 +18,15 @@ struct CustomTextEditorView: View {
                 .cornerRadius(17)
             
             TextEditor(text: $message)
-                .padding(4)
+                .padding(8)
                 .foregroundColor(AppColors.systemGray)
                 .frame(width: .infinity, height: 126)
                 .font(.system(size:15))
                 .cornerRadius(10)
                 .scrollContentBackground(.hidden)
+        }
+        .onDisappear(){ //데이지작성
+            MessageManager.shared.saveMessage(message)
         }
     }
 }
