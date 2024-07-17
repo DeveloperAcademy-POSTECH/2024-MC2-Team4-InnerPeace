@@ -19,6 +19,9 @@ struct SettingView: View{
     @State var torchToggled: Bool = true // 알람소리 On/Off
     @State var vibrationToggled: Bool = true // 알람소리 On/Off
     
+    @State var isPresentedSOSMessageView: Bool = false
+
+    
     var body: some View{
         ZStack{
             
@@ -117,6 +120,7 @@ struct SettingView: View{
                 
                 Button(action: {
                     // 미리보기 뷰 띄우기
+                    isPresentedSOSMessageView = true
                 }, label: {
                     ZStack{
                         LinearGradient(gradient: Gradient(colors: [AppColors.blue01, AppColors.green07]), startPoint: /*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/, endPoint: /*@START_MENU_TOKEN@*/.trailing/*@END_MENU_TOKEN@*/)
@@ -137,6 +141,7 @@ struct SettingView: View{
                 Text(" ")
                     .frame(height: 16)
             }
+            .sheet(isPresented: $isPresentedSOSMessageView, content: {PreviewView(isPresentedSOSMessageView: $isPresentedSOSMessageView, SOSMessage: message)})
         }
     }
 }
