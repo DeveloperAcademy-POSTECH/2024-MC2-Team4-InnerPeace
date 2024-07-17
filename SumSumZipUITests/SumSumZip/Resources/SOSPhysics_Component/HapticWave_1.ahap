@@ -1,0 +1,27 @@
+{
+  "Version" : 1,
+  "Metadata" : {
+    "Created" : "5/20/2024, 03:46",
+    "Description" : "",
+    "Project" : "Haptic Wave"
+  },
+  "Pattern" : [
+    {
+      "Event" : {
+        "EventType" : "HapticContinuous",
+        "EventParameters" : [
+          {
+            "ParameterID" : "HapticIntensity",
+            "ParameterValue" : 1
+          },
+          {
+            "ParameterID" : "HapticSharpness",
+            "ParameterValue" : 1
+          }
+        ],
+        "Time" : 0,
+        "EventDuration" : 4
+      }
+    }
+  ]
+}

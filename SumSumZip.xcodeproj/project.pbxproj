@@ -27,7 +27,6 @@
 		51E71CEC2C428D100015B3A7 /* OnboardingTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E71CEB2C428D100015B3A7 /* OnboardingTabView.swift */; };
 		51E71CEE2C428D320015B3A7 /* OnboardingFisrtView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E71CED2C428D320015B3A7 /* OnboardingFisrtView.swift */; };
 		51E71CF02C428D600015B3A7 /* OnboardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E71CEF2C428D600015B3A7 /* OnboardingPageView.swift */; };
-		51E71CF22C4291EB0015B3A7 /* ContentView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E71CF12C4291EB0015B3A7 /* ContentView2.swift */; };
 		6D49B4EC2C00364100F9D44D /* BreathingFace_10s.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6D49B4EB2C00364100F9D44D /* BreathingFace_10s.gif */; };
 		6D8D80042BFF9EF700A739D2 /* GifImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D8D80032BFF9EF700A739D2 /* GifImageViewer.swift */; };
 		8B160D692C4224A1000F881A /* SOSButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B160D682C4224A1000F881A /* SOSButtonView.swift */; };
@@ -149,7 +148,6 @@
 		51E71CEB2C428D100015B3A7 /* OnboardingTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingTabView.swift; sourceTree = "<group>"; };
 		51E71CED2C428D320015B3A7 /* OnboardingFisrtView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFisrtView.swift; sourceTree = "<group>"; };
 		51E71CEF2C428D600015B3A7 /* OnboardingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageView.swift; sourceTree = "<group>"; };
-		51E71CF12C4291EB0015B3A7 /* ContentView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView2.swift; sourceTree = "<group>"; };
 		6D49B4EB2C00364100F9D44D /* BreathingFace_10s.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = BreathingFace_10s.gif; sourceTree = "<group>"; };
 		6D8D80032BFF9EF700A739D2 /* GifImageViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifImageViewer.swift; sourceTree = "<group>"; };
 		8B160D682C4224A1000F881A /* SOSButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SOSButtonView.swift; sourceTree = "<group>"; };
@@ -261,7 +259,6 @@
 				51E71CEB2C428D100015B3A7 /* OnboardingTabView.swift */,
 				51E71CED2C428D320015B3A7 /* OnboardingFisrtView.swift */,
 				51E71CEF2C428D600015B3A7 /* OnboardingPageView.swift */,
-				51E71CF12C4291EB0015B3A7 /* ContentView2.swift */,
 			);
 			path = OnboardingViews;
 			sourceTree = "<group>";
@@ -756,7 +753,6 @@
 				512A01F82BFAEDBB00EE8B39 /* MessageView.swift in Sources */,
 				8CCFD11D2BF337EA0059EF94 /* Color+Extension.swift in Sources */,
 				8CF6FA1C2BFF1769008C827C /* AlertManager.swift in Sources */,
-				51E71CF22C4291EB0015B3A7 /* ContentView2.swift in Sources */,
 				0020A3CC2BFD82F400607BAF /* SOSPhysical_Model.swift in Sources */,
 				8C7622382BFC847A00B6BFFF /* CustomDivider.swift in Sources */,
 				8B1F63D12BFAD41C00049B0B /* BreathingView.swift in Sources */,
@@ -986,7 +982,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"SumSumZip/Preview Content\"";
-				DEVELOPMENT_TEAM = GF3B5LP7RQ;
+				DEVELOPMENT_TEAM = TC3AW42G83;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SumSumZip/Info.plist;
@@ -1022,7 +1018,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"SumSumZip/Preview Content\"";
-				DEVELOPMENT_TEAM = GF3B5LP7RQ;
+				DEVELOPMENT_TEAM = TC3AW42G83;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SumSumZip/Info.plist;
@@ -1141,7 +1137,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = GF3B5LP7RQ;
+				DEVELOPMENT_TEAM = TC3AW42G83;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EmergencyLiveActivity/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = EmergencyLiveActivity;
@@ -1174,7 +1170,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = GF3B5LP7RQ;
+				DEVELOPMENT_TEAM = TC3AW42G83;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EmergencyLiveActivity/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = EmergencyLiveActivity;
