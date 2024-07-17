@@ -32,6 +32,12 @@ struct SumSumTabView: View {
                     Text("사용자 설명")
                 }
         }
+        .onAppear {
+            UITabBar.appearance().shadowImage = UIImage()
+            UITabBar.appearance().backgroundImage = UIImage()
+            UITabBar.appearance().isTranslucent = true
+            UITabBar.appearance().backgroundColor = .white
+        }
         .fullScreenCover(isPresented: $isFirstLaunching, content: {
             OnboardingView(isPresented: $isFirstLaunching)
         })

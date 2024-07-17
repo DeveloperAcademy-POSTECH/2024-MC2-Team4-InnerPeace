@@ -218,6 +218,9 @@ struct PatientContactEditorView: View{
                 // 컴포넌트 끗
             }
         }
+        .onDisappear(){ //데이지작성
+            ContactsManager.shared.saveContacts(pickedNumber ?? "", pickedNumber2 ?? "", pickedNumber3 ?? "", relation, relation2, relation3, numOfRelation)
+        }
     }
 }
 

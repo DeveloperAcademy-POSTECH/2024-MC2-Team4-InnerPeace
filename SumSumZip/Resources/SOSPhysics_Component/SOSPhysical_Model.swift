@@ -51,10 +51,9 @@ class TorchControl: ObservableObject {
 }
 
 class HapticControl: ObservableObject {
-    
     private var engine: CHHapticEngine? // 햅틱 엔진
     private var player: CHHapticPatternPlayer? // 현재 실행 중인 플레이어
-    
+
     func prepareHaptics() {
         guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else {
             print("Haptics are not supported on this device.")
@@ -78,7 +77,6 @@ class HapticControl: ObservableObject {
         }
     }
     
-    // #2-2. 햅틱 구동(진동 1회 - 부우웅~)
     func playHaptic(hapURL: String) {
         guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else {
             print("Haptics are not supported on this device.")
@@ -96,10 +94,20 @@ class HapticControl: ObservableObject {
             print("Haptic pattern played successfully.")
         } catch {
             print("Failed to play pattern: \(error.localizedDescription)")
+            // 에러가 발생했을 때 엔진 재시작 시도
+            do {
+                try engine?.start()
+                print("Haptic engine restarted successfully.")
+                let pattern = try CHHapticPattern(contentsOf: url)
+                player = try engine?.makePlayer(with: pattern)
+                try player?.start(atTime: CHHapticTimeImmediate)
+                print("Haptic pattern replayed successfully.")
+            } catch {
+                print("Failed to restart and play pattern: \(error.localizedDescription)")
+            }
         }
     }
-    
-    /// 햅틱 멈추기
+
     func stopHaptic() {
         guard let player = player else {
             print("No active haptic player found to stop.")
@@ -110,9 +118,20 @@ class HapticControl: ObservableObject {
             print("Haptic pattern stopped successfully.")
         } catch {
             print("Failed to stop pattern: \(error.localizedDescription)")
+            // 에러가 발생했을 때 엔진 재시작 시도
+            do {
+                try engine?.start()
+                print("Haptic engine restarted successfully.")
+                try player.stop(atTime: CHHapticTimeImmediate)
+                print("Haptic pattern stopped successfully after restart.")
+            } catch {
+                print("Failed to restart and stop pattern: \(error.localizedDescription)")
+            }
         }
     }
+
 }
+
 
 
 // # 3. Sound 컨트롤용

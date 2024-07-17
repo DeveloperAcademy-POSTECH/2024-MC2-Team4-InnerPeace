@@ -16,10 +16,10 @@ struct CustomXButton: View {
         }) {
             Image(systemName: "x.circle.fill")
                 .resizable()
-                .frame(width: 70, height: 70)
+                .frame(width: 60, height: 60)
                 .foregroundStyle(Color.secondary)
                 .background(Color.white).clipShape(Circle())
         }
-        .padding(.bottom, 30)
+        .padding(.bottom, 20)
     }
 }
