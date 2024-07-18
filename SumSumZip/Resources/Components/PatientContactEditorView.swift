@@ -30,7 +30,8 @@ struct PatientContactEditorView: View{
                 .shadow(color: Color.black.opacity(0.2), radius: 8, x: 4, y: 8)
             
             VStack(alignment: .leading){
-                // 첫 번째 연락처
+                
+                
                 HStack(spacing: 10) {
                     
                     TextField("관계", text: $relation)
@@ -43,18 +44,26 @@ struct PatientContactEditorView: View{
                         .onReceive(relation.publisher.collect()) {
                             self.relation = String($0.prefix(10))
                         }
-                    
+                    // 첫 번째 연락처
                     Button {
                         openContactPicker(coordinator: coordinator, for: \.pickedNumber)
                     } label: {
                         if pickedNumber == ""{
                             ZStack{
+                                
                                 Rectangle()
                                     .frame(width:.infinity, height:40)
                                     .foregroundColor(AppColors.gray04)
+                                    .cornerRadius(17)
                                 Image(systemName: "plus")
                                     .font(.system(size: 15))
                                     .foregroundColor(AppColors.white)
+                                Text(pickedNumber ?? "")
+                                    .foregroundStyle(AppColors.black)
+                                    .font(.system(size: 15))
+                                    .onReceive(coordinator.$pickedNumber) { phoneNumber in
+                                        self.pickedNumber = phoneNumber
+                                    }
                             }
                         } else {
                             ZStack{
@@ -62,6 +71,9 @@ struct PatientContactEditorView: View{
                                     .frame(width:.infinity, height:40)
                                     .foregroundColor(AppColors.gray04)
                                     .cornerRadius(17)
+                                Image(systemName: "plus")
+                                    .font(.system(size: 15))
+                                    .foregroundColor(AppColors.white)
                                 Text(pickedNumber ?? "")
                                     .foregroundStyle(AppColors.black)
                                     .font(.system(size: 15))
@@ -73,7 +85,7 @@ struct PatientContactEditorView: View{
                     }
                     
                     Button {
-                        pickedNumber = ""
+                        pickedNumber = nil
                         relation = ""
                     } label: {
                         ZStack{
@@ -115,9 +127,16 @@ struct PatientContactEditorView: View{
                                 Rectangle()
                                     .frame(width:.infinity, height:40)
                                     .foregroundColor(AppColors.gray04)
+                                    .cornerRadius(17)
                                 Image(systemName: "plus")
                                     .font(.system(size: 15))
                                     .foregroundColor(AppColors.white)
+                                Text(pickedNumber2 ?? "")
+                                    .foregroundStyle(AppColors.black)
+                                    .font(.system(size: 15))
+                                    .onReceive(coordinator.$pickedNumber2) { phoneNumber in
+                                        self.pickedNumber2 = phoneNumber
+                                    }
                             }
                         } else {
                             ZStack{
@@ -125,6 +144,9 @@ struct PatientContactEditorView: View{
                                     .frame(width:.infinity, height:40)
                                     .foregroundColor(AppColors.gray04)
                                     .cornerRadius(17)
+                                Image(systemName: "plus")
+                                    .font(.system(size: 15))
+                                    .foregroundColor(AppColors.white)
                                 Text(pickedNumber2 ?? "")
                                     .foregroundStyle(AppColors.black)
                                     .font(.system(size: 15))
@@ -136,7 +158,7 @@ struct PatientContactEditorView: View{
                     }
                     
                     Button {
-                        pickedNumber2 = ""
+                        pickedNumber2 = nil
                         relation2 = ""
                     } label: {
                         ZStack{
@@ -176,9 +198,16 @@ struct PatientContactEditorView: View{
                                 Rectangle()
                                     .frame(width:.infinity, height:40)
                                     .foregroundColor(AppColors.gray04)
+                                    .cornerRadius(17)
                                 Image(systemName: "plus")
                                     .font(.system(size: 15))
                                     .foregroundColor(AppColors.white)
+                                Text(pickedNumber3 ?? "")
+                                    .foregroundStyle(AppColors.black)
+                                    .font(.system(size: 15))
+                                    .onReceive(coordinator.$pickedNumber3) { phoneNumber in
+                                        self.pickedNumber3 = phoneNumber
+                                    }
                             }
                         } else {
                             ZStack{
@@ -186,6 +215,9 @@ struct PatientContactEditorView: View{
                                     .frame(width:.infinity, height:40)
                                     .foregroundColor(AppColors.gray04)
                                     .cornerRadius(17)
+                                Image(systemName: "plus")
+                                    .font(.system(size: 15))
+                                    .foregroundColor(AppColors.white)
                                 Text(pickedNumber3 ?? "")
                                     .foregroundStyle(AppColors.black)
                                     .font(.system(size: 15))
@@ -197,7 +229,7 @@ struct PatientContactEditorView: View{
                     }
                     
                     Button {
-                        pickedNumber3 = ""
+                        pickedNumber3 = nil
                         relation3 = ""
                     } label: {
                         ZStack{
@@ -216,6 +248,17 @@ struct PatientContactEditorView: View{
                 .cornerRadius(10)
                 
                 // 컴포넌트 끗
+            }
+        }
+        .onAppear {
+            let contacts = ContactsManager.shared.fetchContacts()
+            if contacts.count >= 6 {
+                pickedNumber = contacts[0]
+                pickedNumber2 = contacts[1]
+                pickedNumber3 = contacts[2]
+                relation = contacts[3]
+                relation2 = contacts[4]
+                relation3 = contacts[5]
             }
         }
         .onDisappear(){ //데이지작성
