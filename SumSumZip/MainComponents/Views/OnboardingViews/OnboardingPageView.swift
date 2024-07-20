@@ -49,7 +49,7 @@ struct OnboardingPageView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 292)
-                    .padding(.bottom, -30) // Ensures the image and indicators have the specified distance
+                    .padding(.bottom, -50) // Ensures the image and indicators have the specified distance
                 
                 Spacer()
                 
@@ -101,7 +101,7 @@ struct OnboardingPageView: View {
                 .background(
                     LinearGradient(gradient: Gradient(colors: [Color.color, Color.color2]), startPoint: .bottom, endPoint: .top)
                 )
-                .padding(.bottom, 40)
+                .padding(.bottom, 30)
                 .padding(.horizontal, 16)
             }
             .padding(.vertical, 0)

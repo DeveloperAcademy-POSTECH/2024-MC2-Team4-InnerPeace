@@ -65,7 +65,7 @@ struct OnboardingFirstView: View {
                         .cornerRadius(17)
                 }
             }
-            .padding(.bottom, 40)
+            .padding(.bottom, 30)
          //   .padding(.horizontal, 16)
         }
        
