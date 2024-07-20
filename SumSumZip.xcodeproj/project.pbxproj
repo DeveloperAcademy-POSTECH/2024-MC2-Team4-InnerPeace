@@ -309,8 +309,6 @@
 			children = (
 				8CF6FDA82BFCCA3C00B59608 /* Info.plist */,
 				8CCFD1062BF3319F0059EF94 /* MainComponents */,
-				8CCFD10D2BF332310059EF94 /* LiveActivityComponents */,
-				8CCFD1072BF331B00059EF94 /* WidgetComponents */,
 				8CCFD1092BF331F20059EF94 /* Managers */,
 				8CCFD11A2BF337C20059EF94 /* Helpers */,
 				8CCFD1082BF331C10059EF94 /* Resources */,
@@ -401,16 +399,6 @@
 			path = MainComponents;
 			sourceTree = "<group>";
 		};
-		8CCFD1072BF331B00059EF94 /* WidgetComponents */ = {
-			isa = PBXGroup;
-			children = (
-				8CCFD10C2BF332190059EF94 /* Models */,
-				8CCFD10B2BF332130059EF94 /* Views */,
-				8CCFD10A2BF331FC0059EF94 /* ViewModels */,
-			);
-			path = WidgetComponents;
-			sourceTree = "<group>";
-		};
 		8CCFD1082BF331C10059EF94 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -431,58 +419,6 @@
 				8CF6FA1B2BFF1769008C827C /* AlertManager.swift */,
 			);
 			path = Managers;
-			sourceTree = "<group>";
-		};
-		8CCFD10A2BF331FC0059EF94 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		8CCFD10B2BF332130059EF94 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		8CCFD10C2BF332190059EF94 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		8CCFD10D2BF332310059EF94 /* LiveActivityComponents */ = {
-			isa = PBXGroup;
-			children = (
-				8CCFD1122BF332620059EF94 /* Models */,
-				8CCFD1112BF332590059EF94 /* Views */,
-				8CCFD1102BF3324E0059EF94 /* ViewModels */,
-			);
-			path = LiveActivityComponents;
-			sourceTree = "<group>";
-		};
-		8CCFD1102BF3324E0059EF94 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		8CCFD1112BF332590059EF94 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		8CCFD1122BF332620059EF94 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Models;
 			sourceTree = "<group>";
 		};
 		8CCFD1142BF3350D0059EF94 /* Image */ = {
