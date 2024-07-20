@@ -155,13 +155,12 @@ struct SOSMessageView: View {
                 }
                 .foregroundStyle(isAfter20Min ? AppColors.red03 : AppColors.cyan02)
                 .alert(isPresented: $showingSOSEndAlert){
-                    Alert(title: Text("도와주셔서 감사합니다."), message: Text("당신은 영웅입니다."),
-                          dismissButton: .default(Text("상황종료"), action:{
+                    Alert(title: Text("도와주셔서 감사합니다."), message: Text("당신은 영웅입니다."), primaryButton: .destructive(Text("상황종료"), action: {
                         isPresentedSOSMessageView = false
                         print("isPresented: \(isPresentedSOSMessageView)")
                         alertManager.stopAll()
                         EmergencyLiveActivityManager.shared.endAllActivities()
-                    }))
+                    }), secondaryButton: .cancel(Text("취소")))
                 }
 
             }//상황종료
@@ -175,7 +174,6 @@ struct SOSMessageView: View {
             SOSMessage = message != "" ? message : ""
             UIApplication.shared.isIdleTimerDisabled = true
         }
-
         .blur(radius: isShownPatientInfo_Contact ? 5.0 : 0)
 
         .onAppear {

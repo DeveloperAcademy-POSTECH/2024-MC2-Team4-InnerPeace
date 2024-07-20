@@ -34,7 +34,7 @@ struct OnboardingView: View {
             if appClicked {
                 OnboardingTabView(isFirstLaunching: $isFirstLaunching)
             } else {
-                Image("BG_OnboardingView")
+                Image("BG_SplashView")
                     .resizable()
                     .ignoresSafeArea()
                 
