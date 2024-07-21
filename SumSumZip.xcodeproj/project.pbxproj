@@ -12,6 +12,7 @@
 		0020A3C92BFD7AB500607BAF /* windows-xp-startup-sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0020A3C82BFD7AB500607BAF /* windows-xp-startup-sound.mp3 */; };
 		0020A3CC2BFD82F400607BAF /* SOSPhysical_Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0020A3CA2BFD82F400607BAF /* SOSPhysical_Model.swift */; };
 		0020A3CD2BFD82F400607BAF /* SOSPhysics_TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0020A3CB2BFD82F400607BAF /* SOSPhysics_TestView.swift */; };
+		003BA29D2C4D59A4006FB663 /* ScreenSizeReadingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003BA29C2C4D59A4006FB663 /* ScreenSizeReadingModel.swift */; };
 		00467FDC2C4215E400DA7BB6 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00467FDB2C4215E400DA7BB6 /* SettingView.swift */; };
 		00467FDE2C42203B00DA7BB6 /* CustomTextEditorSimpleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00467FDD2C42203B00DA7BB6 /* CustomTextEditorSimpleView.swift */; };
 		00467FE02C4227A700DA7BB6 /* PatientContactEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00467FDF2C4227A700DA7BB6 /* PatientContactEditorView.swift */; };
@@ -133,6 +134,7 @@
 		0020A3C82BFD7AB500607BAF /* windows-xp-startup-sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "windows-xp-startup-sound.mp3"; sourceTree = "<group>"; };
 		0020A3CA2BFD82F400607BAF /* SOSPhysical_Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOSPhysical_Model.swift; sourceTree = "<group>"; };
 		0020A3CB2BFD82F400607BAF /* SOSPhysics_TestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOSPhysics_TestView.swift; sourceTree = "<group>"; };
+		003BA29C2C4D59A4006FB663 /* ScreenSizeReadingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSizeReadingModel.swift; sourceTree = "<group>"; };
 		00467FDB2C4215E400DA7BB6 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		00467FDD2C42203B00DA7BB6 /* CustomTextEditorSimpleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextEditorSimpleView.swift; sourceTree = "<group>"; };
 		00467FDF2C4227A700DA7BB6 /* PatientContactEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientContactEditorView.swift; sourceTree = "<group>"; };
@@ -352,6 +354,7 @@
 				51BE25F32BFD97E900D6F587 /* ContactsSettingModel.swift */,
 				51BE25F22BFD97E900D6F587 /* MessageSettingModel.swift */,
 				20C930032BFCBDF000F57ED2 /* TimeSettingModel.swift */,
+				003BA29C2C4D59A4006FB663 /* ScreenSizeReadingModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -702,6 +705,7 @@
 				8CF6FDB52BFDBE9300B59608 /* PatientInfoView.swift in Sources */,
 				8C7CE5032C4221A800AB5C28 /* PracticeBreathingIntro.swift in Sources */,
 				8C7622302BFC80A100B6BFFF /* CustomTextEditorView.swift in Sources */,
+				003BA29D2C4D59A4006FB663 /* ScreenSizeReadingModel.swift in Sources */,
 				8C7622322BFC80BF00B6BFFF /* PatientInfoSettingView.swift in Sources */,
 				00467FDC2C4215E400DA7BB6 /* SettingView.swift in Sources */,
 				8CF6FDB92BFDCB1D00B59608 /* UserdefaultsManager.swift in Sources */,
