@@ -84,9 +84,9 @@ struct SettingView: View{
                             VStack(alignment:.center){
                                 CustomToggleSet(text: "알람소리", isToggled: $bellToggled)
                                 
-                                CustomToggleSet(text: "플래시", isToggled: $bellToggled)
+                                CustomToggleSet(text: "플래시", isToggled: $torchToggled)
                                 
-                                CustomToggleSet(text: "진동", isToggled: $bellToggled)
+                                CustomToggleSet(text: "진동", isToggled: $vibrationToggled)
                             }
                             .padding(12)
                         }
