@@ -8,6 +8,7 @@
 import SwiftUI
 
 
+
 struct SettingView: View{
 
     // 유저 디폴트값 불러오기
@@ -21,37 +22,42 @@ struct SettingView: View{
     @State var vibrationToggled: Bool = true // 알람소리 On/Off
     
     @State var isPresentedSOSMessageView: Bool = false
-
+    
+    @ObservedObject var screenSize = ScreenSize.shared // 스크린 사이즈 측정을 위한 기능들 모음
     
     var body: some View{
         ZStack{
+            let bgImage = Image("BG_SettingView")
+            let imageSize = UIImage(named: "BG_SettingView")?.size ?? CGSize.zero
             
-            // 배경컬러 사이즈 조절: 좌우, 상하중에 확대율 더 큰쪽에 맞춰서 resizable을 진행.(빈틈없이 가득채우기)
-            GeometryReader { geometry in
-                let screenWidth = geometry.size.width
-                let screenHeight = geometry.size.height
-                let image = Image("BG_SettingView")
-                let imageSize = UIImage(named: "BG_SettingView")?.size ?? CGSize.zero
-                
-                // 스케일팩터 계산하기(좌우, 상하)
-                let widthScaleFactor = screenWidth / imageSize.width
-                let heightScaleFactor = screenHeight / imageSize.height
-                
-                // 큰 스케일에 맞춰서 resizable
-                let scaleFactor = max(widthScaleFactor, heightScaleFactor)
-                
-                image
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: imageSize.width * scaleFactor, height: imageSize.height * scaleFactor)
-                    .position(x: screenWidth / 2, y: screenHeight / 2)
+            // Geometry를 통해, 스크린 사이즈 측정
+            GeometryReader {geometry in
+                Color.clear
+                    .onAppear{
+                        screenSize.updateSize(size: geometry.size)
+                        let bgUIImage = UIImage(named: "BG_SettingView")
+                        screenSize.handleImage(bgUIImage!)
+                        screenSize.updateTabBarHeight(sizeGeometry: geometry.size)
+                    }
             }
-            .edgesIgnoringSafeArea(.all)
             
+            // scale 관련 값들 추출
+            let screenWidth = screenSize.screenWidth
+            let screenHeight = screenSize.screenHeight
+            let scaleFactor = screenSize.scaleFactor
+            let tabBarHeight = screenSize.tabBarHeight // 얘는 탭바만큼 미리보기 탭 올리는 용도
+            
+            // 큰 스케일에 맞춰서 resizable(화면이 남지않게 배경으로 꽉채운다)
+            bgImage
+                .resizable()
+                .scaledToFit()
+                .frame(width: imageSize.width * scaleFactor, height: imageSize.height * scaleFactor)
+                .ignoresSafeArea()
+            
+            // 배경화면 끝난 뒤 나머지 컴포넌트들 쌓기
             VStack{
-                // 미리보기 위에 따로 띄우는 뷰
-                Text(" ")
-//                    .frame(height: 20)
+                
+                Text(" ") // 자유롭게 넣었다 빼도 되는 (맨 윗줄) 빈 공백
                 HStack {
                     Text("사용자 설정")
                         .font(.system(size:32))
@@ -122,9 +128,7 @@ struct SettingView: View{
                     .onChange(of: medicineInfo, initial: true) { // medicineInfo 내용바뀌면 Userdefaults 값 업데이트
                         UserdefaultsManager.medicineInfo = medicineInfo
                     }
-                
-                }
-                // Scroll 영역 끝
+                }// Scroll 영역 끝
                 
                 Button(action: {
                     // 미리보기 뷰 띄우기
@@ -132,23 +136,21 @@ struct SettingView: View{
                 }, label: {
                     ZStack{
                         LinearGradient(gradient: Gradient(colors: [AppColors.blue01, AppColors.green07]), startPoint: /*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/, endPoint: /*@START_MENU_TOKEN@*/.trailing/*@END_MENU_TOKEN@*/)
-                            .frame(width: .infinity, height: 60)
+                            .frame(width: screenWidth-36, height: 60) // 더 깔쌈한 방법 없을까? -36 아쉽네...
                             .cornerRadius(68)
-                            .padding(.leading, 36)
-                            .padding(.trailing, 36)
                         
                         Text("미리 보기")
                             .font(.system(size: 24))
-                            .bold()
+                            .fontWeight(.heavy)
                             .foregroundStyle(Color(.white))
                     }
                 })
-                .padding(12)
                 
-                // 미리보기 아래의 강제 띄우는 칸
+                // 미리보기 버튼 아래공간 만들기.
                 Text(" ")
-                    .frame(height: 16)
+                    .frame(height: tabBarHeight + 16)
             }
+            .frame(height: screenHeight)
             .sheet(isPresented: $isPresentedSOSMessageView, content: {PreviewView(isPresentedSOSMessageView: $isPresentedSOSMessageView, SOSMessage: message)})
         }
     }
@@ -161,7 +163,7 @@ struct SettingView_Preview: PreviewProvider{
     @State static var medicineInfo = "자주가는 병원"
     
     static var previews: some View{
-        SettingView(message: message, hospitalInfo: hospitalInfo, medicineInfo: medicineInfo)
+        SettingView()
     }
 }
 
