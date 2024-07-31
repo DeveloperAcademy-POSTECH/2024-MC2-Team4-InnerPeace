@@ -11,6 +11,7 @@ struct StartBreathView: View {
     
     @State private var isVibrateOff: Bool = false
     @Binding var isShowingFirstView: Bool
+    @Binding var isAnimating: Bool
     @State private var showAlert: Bool = false
     
     @Binding var breathTime: Int
@@ -41,9 +42,9 @@ struct StartBreathView: View {
                 .foregroundStyle(AppColors.green02)
             
             // 거북이 움짤
-            turtleGIF()
-                .foregroundStyle(.clear)
-                .padding(.bottom, 144)
+            turtleWithCircle()
+//                .foregroundStyle(.clear)
+                .padding(.bottom, 100)
             
             // 진동 버튼
             vibrateButton()
@@ -123,9 +124,32 @@ struct StartBreathView: View {
     }
     
     @ViewBuilder
-    func turtleGIF() -> some View {
-        GifImageViewer("BreathingSumSum")
-            .frame(width: 189, height: 221)
+    func turtleWithCircle() -> some View {
+        ZStack{
+            Circle()
+                .foregroundStyle(Gradient(colors: [Color.white, Color("PointColor2")]))
+                .shadow(radius: 10)
+                .shadow(color: .white, radius: 40)
+                .padding(.horizontal, 20)
+                .scaleEffect(isAnimating ? 0.8 : 1.5)
+                .animation(.easeOut(duration: 7).delay(1).repeatForever(),
+                           value: isAnimating)
+            Circle()
+                .foregroundStyle(.clear)
+                .frame(width: 300, height: 300)
+            Image("BreathintTurtleIntro")
+                .resizable()
+                .scaledToFill()
+                .foregroundStyle(.clear)
+                .frame(width: 189, height: 221)
+                .padding(.bottom, 86)
+                .padding(.top, 64)
+        }
+        .onAppear(perform: {
+            isAnimating.toggle()
+                            })
+        
+//                            Spacer().frame(height: 20)
     }
     
     @ViewBuilder

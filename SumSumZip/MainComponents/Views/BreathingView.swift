@@ -4,7 +4,7 @@
 //
 //  Created by 원주연 on 5/20/24.
 //
-
+//
 //import SwiftUI
 //
 //struct BreathingView: View {
@@ -139,7 +139,7 @@
 //        .blur(radius: isShownContact ? 5.0 : 0)
 //    }
 //}
-//
-////#Preview {
-////    SOSView()
-////}
+
+//#Preview {
+//    SOSView()
+//}
