@@ -48,12 +48,12 @@ struct SettingView: View{
             let tabBarHeight = screenSize.tabBarHeight // 얘는 탭바만큼 미리보기 탭 올리는 용도
             
             // 큰 스케일에 맞춰서 resizable(화면이 남지않게 배경으로 꽉채운다)
-            bgImage
-                .resizable()
-                .scaledToFit()
-                .frame(width: imageSize.width * scaleFactor, height: imageSize.height * scaleFactor)
-                .ignoresSafeArea()
-            
+            GeometryReader { geometry in
+                bgImage
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+            }
             // 배경화면 끝난 뒤 나머지 컴포넌트들 쌓기
             VStack{
                 
