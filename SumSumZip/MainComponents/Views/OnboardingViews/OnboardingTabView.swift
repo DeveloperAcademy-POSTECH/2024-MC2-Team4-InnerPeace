@@ -22,26 +22,19 @@ struct OnboardingTabView: View {
     var body: some View {
         if isFirstLaunching {
             ZStack {
-                switch currentPage {
-                case .first:
-                    Image("BG_Onboarding1")
-                        .resizable()
-                        .scaledToFill()
-                        .edgesIgnoringSafeArea(.all)
-                default:
-                    Image("BG_Onboarding2")
-                        .resizable()
-                        .scaledToFill()
-                        .edgesIgnoringSafeArea(.all)
-                    
-//                    HStack {
-//                                           ForEach(OnboardingPage.allCases, id: \.self) { page in
-//                                               Circle()
-//                                                   .fill(currentPage == page ? Color(AppColors.green01) : Color(AppColors.gray02))
-//                                                   .frame(width: 10, height: 10)
-//                                           }
-//                                       }
-//                                       .padding(.top, 180)
+                GeometryReader { geometry in
+                    switch currentPage {
+                    case .first:
+                        Image("BG_Onboarding1")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: geometry.size.width, height: geometry.size.height)
+                    default:
+                        Image("BG_Onboarding2")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: geometry.size.width, height: geometry.size.height)
+                    }
                 }
 
                 VStack {
