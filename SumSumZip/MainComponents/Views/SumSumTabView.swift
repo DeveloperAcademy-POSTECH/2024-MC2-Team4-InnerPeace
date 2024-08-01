@@ -18,11 +18,13 @@ struct SumSumTabView: View {
                     Image(systemName: "staroflife.circle")
                     Text("SOS")
                 }
-            PracticeBreathingIntro()
+            
+            PracticeBreathingIntro(viewModel: PracticeBreathingIntroViewModel(useCase: PracticeBreathingIntroUseCase()))
                 .tabItem {
                     Image(systemName: "person.wave.2.fill")
                     Text("호흡 연습하기")
                 }
+            
             SettingView()
                 .tabItem {
                     Image(systemName: "person.circle")

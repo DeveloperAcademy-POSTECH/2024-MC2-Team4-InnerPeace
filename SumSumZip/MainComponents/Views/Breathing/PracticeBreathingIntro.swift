@@ -7,77 +7,117 @@
 
 import SwiftUI
 
+// MARK: - 호흡 연습하기 화면 Protocol
+
+protocol PracticeBreathingIntroProtocol {
+    var breathTime: Int { get }
+    func setBreathTime(_ time: Int)
+}
+
+// MARK: - 호흡 연습하기 화면 UseCase
+
+class PracticeBreathingIntroUseCase: PracticeBreathingIntroProtocol {
+    private(set) var breathTime: Int = 1
+
+    func setBreathTime(_ time: Int) {
+        breathTime = time
+    }
+}
+
+// MARK: - 호흡 연습하기 ViewModel
+
+class PracticeBreathingIntroViewModel: ObservableObject {
+    private let useCase: PracticeBreathingIntroUseCase
+
+    @Published var breathTime: Int
+    @Published var isShowingFirstView: Bool
+
+    init(useCase: PracticeBreathingIntroUseCase, breathTime: Int = 1, isShowingFirstView: Bool = true) {
+        self.useCase = useCase
+        self.breathTime = breathTime
+        self.isShowingFirstView = isShowingFirstView
+    }
+
+    func setBreathTime(_ time: Int) {
+        useCase.setBreathTime(time)
+        breathTime = useCase.breathTime
+    }
+
+    func toggleIsShowingFirstView() {
+        isShowingFirstView.toggle()
+    }
+}
+
+// MARK: - 호흡 연습하기 화면 View
+
 struct PracticeBreathingIntro: View {
-    
-    @State var breathTime: Int = 1
-    
-    @State private var isShowingFirstView: Bool = true
-    
+    @StateObject var viewModel: PracticeBreathingIntroViewModel
+
+    init(viewModel: PracticeBreathingIntroViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
+
     var body: some View {
-        
         ZStack {
             Image("BG_SettingView")
-            
+
             VStack {
-                
-                if isShowingFirstView {
-                    // 제목
-                    HStack {
-                        Text("호흡 연습하기")
-                            .fontWeight(.bold)
-                            .font(.system(size: 32))
-                            .padding(.leading, 17)
-                            .foregroundStyle(AppColors.green01)
-                        
-                        Spacer()
-                            .frame(height: 55)
-                    }
-                    
-                    HStack {
-                        // 부제
-                        Text("편안한 자세로 매일 조금씩 연습해보세요")
-                            .font(.system(size: 17))
-                            .padding(.leading, 17)
-                            .foregroundStyle(AppColors.green01)
-                        
-                        Spacer()
-                    }
-                    
-                    // 거북이 움짤
-                    Image("BreathintTurtleIntro")
-                        .resizable()
-                        .scaledToFill()
-                        .foregroundStyle(.clear)
-                        .frame(width: 189, height: 221)
-                        .padding(.bottom, 86)
-                        .padding(.top, 64)
-                    
-                    // 정보
-                    TimerSelectionGroup(breathTime: $breathTime)
-                        .padding(.bottom, 72)
-                    
-                    // 시작하기 버튼
-                    StartBreathButton(isShowingFirstView: $isShowingFirstView)
+                if viewModel.isShowingFirstView {
+                    IntroView(viewModel: viewModel)
                 } else {
-                    StartBreathView(isShowingFirstView: $isShowingFirstView, breathTime: $breathTime)
+                    StartBreathView(isShowingFirstView: $viewModel.isShowingFirstView, breathTime: $viewModel.breathTime)
                 }
-                
             }
         }
+    }
+}
 
+struct IntroView: View {
+    @ObservedObject var viewModel: PracticeBreathingIntroViewModel
+
+    var body: some View {
+        VStack {
+            HStack {
+                Text("호흡 연습하기")
+                    .fontWeight(.bold)
+                    .font(.system(size: 32))
+                    .padding(.leading, 17)
+                    .foregroundStyle(AppColors.green01)
+                Spacer().frame(height: 55)
+            }
+
+            HStack {
+                Text("편안한 자세로 매일 조금씩 연습해보세요")
+                    .font(.system(size: 17))
+                    .padding(.leading, 17)
+                    .foregroundStyle(AppColors.green01)
+                Spacer()
+            }
+
+            Image("BreathintTurtleIntro")
+                .resizable()
+                .scaledToFill()
+                .foregroundStyle(.clear)
+                .frame(width: 189, height: 221)
+                .padding(.bottom, 86)
+                .padding(.top, 64)
+
+            TimerSelectionGroup(viewModel: viewModel)
+                .padding(.bottom, 72)
+
+            StartBreathButton(viewModel: viewModel)
+        }
     }
 }
 
 struct StartBreathButton: View {
-    @Binding var isShowingFirstView: Bool
-    
+    @ObservedObject var viewModel: PracticeBreathingIntroViewModel
+
     var body: some View {
         Button(action: {
-            // 버튼 액션 처리
             withAnimation(.easeInOut(duration: 0.5)) {
-                isShowingFirstView.toggle()
+                viewModel.toggleIsShowingFirstView()
             }
-            
         }) {
             Text("시작하기")
                 .font(.system(size: 22, weight: .bold))
@@ -91,47 +131,43 @@ struct StartBreathButton: View {
                         endPoint: .trailing
                     )
                 )
-                .cornerRadius(68) // 둥근 모서리
-                .shadow(color: .gray.opacity(0.4), radius: 10, x: 0, y: 5) // 그림자 추가
+                .cornerRadius(68)
+                .shadow(color: .gray.opacity(0.4), radius: 10, x: 0, y: 5)
         }
     }
 }
 
-
 struct TimerSelectionGroup: View {
-    @Binding var breathTime: Int
-    
-    let times: [Int] = [1, 3, 5, 8, 10] 
-    
+    @ObservedObject var viewModel: PracticeBreathingIntroViewModel
+
+    let times: [Int] = [1, 3, 5, 8, 10]
+
     var body: some View {
         VStack {
             ZStack {
-                // 중앙 줄
                 middleLine()
-                
-                // 원들
                 circles()
             }
         }
     }
-    
+
     @ViewBuilder
-    func middleLine() -> some View {
+    private func middleLine() -> some View {
         Rectangle()
             .fill(AppColors.green06)
-            .frame(width: 250,height: 6)
+            .frame(width: 250, height: 6)
             .offset(y: -21)
             .padding(.horizontal, 43)
     }
-    
+
     @ViewBuilder
-    func circles() -> some View {
+    private func circles() -> some View {
         HStack(spacing: 40) {
             ForEach(times, id: \.self) { time in
-                TimeCircle(time: time, isSelected: time == breathTime)
+                TimeCircle(time: time, isSelected: time == viewModel.breathTime)
                     .onTapGesture {
                         withAnimation {
-                            breathTime = time
+                            viewModel.setBreathTime(time)
                         }
                     }
             }
@@ -142,29 +178,23 @@ struct TimerSelectionGroup: View {
 struct TimeCircle: View {
     let time: Int
     let isSelected: Bool
-    
+
     var body: some View {
         VStack {
-            
             if isSelected {
-                
                 clickedCircle()
-                
                 Spacer().frame(height: 18)
-                
             } else {
                 defaultCircle()
-                
                 Spacer().frame(height: 21)
             }
-
             Text("\(time)분")
                 .foregroundColor(AppColors.darkGreen)
         }
     }
-    
+
     @ViewBuilder
-    func clickedCircle() -> some View {
+    private func clickedCircle() -> some View {
         Circle()
             .overlay {
                 Image("TimerButton")
@@ -175,9 +205,9 @@ struct TimeCircle: View {
             }
             .frame(width: 20, height: 20)
     }
-    
+
     @ViewBuilder
-    func defaultCircle() -> some View {
+    private func defaultCircle() -> some View {
         Circle()
             .fill(AppColors.green06)
             .frame(width: 17, height: 17)
@@ -192,8 +222,4 @@ struct TimeCircle: View {
                     .scaleEffect(0)
             )
     }
-}
-
-#Preview {
-    PracticeBreathingIntro()
 }
