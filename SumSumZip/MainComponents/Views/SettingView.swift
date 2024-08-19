@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SettingView: View{
+struct SettingView: View {
     
     // 유저 디폴트값 불러오기
     @State var message: String = MessageManager.shared.fetchMessage()
@@ -21,60 +21,42 @@ struct SettingView: View{
     
     @State var isPresentedSOSMessageView: Bool = false
     
-    @ObservedObject var screenSize = ScreenSize.shared // 스크린 사이즈 측정을 위한 기능들 모음
-    
-    var body: some View{
-        ZStack{
-            let bgImage = Image("BG_SettingView")
-            let imageSize = UIImage(named: "BG_SettingView")?.size ?? CGSize.zero
+    var body: some View {
+        ZStack {
             
-            // Geometry를 통해, 스크린 사이즈 측정
-            GeometryReader {geometry in
-                Color.clear
-                    .onAppear{
-                        screenSize.updateSize(size: geometry.size)
-                        let bgUIImage = UIImage(named: "BG_SettingView")
-                        screenSize.handleImage(bgUIImage!)
-                        screenSize.updateTabBarHeight(sizeGeometry: geometry.size)
-                    }
-            }
-            
-            // scale 관련 값들 추출
-            let screenWidth = screenSize.screenWidth
-            let screenHeight = screenSize.screenHeight
-            let scaleFactor = screenSize.scaleFactor
-            let tabBarHeight = screenSize.tabBarHeight // 얘는 탭바만큼 미리보기 탭 올리는 용도
-            
-            // 큰 스케일에 맞춰서 resizable(화면이 남지않게 배경으로 꽉채운다)
-            bgImage
+            // 배경 이미지 설정
+            Image("BG_SettingView")
                 .resizable()
-                .scaledToFit()
-                .frame(width: imageSize.width * scaleFactor, height: imageSize.height * scaleFactor)
+                .scaledToFill()
                 .ignoresSafeArea()
             
-            // 배경화면 끝난 뒤 나머지 컴포넌트들 쌓기
-            VStack{
-                
-                Text(" ") // 자유롭게 넣었다 빼도 되는 (맨 윗줄) 빈 공백
-                HStack {
+            VStack {
+                // Safe Area를 고려하여 헤더뷰가 너무 위로 가지 않도록 조정
+                HStack(alignment: .center) { // alignment를 center로 설정
                     Text("사용자 설정")
-                        .font(.system(size:32))
+                        .font(.system(size: 32))
                         .bold()
                         .foregroundStyle(AppColors.green01.opacity(1))
-                    Spacer()
-                    Image("Img_SettingTitle")
                     
-                }.padding(16)
-                    .padding(.bottom, -16)
+                    Spacer()
+                    
+                    Image("Img_SettingTitle")
+                }
+                .padding(.horizontal, 16) // 수평 패딩 추가
+                .safeAreaInset(edge: .top) {
+                    
+                    UIScreen.main.bounds.height < 700 ? Color.clear.frame(height: 100) : Color.clear.frame(height: 60)
+                    
+                }
                 
                 // Scroll 영역 시작
-                ScrollView{
-                    VStack(alignment: .leading){
+                ScrollView {
+                    VStack(alignment: .leading) {
                         
                         SettingQuestionLabel(text: "SOS 알람")
                             .padding(.horizontal, 16)
                         
-                        ZStack{
+                        ZStack {
                             Rectangle()
                                 .foregroundColor(.white)
                                 .cornerRadius(17)
@@ -127,7 +109,6 @@ struct SettingView: View{
                             .padding(.horizontal, 16)
                         PatientContactEditorView(numOfRelation: $numOfRelation)
                             .padding(.horizontal, 16)
-                        // 여기 shadow는 컴포넌트 내부에 있습니다.
                     }
                     .onChange(of: hospitalInfo, initial: true) { // hospitalInfo 내용바뀌면 Userdefaults 값 업데이트
                         UserdefaultsManager.hospitalInfo = hospitalInfo
@@ -135,7 +116,7 @@ struct SettingView: View{
                     .onChange(of: medicineInfo, initial: true) { // medicineInfo 내용바뀌면 Userdefaults 값 업데이트
                         UserdefaultsManager.medicineInfo = medicineInfo
                     }
-                }// Scroll 영역 끝
+                } // Scroll 영역 끝
                 .gesture(
                     TapGesture()
                         .onEnded { _ in
@@ -143,39 +124,45 @@ struct SettingView: View{
                         }
                 )
                 
+                Spacer() // 미리보기 버튼을 아래로 밀어줌
+                
                 Button(action: {
                     // 미리보기 뷰 띄우기
                     isPresentedSOSMessageView = true
-                }, label: {
-                    ZStack{
-                        LinearGradient(gradient: Gradient(colors: [AppColors.blue01, AppColors.green07]), startPoint: /*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/, endPoint: /*@START_MENU_TOKEN@*/.trailing/*@END_MENU_TOKEN@*/)
-                            .frame(width: screenWidth-36, height: 60) // 더 깔쌈한 방법 없을까? -36 아쉽네...
+                }) {
+                    ZStack {
+                        LinearGradient(gradient: Gradient(colors: [AppColors.blue01, AppColors.green07]), startPoint: .leading, endPoint: .trailing)
+                            .frame(height: 60)
                             .cornerRadius(68)
+                            .padding(.horizontal, 50)
                         
                         Text("미리 보기")
                             .font(.system(size: 24))
                             .fontWeight(.heavy)
                             .foregroundStyle(Color(.white))
                     }
-                })
-                
-                // 미리보기 버튼 아래공간 만들기.
-                Text(" ")
-                    .frame(height: tabBarHeight + 16)
+                }
+                .padding(.bottom, 20) // Safe Area 고려한 하단 여백
+                .padding(.bottom, 30) // 추가 여백을 더 줘서 탭바 위에 위치하도록 설정
             }
-            .frame(height: screenHeight)
-            .sheet(isPresented: $isPresentedSOSMessageView, content: {PreviewView(isPresentedSOSMessageView: $isPresentedSOSMessageView, SOSMessage: message)})
+            .safeAreaInset(edge: .bottom) {
+                
+                UIScreen.main.bounds.height < 700 ? Color.clear.frame(height: 60) : Color.clear.frame(height: 20)
+                
+            }
+            .sheet(isPresented: $isPresentedSOSMessageView) {
+                PreviewView(isPresentedSOSMessageView: $isPresentedSOSMessageView, SOSMessage: message)
+            }
         }
     }
 }
 
-
-struct SettingView_Preview: PreviewProvider{
+struct SettingView_Preview: PreviewProvider {
     @State static var message = "긴급 메시지"
     @State static var hospitalInfo = "병원정보"
     @State static var medicineInfo = "자주가는 병원"
     
-    static var previews: some View{
+    static var previews: some View {
         SettingView()
     }
 }
