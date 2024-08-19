@@ -10,16 +10,17 @@ import SwiftUI
 
 
 struct SettingView: View{
-
+    
     // 유저 디폴트값 불러오기
     @State var message: String = MessageManager.shared.fetchMessage()
     @State var hospitalInfo: String = UserdefaultsManager.hospitalInfo
     @State var medicineInfo: String = UserdefaultsManager.medicineInfo
     @State private var numOfRelation = ContactsManager.shared.fetchContacts().last ?? "0"
     
-    @State var bellToggled: Bool = true // 알람소리 On/Off
-    @State var torchToggled: Bool = true // 알람소리 On/Off
-    @State var vibrationToggled: Bool = true // 알람소리 On/Off
+    @State private var bellToggled = UserdefaultsManager.bellToggledInfo
+    @State private var torchToggled = UserdefaultsManager.torchToggledInfo
+    @State private var vibrationToggled = UserdefaultsManager.vibrationToggleInfo
+    
     
     @State var isPresentedSOSMessageView: Bool = false
     
@@ -81,12 +82,21 @@ struct SettingView: View{
                                 .foregroundColor(.white)
                                 .cornerRadius(17)
                                 .shadow(color: Color.black.opacity(0.2), radius: 8, x: 4, y: 8)
-                            VStack(alignment:.center){
+                            VStack(alignment: .center) {
                                 CustomToggleSet(text: "알람소리", isToggled: $bellToggled)
+                                    .onChange(of: bellToggled) { _, newValue in
+                                        UserdefaultsManager.bellToggledInfo = newValue
+                                    }
                                 
                                 CustomToggleSet(text: "플래시", isToggled: $torchToggled)
+                                    .onChange(of: torchToggled) { _, newValue in
+                                        UserdefaultsManager.torchToggledInfo = newValue
+                                    }
                                 
                                 CustomToggleSet(text: "진동", isToggled: $vibrationToggled)
+                                    .onChange(of: vibrationToggled) { _, newValue in
+                                        UserdefaultsManager.vibrationToggleInfo = newValue
+                                    }
                             }
                             .padding(12)
                         }
@@ -95,7 +105,7 @@ struct SettingView: View{
                         
                         SettingQuestionLabel(text: "긴급 메시지")
                             .padding(.horizontal, 16)
-
+                        
                         CustomTextEditorView(message: $message)
                             .padding(.horizontal, 16)
                             .shadow(color: Color.black.opacity(0.2), radius: 8, x: 4, y: 8)
@@ -103,7 +113,7 @@ struct SettingView: View{
                         
                         SettingQuestionLabel(text: "자주 가는 병원")
                             .padding(.horizontal, 16)
-
+                        
                         CustomTextEditorSimpleView(message: $hospitalInfo)
                             .padding(.horizontal, 16)
                             .shadow(color: Color.black.opacity(0.2), radius: 8, x: 4, y: 8)
