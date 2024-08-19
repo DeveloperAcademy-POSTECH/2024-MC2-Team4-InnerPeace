@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-
-
 struct SettingView: View{
     
     // 유저 디폴트값 불러오기
@@ -20,7 +18,6 @@ struct SettingView: View{
     @State private var bellToggled = UserdefaultsManager.bellToggledInfo
     @State private var torchToggled = UserdefaultsManager.torchToggledInfo
     @State private var vibrationToggled = UserdefaultsManager.vibrationToggleInfo
-    
     
     @State var isPresentedSOSMessageView: Bool = false
     
@@ -139,6 +136,12 @@ struct SettingView: View{
                         UserdefaultsManager.medicineInfo = medicineInfo
                     }
                 }// Scroll 영역 끝
+                .gesture(
+                    TapGesture()
+                        .onEnded { _ in
+                            UIApplication.shared.endEditing(true)
+                        }
+                )
                 
                 Button(action: {
                     // 미리보기 뷰 띄우기
@@ -176,5 +179,3 @@ struct SettingView_Preview: PreviewProvider{
         SettingView()
     }
 }
-
-
