@@ -27,7 +27,7 @@ struct StartBreathView: View {
                 
                 stopButton()
                     .padding(.trailing, 17)
-                    .padding(.bottom, 36)
+                    .padding(.top, 17)
     
             }
             
@@ -124,8 +124,13 @@ struct StartBreathView: View {
     
     @ViewBuilder
     func turtleGIF() -> some View {
-        GifImageViewer("BreathingSumSum")
-            .frame(width: 189, height: 221)
+        if UIScreen.main.bounds.height < 700 {
+            GifImageViewer("BreathingSumSum")
+                .frame(width: 160, height: 188)
+        } else {
+            GifImageViewer("BreathingSumSum")
+                .frame(width: 189, height: 221)
+        }
     }
     
     @ViewBuilder
@@ -155,7 +160,7 @@ struct StartBreathView: View {
         }, label: {
             VStack {
                 vibrateIcon()
-                    .padding(.bottom, 10)
+                    .padding(.bottom, 20)
                 
                 vibrateTitle()
             }

@@ -85,6 +85,9 @@ struct IntroView: View {
                     .foregroundStyle(AppColors.green01)
                 Spacer().frame(height: 55)
             }
+            .safeAreaInset(edge: .top) {
+                UIScreen.main.bounds.height < 700 ? Color.clear.frame(height: 120) : Color.clear.frame(height: 60)
+            }
 
             HStack {
                 Text("편안한 자세로 매일 조금씩 연습해보세요")
@@ -93,19 +96,24 @@ struct IntroView: View {
                     .foregroundStyle(AppColors.green01)
                 Spacer()
             }
+            
+            let screenHeight = UIScreen.main.bounds.height
 
             Image("BreathintTurtleIntro")
                 .resizable()
-                .scaledToFill()
-                .foregroundStyle(.clear)
-                .frame(width: 189, height: 221)
-                .padding(.bottom, 86)
-                .padding(.top, 64)
+                .scaledToFit()
+                .frame(width: screenHeight < 700 ? 150 : 189, height: screenHeight < 700 ? 150 : 221)
+                .padding(.bottom, screenHeight < 700 ? 86 : 64)
+                .padding(.top, screenHeight < 700 ? 64 : 86)
 
             TimerSelectionGroup(viewModel: viewModel)
                 .padding(.bottom, 72)
 
             StartBreathButton(viewModel: viewModel)
+                .safeAreaInset(edge: .bottom) {
+                    
+                    UIScreen.main.bounds.height < 700 ? Color.clear.frame(height: 150) : Color.clear.frame(height: 70)
+                }
         }
     }
 }

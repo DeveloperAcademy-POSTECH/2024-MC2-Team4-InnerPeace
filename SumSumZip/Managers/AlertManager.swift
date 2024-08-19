@@ -85,14 +85,22 @@ class AlertManager: ObservableObject {
     private init() {}
     
     func startAll() {
+        
         // endButton 초기화
         endButtonClicked = false
-        flashTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { [weak self] _ in
-            guard let self = self else { return }
-            self.torchControl.torchBrightness = self.torchControl.torchBrightness == 0.0 ? 1.0 : 0.0
+        
+        // 조건 1: 불빛이 켜져 있으면
+        if UserdefaultsManager.torchToggledInfo {
+            flashTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { [weak self] _ in
+                guard let self = self else { return }
+                self.torchControl.torchBrightness = self.torchControl.torchBrightness == 0.0 ? 1.0 : 0.0
+            }
         }
         
-        hapticControl.prepareHaptics()
+        // 조건 2: 진동이 켜져 있으면
+        if UserdefaultsManager.vibrationToggleInfo {
+            hapticControl.prepareHaptics()
+        }
         
         if checkBreath {
             // 호흡용이면
@@ -105,8 +113,11 @@ class AlertManager: ObservableObject {
             }
         }
         
-        soundTimer = Timer.scheduledTimer(withTimeInterval: 9, repeats: true) { [weak self] _ in
-            self?.soundControl.playSound()
+        // 조건 3: 소리가 켜져 있으면
+        if UserdefaultsManager.bellToggledInfo {
+            soundTimer = Timer.scheduledTimer(withTimeInterval: 9, repeats: true) { [weak self] _ in
+                self?.soundControl.playSound()
+            }
         }
         
     }
