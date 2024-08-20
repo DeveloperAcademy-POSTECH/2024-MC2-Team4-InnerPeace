@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAnalytics
 
 // MARK: - 호흡 연습하기 화면 Protocol
 
@@ -28,6 +29,7 @@ class PracticeBreathingIntroUseCase: PracticeBreathingIntroProtocol {
 
 class PracticeBreathingIntroViewModel: ObservableObject {
     private let useCase: PracticeBreathingIntroUseCase
+    private let firebase = FirebaseAnalyticsManager()
 
     @Published var breathTime: Int
     @Published var isShowingFirstView: Bool
@@ -41,10 +43,15 @@ class PracticeBreathingIntroViewModel: ObservableObject {
     func setBreathTime(_ time: Int) {
         useCase.setBreathTime(time)
         breathTime = useCase.breathTime
+        firebase.logBreathingTimeSelection(time: "\(breathTime)")
     }
 
     func toggleIsShowingFirstView() {
         isShowingFirstView.toggle()
+    }
+    
+    func logButtonClickEvent() {
+        firebase.logBreathingStartClick()
     }
 }
 
@@ -125,6 +132,7 @@ struct StartBreathButton: View {
         Button(action: {
             withAnimation(.easeInOut(duration: 0.5)) {
                 viewModel.toggleIsShowingFirstView()
+                viewModel.logButtonClickEvent()
             }
         }) {
             Text("시작하기")

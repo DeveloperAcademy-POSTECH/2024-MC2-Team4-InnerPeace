@@ -10,7 +10,7 @@ import SwiftUI
 struct SettingView: View {
     
     // 유저 디폴트값 불러오기
-    @State var message: String = MessageManager.shared.fetchMessage()
+    @State var message: String = UserdefaultsManager.savedMessage
     @State var hospitalInfo: String = UserdefaultsManager.hospitalInfo
     @State var medicineInfo: String = UserdefaultsManager.medicineInfo
     @State private var numOfRelation = ContactsManager.shared.fetchContacts().last ?? "0"
@@ -20,6 +20,8 @@ struct SettingView: View {
     @State private var vibrationToggled = UserdefaultsManager.vibrationToggleInfo
     
     @State var isPresentedSOSMessageView: Bool = false
+    
+    private let firebase = FirebaseAnalyticsManager()
     
     var body: some View {
         ZStack {
@@ -65,16 +67,19 @@ struct SettingView: View {
                                 CustomToggleSet(text: "알람소리", isToggled: $bellToggled)
                                     .onChange(of: bellToggled) { _, newValue in
                                         UserdefaultsManager.bellToggledInfo = newValue
+                                        firebase.logAlarmToggleChange(isOn: newValue)
                                     }
                                 
                                 CustomToggleSet(text: "플래시", isToggled: $torchToggled)
                                     .onChange(of: torchToggled) { _, newValue in
                                         UserdefaultsManager.torchToggledInfo = newValue
+                                        firebase.logFlashToggleChange(isOn: newValue)
                                     }
                                 
                                 CustomToggleSet(text: "진동", isToggled: $vibrationToggled)
                                     .onChange(of: vibrationToggled) { _, newValue in
                                         UserdefaultsManager.vibrationToggleInfo = newValue
+                                        firebase.logVibrationToggleChange(isOn: newValue)
                                     }
                             }
                             .padding(12)
@@ -85,36 +90,39 @@ struct SettingView: View {
                         SettingQuestionLabel(text: "긴급 메시지")
                             .padding(.horizontal, 16)
                         
-                        CustomTextEditorView(message: $message)
+                        SettingTextView(message: $message)
                             .padding(.horizontal, 16)
                             .shadow(color: Color.black.opacity(0.2), radius: 8, x: 4, y: 8)
+                            .onChange(of: message) { oldValue, newValue in
+                                UserdefaultsManager.savedMessage = newValue
+                            }
                         Text(" ")
                         
                         SettingQuestionLabel(text: "자주 가는 병원")
                             .padding(.horizontal, 16)
                         
-                        CustomTextEditorSimpleView(message: $hospitalInfo)
+                        SettingTextField(message: $hospitalInfo)
                             .padding(.horizontal, 16)
                             .shadow(color: Color.black.opacity(0.2), radius: 8, x: 4, y: 8)
                         Text(" ")
+                            .onChange(of: hospitalInfo) { oldValue, newValue in
+                                UserdefaultsManager.hospitalInfo = newValue
+                            }
                         
                         SettingQuestionLabel(text: "약 정보")
                             .padding(.horizontal, 16)
-                        CustomTextEditorSimpleView(message: $medicineInfo)
+                        SettingTextField(message: $medicineInfo)
                             .padding(.horizontal, 16)
                             .shadow(color: Color.black.opacity(0.2), radius: 8, x: 4, y: 8)
                         Text(" ")
+                            .onChange(of: medicineInfo) { oldValue, newValue in
+                                UserdefaultsManager.medicineInfo = newValue
+                            }
                         
                         SettingQuestionLabel(text: "긴급 연락처")
                             .padding(.horizontal, 16)
                         PatientContactEditorView(numOfRelation: $numOfRelation)
                             .padding(.horizontal, 16)
-                    }
-                    .onChange(of: hospitalInfo, initial: true) { // hospitalInfo 내용바뀌면 Userdefaults 값 업데이트
-                        UserdefaultsManager.hospitalInfo = hospitalInfo
-                    }
-                    .onChange(of: medicineInfo, initial: true) { // medicineInfo 내용바뀌면 Userdefaults 값 업데이트
-                        UserdefaultsManager.medicineInfo = medicineInfo
                     }
                 } // Scroll 영역 끝
                 .gesture(
@@ -153,6 +161,12 @@ struct SettingView: View {
             .sheet(isPresented: $isPresentedSOSMessageView) {
                 PreviewView(isPresentedSOSMessageView: $isPresentedSOSMessageView, SOSMessage: message)
             }
+        }
+        .onDisappear {
+            firebase.logEmergencyMessageInput(isEmpty: message.isEmpty)
+            firebase.logFrequentHospitalInput(isEmpty: hospitalInfo.isEmpty)
+            firebase.logMedicineInfoInput(isEmpty: medicineInfo.isEmpty)
+            firebase.logEmergencyContactInput(isEmpty: numOfRelation.isEmpty)
         }
     }
 }
