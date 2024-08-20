@@ -15,47 +15,60 @@ class UserdefaultsManager {
     private static let bellToggled = "bellToggled"
     private static let torchToggled = "torchToggled"
     private static let vibrationToggle = "vibrationToggled"
+    private static let messageKey = "savedMessage"
+
+    // 긴급 메시지 저장 및 가져오기
+    static var savedMessage: String {
+        get {
+            UserDefaults.standard.string(forKey: messageKey) ?? "긴급메세지를 작성해주세요."
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: messageKey)
+            print("메세지 저장함수")
+        }
+    }
     
+    // 병원 정보 저장 및 가져오기
     static var hospitalInfo: String {
         get {
             UserDefaults.standard.string(forKey: hospitalInfoKey) ?? ""
         }
-        
         set {
             UserDefaults.standard.setValue(newValue, forKey: hospitalInfoKey)
         }
     }
     
+    // 약 정보 저장 및 가져오기
     static var medicineInfo: String {
         get {
             UserDefaults.standard.string(forKey: medicineInfoKey) ?? ""
         }
-        
         set {
             UserDefaults.standard.set(newValue, forKey: medicineInfoKey)
         }
     }
     
+    // 호흡 연습 시간 저장 및 가져오기
     static var breathingPracticeInfo: Int {
         get {
             UserDefaults.standard.integer(forKey: breathingPracticeTimeKey)
         }
-        
         set {
             UserDefaults.standard.set(newValue, forKey: breathingPracticeTimeKey)
         }
     }
     
+    // 알람 토글 상태 저장 및 가져오기
     static var bellToggledInfo: Bool {
         get {
             UserDefaults.standard.bool(forKey: bellToggled)
         }
-        
         set {
             UserDefaults.standard.set(newValue, forKey: bellToggled)
         }
     }
     
+    // 플래시 토글 상태 저장 및 가져오기
     static var torchToggledInfo: Bool {
         get {
             UserDefaults.standard.bool(forKey: torchToggled)
@@ -65,6 +78,7 @@ class UserdefaultsManager {
         }
     }
     
+    // 진동 토글 상태 저장 및 가져오기
     static var vibrationToggleInfo: Bool {
         get {
             UserDefaults.standard.bool(forKey: vibrationToggle)
@@ -73,6 +87,4 @@ class UserdefaultsManager {
             UserDefaults.standard.setValue(newValue, forKey: vibrationToggle)
         }
     }
-    
-    
 }
