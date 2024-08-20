@@ -16,8 +16,12 @@ struct OnboardingFirstView: View {
     
     @Binding var currentPage: OnboardingPage
     @Binding var isFirstLaunching: Bool
-
+    @ObservedObject var screenSize = ScreenSize.shared // 스크린 사이즈 측정용 기능 모음
+    
+    
     var body: some View {
+        
+        let screenWidth = screenSize.screenWidth
         VStack(alignment: .leading, spacing: 10) {
             Text(title)
                 .font(.system(size: 32))
@@ -49,7 +53,7 @@ struct OnboardingFirstView: View {
                     Text("숨숨집 설정 알아보기")
                         .fontWeight(.bold)
                         .foregroundColor(.white)
-                        .frame(width: 365, height: 58)
+                        .frame(width: screenWidth - 32, height: 60) // 좌우패딩 16씩
                         .background(Color(AppColors.green01))
                         .cornerRadius(17)
                 }
@@ -60,7 +64,7 @@ struct OnboardingFirstView: View {
                     Text("건너뛰기")
                         .fontWeight(.medium)
                         .foregroundColor(.white)
-                        .frame(width: 365, height: 58)
+                        .frame(width: screenWidth - 32, height: 60) // 좌우패딩 16씩
                         .background(Color.black.opacity(0.2))
                         .cornerRadius(17)
                 }
