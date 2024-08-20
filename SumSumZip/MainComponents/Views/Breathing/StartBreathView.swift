@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct StartBreathView: View {
+    @State private var isAnimated = false
     
     @State private var isVibrateOff: Bool = false
     @Binding var isShowingFirstView: Bool
@@ -30,7 +31,7 @@ struct StartBreathView: View {
                 stopButton()
                     .padding(.trailing, 17)
                     .padding(.top, 17)
-    
+                
             }
             
             // 경과 시간
@@ -45,10 +46,11 @@ struct StartBreathView: View {
             // 거북이 움짤
             turtleGIF()
                 .foregroundStyle(.clear)
-                .padding(.bottom, 144)
+                .padding(.bottom, 72)
             
             // 진동 버튼
             vibrateButton()
+                .padding(.bottom, 26)
         }
         .onAppear {
             print("start breathing timer")
@@ -58,17 +60,17 @@ struct StartBreathView: View {
             stopTimer()
         }
         .alert(isPresented: $showAlert) {
-                    Alert(
-                        title: Text("완벽해요!"),
-                        message: Text("하루하루 더 나아지는 자신을 느껴보세요"),
-                        dismissButton: .default(Text("종료")) {
-                            isShowingFirstView.toggle()
-                            stopTimer()
-                            breathTimerManager.stopTimer()
-                            firebase.logBreathingEndClick()
-                        }
-                    )
+            Alert(
+                title: Text("완벽해요!"),
+                message: Text("하루하루 더 나아지는 자신을 느껴보세요"),
+                dismissButton: .default(Text("종료")) {
+                    isShowingFirstView.toggle()
+                    stopTimer()
+                    breathTimerManager.stopTimer()
+                    firebase.logBreathingEndClick()
                 }
+            )
+        }
     }
     
     func startTimer() {
@@ -127,46 +129,75 @@ struct StartBreathView: View {
     
     @ViewBuilder
     func turtleGIF() -> some View {
-        if UIScreen.main.bounds.height < 700 {
-            GifImageViewer("BreathingSumSum")
-                .frame(width: 160, height: 188)
-        } else {
-            GifImageViewer("BreathingSumSum")
-                .frame(width: 189, height: 221)
+        ZStack {
+            // Circle Animation
+                Circle()
+                .fill(
+                    RadialGradient(
+                        gradient: Gradient(colors: [Color.clear, Color.white]),
+                        center: .center,
+                        startRadius: 50,
+                        endRadius: 180
+                        )
+                    )
+                    .shadow(radius: 10)
+                    .shadow(color: .white, radius: 40)
+                    .padding(.horizontal, 20)
+                    .scaleEffect(isAnimated ? 1.0 : 0.4)
+                    .animation(.easeIn(duration: 7).delay(2).repeatForever(),
+                               value: isAnimated)
+                
+            
+                    .onAppear(perform: {
+                                isAnimated.toggle()
+                            })
+            // Image
+            if UIScreen.main.bounds.height < 700 {
+                Image("BreathintTurtleIntro")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 160, height: 188)
+            } else {
+                Image("BreathintTurtleIntro")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 189, height: 221)
+            }
+          }
+        }
+        
+        @ViewBuilder
+        func vibrateIcon() -> some View {
+            Image(systemName: "iphone.gen1.radiowaves.left.and.right")
+                .font(.system(size: 50))
+                .foregroundStyle(isVibrateOff ? AppColors.gray01 : AppColors.white)
+        }
+        
+        @ViewBuilder
+        func vibrateTitle() -> some View {
+            Text(isVibrateOff ? "진동켜기" : "진동끄기")
+                .fontWeight(.regular)
+                .font(.system(size: 14))
+                .foregroundStyle(isVibrateOff ? AppColors.gray01 : AppColors.white)
+        }
+        
+        @ViewBuilder
+        func vibrateButton() -> some View {
+            Button(action: {
+                isVibrateOff.toggle()
+                if isVibrateOff {
+                    breathTimerManager.disableHaptic()
+                } else {
+                    breathTimerManager.enableHaptic()
+                }
+            }, label: {
+                VStack {
+                    vibrateIcon()
+                        .padding(.bottom, 13)
+                    
+                    vibrateTitle()
+                }
+            })
         }
     }
-    
-    @ViewBuilder
-    func vibrateIcon() -> some View {
-        Image(systemName: "iphone.gen1.radiowaves.left.and.right")
-            .font(.system(size: 50))
-            .foregroundStyle(isVibrateOff ? AppColors.gray01 : AppColors.white)
-    }
-    
-    @ViewBuilder
-    func vibrateTitle() -> some View {
-        Text(isVibrateOff ? "진동켜기" : "진동끄기")
-            .fontWeight(.regular)
-            .font(.system(size: 14))
-            .foregroundStyle(isVibrateOff ? AppColors.gray01 : AppColors.white)
-    }
-    
-    @ViewBuilder
-    func vibrateButton() -> some View {
-        Button(action: {
-            isVibrateOff.toggle()
-            if isVibrateOff {
-                breathTimerManager.disableHaptic()
-            } else {
-                breathTimerManager.enableHaptic()
-            }
-        }, label: {
-            VStack {
-                vibrateIcon()
-                    .padding(.bottom, 20)
-                
-                vibrateTitle()
-            }
-        })
-    }
-}
+
