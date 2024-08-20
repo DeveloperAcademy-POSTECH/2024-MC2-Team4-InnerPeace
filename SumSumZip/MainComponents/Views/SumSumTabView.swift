@@ -28,7 +28,7 @@ struct SumSumTabView: View {
             SettingView()
                 .tabItem {
                     Image(systemName: "person.circle")
-                    Text("사용자 설명")
+                    Text("사용자 설정")
                 }
         }
         .onAppear {

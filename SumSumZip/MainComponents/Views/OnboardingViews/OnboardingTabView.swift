@@ -18,8 +18,11 @@ enum OnboardingPage: Int, CaseIterable {
 struct OnboardingTabView: View {
     @Binding var isFirstLaunching: Bool
     @State private var currentPage: OnboardingPage = .first
-
+    @ObservedObject var screenSize = ScreenSize.shared // 스크린 사이즈 측정용 기능 모음
+    
     var body: some View {
+        let screenWidth = screenSize.screenWidth
+        
         if isFirstLaunching {
             ZStack {
                 GeometryReader { geometry in
@@ -76,9 +79,10 @@ struct OnboardingTabView: View {
                         )
                         .tag(OnboardingPage.emergencyMessage)
                         .multilineTextAlignment(.center)
+                        .kerning(-0.3)
 
                         OnboardingPageView(
-                            imageName: "Img_Onboarding1",
+                            imageName: "Img_Onboarding3",
                             title: "호흡 연습하기",
                             subtitle: "심호흡 연습은 긴장을 낮추고\n불안정한 호흡을 바로 잡을 수 있습니다.\n숨숨이를 따라 호흡 연습을 해보세요.",
                             pageCount: 3, // 전체 페이지 수
@@ -90,9 +94,10 @@ struct OnboardingTabView: View {
                         .multilineTextAlignment(.center)
                         .kerning(-0.3)
                     }
+                    .padding(.top, 100)
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 }
-                .padding(.top, 100)
+               
                 
                 
             

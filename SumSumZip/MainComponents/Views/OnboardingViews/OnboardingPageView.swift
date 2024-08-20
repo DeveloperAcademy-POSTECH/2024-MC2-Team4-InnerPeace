@@ -16,9 +16,13 @@ struct OnboardingPageView: View {
     let currentPageIndex: Int
     @Binding var currentPage: OnboardingPage
     @Binding var isFirstLaunching: Bool
-
+    @ObservedObject var screenSize = ScreenSize.shared // 스크린 사이즈 측정용 기능 모음
+    
     var body: some View {
+        let screenWidth = screenSize.screenWidth
         GeometryReader { geometry in
+            
+            let isIpad = geometry.size.width > 768 // 간단하게 아이패드 여부를 판단
             VStack(alignment: .center) {
                 VStack(alignment: .center, spacing: 14) {
                     Text(title)
@@ -35,7 +39,7 @@ struct OnboardingPageView: View {
                 .frame(maxWidth: .infinity)
                 .padding(.horizontal, 20)
                 .padding(.bottom, 10) // Adjusted padding to provide more space for subtitle
-
+                
                 HStack {
                     ForEach(0..<pageCount, id: \.self) { index in
                         Circle()
@@ -43,68 +47,72 @@ struct OnboardingPageView: View {
                             .frame(width: 8, height: 8)
                     }
                 }
-             //   .padding(.bottom, 6) // Adjusted padding to bring the indicators closer to the image
-
-                Image(imageName)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 292)
-                    .padding(.bottom, -50) // Ensures the image and indicators have the specified distance
-                
+                //   .padding(.bottom, 6) // Adjusted padding to bring the indicators closer to the image
                 Spacer()
                 
-                HStack {
-                    if currentPage.rawValue > 0 {
-                        Button(action: {
-                            withAnimation {
-                                currentPage = OnboardingPage(rawValue: currentPage.rawValue - 1) ?? .first
+                VStack {
+                    
+                    Image(imageName)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: isIpad ? geometry.size.width * 0.5 : 283) // 아이패드면 크기를 키움
+                        .padding(.bottom, isIpad ? -50 : -20) // 아이패드일 경우 -40, 아니면 -20
+                                            
+                    //    Spacer()
+                    
+                    HStack {
+                        if currentPage.rawValue > 0 {
+                            Button(action: {
+                                withAnimation {
+                                    currentPage = OnboardingPage(rawValue: currentPage.rawValue - 1) ?? .first
+                                }
+                            }) {
+                                Text("이전")
+                                    .fontWeight(.medium)
+                                    .foregroundColor(.white)
+                                    .frame(width: 160, height: 56)
+                                    .background(Color.black.opacity(0.2))
+                                    .cornerRadius(17)
                             }
-                        }) {
-                            Text("이전")
-                                .fontWeight(.medium)
-                                .foregroundColor(.white)
-                                .frame(width: 160, height: 56)
-                                .background(Color.black.opacity(0.2))
-                                .cornerRadius(17)
+                        }
+                        
+                        Spacer()
+                        
+                        if currentPage.rawValue < OnboardingPage.breathingExercise.rawValue {
+                            Button(action: {
+                                withAnimation {
+                                    currentPage = OnboardingPage(rawValue: currentPage.rawValue + 1) ?? .breathingExercise
+                                }
+                            }) {
+                                Text("다음")
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.white)
+                                    .frame(width: 160, height: 56)
+                                    .background(Color(AppColors.green01))
+                                    .cornerRadius(17)
+                            }
+                        } else {
+                            Button(action: {
+                                isFirstLaunching = false
+                            }) {
+                                Text("완료")
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.white)
+                                    .frame(width: 160, height: 56)
+                                    .background(Color(AppColors.green01))
+                                    .cornerRadius(17)
+                            }
                         }
                     }
-                    
-                    Spacer()
-                    
-                    if currentPage.rawValue < OnboardingPage.breathingExercise.rawValue {
-                        Button(action: {
-                            withAnimation {
-                                currentPage = OnboardingPage(rawValue: currentPage.rawValue + 1) ?? .breathingExercise
-                            }
-                        }) {
-                            Text("다음")
-                                .fontWeight(.bold)
-                                .foregroundColor(.white)
-                                .frame(width: 160, height: 56)
-                                .background(Color(AppColors.green01))
-                                .cornerRadius(17)
-                        }
-                    } else {
-                        Button(action: {
-                            isFirstLaunching = false
-                        }) {
-                            Text("완료")
-                                .fontWeight(.bold)
-                                .foregroundColor(.white)
-                                .frame(width: 160, height: 56)
-                                .background(Color(AppColors.green01))
-                                .cornerRadius(17)
-                        }
-                    }
+                    .frame(height: 56)
+                    .background(
+                        LinearGradient(gradient: Gradient(colors: [Color.color, Color.color2]), startPoint: .bottom, endPoint: .top)
+                    )
+                    .padding(.bottom, 30)
+                    .padding(.horizontal, 16)
                 }
-                .frame(height: 56)
-                .background(
-                    LinearGradient(gradient: Gradient(colors: [Color.color, Color.color2]), startPoint: .bottom, endPoint: .top)
-                )
-                .padding(.bottom, 30)
-                .padding(.horizontal, 16)
+                .padding(.vertical, 0)
             }
-            .padding(.vertical, 0)
         }
     }
 }
