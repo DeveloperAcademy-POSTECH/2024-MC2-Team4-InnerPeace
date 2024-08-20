@@ -19,12 +19,16 @@ struct PatientContactEditorView: View{
     
     @Binding var numOfRelation: String
     @StateObject private var coordinator = Coordinator()
-    
+    @ObservedObject var screenSize = ScreenSize.shared // 스크린 사이즈 측정을 위한 기능들 모음
+        
     var body: some View{
+
+        let screenWidth = screenSize.screenWidth
+        
         ZStack{
             
             Rectangle()
-                .frame(width:.infinity, height: 170)
+                .frame(height: 170)
                 .foregroundColor(AppColors.white)
                 .cornerRadius(17)
                 .shadow(color: Color.black.opacity(0.2), radius: 8, x: 4, y: 8)
@@ -52,7 +56,7 @@ struct PatientContactEditorView: View{
                             ZStack{
                                 
                                 Rectangle()
-                                    .frame(width:.infinity, height:40)
+                                    .frame(height:40)
                                     .foregroundColor(AppColors.gray04)
                                     .cornerRadius(17)
                                 Image(systemName: "plus")
@@ -68,7 +72,7 @@ struct PatientContactEditorView: View{
                         } else {
                             ZStack{
                                 Rectangle()
-                                    .frame(width:.infinity, height:40)
+                                    .frame(height:40)
                                     .foregroundColor(AppColors.gray04)
                                     .cornerRadius(17)
                                 Image(systemName: "plus")
@@ -100,7 +104,7 @@ struct PatientContactEditorView: View{
                     }
                 }
                 .padding(20)
-                .frame(width: .infinity, height: 48)
+                .frame(width: screenWidth - 32, height: 48) // 양측 16씩 패딩
                 .cornerRadius(10)
                 
                 
@@ -125,7 +129,7 @@ struct PatientContactEditorView: View{
                         if pickedNumber2 == ""{
                             ZStack{
                                 Rectangle()
-                                    .frame(width:.infinity, height:40)
+                                    .frame(height:40)
                                     .foregroundColor(AppColors.gray04)
                                     .cornerRadius(17)
                                 Image(systemName: "plus")
@@ -141,7 +145,7 @@ struct PatientContactEditorView: View{
                         } else {
                             ZStack{
                                 Rectangle()
-                                    .frame(width:.infinity, height:40)
+                                    .frame(height:40)
                                     .foregroundColor(AppColors.gray04)
                                     .cornerRadius(17)
                                 Image(systemName: "plus")
@@ -173,7 +177,7 @@ struct PatientContactEditorView: View{
                     }
                 }
                 .padding(20)
-                .frame(width: .infinity, height: 48)
+                .frame(height: 48)
                 .cornerRadius(10)
                 
                 // 세 번째 연락처
@@ -196,7 +200,7 @@ struct PatientContactEditorView: View{
                         if pickedNumber3 == ""{
                             ZStack{
                                 Rectangle()
-                                    .frame(width:.infinity, height:40)
+                                    .frame(height:40)
                                     .foregroundColor(AppColors.gray04)
                                     .cornerRadius(17)
                                 Image(systemName: "plus")
@@ -212,7 +216,7 @@ struct PatientContactEditorView: View{
                         } else {
                             ZStack{
                                 Rectangle()
-                                    .frame(width:.infinity, height:40)
+                                    .frame(height:40)
                                     .foregroundColor(AppColors.gray04)
                                     .cornerRadius(17)
                                 Image(systemName: "plus")
@@ -244,7 +248,7 @@ struct PatientContactEditorView: View{
                     }
                 }
                 .padding(20)
-                .frame(width: .infinity, height: 48)
+                .frame(width: screenWidth - 32, height: 48) // 좌우 16씩 패딩
                 .cornerRadius(10)
                 
                 // 컴포넌트 끗

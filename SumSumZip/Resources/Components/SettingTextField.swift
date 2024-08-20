@@ -14,7 +14,7 @@ struct SettingTextField: View {
         ZStack{
             Rectangle()
                 .foregroundColor(AppColors.white.opacity(1))
-                .frame(width: .infinity, height: 44)
+                .frame(height: 44)
                 .cornerRadius(17)
             
             TextField("", text: $message)
@@ -23,7 +23,7 @@ struct SettingTextField: View {
                 .font(.system(size: 15))
                 .textFieldStyle(PlainTextFieldStyle())
                 .foregroundColor(AppColors.systemGray)
-                .frame(width: .infinity, height: 44)
+                .frame(height: 44)
                 .cornerRadius(17)
         }
     }

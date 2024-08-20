@@ -19,7 +19,7 @@ protocol PracticeBreathingIntroProtocol {
 
 class PracticeBreathingIntroUseCase: PracticeBreathingIntroProtocol {
     private(set) var breathTime: Int = 1
-
+    
     func setBreathTime(_ time: Int) {
         breathTime = time
     }
@@ -30,22 +30,22 @@ class PracticeBreathingIntroUseCase: PracticeBreathingIntroProtocol {
 class PracticeBreathingIntroViewModel: ObservableObject {
     private let useCase: PracticeBreathingIntroUseCase
     private let firebase = FirebaseAnalyticsManager()
-
+    
     @Published var breathTime: Int
     @Published var isShowingFirstView: Bool
-
+    
     init(useCase: PracticeBreathingIntroUseCase, breathTime: Int = 1, isShowingFirstView: Bool = true) {
         self.useCase = useCase
         self.breathTime = breathTime
         self.isShowingFirstView = isShowingFirstView
     }
-
+    
     func setBreathTime(_ time: Int) {
         useCase.setBreathTime(time)
         breathTime = useCase.breathTime
         firebase.logBreathingTimeSelection(time: "\(breathTime)")
     }
-
+    
     func toggleIsShowingFirstView() {
         isShowingFirstView.toggle()
     }
@@ -59,20 +59,38 @@ class PracticeBreathingIntroViewModel: ObservableObject {
 
 struct PracticeBreathingIntro: View {
     @StateObject var viewModel: PracticeBreathingIntroViewModel
-
+    @ObservedObject var screenSize = ScreenSize.shared // 스크린 사이즈 측정용 기능 모음
+    
     init(viewModel: PracticeBreathingIntroViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
-
+    
     var body: some View {
+        
+        // scale 관련 값들 추출
+//        let screenWidth = screenSize.screenWidth
+        let screenHeight = screenSize.screenHeight
+        let scaleFactor = screenSize.scaleFactor
+//        let tabBarHeight = screenSize.tabBarHeight // 얘는 탭바만큼 미리보기 탭 올리는 용도
+        
         ZStack {
-            Image("BG_SettingView")
-
+            let bgImage = Image("BG_SettingView")
+            let imageSize = UIImage(named: "BG_SettingView")?.size ?? CGSize.zero
+            
+            // 배경 이미지 설정
+            bgImage
+                .resizable()
+                .frame(width: imageSize.width * scaleFactor, height: imageSize.height * scaleFactor)
+                .scaledToFit()
+                .ignoresSafeArea()
+            
             VStack {
                 if viewModel.isShowingFirstView {
                     IntroView(viewModel: viewModel)
+                        .frame(height: screenHeight)
                 } else {
                     StartBreathView(isShowingFirstView: $viewModel.isShowingFirstView, breathTime: $viewModel.breathTime)
+                        .frame(height: screenHeight)
                 }
             }
         }
@@ -81,44 +99,63 @@ struct PracticeBreathingIntro: View {
 
 struct IntroView: View {
     @ObservedObject var viewModel: PracticeBreathingIntroViewModel
-
+    @ObservedObject var screenSize = ScreenSize.shared // 스크린 사이즈 측정용 기능 모음
+    
     var body: some View {
+        
+        // scale 관련 값들 추출
+        let screenWidth = screenSize.screenWidth
+        let screenHeight = screenSize.screenHeight
+        let scaleFactor = screenSize.scaleFactor
+        //         let tabBarHeight = screenSize.tabBarHeight  얘는 탭바만큼 미리보기 탭 올리는 용도
+        
         VStack {
-            HStack {
-                Text("호흡 연습하기")
-                    .fontWeight(.bold)
-                    .font(.system(size: 32))
-                    .padding(.leading, 17)
-                    .foregroundStyle(AppColors.green01)
-                Spacer().frame(height: 55)
+            VStack {
+                HStack {
+                    Text("호흡 연습하기")
+                        .fontWeight(.bold)
+                        .font(.system(size: 32))
+                        .padding(.leading, 17)
+                        .foregroundStyle(AppColors.green01)
+                    Spacer().frame(height: 55)
+                }
+                
+                HStack {
+                    Text("편안한 자세로 매일 조금씩 연습해보세요")
+                        .font(.system(size: 17))
+                        .padding(.leading, 17)
+                        .foregroundStyle(AppColors.green01)
+                    Spacer()
+                }
             }
+            .frame(height: 80)
             .safeAreaInset(edge: .top) {
-                UIScreen.main.bounds.height < 700 ? Color.clear.frame(height: 120) : Color.clear.frame(height: 60)
-            }
-
-            HStack {
-                Text("편안한 자세로 매일 조금씩 연습해보세요")
-                    .font(.system(size: 17))
-                    .padding(.leading, 17)
-                    .foregroundStyle(AppColors.green01)
-                Spacer()
+                UIScreen.main.bounds.height < 700 ? Color.clear.frame(height: 100) : Color.clear.frame(height: 60)
             }
             
-            let screenHeight = UIScreen.main.bounds.height
-
-            Image("BreathintTurtleIntro")
+            Spacer()
+            
+            // Turtle 그림 사이즈
+            let turtleImage = Image("BreathintTurtleIntro")
+            let imageTurtleIntro = UIImage(named: "BreathintTurtleIntro")!
+            let imageSize = imageTurtleIntro.size
+            let widthScaleFactor = screenWidth / imageSize.width
+            let heightScaleFactor = screenHeight / imageSize.height
+            let scaleFactor = max(widthScaleFactor, heightScaleFactor)
+            
+            turtleImage
                 .resizable()
                 .scaledToFit()
-                .frame(width: screenHeight < 700 ? 150 : 189, height: screenHeight < 700 ? 150 : 221)
                 .padding(.bottom, screenHeight < 700 ? 86 : 64)
                 .padding(.top, screenHeight < 700 ? 64 : 86)
-
+            
+            Spacer()
+            
             TimerSelectionGroup(viewModel: viewModel)
                 .padding(.bottom, 72)
-
+            
             StartBreathButton(viewModel: viewModel)
                 .safeAreaInset(edge: .bottom) {
-                    
                     UIScreen.main.bounds.height < 700 ? Color.clear.frame(height: 150) : Color.clear.frame(height: 70)
                 }
         }
@@ -127,8 +164,12 @@ struct IntroView: View {
 
 struct StartBreathButton: View {
     @ObservedObject var viewModel: PracticeBreathingIntroViewModel
-
+    @ObservedObject var screenSize = ScreenSize.shared // 스크린 사이즈 측정을 위한 기능들 모음
+    
     var body: some View {
+        
+        let screenWidth = screenSize.screenWidth
+        
         Button(action: {
             withAnimation(.easeInOut(duration: 0.5)) {
                 viewModel.toggleIsShowingFirstView()
@@ -139,7 +180,7 @@ struct StartBreathButton: View {
                 .font(.system(size: 22, weight: .bold))
                 .foregroundColor(.white)
                 .padding()
-                .frame(width: 293, height: 62)
+                .frame(width: screenWidth - 32, height: 60) // 좌우패딩 16씩
                 .background(
                     LinearGradient(
                         gradient: Gradient(colors: [AppColors.green07, AppColors.blue01]),
@@ -155,9 +196,9 @@ struct StartBreathButton: View {
 
 struct TimerSelectionGroup: View {
     @ObservedObject var viewModel: PracticeBreathingIntroViewModel
-
+    
     let times: [Int] = [1, 3, 5, 8, 10]
-
+    
     var body: some View {
         VStack {
             ZStack {
@@ -166,7 +207,7 @@ struct TimerSelectionGroup: View {
             }
         }
     }
-
+    
     @ViewBuilder
     private func middleLine() -> some View {
         Rectangle()
@@ -175,7 +216,7 @@ struct TimerSelectionGroup: View {
             .offset(y: -21)
             .padding(.horizontal, 43)
     }
-
+    
     @ViewBuilder
     private func circles() -> some View {
         HStack(spacing: 40) {
@@ -194,7 +235,7 @@ struct TimerSelectionGroup: View {
 struct TimeCircle: View {
     let time: Int
     let isSelected: Bool
-
+    
     var body: some View {
         VStack {
             if isSelected {
@@ -208,7 +249,7 @@ struct TimeCircle: View {
                 .foregroundColor(AppColors.darkGreen)
         }
     }
-
+    
     @ViewBuilder
     private func clickedCircle() -> some View {
         Circle()
@@ -221,7 +262,7 @@ struct TimeCircle: View {
             }
             .frame(width: 20, height: 20)
     }
-
+    
     @ViewBuilder
     private func defaultCircle() -> some View {
         Circle()
@@ -239,3 +280,15 @@ struct TimeCircle: View {
             )
     }
 }
+
+struct PracticeBreathingIntro_Preview: PreviewProvider{
+    @ObservedObject static var screenSize = ScreenSize.shared // 스크린 사이즈 측정을 위한 기능들 모음
+    
+    static var previews: some View {
+        ZStack{
+            GeometryReadingViewModel()
+            PracticeBreathingIntro(viewModel: PracticeBreathingIntroViewModel(useCase: PracticeBreathingIntroUseCase()))
+        }
+    }
+}
+

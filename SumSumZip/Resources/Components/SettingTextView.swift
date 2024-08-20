@@ -10,17 +10,18 @@ import SwiftUI
 struct SettingTextView: View {
     @Binding var message: String
     
+    
     var body: some View {
         ZStack{
             Rectangle()
                 .foregroundColor(AppColors.white.opacity(1))
-                .frame(width: .infinity, height: 126)
+                .frame(height: 126)
                 .cornerRadius(17)
             
             TextEditor(text: $message)
                 .padding(8)
                 .foregroundColor(AppColors.systemGray)
-                .frame(width: .infinity, height: 126)
+                .frame(height: 126)
                 .font(.system(size:15))
                 .cornerRadius(10)
                 .scrollContentBackground(.hidden)
