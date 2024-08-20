@@ -40,6 +40,11 @@
 		8B680ABD2C0043340099E7D9 /* electronic-alarm-clock-151927.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8B680ABC2C0043330099E7D9 /* electronic-alarm-clock-151927.mp3 */; };
 		8B8E72952C42A8ED00B84CFA /* PatientInfo_ContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8E72942C42A8ED00B84CFA /* PatientInfo_ContactView.swift */; };
 		8C382F6C2C73620100274656 /* Keyboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C382F6B2C73620100274656 /* Keyboard+Extension.swift */; };
+		8C382F6E2C7430D800274656 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8C382F6D2C7430D700274656 /* GoogleService-Info.plist */; };
+		8C382F712C74313D00274656 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8C382F702C74313D00274656 /* FirebaseAnalytics */; };
+		8C382F732C74313D00274656 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 8C382F722C74313D00274656 /* FirebaseAnalyticsOnDeviceConversion */; };
+		8C382F752C74313D00274656 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 8C382F742C74313D00274656 /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		8C382F772C74313D00274656 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 8C382F762C74313D00274656 /* FirebaseCrashlytics */; };
 		8C3CE2D82BFB11E2002D26C2 /* LiveActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD4FF1B2BF6E355009A8BC9 /* LiveActivityManager.swift */; };
 		8C7622202BFC6D4500B6BFFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8CCFD0DA2BF32CD60059EF94 /* Assets.xcassets */; };
 		8C76222E2BFC808300B6BFFF /* CustomNavigationModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C76222D2BFC808300B6BFFF /* CustomNavigationModifier.swift */; };
@@ -163,6 +168,7 @@
 		8B680ABC2C0043330099E7D9 /* electronic-alarm-clock-151927.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "electronic-alarm-clock-151927.mp3"; sourceTree = "<group>"; };
 		8B8E72942C42A8ED00B84CFA /* PatientInfo_ContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientInfo_ContactView.swift; sourceTree = "<group>"; };
 		8C382F6B2C73620100274656 /* Keyboard+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Keyboard+Extension.swift"; sourceTree = "<group>"; };
+		8C382F6D2C7430D700274656 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8C76222D2BFC808300B6BFFF /* CustomNavigationModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationModifier.swift; sourceTree = "<group>"; };
 		8C76222F2BFC80A100B6BFFF /* CustomTextEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextEditorView.swift; sourceTree = "<group>"; };
 		8C7622312BFC80BF00B6BFFF /* PatientInfoSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientInfoSettingView.swift; sourceTree = "<group>"; };
@@ -215,6 +221,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C382F712C74313D00274656 /* FirebaseAnalytics in Frameworks */,
+				8C382F772C74313D00274656 /* FirebaseCrashlytics in Frameworks */,
+				8C382F752C74313D00274656 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				8C382F732C74313D00274656 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,6 +322,7 @@
 			isa = PBXGroup;
 			children = (
 				8CF6FDA82BFCCA3C00B59608 /* Info.plist */,
+				8C382F6D2C7430D700274656 /* GoogleService-Info.plist */,
 				8CCFD1062BF3319F0059EF94 /* MainComponents */,
 				8CCFD1092BF331F20059EF94 /* Managers */,
 				8CCFD11A2BF337C20059EF94 /* Helpers */,
@@ -530,6 +541,12 @@
 				8CD4FEFF2BF4E41C009A8BC9 /* PBXTargetDependency */,
 			);
 			name = SumSumZip;
+			packageProductDependencies = (
+				8C382F702C74313D00274656 /* FirebaseAnalytics */,
+				8C382F722C74313D00274656 /* FirebaseAnalyticsOnDeviceConversion */,
+				8C382F742C74313D00274656 /* FirebaseAnalyticsWithoutAdIdSupport */,
+				8C382F762C74313D00274656 /* FirebaseCrashlytics */,
+			);
 			productName = SumSumZip;
 			productReference = 8CCFD0D12BF32CD40059EF94 /* SumSumZip.app */;
 			productType = "com.apple.product-type.application";
@@ -622,6 +639,9 @@
 				Base,
 			);
 			mainGroup = 8CCFD0C82BF32CD40059EF94;
+			packageReferences = (
+				8C382F6F2C74313D00274656 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 8CCFD0D22BF32CD40059EF94 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -647,6 +667,7 @@
 				8CE367CF2C429D9800916E16 /* BreathingSumSum.gif in Resources */,
 				0020A3C72BFD7A9900607BAF /* HapticWave_1.ahap in Resources */,
 				8CD4FEE72BF4DDE0009A8BC9 /* .gitignore in Resources */,
+				8C382F6E2C7430D800274656 /* GoogleService-Info.plist in Resources */,
 				8CCFD0DB2BF32CD60059EF94 /* Assets.xcassets in Resources */,
 				6D49B4EC2C00364100F9D44D /* BreathingFace_10s.gif in Resources */,
 			);
@@ -1190,6 +1211,40 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8C382F6F2C74313D00274656 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8C382F702C74313D00274656 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8C382F6F2C74313D00274656 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		8C382F722C74313D00274656 /* FirebaseAnalyticsOnDeviceConversion */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8C382F6F2C74313D00274656 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsOnDeviceConversion;
+		};
+		8C382F742C74313D00274656 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8C382F6F2C74313D00274656 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		8C382F762C74313D00274656 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8C382F6F2C74313D00274656 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8CCFD0C92BF32CD40059EF94 /* Project object */;
 }

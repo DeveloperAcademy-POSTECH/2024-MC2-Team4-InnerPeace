@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import FirebaseCore
 
 @main
 struct SumSumZipApp: App {
@@ -53,6 +54,16 @@ struct SumSumZipApp: App {
 }
 
 class AppDelegate: NSObject, UIApplicationDelegate {
+    
+    func application(_ application: UIApplication,
+                       didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        
+        // Firebase 초기 설정
+        FirebaseApp.configure()
+
+        return true
+      }
+    
     func applicationWillTerminate(_ application: UIApplication) {
         EmergencyLiveActivityManager.shared.endAllActivities()
     }

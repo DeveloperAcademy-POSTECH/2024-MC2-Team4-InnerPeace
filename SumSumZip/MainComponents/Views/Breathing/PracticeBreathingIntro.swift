@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAnalytics
 
 // MARK: - 호흡 연습하기 화면 Protocol
 
@@ -45,6 +46,13 @@ class PracticeBreathingIntroViewModel: ObservableObject {
 
     func toggleIsShowingFirstView() {
         isShowingFirstView.toggle()
+    }
+    
+    func logButtonClickEvent() {
+        Analytics.logEvent("breath_start_button_click", parameters: [
+            "button_name": "Breath Start Button",
+            "screen_name": "PracticeBreathingIntro"
+        ])
     }
 }
 
@@ -125,6 +133,7 @@ struct StartBreathButton: View {
         Button(action: {
             withAnimation(.easeInOut(duration: 0.5)) {
                 viewModel.toggleIsShowingFirstView()
+                viewModel.logButtonClickEvent()
             }
         }) {
             Text("시작하기")
