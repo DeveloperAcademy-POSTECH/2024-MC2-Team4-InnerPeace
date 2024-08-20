@@ -31,6 +31,8 @@ struct OnboardingView: View {
     
     var body: some View {
         ZStack {
+            GeometryReadingViewModel() // 제품사이즈의 바닥깔기
+            
             if appClicked {
                 OnboardingTabView(isFirstLaunching: $isFirstLaunching)
             } else {

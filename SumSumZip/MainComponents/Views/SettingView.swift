@@ -20,16 +20,28 @@ struct SettingView: View {
     @State private var vibrationToggled = UserdefaultsManager.vibrationToggleInfo
     
     @State var isPresentedSOSMessageView: Bool = false
+    @ObservedObject var screenSize = ScreenSize.shared // 스크린 사이즈 측정용 기능 모음
     
     private let firebase = FirebaseAnalyticsManager()
     
+
     var body: some View {
+        
+        // scale 관련 값들 추출
+         let screenWidth = screenSize.screenWidth
+         let screenHeight = screenSize.screenHeight
+         let scaleFactor = screenSize.scaleFactor
+         let tabBarHeight = screenSize.tabBarHeight // 얘는 탭바만큼 미리보기 탭 올리는 용도
+        
         ZStack {
+            let bgImage = Image("BG_SettingView")
+            let imageSize = UIImage(named: "BG_SettingView")?.size ?? CGSize.zero
             
             // 배경 이미지 설정
-            Image("BG_SettingView")
+            bgImage
                 .resizable()
-                .scaledToFill()
+                .frame(width: imageSize.width * scaleFactor, height: imageSize.height * scaleFactor)
+                .scaledToFit()
                 .ignoresSafeArea()
             
             VStack {
@@ -45,6 +57,7 @@ struct SettingView: View {
                     Image("Img_SettingTitle")
                 }
                 .padding(.horizontal, 16) // 수평 패딩 추가
+                .frame(height: 80)
                 .safeAreaInset(edge: .top) {
                     
                     UIScreen.main.bounds.height < 700 ? Color.clear.frame(height: 100) : Color.clear.frame(height: 60)
@@ -131,13 +144,30 @@ struct SettingView: View {
                             UIApplication.shared.endEditing(true)
                         }
                 )
+                .frame(height: screenHeight - tabBarHeight)
                 
                 Spacer() // 미리보기 버튼을 아래로 밀어줌
+            
+            }
+            .frame(height: screenHeight) // 뷰 크기 고정
+            .safeAreaInset(edge: .bottom) {
+                
+                UIScreen.main.bounds.height < 700 ? Color.clear.frame(height: 60) : Color.clear.frame(height: 20)
+                
+            }
+            .sheet(isPresented: $isPresentedSOSMessageView) {
+                PreviewView(isPresentedSOSMessageView: $isPresentedSOSMessageView, SOSMessage: message)
+            }
+            
+            VStack {
+                Spacer()
                 
                 Button(action: {
                     // 미리보기 뷰 띄우기
                     isPresentedSOSMessageView = true
-                }) {
+                    print(scaleFactor)
+                    print(imageSize.width)
+                }, label: {
                     ZStack {
                         LinearGradient(gradient: Gradient(colors: [AppColors.blue01, AppColors.green07]), startPoint: .leading, endPoint: .trailing)
                             .frame(height: 60)
@@ -149,19 +179,12 @@ struct SettingView: View {
                             .fontWeight(.heavy)
                             .foregroundStyle(Color(.white))
                     }
-                }
-                .padding(.bottom, 20) // Safe Area 고려한 하단 여백
-                .padding(.bottom, 30) // 추가 여백을 더 줘서 탭바 위에 위치하도록 설정
+                })
+                .padding(.bottom, tabBarHeight) // Safe Area 고려한 하단 여백
             }
-            .safeAreaInset(edge: .bottom) {
-                
-                UIScreen.main.bounds.height < 700 ? Color.clear.frame(height: 60) : Color.clear.frame(height: 20)
-                
-            }
-            .sheet(isPresented: $isPresentedSOSMessageView) {
-                PreviewView(isPresentedSOSMessageView: $isPresentedSOSMessageView, SOSMessage: message)
-            }
+            .frame(height: screenHeight) // 버튼위치 고정
         }
+        .frame(height: screenHeight)
         .onDisappear {
             firebase.logEmergencyMessageInput(isEmpty: message.isEmpty)
             firebase.logFrequentHospitalInput(isEmpty: hospitalInfo.isEmpty)
@@ -175,8 +198,12 @@ struct SettingView_Preview: PreviewProvider {
     @State static var message = "긴급 메시지"
     @State static var hospitalInfo = "병원정보"
     @State static var medicineInfo = "자주가는 병원"
-    
+    @ObservedObject static var screenSize = ScreenSize.shared // 스크린 사이즈 측정을 위한 기능들 모음
+
     static var previews: some View {
-        SettingView()
+        ZStack{
+            GeometryReadingViewModel()
+            SettingView()
+        }
     }
 }

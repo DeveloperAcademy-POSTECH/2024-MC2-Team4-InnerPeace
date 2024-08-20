@@ -12,6 +12,7 @@
 		0020A3C92BFD7AB500607BAF /* windows-xp-startup-sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0020A3C82BFD7AB500607BAF /* windows-xp-startup-sound.mp3 */; };
 		0020A3CC2BFD82F400607BAF /* SOSPhysical_Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0020A3CA2BFD82F400607BAF /* SOSPhysical_Model.swift */; };
 		0020A3CD2BFD82F400607BAF /* SOSPhysics_TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0020A3CB2BFD82F400607BAF /* SOSPhysics_TestView.swift */; };
+		0038B0342C747CDC0058D349 /* GeometryReadingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0038B0332C747CDC0058D349 /* GeometryReadingViewModel.swift */; };
 		003BA29D2C4D59A4006FB663 /* ScreenSizeReadingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003BA29C2C4D59A4006FB663 /* ScreenSizeReadingModel.swift */; };
 		00467FDC2C4215E400DA7BB6 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00467FDB2C4215E400DA7BB6 /* SettingView.swift */; };
 		00467FDE2C42203B00DA7BB6 /* SettingTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00467FDD2C42203B00DA7BB6 /* SettingTextField.swift */; };
@@ -141,6 +142,7 @@
 		0020A3C82BFD7AB500607BAF /* windows-xp-startup-sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "windows-xp-startup-sound.mp3"; sourceTree = "<group>"; };
 		0020A3CA2BFD82F400607BAF /* SOSPhysical_Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOSPhysical_Model.swift; sourceTree = "<group>"; };
 		0020A3CB2BFD82F400607BAF /* SOSPhysics_TestView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SOSPhysics_TestView.swift; sourceTree = "<group>"; };
+		0038B0332C747CDC0058D349 /* GeometryReadingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryReadingViewModel.swift; sourceTree = "<group>"; };
 		003BA29C2C4D59A4006FB663 /* ScreenSizeReadingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSizeReadingModel.swift; sourceTree = "<group>"; };
 		00467FDB2C4215E400DA7BB6 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		00467FDD2C42203B00DA7BB6 /* SettingTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTextField.swift; sourceTree = "<group>"; };
@@ -403,6 +405,7 @@
 		8CCFD1032BF3306D0059EF94 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				0038B0332C747CDC0058D349 /* GeometryReadingViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -728,6 +731,7 @@
 				8CCFD1192BF336EB0059EF94 /* Color.swift in Sources */,
 				8CCFD0D92BF32CD40059EF94 /* Item.swift in Sources */,
 				51E71CF02C428D600015B3A7 /* OnboardingPageView.swift in Sources */,
+				0038B0342C747CDC0058D349 /* GeometryReadingViewModel.swift in Sources */,
 				8CCFD11F2BF338540059EF94 /* Strings.swift in Sources */,
 				8CF6FDB52BFDBE9300B59608 /* PatientInfoView.swift in Sources */,
 				8C7CE5032C4221A800AB5C28 /* PracticeBreathingIntro.swift in Sources */,
