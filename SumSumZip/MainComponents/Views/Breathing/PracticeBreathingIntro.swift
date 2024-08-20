@@ -29,6 +29,7 @@ class PracticeBreathingIntroUseCase: PracticeBreathingIntroProtocol {
 
 class PracticeBreathingIntroViewModel: ObservableObject {
     private let useCase: PracticeBreathingIntroUseCase
+    private let firebase = FirebaseAnalyticsManager()
 
     @Published var breathTime: Int
     @Published var isShowingFirstView: Bool
@@ -42,6 +43,7 @@ class PracticeBreathingIntroViewModel: ObservableObject {
     func setBreathTime(_ time: Int) {
         useCase.setBreathTime(time)
         breathTime = useCase.breathTime
+        firebase.logBreathingTimeSelection(time: "\(breathTime)")
     }
 
     func toggleIsShowingFirstView() {
@@ -49,10 +51,7 @@ class PracticeBreathingIntroViewModel: ObservableObject {
     }
     
     func logButtonClickEvent() {
-        Analytics.logEvent("breath_start_button_click", parameters: [
-            "button_name": "Breath Start Button",
-            "screen_name": "PracticeBreathingIntro"
-        ])
+        firebase.logBreathingStartClick()
     }
 }
 

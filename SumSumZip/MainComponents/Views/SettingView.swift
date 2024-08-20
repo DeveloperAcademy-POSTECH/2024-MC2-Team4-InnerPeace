@@ -21,6 +21,8 @@ struct SettingView: View {
     
     @State var isPresentedSOSMessageView: Bool = false
     
+    private let firebase = FirebaseAnalyticsManager()
+    
     var body: some View {
         ZStack {
             
@@ -65,16 +67,19 @@ struct SettingView: View {
                                 CustomToggleSet(text: "알람소리", isToggled: $bellToggled)
                                     .onChange(of: bellToggled) { _, newValue in
                                         UserdefaultsManager.bellToggledInfo = newValue
+                                        firebase.logAlarmToggleChange(isOn: newValue)
                                     }
                                 
                                 CustomToggleSet(text: "플래시", isToggled: $torchToggled)
                                     .onChange(of: torchToggled) { _, newValue in
                                         UserdefaultsManager.torchToggledInfo = newValue
+                                        firebase.logFlashToggleChange(isOn: newValue)
                                     }
                                 
                                 CustomToggleSet(text: "진동", isToggled: $vibrationToggled)
                                     .onChange(of: vibrationToggled) { _, newValue in
                                         UserdefaultsManager.vibrationToggleInfo = newValue
+                                        firebase.logVibrationToggleChange(isOn: newValue)
                                     }
                             }
                             .padding(12)
@@ -85,7 +90,7 @@ struct SettingView: View {
                         SettingQuestionLabel(text: "긴급 메시지")
                             .padding(.horizontal, 16)
                         
-                        CustomTextEditorView(message: $message)
+                        SettingTextView(message: $message)
                             .padding(.horizontal, 16)
                             .shadow(color: Color.black.opacity(0.2), radius: 8, x: 4, y: 8)
                         Text(" ")
@@ -93,14 +98,14 @@ struct SettingView: View {
                         SettingQuestionLabel(text: "자주 가는 병원")
                             .padding(.horizontal, 16)
                         
-                        CustomTextEditorSimpleView(message: $hospitalInfo)
+                        SettingTextField(message: $hospitalInfo)
                             .padding(.horizontal, 16)
                             .shadow(color: Color.black.opacity(0.2), radius: 8, x: 4, y: 8)
                         Text(" ")
                         
                         SettingQuestionLabel(text: "약 정보")
                             .padding(.horizontal, 16)
-                        CustomTextEditorSimpleView(message: $medicineInfo)
+                        SettingTextField(message: $medicineInfo)
                             .padding(.horizontal, 16)
                             .shadow(color: Color.black.opacity(0.2), radius: 8, x: 4, y: 8)
                         Text(" ")
@@ -153,6 +158,12 @@ struct SettingView: View {
             .sheet(isPresented: $isPresentedSOSMessageView) {
                 PreviewView(isPresentedSOSMessageView: $isPresentedSOSMessageView, SOSMessage: message)
             }
+        }
+        .onDisappear {
+            firebase.logEmergencyMessageInput(isEmpty: message.isEmpty)
+            firebase.logFrequentHospitalInput(isEmpty: hospitalInfo.isEmpty)
+            firebase.logMedicineInfoInput(isEmpty: medicineInfo.isEmpty)
+            firebase.logEmergencyContactInput(isEmpty: numOfRelation.isEmpty)
         }
     }
 }

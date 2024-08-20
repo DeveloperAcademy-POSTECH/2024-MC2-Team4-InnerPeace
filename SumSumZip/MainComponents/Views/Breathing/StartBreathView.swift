@@ -19,6 +19,8 @@ struct StartBreathView: View {
     
     @StateObject private var breathTimerManager = BreathTimeManager.shared
     
+    private let firebase = FirebaseAnalyticsManager()
+    
     var body: some View {
         VStack {
             // 종료하기
@@ -63,6 +65,7 @@ struct StartBreathView: View {
                             isShowingFirstView.toggle()
                             stopTimer()
                             breathTimerManager.stopTimer()
+                            firebase.logBreathingEndClick()
                         }
                     )
                 }

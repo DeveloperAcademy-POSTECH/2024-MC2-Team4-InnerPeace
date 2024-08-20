@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CustomTextEditorSimpleView: View {
+struct SettingTextField: View {
     @Binding var message: String
     
     var body: some View {

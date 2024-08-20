@@ -18,6 +18,8 @@ struct SOSButtonView: View {
     // 30초 뒤 시작합니다 Alert
     @State private var showingWaitingTimeAlert = false
     
+    let firebase = FirebaseAnalyticsManager()
+    
 
     var body: some View {
         ZStack{
@@ -42,6 +44,10 @@ struct SOSButtonView: View {
                         title: Strings.LiveActivityView.title,
                         firstSubtitle: Strings.LiveActivityView.firstSubtitle,
                         secondSubtitle: Strings.LiveActivityView.secodSubtitle, isPresented: $isPresentedSOSMessageView, duration: waitingTime)
+                    
+                    // Firebase - SOS 버튼 클릭
+                    firebase.logSOSButtonClick()
+                    
                 } label: {
                     Image("SOSButton")
                 }
