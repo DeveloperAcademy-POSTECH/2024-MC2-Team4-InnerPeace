@@ -52,8 +52,10 @@ struct SettingView: View {
                     HStack(alignment: .center) { // alignment를 center로 설정
                         Text("사용자 설정")
                             .font(.system(size: 32))
-                            .bold()
-                            .foregroundStyle(AppColors.green01.opacity(1))
+                            .fontWeight(.bold)
+                            .foregroundStyle(AppColors.green01)
+                        
+                            
                         
                         Spacer()
                         
