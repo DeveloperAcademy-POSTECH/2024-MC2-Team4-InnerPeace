@@ -145,7 +145,7 @@ struct StartBreathView: View {
                 .shadow(color: .white, radius: 40)
                 .padding(.horizontal, 20)
                 .scaleEffect(isAnimated ? 1.0 : 0.4)
-                .animation(.easeIn(duration: 7).delay(2).repeatForever(),
+                .animation(.easeIn(duration: 6).delay(1).repeatForever(),
                            value: isAnimated)
             
                 .onAppear(perform: {
