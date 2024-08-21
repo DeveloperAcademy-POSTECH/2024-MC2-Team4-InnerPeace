@@ -24,14 +24,14 @@ struct SettingView: View {
     
     private let firebase = FirebaseAnalyticsManager()
     
-
+    
     var body: some View {
         
         // scale 관련 값들 추출
-         let screenWidth = screenSize.screenWidth
-         let screenHeight = screenSize.screenHeight
-         let scaleFactor = screenSize.scaleFactor
-         let tabBarHeight = screenSize.tabBarHeight // 얘는 탭바만큼 미리보기 탭 올리는 용도
+        let screenWidth = screenSize.screenWidth
+        let screenHeight = screenSize.screenHeight
+        let scaleFactor = screenSize.scaleFactor
+        let tabBarHeight = screenSize.tabBarHeight // 얘는 탭바만큼 미리보기 탭 올리는 용도
         
         ZStack {
             let bgImage = Image("BG_SettingView")
@@ -49,19 +49,20 @@ struct SettingView: View {
                 VStack(alignment: .trailing) {
                     Spacer()
                     
-                HStack(alignment: .center) { // alignment를 center로 설정
-                    Text("사용자 설정")
-                        .font(.system(size: 32))
-                        .bold()
-                        .foregroundStyle(AppColors.green01.opacity(1))
-                    
+                    HStack(alignment: .center) { // alignment를 center로 설정
+                        Text("사용자 설정")
+                            .font(.system(size: 32))
+                            .bold()
+                            .foregroundStyle(AppColors.green01.opacity(1))
+                        
+                        Spacer()
+                        
+                        Image("Img_SettingTitle")
+                    }
+                    .padding(.horizontal, 16) // 수평 패딩 추가
+                    .padding(.top, 50)
                     Spacer()
-                    
-                    Image("Img_SettingTitle")
                 }
-                .padding(.horizontal, 16) // 수평 패딩 추가
-                    Spacer()
-            }
                 .frame(height: 80)
                 .safeAreaInset(edge: .top) {
                     
@@ -75,6 +76,7 @@ struct SettingView: View {
                         
                         SettingQuestionLabel(text: "SOS 알람")
                             .padding(.horizontal, 16)
+                            .padding(.top, 26)
                         
                         ZStack {
                             Rectangle()
@@ -154,7 +156,7 @@ struct SettingView: View {
                 .frame(height: screenHeight - tabBarHeight)
                 
                 Spacer() // 미리보기 버튼을 아래로 밀어줌
-            
+                
             }
             .frame(height: screenHeight) // 뷰 크기 고정
             .safeAreaInset(edge: .bottom) {
@@ -172,8 +174,8 @@ struct SettingView: View {
                 Button(action: {
                     // 미리보기 뷰 띄우기
                     isPresentedSOSMessageView = true
-           //         print(scaleFactor)
-           //         print(imageSize.width)
+                    //         print(scaleFactor)
+                    //         print(imageSize.width)
                 }, label: {
                     ZStack {
                         LinearGradient(gradient: Gradient(colors: [AppColors.blue01, AppColors.green07]), startPoint: .leading, endPoint: .trailing)
@@ -187,7 +189,7 @@ struct SettingView: View {
                             .foregroundStyle(Color(.white))
                     }
                 })
-                .padding(.bottom, tabBarHeight - 20) // Safe Area 고려한 하단 여백
+                .padding(.bottom, tabBarHeight - 10) // Safe Area 고려한 하단 여백
             }
             .frame(height: screenHeight) // 버튼위치 고정
         }
@@ -206,7 +208,7 @@ struct SettingView_Preview: PreviewProvider {
     @State static var hospitalInfo = "병원정보"
     @State static var medicineInfo = "자주가는 병원"
     @ObservedObject static var screenSize = ScreenSize.shared // 스크린 사이즈 측정을 위한 기능들 모음
-
+    
     static var previews: some View {
         ZStack{
             GeometryReadingViewModel()
