@@ -94,7 +94,7 @@ struct OnboardingTabView: View {
                         .multilineTextAlignment(.center)
                         .kerning(-0.3)
                     }
-                    .padding(.top, 100)
+                    .padding(.top, 80)
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 }
                

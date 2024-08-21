@@ -37,8 +37,10 @@ struct OnboardingPageView: View {
                         .multilineTextAlignment(.center) // Ensures subtitle is centered and not cut off
                 }
                 .frame(maxWidth: .infinity)
-                .padding(.horizontal, 20)
+//                .padding(.horizontal, 20)
                 .padding(.bottom, 10) // Adjusted padding to provide more space for subtitle
+                
+                Spacer()
                 
                 HStack {
                     ForEach(0..<pageCount, id: \.self) { index in
@@ -48,7 +50,7 @@ struct OnboardingPageView: View {
                     }
                 }
                 //   .padding(.bottom, 6) // Adjusted padding to bring the indicators closer to the image
-                Spacer()
+//                Spacer()
                 
                 VStack {
                     
@@ -105,9 +107,9 @@ struct OnboardingPageView: View {
                         }
                     }
                     .frame(height: 56)
-                    .background(
-                        LinearGradient(gradient: Gradient(colors: [Color.color, Color.color2]), startPoint: .bottom, endPoint: .top)
-                    )
+//                    .background(
+//                        LinearGradient(gradient: Gradient(colors: [Color.color, Color.color2]), startPoint: .bottom, endPoint: .top)
+//                    )
                     .padding(.bottom, 30)
                     .padding(.horizontal, 16)
                 }

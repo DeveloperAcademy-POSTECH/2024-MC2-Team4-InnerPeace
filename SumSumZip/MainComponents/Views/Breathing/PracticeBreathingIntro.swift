@@ -117,8 +117,9 @@ struct IntroView: View {
                         .font(.system(size: 32))
                         .padding(.leading, 17)
                         .foregroundStyle(AppColors.green01)
-                    Spacer().frame(height: 55)
+                    Spacer()
                 }
+                .frame(height: 55)
                 
                 HStack {
                     Text("편안한 자세로 매일 조금씩 연습해보세요")

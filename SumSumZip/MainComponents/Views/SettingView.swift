@@ -46,6 +46,9 @@ struct SettingView: View {
             
             VStack {
                 // Safe Area를 고려하여 헤더뷰가 너무 위로 가지 않도록 조정
+                VStack(alignment: .trailing) {
+                    Spacer()
+                    
                 HStack(alignment: .center) { // alignment를 center로 설정
                     Text("사용자 설정")
                         .font(.system(size: 32))
@@ -57,6 +60,8 @@ struct SettingView: View {
                     Image("Img_SettingTitle")
                 }
                 .padding(.horizontal, 16) // 수평 패딩 추가
+                    Spacer()
+            }
                 .frame(height: 80)
                 .safeAreaInset(edge: .top) {
                     
@@ -136,6 +141,8 @@ struct SettingView: View {
                             .padding(.horizontal, 16)
                         PatientContactEditorView(numOfRelation: $numOfRelation)
                             .padding(.horizontal, 16)
+                        
+                        Spacer(minLength: tabBarHeight + 110)
                     }
                 } // Scroll 영역 끝
                 .gesture(
@@ -172,7 +179,7 @@ struct SettingView: View {
                         LinearGradient(gradient: Gradient(colors: [AppColors.blue01, AppColors.green07]), startPoint: .leading, endPoint: .trailing)
                             .frame(height: 60)
                             .cornerRadius(68)
-                            .padding(.horizontal, 50)
+                            .padding(.horizontal, 16)
                         
                         Text("미리 보기")
                             .font(.system(size: 24))
@@ -180,7 +187,7 @@ struct SettingView: View {
                             .foregroundStyle(Color(.white))
                     }
                 })
-                .padding(.bottom, tabBarHeight) // Safe Area 고려한 하단 여백
+                .padding(.bottom, tabBarHeight - 20) // Safe Area 고려한 하단 여백
             }
             .frame(height: screenHeight) // 버튼위치 고정
         }
