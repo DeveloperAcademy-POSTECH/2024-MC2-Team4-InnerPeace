@@ -86,7 +86,7 @@ struct SOSMessageView: View {
                 isAfter20Min ? Image("BG_SOSMessageView_red") : Image("BG_SOSMessageView_green")
                 
                 VStack{
-                    Spacer().frame(height: 70)
+                    UIScreen.main.bounds.height < 700 ? Spacer().frame(height: 10) : Spacer().frame(height: 70)
                     Text("공황 증상 발생")
                         .foregroundStyle(AppColors.white)
                         .fontWeight(.black)
@@ -101,7 +101,7 @@ struct SOSMessageView: View {
                     
                     // 환자의 SOS 메세지
                     RoundedRectangle(cornerRadius: 17)
-                        .frame(width: 350, height: 220)
+                        .frame(width: 350, height: UIScreen.main.bounds.height < 700 ? 180 : 220)
                         .foregroundStyle(AppColors.black.opacity(0.35))
                         .overlay{
                             Text(SOSMessage)
@@ -121,7 +121,7 @@ struct SOSMessageView: View {
                         .font(.system(size: 45))
                         .fontWeight(.thin)
                     
-                    Spacer().frame(height: 60)
+                    UIScreen.main.bounds.height < 700 ? Spacer().frame(height: 30) : Spacer().frame(height: 60)
                     
                     
                     // 119 신고 메세지

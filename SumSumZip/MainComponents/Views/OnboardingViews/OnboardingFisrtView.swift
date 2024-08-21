@@ -65,7 +65,7 @@ struct OnboardingFirstView: View {
                         .fontWeight(.medium)
                         .foregroundColor(.white)
                         .frame(width: screenWidth - 32, height: 60) // 좌우패딩 16씩
-                        .background(Color.black.opacity(0.2))
+                        .background(Color(AppColors.OnBoardingButton1))
                         .cornerRadius(17)
                 }
             }

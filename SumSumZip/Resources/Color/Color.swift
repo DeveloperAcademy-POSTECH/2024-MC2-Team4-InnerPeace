@@ -46,7 +46,8 @@ struct AppColors {
     static let green07 = Color(hex: "00FF94")
     static let gray03 = Color(hex: "D9D9D9")
     static let gray04 = Color(hex: "F7F5F5")
-    
+        
+    static let OnBoardingButton1 = Color(hex: "72B6AB")
     //static let lightSage = Color(hex: "AFEDD7")
 }
 

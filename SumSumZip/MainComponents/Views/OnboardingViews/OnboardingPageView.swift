@@ -58,7 +58,7 @@ struct OnboardingPageView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: isIpad ? geometry.size.width * 0.5 : 283) // 아이패드면 크기를 키움
-                        .padding(.bottom, isIpad ? -50 : -20) // 아이패드일 경우 -40, 아니면 -20
+                        .padding(.bottom, isIpad ? -135 : -30) // 아이패드일 경우 -40, 아니면 -20
                                             
                     //    Spacer()
                     
@@ -73,7 +73,7 @@ struct OnboardingPageView: View {
                                     .fontWeight(.medium)
                                     .foregroundColor(.white)
                                     .frame(width: 160, height: 56)
-                                    .background(Color.black.opacity(0.2))
+                                    .background(Color(AppColors.OnBoardingButton1))
                                     .cornerRadius(17)
                             }
                         }
