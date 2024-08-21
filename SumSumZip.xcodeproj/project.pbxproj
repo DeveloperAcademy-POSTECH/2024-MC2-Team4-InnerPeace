@@ -923,14 +923,14 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"SumSumZip/Preview Content\"";
-				DEVELOPMENT_TEAM = NVXZ7LSQ5W;
+				DEVELOPMENT_TEAM = TC3AW42G83;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SumSumZip/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -959,14 +959,14 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"SumSumZip/Preview Content\"";
-				DEVELOPMENT_TEAM = NVXZ7LSQ5W;
+				DEVELOPMENT_TEAM = TC3AW42G83;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SumSumZip/Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -1078,7 +1078,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = NVXZ7LSQ5W;
+				DEVELOPMENT_TEAM = TC3AW42G83;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EmergencyLiveActivity/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = EmergencyLiveActivity;
@@ -1111,7 +1111,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = NVXZ7LSQ5W;
+				DEVELOPMENT_TEAM = TC3AW42G83;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = EmergencyLiveActivity/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = EmergencyLiveActivity;

@@ -7,6 +7,41 @@
 
 import SwiftUI
 
+class BreathTimeViewModel: ObservableObject {
+    @Published var timerRemaining: Int = 0
+    private var timer: Timer?
+    private var initialTime: Int
+    
+    init(initialTime: Int) {
+        self.initialTime = initialTime
+        self.timerRemaining = initialTime * 60
+    }
+    
+    func startTimer() {
+        stopTimer()
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+            if self.timerRemaining > 0 {
+                self.timerRemaining -= 1
+            } else {
+                self.stopTimer()
+            }
+            
+        }
+    }
+    
+    func stopTimer() {
+        timer?.invalidate()
+        timer = nil
+    }
+    
+    func resetTimer() {
+        stopTimer()
+        self.timerRemaining = initialTime * 60
+    }
+    
+    
+}
+
 struct StartBreathView: View {
     @State private var isAnimated = false
     
@@ -15,16 +50,23 @@ struct StartBreathView: View {
     @State private var showAlert: Bool = false
     
     @Binding var breathTime: Int
-    @State private var timeRemaining: Int = 0
-    @State private var timer: Timer?
+    @StateObject var viewModel: BreathTimeViewModel
     
     @StateObject private var breathTimerManager = BreathTimeManager.shared
     
     private let firebase = FirebaseAnalyticsManager()
     
+    init(isShowingFirstView: Binding<Bool>,breathTime: Binding<Int>) {
+        _isShowingFirstView = isShowingFirstView
+        _breathTime = breathTime
+        _viewModel = StateObject(wrappedValue: BreathTimeViewModel(initialTime: breathTime.wrappedValue))
+    }
+    
     var body: some View {
         VStack {
             // 종료하기
+            UIScreen.main.bounds.height < 700 ? Spacer().frame(height: 20) : Spacer().frame(height: 0)
+            
             HStack {
                 Spacer()
                 
@@ -53,11 +95,11 @@ struct StartBreathView: View {
                 .padding(.bottom, 26)
         }
         .onAppear {
-            print("start breathing timer")
-            startTimer()
+//            print("start breathing timer")
+            viewModel.startTimer()
         }
         .onDisappear {
-            stopTimer()
+            viewModel.stopTimer()
         }
         .alert(isPresented: $showAlert) {
             Alert(
@@ -65,33 +107,12 @@ struct StartBreathView: View {
                 message: Text("하루하루 더 나아지는 자신을 느껴보세요"),
                 dismissButton: .default(Text("종료")) {
                     isShowingFirstView.toggle()
-                    stopTimer()
+                    viewModel.stopTimer()
                     breathTimerManager.stopTimer()
                     firebase.logBreathingEndClick()
                 }
             )
         }
-    }
-    
-    func startTimer() {
-        print("start timer: \(breathTime)")
-        breathTimerManager.startHaptic()
-        
-        timeRemaining = breathTime * 60 // breathTime을 초 단위로 변환
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-            if timeRemaining > 0 {
-                timeRemaining -= 1
-            } else {
-                stopTimer()
-                isShowingFirstView.toggle()
-            }
-        }
-    }
-    
-    func stopTimer() {
-        timer?.invalidate()
-        breathTimerManager.stopTimer()
-        timer = nil
     }
     
     @ViewBuilder
@@ -116,7 +137,7 @@ struct StartBreathView: View {
     
     @ViewBuilder
     func timerText() -> some View {
-        Text(timeString(from: timeRemaining))
+        Text(timeString(from: viewModel.timerRemaining))
             .fontWeight(.thin)
             .font(.system(size: 50))
     }

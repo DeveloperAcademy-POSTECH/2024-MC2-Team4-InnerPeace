@@ -49,7 +49,7 @@ struct OnboardingPageView: View {
                             .frame(width: 8, height: 8)
                     }
                 }
-                //   .padding(.bottom, 6) // Adjusted padding to bring the indicators closer to the image
+                   .padding(.bottom, 10) 
 //                Spacer()
                 
                 VStack {

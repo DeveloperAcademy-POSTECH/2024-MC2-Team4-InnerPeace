@@ -51,7 +51,7 @@ struct PatientInfo_ContactView: View {
                                 .foregroundStyle(Color.red)
                         }
                     }
-                    .frame(width: ScreenSize.shared.screenWidth, height: 300)
+                    .frame(width: ScreenSize.shared.screenWidth, height: 400)
                     .listStyle(.insetGrouped)
                     .scrollContentBackground(.hidden)
                     .scrollDisabled(true)

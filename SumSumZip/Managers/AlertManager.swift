@@ -18,12 +18,12 @@ class BreathTimeManager: ObservableObject {
     static let shared = BreathTimeManager()
     
     private init() {
-        print("BreathTimeManager initialize")
+//        print("BreathTimeManager initialize")
         hapticControl.prepareHaptics()
     }
     
     func startHaptic() {
-        print("startHaptic: \(isHapticActive)")
+//        print("startHaptic: \(isHapticActive)")
         hapticStateDuration = 1 // 첫 번째 상태는 진동
         isHapticActive = true
         isHapticEnabled = true // 진동을 활성화합니다.
@@ -130,11 +130,11 @@ class AlertManager: ObservableObject {
     private func startBreathingCycle() {
         // 4초 진동 실행
         hapticControl.playHaptic(hapURL: "HapticWave_2")
-        print("진동 시작")
+ //       print("진동 시작")
         
         // 5초 후에 멈춤
         DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-            print("진동 멈춤")
+//            print("진동 멈춤")
             self.stopHaptic()
             
             // 5초 후에 다시 시작
@@ -149,7 +149,7 @@ class AlertManager: ObservableObject {
     func stopHaptic() {
         // 진동 멈춤 로직이 필요하면 여기에 추가합니다.
         // 예: hapticControl.stopHaptic()
-        print("진동 멈춤")
+  //      print("진동 멈춤")
     }
     
     func stopAll() {

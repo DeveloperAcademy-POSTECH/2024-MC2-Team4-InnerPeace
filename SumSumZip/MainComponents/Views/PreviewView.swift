@@ -142,7 +142,7 @@ struct PreviewView: View {
             .edgesIgnoringSafeArea(.all)
             .toolbar{
                 Button("상황종료"){
-                    print("상황종료")
+              //      print("상황종료")
                     AlertManager.shared.endButtonClicked = true
                     showingSOSEndAlert = true
                 }
@@ -150,7 +150,7 @@ struct PreviewView: View {
                 .alert(isPresented: $showingSOSEndAlert){
                     Alert(title: Text("도와주셔서 감사합니다."), message: Text("당신은 영웅입니다."), primaryButton: .destructive(Text("상황종료"), action: {
                         isPresentedSOSMessageView = false
-                        print("isPresented: \(isPresentedSOSMessageView)")
+                //        print("isPresented: \(isPresentedSOSMessageView)")
                         EmergencyLiveActivityManager.shared.endAllActivities()
                     }), secondaryButton: .cancel(Text("취소")))
                 }

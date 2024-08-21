@@ -172,8 +172,8 @@ struct SettingView: View {
                 Button(action: {
                     // 미리보기 뷰 띄우기
                     isPresentedSOSMessageView = true
-                    print(scaleFactor)
-                    print(imageSize.width)
+           //         print(scaleFactor)
+           //         print(imageSize.width)
                 }, label: {
                     ZStack {
                         LinearGradient(gradient: Gradient(colors: [AppColors.blue01, AppColors.green07]), startPoint: .leading, endPoint: .trailing)
