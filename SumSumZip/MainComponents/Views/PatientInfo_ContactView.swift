@@ -22,68 +22,76 @@ struct PatientInfo_ContactView: View {
     
     @State private var numOfRelation = ContactsManager.shared.fetchContacts().last ?? "0"
     
+    @ObservedObject var screenSize = ScreenSize.shared // 스크린 사이즈 측정용 기능 모음
+    
     var body: some View {
-        VStack(/*spacing: 10*/) {
-            Spacer()
-            
-            TitleView()
-            
-            ContentView()
-            
-            VStack {
-                List {
-                    Section {
-                        MyCell(relationship: relation, number: pickedNumber)
-                        MyCell(relationship: relation2, number: pickedNumber2)
-                        MyCell(relationship: relation3, number: pickedNumber3)
-                    }header: {
-                        Text("긴급 연락처")
-                            .font(.title)
-                            .fontWeight(.black)
-                            .foregroundStyle(Color.white)
+        
+        ScrollView {
+            VStack() {
+                Spacer()
+                
+                TitleView()
+                
+                ContentView()
+                
+                VStack {
+                    List {
+                        Section {
+                            MyCell(relationship: relation, number: pickedNumber)
+                            MyCell(relationship: relation2, number: pickedNumber2)
+                            MyCell(relationship: relation3, number: pickedNumber3)
+                        }header: {
+                            Text("긴급 연락처")
+                                .font(.title)
+                                .fontWeight(.black)
+                                .foregroundStyle(Color.white)
+                        }
+                        Section {
+                            MyCell(relationship: "119", number: "119")
+                                .foregroundStyle(Color.red)
+                        }
                     }
-                    Section {
-                        MyCell(relationship: "119", number: "119")
-                            .foregroundStyle(Color.red)
-                    }
+                    .frame(width: ScreenSize.shared.screenWidth, height: 300)
+                    .listStyle(.insetGrouped)
+                    .scrollContentBackground(.hidden)
+                    .scrollDisabled(true)
                 }
-                .listStyle(.insetGrouped)
-                .scrollContentBackground(.hidden)
-            }
-            
-            CustomXButton(action: {
-                // 화면 전환 로직
-                isShownPatientInfo_Contact = false
-            })
-            .padding(.bottom, 10)
-        }
-        // onAppear 내부 수정
-        .onAppear {
-            let contacts = ContactsManager.shared.fetchContacts()
-            
-            // 연락처 배열의 요소들을 안전하게 할당
-            if contacts.indices.contains(0) {
-                pickedNumber = contacts[0]
-            }
-            if contacts.indices.contains(1) {
-                pickedNumber2 = contacts[1]
-            }
-            if contacts.indices.contains(2) {
-                pickedNumber3 = contacts[2]
-            }
-            if contacts.indices.contains(3) {
-                relation = contacts[3]
-            }
-            if contacts.indices.contains(4) {
-                relation2 = contacts[4]
-            }
-            if contacts.indices.contains(5) {
-                relation3 = contacts[5]
+                
+                CustomXButton(action: {
+                    // 화면 전환 로직
+                    isShownPatientInfo_Contact = false
+                })
+                .padding(.bottom, 10)
             }
         }
-
-        .background(Color.black.opacity(0.82))
-        .background(ClearBackground())
+            // onAppear 내부 수정
+            .onAppear {
+                let contacts = ContactsManager.shared.fetchContacts()
+                
+                // 연락처 배열의 요소들을 안전하게 할당
+                if contacts.indices.contains(0) {
+                    pickedNumber = contacts[0]
+                }
+                if contacts.indices.contains(1) {
+                    pickedNumber2 = contacts[1]
+                }
+                if contacts.indices.contains(2) {
+                    pickedNumber3 = contacts[2]
+                }
+                if contacts.indices.contains(3) {
+                    relation = contacts[3]
+                }
+                if contacts.indices.contains(4) {
+                    relation2 = contacts[4]
+                }
+                if contacts.indices.contains(5) {
+                    relation3 = contacts[5]
+                }
+            }
+//        }
+            
+            .background(Color.black.opacity(0.82))
+            .background(ClearBackground())
     }
     
     @ViewBuilder
