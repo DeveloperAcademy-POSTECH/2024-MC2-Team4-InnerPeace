@@ -30,7 +30,7 @@ struct SOSButtonView: View {
                 
                 Spacer().frame(maxHeight:50)
                 
-                Text("공황증상이 올 것 같다면\n지금 바로 PUSH")
+                Text("공황증상이 올 것 같다면\n지금 바로 눌러주세요")
                     .multilineTextAlignment(.center)
                     .foregroundStyle(AppColors.green02)
                     .font(.title2)
