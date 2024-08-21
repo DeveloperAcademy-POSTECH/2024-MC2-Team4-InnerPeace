@@ -17,6 +17,11 @@ struct SumSumZipApp: App {
     @State private var isPresented = false
     
     @AppStorage("_isFirstLaunching") var isFirstLaunching: Bool = true
+    
+    init() {
+        // 앱 첫 실행 시점에서 기본값 설정
+        UserdefaultsManager.setupInitialDefaults()
+    }
 
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([

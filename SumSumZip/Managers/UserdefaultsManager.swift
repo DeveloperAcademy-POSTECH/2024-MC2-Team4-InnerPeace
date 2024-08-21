@@ -9,6 +9,7 @@ import SwiftUI
 
 class UserdefaultsManager {
     
+    private static let isInitialLaunchKey = "isInitialLaunch"
     private static let hospitalInfoKey = "hospitalInfo"
     private static let medicineInfoKey = "medicineInfoKey"
     private static let breathingPracticeTimeKey = "breathingPracticeTimeKey"
@@ -16,6 +17,15 @@ class UserdefaultsManager {
     private static let torchToggled = "torchToggled"
     private static let vibrationToggle = "vibrationToggled"
     private static let messageKey = "savedMessage"
+    
+    static func setupInitialDefaults() {
+        if !UserDefaults.standard.bool(forKey: isInitialLaunchKey) {
+            UserDefaults.standard.set(true, forKey: bellToggled)
+            UserDefaults.standard.set(true, forKey: torchToggled)
+            UserDefaults.standard.set(true, forKey: vibrationToggle)
+            UserDefaults.standard.set(true, forKey: isInitialLaunchKey) // 초기 실행 표시
+        }
+    }
 
     // 긴급 메시지 저장 및 가져오기
     static var savedMessage: String {
