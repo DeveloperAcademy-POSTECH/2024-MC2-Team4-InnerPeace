@@ -54,10 +54,10 @@ class BreathTimeManager: ObservableObject {
         // 진동 상태를 토글하기 전에 진동을 멈추는 로직을 처리
         if !isHapticActive {
             hapticControl.stopHaptic()
-            hapticStateDuration = 6.0 // 정적 후 진동 시간
+            hapticStateDuration = 7.0 // 정적 후 진동 시간
         } else if isHapticEnabled {
             hapticControl.playHaptic(hapURL: "HapticWave_1")
-            hapticStateDuration = 11.0 // 진동 후 정적 시간
+            hapticStateDuration = 7.0 // 진동 후 정적 시간
         }
 
         isHapticActive.toggle()
