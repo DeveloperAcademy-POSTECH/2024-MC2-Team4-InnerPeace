@@ -15,7 +15,7 @@ class MessageManager {
     
     func saveMessage(_ message: String) {
         UserDefaults.standard.set(message, forKey: messageKey)
-        print("메세지 저장함수")
+            //     print("메세지 저장함수")
     }
     
     func fetchMessage() -> String {

@@ -24,6 +24,8 @@ struct SOSMessageView: View {
     //햅틱, 사운드 등등 관리자
     @StateObject private var alertManager = AlertManager.shared
     
+    @ObservedObject var screenSize = ScreenSize.shared // 스크린 사이즈 측정용 기능 모음
+    
     //환자의 SOSMessage
     @State var SOSMessage: String
     
@@ -83,7 +85,14 @@ struct SOSMessageView: View {
     var body: some View {
         NavigationView{
             ZStack{
-                isAfter20Min ? Image("BG_SOSMessageView_red") : Image("BG_SOSMessageView_green")
+                let imageSize = UIImage(named: "BG_SOSMessageView_green")?.size ?? CGSize.zero
+                let scaleFactor = screenSize.scaleFactor
+                
+                (isAfter20Min ? Image("BG_SOSMessageView_red") : Image("BG_SOSMessageView_green"))
+                    .resizable()
+                    .frame(width: imageSize.width * scaleFactor, height: imageSize.height * scaleFactor)
+                    .scaledToFit()
+                    .ignoresSafeArea()
                 
                 VStack{
                     UIScreen.main.bounds.height < 700 ? Spacer().frame(height: 10) : Spacer().frame(height: 70)
@@ -149,7 +158,7 @@ struct SOSMessageView: View {
             .edgesIgnoringSafeArea(.all)
             .toolbar{
                 Button("상황종료"){
-                    print("상황종료")
+              //      print("상황종료")
                     AlertManager.shared.endButtonClicked = true
                     showingSOSEndAlert = true
                 }
@@ -157,7 +166,7 @@ struct SOSMessageView: View {
                 .alert(isPresented: $showingSOSEndAlert){
                     Alert(title: Text("도와주셔서 감사합니다."), message: Text("당신은 영웅입니다."), primaryButton: .destructive(Text("상황종료"), action: {
                         isPresentedSOSMessageView = false
-                        print("isPresented: \(isPresentedSOSMessageView)")
+            //            print("isPresented: \(isPresentedSOSMessageView)")
                         alertManager.stopAll()
                         EmergencyLiveActivityManager.shared.endAllActivities()
                     }), secondaryButton: .cancel(Text("취소")))

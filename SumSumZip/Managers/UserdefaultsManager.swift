@@ -24,7 +24,7 @@ class UserdefaultsManager {
         }
         set {
             UserDefaults.standard.set(newValue, forKey: messageKey)
-            print("메세지 저장함수")
+ //           print("메세지 저장함수")
         }
     }
     
