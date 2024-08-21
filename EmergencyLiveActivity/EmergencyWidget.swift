@@ -57,8 +57,8 @@ struct EmergencyWidget: Widget {
             EmergencyWidgetEntryView(entry: entry)
                 .containerBackground(.fill.tertiary, for: .widget)
         }
-        .configurationDisplayName("Emergency Widget")
-        .description("This widget displays an image.")
+        .configurationDisplayName("숨숨집")
+        .description("잠금 화면에서 빠르게 구조요청을 할 수 있습니다.")
     }
 }
 

@@ -67,9 +67,9 @@ struct EmergencyLockScreenWidget: Widget {
         StaticConfiguration(kind: kind, provider: EmergencyLockScreenProvider()) { entry in
             EmergencyLockScreenWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("Emergency Lock Screen Widget")
-        .description("This widget displays an image on the lock screen.")
-        .supportedFamilies([.accessoryRectangular, .accessoryCircular, .accessoryInline])
+        .configurationDisplayName("숨숨집")
+        .description("잠금 화면에서 빠르게 구조요청을 할 수 있습니다.")
+        .supportedFamilies([.accessoryCircular, .accessoryInline])
     }
 }
 
