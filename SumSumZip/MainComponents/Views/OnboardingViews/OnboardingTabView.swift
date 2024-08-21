@@ -22,10 +22,13 @@ struct OnboardingTabView: View {
     
     var body: some View {
         let screenWidth = screenSize.screenWidth
-        
+      
+              
         if isFirstLaunching {
             ZStack {
                 GeometryReader { geometry in
+                    
+                    let isSmallPhone = geometry.size.width < 400
                     switch currentPage {
                     case .first:
                         Image("BG_Onboarding1")
@@ -38,7 +41,7 @@ struct OnboardingTabView: View {
                             .aspectRatio(contentMode: .fill)
                             .frame(width: geometry.size.width, height: geometry.size.height)
                     }
-                }
+               
 
                 VStack {
                     TabView(selection: $currentPage) {
@@ -84,7 +87,7 @@ struct OnboardingTabView: View {
                         OnboardingPageView(
                             imageName: "Img_Onboarding3",
                             title: "호흡 연습하기",
-                            subtitle: "심호흡 연습은 긴장을 낮추고\n불안정한 호흡을 바로 잡을 수 있습니다.\n숨숨이를 따라 호흡 연습을 해보세요.",
+                            subtitle: "심호흡 연습은 긴장을 낮추고\n불안정한 호흡을 바로 잡을 수 있습니다.",
                             pageCount: 3, // 전체 페이지 수
                             currentPageIndex: 2, // 현재 페이지 인덱스
                             currentPage: $currentPage,
@@ -94,10 +97,10 @@ struct OnboardingTabView: View {
                         .multilineTextAlignment(.center)
                         .kerning(-0.3)
                     }
-                    .padding(.top, 80)
+                    .padding(.top, isSmallPhone ? 60 : 100)
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 }
-               
+                }
                 
                 
             
