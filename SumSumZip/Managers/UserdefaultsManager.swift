@@ -30,7 +30,7 @@ class UserdefaultsManager {
     // 긴급 메시지 저장 및 가져오기
     static var savedMessage: String {
         get {
-            UserDefaults.standard.string(forKey: messageKey) ?? "긴급메세지를 작성해주세요."
+            UserDefaults.standard.string(forKey: messageKey) ?? ""
         }
         set {
             UserDefaults.standard.set(newValue, forKey: messageKey)
