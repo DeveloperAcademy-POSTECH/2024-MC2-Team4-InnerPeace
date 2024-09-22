@@ -13,7 +13,7 @@ struct SumSumTabView: View {
     
     var body: some View {
         TabView {
-            SOSButtonView()
+            SOSButtonView(isPresentedSOSMessageView: isFirstLaunching)
                 .tabItem {
                     Image(systemName: "staroflife.circle")
                     Text("SOS")

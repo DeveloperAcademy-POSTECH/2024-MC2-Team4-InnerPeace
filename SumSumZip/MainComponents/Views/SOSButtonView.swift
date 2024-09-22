@@ -18,6 +18,9 @@ struct SOSButtonView: View {
     // 30초 뒤 시작합니다 Alert
     @State private var showingWaitingTimeAlert = false
     
+    @State var showSheet: Bool = false
+    @State var isFirstLaunching = true
+    
     let firebase = FirebaseAnalyticsManager()
     
 
@@ -28,6 +31,19 @@ struct SOSButtonView: View {
                 .edgesIgnoringSafeArea(.all)
             VStack(){
                 
+                HStack {
+                    Spacer()
+                    Button {
+                        showSheet.toggle()
+                    } label: {
+                        Image(systemName: "info.circle")
+                            .foregroundColor(.green)
+                    }
+                }
+                    .fullScreenCover(isPresented: $showSheet) {
+                        OnboardingTabView(isFirstLaunching: $isFirstLaunching)
+                }
+                    .padding(.trailing, 16)
                 Spacer().frame(maxHeight:50)
                 
                 Text("공황증상이 올 것 같다면\n지금 바로 눌러주세요")
